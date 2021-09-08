@@ -1,0 +1,21 @@
+[
+    {
+        "pk": 1,
+        "model": "products.product",
+        "fields": {
+          "name": "ADIDAS ADULTS KAKARI Z.0 SOFT GROUND",
+          "category": 1,
+          "price": "200.00",
+          "colour": "Black",
+          "code": "13475313",
+          "description": "Domination is about more than just brute force. That's why adidas created these lightweight Kakari Z.0 rugby boots. Designed to add mobility to the front five, they show off a sleek new silhouette. The synthetic leather upper hides an internal strap that adds serious lockdown. Underneath, a split outsole flexes to support dynamic runs and quick offloads.",
+          "features": "Regular fit,Lace closure,Optimal support,Snug,sock-like feel,Tough,lightweight rugby boots,Replaceable aluminium studs,Provide traction when scrummaging,Upper: Textile",
+          "size": "4,5,6",
+          "rating": "4.5",
+          "pre_sale_price": "0.00",
+          "new_release": "no",
+          "image_url": "https://www.lifestylesports.com/dw/image/v2/BCDN_PRD/on/demandware.static/-/Sites-LSS_eCommerce_Master/default/dwe9b0ff69/images/13475313xlarge.jpg?sw=530",
+          "image": "13475313xlarge.jpg"
+        }
+    }
+]

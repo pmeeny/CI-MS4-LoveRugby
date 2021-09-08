@@ -1,0 +1,66 @@
+[
+    {
+      "pk": 1,
+      "model": "products.category",
+      "fields": {
+        "name": "adidas_kakari",
+        "friendly_name": "Adidas Kakari"
+      }
+    },
+    {
+      "pk": 2,
+      "model": "products.category",
+      "fields": {
+        "name": "adidas_malice",
+        "friendly_name": "Adidas Malice"
+      }
+    },
+    {
+      "pk": 3,
+      "model": "products.category",
+      "fields": {
+        "name": "leinster",
+        "friendly_name": "Leinster"
+      }
+    },
+    {
+      "pk": 4,
+      "model": "products.category",
+      "fields": {
+        "name": "munster",
+        "friendly_name": "Munster"
+      }
+    },
+    {
+      "pk": 5,
+      "model": "products.category",
+      "fields": {
+        "name": "ulster",
+        "friendly_name": "Ulster"
+      }
+    },
+    {
+      "pk": 6,
+      "model": "products.category",
+      "fields": {
+        "name": "balls",
+        "friendly_name": "Balls"
+      }
+    },
+    {
+      "pk": 7,
+      "model": "products.category",
+      "fields": {
+        "name": "gum_shields",
+        "friendly_name": "Gum Shields"
+      }
+    },
+    {
+      "pk": 8,
+      "model": "products.category",
+      "fields": {
+        "name": "protection",
+        "friendly_name": "Protection"
+      }
+    }
+  ]
