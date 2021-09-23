@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 if os.path.exists("env.py"):
@@ -28,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ci-ms4-recordshop.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -121,12 +122,16 @@ WSGI_APPLICATION = 'rugby_shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('postgres://wxrpucrhmcywud:e82df523ffb049bf0dfe9bfaba8e391dee25d45bcb28ac99ff06c787cb0766f2@ec2-54-195-246-55.eu-west-1.compute.amazonaws.com:5432/d39m6p0t2jhsif'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
 
 
 # Password validation
