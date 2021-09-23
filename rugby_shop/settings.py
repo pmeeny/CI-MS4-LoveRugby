@@ -124,7 +124,7 @@ WSGI_APPLICATION = 'rugby_shop.wsgi.application'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('postgres://wxrpucrhmcywud:e82df523ffb049bf0dfe9bfaba8e391dee25d45bcb28ac99ff06c787cb0766f2@ec2-54-195-246-55.eu-west-1.compute.amazonaws.com:5432/d39m6p0t2jhsif'))
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
     DATABASES = {
