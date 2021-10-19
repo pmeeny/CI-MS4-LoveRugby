@@ -7,6 +7,8 @@
 
 
 {% block inner_content %}
+<div class="section-holder">
+    <div class="form-holder">
 <hr>
 <h2 class="logo-font mb-4">{% trans "Confirm E-mail Address" %}</h2>
 <hr>
@@ -28,6 +30,8 @@
 
 <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
 
+</div>
+</div>
 {% endif %}
 
 {% endblock %}
