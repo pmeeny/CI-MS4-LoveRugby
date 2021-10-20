@@ -33,7 +33,7 @@
   <body>
     <header class="container-fluid fixed-top bg-white">
         <div id="info-banner" class="row text-center bg-grey">
-            <div class="col bg-grey text-black">
+            <div class="col bg-newcol text-black">
                 <div class="mt-1 mb-1">
                     <span>Fast dispatch - usually same day!</span>   
                     <span class="ml-3 mr-3">-</span>
@@ -47,10 +47,10 @@
             <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
                 <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-left">
                     <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                        <div class="logo-font text-black my-0">Rugby Shop</div>
+                      <img src="/media/logo/logo.png" class="logo logo-font text-black my-0"  alt="website logo">
                     </a>
                 </div>
-                <div class="col-12 col-lg-6 my-auto py-1 py-lg-0">
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                   <form method="GET" action="{% url 'products' %}">
                         <div class="input-group w-100">
                             <input class="form-control border border-black rounded-3 mt-1 mb-1" type="text" name="search-site" placeholder="Search..." aria-label="Search...">
@@ -66,7 +66,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
+                <div class="col-12 col-lg-5 my-auto py-1 py-lg-0">
                     <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                         <li class="list-inline-item dropdown">
                             <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,11 +84,11 @@
                                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                                 {% else %}
                                     <div class="container">
-                                        <span>Login to my account</span>
-                                        <span>Enter your e-mail and password:</span>
-                                        <!--<a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> -->
-                                        <form>
+                                        <!--<span>Login to my account</span>
+                                        <span>Enter your e-mail and password:</span> -->
+                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> 
+                                        <!--<form>
                                             <div class="form-group">
                                               <label for="exampleInputEmail1">Email address</label>
                                               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -98,11 +98,26 @@
                                               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                             </div>
                                             <button type="submit" class="btn btn-primary">Submit</button>
-                                          </form>
+                                          </form> -->
                                     </div>            
 
                                 {% endif %}
                             </div>
+                        </li>
+                        <li class="list-inline-item">
+                          <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+
+                                <div class="text-center">
+                                    <div><span class="material-icons">shopping_cart</span></div>
+                                    <p class="my-0">
+                                        {% if grand_total %}
+                                            ${{ grand_total|floatformat:2 }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </a>
                         </li>
                         <li class="list-inline-item">
                           <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
