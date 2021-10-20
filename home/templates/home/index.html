@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -24,4 +23,32 @@
             </div>
         </div>
     </div>
+        <!-- New Releases -->
+        <div class="section-holder">
+            <div class="form-holder-xlg">   
+                    <h1>New Releases</h1>
+                    <div class="float-container">
+                    <div class="new-rel-holder">
+                        {% for product in products %}
+                         <div class="new-rel-item">
+                            {% if product.new_release %}
+                                {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img class="new-rel-img img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                </a>
+                                {% else %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img class="new-rel-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                </a>
+                                {% endif %}
+                                <p class="mb-0">{{ product.name }}</p>
+                                <p class="mb-0">{{ product.price }}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    </div> 
+                </div>     
+            </div>
+        </div>    
 {% endblock %}
