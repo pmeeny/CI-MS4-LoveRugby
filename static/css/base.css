@@ -1,13 +1,108 @@
+/* ----- Google Fonts import ----- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* ----- Font ----- */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+/* --- Global styling --- */
 html {
     height: 100%;
 }
-
 body {
 	background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
 	background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
-    font-family: 'Noto Sans', sans-serif;
+}
+.hero-image {
+    background-image: url("/media/homepage_background_cropped.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    height: auto !important;
+}
+.section-holder{
+	padding: 50px 0;
+}
+.form-holder{
+    max-width: 600px;
+    margin: auto;
+    padding: 60px 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+.form-holder-lg{
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+.form-holder-xlg{
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+}
+.red-strikethrough{
+    text-decoration: line-through;
+    color: red;
+}
+
+/* ----- Start of Color palette ----- */
+/* --- Global --- */
+body {
+    color: #555;
+}
+a{
+    color:#1E5128;
+}
+.form-holder, .form-holder-lg, .form-holder-xlg{
+    background-color: #fff;
+}
+
+
+/* Product Detail page */
+
+.product-name{
+    font-size: 1.8rem;
+}
+
+.pricing {
+    font-size: 1.6rem; 
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+/* Homepage */
+.new-rel-img {
+    width: 100px;
+    height: 100px;
+}
+
+.new-rel-holder{
+    width: 50%;
+    display: flex;
+    padding: 20px;
+}
+
+.new-rel-item{
+    float:left;
+    width: 50%;
+    padding: 20px;
 }
 
 /* from Bulma */
@@ -38,6 +133,7 @@ body {
     color: white;
 }
 
+/*
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,
@@ -46,18 +142,24 @@ body {
 .btn-black:focus {
     background: #222;
     color: white;
-}
+} */
 
 .text-black {
-    color: #000 !important;
+    color: #1E5128 !important;
 }
 
-.border-black {
+/*.border-black {
     border: 1px solid black !important;
 }
 
 .bg-black {
     background: #000 !important;
+} */
+
+/* Logo */
+.logo {
+    height: 55px;
+    width: 180px;
 }
 
 
@@ -85,11 +187,11 @@ body {
 	background: white;
 	z-index: -1;
 }
-
+/*
 a.category-badge > span.badge:hover {
     background: #212529 !important;
     color: #fff !important;
-}
+}*/
 
 .btt-button {
     height: 42px;
@@ -103,10 +205,10 @@ a.category-badge > span.badge:hover {
     cursor: pointer;
 }
 
-
+/*
 .btn-outline-black {
     background: white;
-    color: black !important; /* use important to override link colors for <a> elements */
+    color: black !important;  use important to override link colors for <a> elements 
     border: 1px solid black;
 }
 
@@ -131,6 +233,8 @@ a.category-badge > span.badge:hover {
     background: #212529 !important;
     color: #fff !important;
 }
+
+*/
 
 .btt-button {
     height: 42px;
@@ -177,6 +281,36 @@ input[name='q']::placeholder {
     background-color: #dc3545;
     border-color: #dc3545;
     border-radius: 0;
+}
+
+
+/*  reg form */
+.form-row {
+
+
+}
+
+
+
+
+
+/*
+.registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+}*/
+
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
 }
 
 
@@ -263,12 +397,12 @@ input[name='q']::placeholder {
   
   .allauth-form-inner-content p {
       margin-top: 1.5rem; /* mt-4 */
-      color: #6c757d; /* text-secondary */
+      color: #000; /* text-secondary */
   }
   
   .allauth-form-inner-content input {
-      border-color: #000;
-      border-radius: 0;
+      /*border-color: #000; */
+     /* border-radius: 0; */
   }
   
   .allauth-form-inner-content label:not([for='id_remember']) {
@@ -279,9 +413,10 @@ input[name='q']::placeholder {
       color: #aab7c4;
   }
   
+  /*
   .allauth-form-inner-content button,
   .allauth-form-inner-content input[type='submit'] {
-      /* btn */
+      /* btn 
       display: inline-block;
       font-weight: 400;
       color: #fff;
@@ -291,16 +426,16 @@ input[name='q']::placeholder {
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      background-color: #000;
-      border: 1px solid #000;
+      background-color: blue;
+      border: 1px solid blue;
       padding: .375rem .75rem;
-      font-size: 1rem;
+      font-size: 1.0rem;
       line-height: 1.5;
       border-radius: 0;
   
-      /* standard bootstrap btn transitions */
+      /* standard bootstrap btn transitions
       transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  }
+  } 
   
   .allauth-form-inner-content button:hover,
   .allauth-form-inner-content input[type='submit']:hover {	
@@ -310,8 +445,38 @@ input[name='q']::placeholder {
   }
   
   .allauth-form-inner-content a {
-      color: #17a2b8; /* text-info */
+      color: #17a2b8; /* text-info
+  } */
+
+.black-btn{
+    background-color: #191A19;
+    color: white;
+
   }
+
+
+.bg-newcol{
+    background-color: #D8E9A8;
+
+}
+
+  .black-btn:hover{
+    background-color: #191A19;
+    color: white;
+
+  }
+
+
+ .green-btn {
+    background-color: #1E5128; 
+    color: white;
+  }
+
+  .green-btn:hover {
+    background-color: #1E5128; 
+    color: white;
+  }
+
   
   /* fixed top navbar only on medium and up */
   @media (min-width: 992px) {
