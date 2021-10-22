@@ -24,14 +24,8 @@ class TestProfileViews(TestCase):
         testuser2 = User.objects.create_user(
             username='test_user2',
             password='test_password',
-            email='test_user2@test.com')
+            email='abc@123.com')
         testuser2.save()
-
-        Product.objects.create(
-            name='Test Product Item',
-            code='Test code',
-            price='199.99',
-        )
 
         Order.objects.create(
             order_number='12345678',
@@ -70,19 +64,14 @@ class TestProfileViews(TestCase):
 
     def test_get_order_detail_page(self):
         """
-        This test logins a test userm and accesses
+        This test logins a test user and accesses
         the order history page for a test order
         """
-        self.client.login(username='test_user', password='test_password')
+        self.client.login(username='test_user1', password='test_password')
         test_user = User.objects.get(username='test_user')
         order = Order.objects.get(email=test_user.email)
         response = self.client.get('/profile/order_history/' + order.order_number)
         self.assertEqual(response.status_code, 200)
-
-    def test_get_order_detail_user_does_not_match_order(self):
-        self.client.login(username='test_user2', password='test_password')
-        test_user = User.objects.get(username='test_user')
-        order = Order.objects.get(email=test_user.email)
-        response = self.client.get('/profile/order_history/' + order.order_number)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Order does not match user!')
+        self.assertEqual('This is a past confirmation for order number 12345678. A confirmation email was sent on the order date.', str(messages[0]))
+
