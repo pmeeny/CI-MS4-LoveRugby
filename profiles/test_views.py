@@ -11,43 +11,78 @@ from profiles.models import UserProfile
 class TestProfileViews(TestCase):
 
     def setUp(self):
+        """
+         This setup creates a test user,
+         test product and test order
+         """
         testuser = User.objects.create_user(
-            username='joebloggs',
-            password='password123',
-            email='test@email.com')
+            username='test_user',
+            password='test_password',
+            email='test_user@test.com')
         testuser.save()
 
-        #testuser_2 = User.objects.create_user(
-        ##    username='testuser2',
-        #    password='testpassword',
-        #    email='test@email.com')
-        #testuser_2.save()
-
-        testuser_profile = UserProfile.objects.get(user=testuser)
+        testuser2 = User.objects.create_user(
+            username='test_user2',
+            password='test_password',
+            email='test_user2@test.com')
+        testuser2.save()
 
         Product.objects.create(
-            name='Test Title',
-            code='Test SKU',
-            price='1',
+            name='Test Product Item',
+            code='Test code',
+            price='199.99',
         )
 
         Order.objects.create(
-            order_number='TestOrder1',
-            user_profile=testuser_profile,
-            full_name='Joebloggs',
-            email='joebloggs@email.com',
-            phone_number='0871234567',
-            country='IE',
-            postcode='test postcode',
-            town_or_city='test city',
-            street_address1='test address 1',
-            county='test country',
+            order_number='12345678',
+            user_profile=UserProfile.objects.get(user=testuser),
+            full_name='Test User',
+            email='test_user@test.com',
+            phone_number='12345678',
+            country='Test Country',
+            postcode='Test postcode',
+            town_or_city='Test city',
+            street_address1='Test address',
+            county='Test country',
         )
 
     # Test Profile View
     #
     def test_get_profile_page(self):
-        self.client.login(username='joebloggs', password='password123')
+        """
+        This test logins a test user and
+        accesses their profile page (get)
+        """
+        self.client.login(username='test_user', password='test_password')
         response = self.client.get('/profile/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profiles/profile.html')
+
+    def test_post_profile_page(self):
+        """
+        This test logins a test user and
+        accesses their profile page (post)
+        """
+        self.client.login(username='test_user', password='test_password')
+        response = self.client.post('/profile/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'profiles/profile.html')
+
+    def test_get_order_detail_page(self):
+        """
+        This test logins a test userm and accesses
+        the order history page for a test order
+        """
+        self.client.login(username='test_user', password='test_password')
+        test_user = User.objects.get(username='test_user')
+        order = Order.objects.get(email=test_user.email)
+        response = self.client.get('/profile/order_history/' + order.order_number)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_order_detail_user_does_not_match_order(self):
+        self.client.login(username='test_user2', password='test_password')
+        test_user = User.objects.get(username='test_user')
+        order = Order.objects.get(email=test_user.email)
+        response = self.client.get('/profile/order_history/' + order.order_number)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), 'Order does not match user!')
