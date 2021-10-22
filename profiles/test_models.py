@@ -6,13 +6,19 @@ from profiles.models import UserProfile
 class TestProfileModels(TestCase):
 
     def setUp(self):
+        """
+        This setup creates a test user
+        """
         testuser = User.objects.create_user(
-            username='testuser',
-            password='testpassword',
-            email='testuser@email.com')
+            username='test_user',
+            password='test_password',
+            email='test_user@test.com')
         testuser.save()
 
-    def test_profile_string_method(self):
-        testuser = User.objects.get(username='testuser')
+    def test_profile_str_method(self):
+        """
+        This test tests the users profile username
+        """
+        testuser = User.objects.get(username='test_user')
         profile = UserProfile.objects.get(user=testuser)
         self.assertEqual(str(profile), profile.user.username)
