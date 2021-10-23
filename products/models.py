@@ -36,10 +36,3 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
-
-
-class Sizes(models.Model):    
-    size = models.CharField(max_length=254)
-    
-    def get_sizes(self):
-        return self.size
