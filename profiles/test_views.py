@@ -3,7 +3,6 @@ from django.test import TestCase
 from django.contrib.messages import get_messages
 
 from django.contrib.auth.models import User
-from products.models import Product
 from checkout.models import Order
 from profiles.models import UserProfile
 
@@ -74,4 +73,4 @@ class TestProfileViews(TestCase):
         self.assertEqual(response.status_code, 200)
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual('This is a past confirmation for order number 12345678. A confirmation email was sent on the order date.', str(messages[0]))
-
+    
