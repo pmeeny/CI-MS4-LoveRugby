@@ -9,7 +9,7 @@ class TestBagViews(TestCase):
     def setUp(self):
         Product.objects.create(
             name='Test Name',
-            price='19.99',
+            price='99.99',
             colour='Test Colour',
             code='123456',
         )
