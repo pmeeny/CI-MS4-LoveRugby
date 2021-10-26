@@ -1,108 +1,317 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Love Rugby shop
+Love Rugby is a website that allows users
 
-Welcome Paul Meeneghan,
+- There are two types of users, and I have set up accounts for both
+    - An admin user account has been set up with username/password of administrator/Password123
+    - A regular user account has been set up with username/password of mikemurphy/Password123
+<br>
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+**View the live site [here](https://ci-ms4-loverugby.herokuapp.com/)**
+<br><br>
+![Responsive site example](football_memories/static/images/am_i_responsive/responsive_devices.png)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+# Table of Contents
 
-## Gitpod Reminders
+# Project Overview
+- This project is a website that allows users to add/edit/delete football memories for given tournament for submission as milestone project 3 as part of the Code Institute - Diploma in Software Development (Full stack) course.
+- The website is deployed using Heroku pages at the following url: [Football Memories](https://ci-ms3-footballmemories.herokuapp.com/)
+- The repository on GitHub that contains the website source code and assets is available at the following url: [Code Repository](https://github.com/pmeeny/CI-MS3-FootballMemories)
+- The website was built with a responsive look and feel for desktop, tablet and mobile devices
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+# UX
+## Strategy
+### Primary Goal
+The primary goal of the website from the site 
+owners perspective is as follows:
+- To 
 
-`python3 -m http.server`
+The primary goal of the website from a site users perspective is as follows:
+- To 
 
-A blue button should appear to click: _Make Public_,
+## Structure
+### Website pages
+I have structured the website into 19 pages, each with clear, concise structure, information and purpose. I use the Bootstrap grid system throughout, which gave a consistent structure and responsive design "out of the box"
 
-Another blue button should appear to click: _Open Browser_.
+### Code Structure.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+    
+### Database
+- The website is a data-centric one with html, javascript, css used with the bootstrap framework as a frontend
+- The backend consists of Python, flask and jinja templates with a database of a mongodb open-source document-oriented database
 
-A blue button should appear to click: _Make Public_,
 
-Another blue button should appear to click: _Open Browser_.
+#### Conceptual database model
+The first step in the database design was to create a conceptual data model. The helped me understand the design at a conceptual level while enabling me to understand the required collections in the database
+![conceptual](football_memories/static/images/database_design/conceptual_design_model.png)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### Physical database model
+From the conceptual database model I created the physical database model. This model contains all fields stored in the database collections with their data type and mimics the structure of what is actually stored in the mongo database(mongodb)
+<br>
+Note: The lines/links in the diagram denote the relationship in the python code between the different collection fields and not foreign keys, for example 
+when a memory is created in the memories' collection, it also stores the tournament name from the tournament's collection.
+![conceptual](football_memories/static/images/database_design/physical_design_model.png)
 
-To log into the Heroku toolbelt CLI:
+#### Postgres DB database information
+- One production database(football_memories_prod) was created to store site information, it contains five collections described below
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+#### Model
+- The model
 
-------
+### Amazon Web Services S3 bucket
+While mongodb stores the majority of the users' data in the database, any images added
+by a regular user or admin user when adding a new tournament or memory is stored in an 
+Amazon Web services(AWS) S3(storage) bucket. I made this choice for performance reasons(https://aws.amazon.com/s3/faqs/)
+and to challenge myself to learn how to integrate the site with AWS.
+Here are the steps I took for the integration
+1. I created an account with AWS, and created an S3 bucket named "ci-ms3-football-memories"
+![s3 bucket](football_memories/static/images/readme/aws_s3_bucket.PNG)
+2. I created a user in AWS IAM, and gave the user the AmazonS3FullAccess permission   
+3. I then gave the bucket policy the necessary permissions to allow my application to access 
+the S3 bucket
+![s3 bucket policy](football_memories/static/images/readme/aws_s3_policy.PNG)
+4. I imported the Boto3 python library (https://boto3.amazonaws.com/) in the util.py file
+I made a design decision to have an util.py in an util flask route python file that would be used to store common code
+that could be used by multiple routes
+5. The relevant s3 variables for the bucket name, url and access/secret keys are defined at the top of the util.py file
+   <code>
+   s3_bucket_name = "ci-ms3-football-memories"
+s3_bucket_url = "https://ci-ms3-football-memories.s3.eu-west-1.amazonaws.com/"
+client = boto3.client('s3', 
+                aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+                aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
+   </code>
+6. A single function was written named storeImageAWSS3Bucket that takes one parameter, the filename to store
+7. This single function is used by the tournament and memories routes to store the images in the S3 bucket
+8. This function stores a file in an AWS S3 bucket using boto3. The filename is in the form timestamp + name of file added by the user. The timestamp ensures uniqueness for every file added to the s3 bucket allowing users to use the same filename if desired.<code>
+   image_file = secure_filename(image.filename)
+    image_to_upload = timestamp + image_file</code>
+9. The boto3 put_object method is used to store the image taking two parameters, the file name and actual file
+<code>s3.Bucket(s3_bucket_name).put_object(Key=image_to_upload, Body=image)</code>
+10. An image url is returned, and it is the image url that is stored in the mongodb for the relevant tournament or memory, described below in the two screenshots, field 
+names memory_image and tournament_image in the memory and tournament collections
+<code>image_url = s3_bucket_url + image_to_upload</code>
+![tournaments](football_memories/static/images/database_design/tournaments.PNG)
+![memories](football_memories/static/images/database_design/memories.PNG)
+   
 
-## Release History
+## Scope
+There is overlap in terms of user stories for the two types of users, and they are described below
+### User Stories Potential or Existing Customer
+The user stories for the website user "regular user" (a potential or existing customer) are described as follows: 
+- User Story 1.1: As a regular user the navigation bar is displayed with a logo on all pages for easy navigation, with a burger menu on mobile devices
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### User Stories Website Owner
+The user stories for the website owner(admin user) are described as follows: 
+There is a lot of overlap between the two user types, the admin user however has more administrative rights throughout
+- User Story 1.1: As an admin user the navigation bar is displayed with a logo on all pages for easy navigation, with a burger menu on mobile devices
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## Skeleton
+### Wireframes
+Each wireframe image below contains three sub images, one for desktop, tablet and mobile
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+Page | Wireframe | 
+------------ | ------------- 
+index | [Desktop/Tablet/Mobile](football_memories/static/images/wireframes/index.png)
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## Surface
+### Color Palette
+I have gone for a simple and minimal design for the website, with predominately green, black and white font colours over a large hero image on all pages
+There are five colours in the color palette
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+- 000000 - Black color for some text
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+I feel the colours complement each other very well, and I choose those colours after testing a number of palettes while making sure the colour palette met accessibility standards.
+![Palette](football_memories/static/images/readme/color_palette.PNG)
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### Typography
+The Poppins font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the Poppins font cannot be imported into the website correctly. This font is from the Google fonts library.
+![Font](football_memories/static/images/readme/font.PNG)
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+# Features
+The website has seven distinct features, and they are described below
+## Existing Features
+### Feature 1 Navigation Bar
+#### Description feature 1
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+#### User Stories feature 1
+- User Story 1.1: As an admin/regular user the navigation bar is displayed with a logo on all pages for easy navigation, with a burger menu on mobile devices
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+##  Features Left to Implement
+- I am content with what was implemented. The site is a feature rich site using a number of linked namespaces in a mongodb collection.
+- However, here are some additional "nice to have" features that could be added to the site
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+Number | Feature  
+ ------------ | ------- |
+1 | Social sharing of a memory on facebook, twitter  |
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+# Technologies Used
+## Languages 
+- HTML (https://en.wikipedia.org/wiki/HTML)
+    - The project uses html to build the relevant pages
+- CSS (https://en.wikipedia.org/wiki/CSS)
+    - The project uses CSS to style the relevant pages
+- Javascript (https://www.javascript.com/)
+    - Javascript was used for all scripting on the site
+- Python v3.9 (https://www.python.org/)
+    - Python was used for server side coding on the project, a number of libraries were also used: 
+        - boto, boto3, botocore, click, dnspython, Flask, flask-paginate, 
+        Flask-PyMongo, itsdangerous, Jinja2, jmespath, MarkupSafe, pymongo, s3transfer,Werkzeug
+- Jinja (https://jinja.palletsprojects.com/en/3.0.x/)
+    - Jinja is a templating engine for Python that is used throughout the project
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## Libraries and other resources
+- Bootstrap 5.0 (https://getbootstrap.com/docs/5.0)
+    - The project uses the bootstrap library for some UI components in the website
+- Gitpod (https://gitpod.io/)
+    - Gitpod was used as an IDE for the project
+- Github (https://github.com/)
+    - GitHub was used to store the project code in a repository
+- Google Fonts (https://fonts.google.com/)
+    - Google font Roboto was used as the website font
+- Balsamiq (https://balsamiq.com/)
+    - Balsamiq was used to create the website wireframes
+- Font Awesome (https://fontawesome.com/)
+    - Font awesome was used to provide the relevant fonts/icons for the website
+- Lucidchart (http://lucidchart.com)    
+    - Lucidchart was used to create the database design diagrams
+- JQuery (https://jquery.com)
+    - JQuery was used in some javascript files for DOM manipulation
+- TinyPNG (https://tinypng.com/)
+    - TinyPNG was used to compress images to improve performance and reduce space
+ - CSS Validation Service (https://jigsaw.w3.org/css-validator/)
+    - CSS validation service for validation the css in the project  
+- HTML Markup Validation Service (https://validator.w3.org/)   
+    - HTML validation service for validation the css in the project  
+- Chrome dev tools (https://developers.google.com/web/tools/chrome-devtools)
+    - For troubleshooting and debugging of the project code
+- Chrome Lighthouse (https://developers.google.com/web/tools/lighthouse)
+    - For performance, accessibility, progressive web apps, SEO analysis of the project code
+- Responsive Design (http://ami.responsivedesign.is/)
+    - Website for generating the responsive image in this README
+- JS Fiddle (https://jsfiddle.net/)
+    - Used for testing html and css concepts
+- GitHub Wiki TOC generator (https://ecotrust-canada.github.io/markdown-toc/)
+    - Used for generating a table of contents for this README
+- Google Maps api (https://developers.google.com/maps)
+    - The Google Maps api is used to display the stadium information on the memory page
+- Google maps geocode API (https://developers.google.com/maps/documentation/geocoding/start)
+    - The Google Maps geocode api is used to translate the event name returned from the memory stadium name value and translate to a Google Maps location on the memory page
+- Gofullpage chrome plugin  (https://chrome.google.com/webstore/detail/gofullpage-full-page-scre)
+    - This plugin was used to take full page screenshots for testing images
+- Python online interpreter (https://www.programiz.com/python-programming/online-compiler/)
+    - For testing python code snippets
+- Pytest (https://docs.pytest.org/en/6.2.x/)
+    - For Python unit testing
+- UILicious (www.uilicious.com)
+    - For automated testing
 
-------
+# Testing
+The testing information and results for this project are documented in [TESTING.md](TESTING.md)
 
-## FAQ about the uptime script
+# APIs
+The project also uses a number of API's, below are the steps to configure the API in your environment
 
-**Why have you added this script?**
+## Email JS
+1. Create an account at emailjs.com 
+2. In the integration screen in the emailjs dashboard, note your userid
+3. Create an email service in the Email Services section and note the id
+4. Create an email template in the Email templates section and note the id
+5. Update the script sendEmail.js, method sendMail with your user id, email service id and email template id
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+# Deployment
+There are a number of applications that need to be configured to run this application locally or on a cloud based service, for example Heroku
 
-**How will this affect me?**
+## Amazon WebServices
+1. Create an account at aws.amazon.com
+2. Open the IAM application and create a new user
+3. Set the AmazonS3FullAccess for the user and note the users AWS ACCESS and SECRET keys
+![Iam](football_memories/static/images/readme/iam.PNG)
+4. Open the S3 application and create a new bucket. For the purpose of this application the bucket name is ci-ms3-football-memories but this can be updated in the util.py route
+5. With security best practices update the public access and policy bucket to enable the user created and the application access to read/write to the S3 bucket. Consult the AWS documentation if required: https://aws.amazon.com/s3/
+![policy](football_memories/static/images/readme/policy.PNG)
+6. The s3 bucket is now updated to be accessed by your application
+7. In the util.py route update the variables s3_bucket_name and s3_bucket_url with the correct information that you have set up, for example:
+<br>
+<code>s3_bucket_name = "ci-ms3-football-memories"</code><br>
+<code>s3_bucket_url = "https://ci-ms3-football-memories.s3.eu-west-1.amazonaws.com/" </code>
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+## Postgres Database
+Postgres is the database used in the application
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+## Local Deployment
+To run this project locally, you will need to clone the repository
+1. Login to GitHub (https://wwww.github.com)
+2. Select the repository pmeeny/CI-MS3-FootballMemories
+3. Click the Code button and copy the HTTPS url, for example: https://github.com/pmeeny/CI-MS3-FootballMemories.git
+4. In your IDE, open a terminal and run the git clone command, for example 
 
-**So….?**
+    ```git clone https://github.com/pmeeny/CI-MS3-FootballMemories.git```
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+5. The repository will now be cloned in your workspace
+6. Create an env.py file in the root folder in your project, and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values<br>
+<code>import os</code><br>
+<code>os.environ.setdefault("IP", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("PORT", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("SECRET_KEY", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("MONGO_URI", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("MONGO_DBNAME", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("AWS_ACCESS_KEY_ID", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("AWS_SECRET_ACCESS_KEY", TO BE ADDED BY USER)</code>
+7. Install the relevant packages as per the requirements.txt file
+8. Start the application by running <code>python3 app.py</code>
 
-**Can I opt out?**
+## Heroku
+To deploy this application to Heroku, run the following steps.
+1. In the app.py file, ensure that debug is not enabled, i.e. set to True
+2. Create a file called ProcFile in the root directory, and add the line <code>web: python app.py</code> if the file does not already exist
+3. Create a requirements.txt file by running the command <code>pip freeze > requirements.txt</code> in your terminal if the file doesn't already exist
+5. Both the ProcFile and requirements.txt files should be added to your git repo in the root directory
+6. Create an account on heroku.com
+7. Create a new application and give it a unique name
+8. In the application dashboard, navigate to the deploy section and connect your application to your git repo, by selecting your repo
+![Heroku dashboard](football_memories/static/images/readme/heroku_dashboard.PNG)
+9. Select the branch for example master and enable automatic deploys if desired. Otherwise, a deployment will be manual
+10. The next step is to set the config variables in the Settings section
+![Config vars](football_memories/static/images/readme/config_vars.PNG)
+11. Set key/value pairs for the following keys: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, IP, MONGO_DBNAME, MONGO_URI, PORT, SECRET_KEY
+12. Go to the dashboard and trigger a deployment
+![Deploy](football_memories/static/images/readme/deploy.PNG)
+13. This will trigger a deployment, once the deployment has been successful click on the "Open App" link to open the app
+14. If you encounter any issues accessing the build logs is a good way to troubleshoot the issue
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+# Credits
+- For the memories page, I used some html and css code from https://bootstrapious.com/p/bootstrap-photo-gallery as a basis
+for the memories gallery
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+- For storing images in an AWS S3 bucket, I found the following links very useful
+    - https://www.youtube.com/watch?v=s1Tu0yKmDKU
+    - https://stackoverflow.com/questions/44228422/s3-bucket-action-doesnt-apply-to-any-resources
+    - https://www.youtube.com/watch?v=7gqvV4tUxmY 
 
-**Anything more?**
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+- I used html/css code, then tweaked it accordingly for the site footer: https://jsfiddle.net/bootstrapious/c7ash30w/
 
----
+- For the send-email functionality I used some code from the code institute module from the course
 
-Happy coding!
+# Content
+- Font Awesome (http://fontawesome.com)    
+    - The icons used on the site from font awesome
+
+- Fonts (https://fonts.google.com/)    
+    - The text font(Poppins) is from Google fonts
+    
+- The terms and conditions and privacy policy page content was copied from https://www.privacypolicies.com/blog/privacy-policy-template/
+
+<br>
+
+# Media
+
+ <br>
+
+# Acknowledgements
+- I would like to thank my fiancée Mary for her help, constant support and ideas for the website, my son Liam, and also to my dog Lily for her company during development of the website.
+- I would like to thank my mentor Mo Shami for his input, help and feedback.
