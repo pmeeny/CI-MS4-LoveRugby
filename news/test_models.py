@@ -14,17 +14,17 @@ class TestNewsModels(TestCase):
             title='Test Title',
             user=test_user,
             news_item_text='Test Item Text',
-            image = 'TestImage.png',
-            update_date = '01/01/2021',
-            create_date = '01/01/2021',
-            status = 1,
+            image='TestImage.png',
+            update_date='01/01/2021',
+            create_date='01/01/2021',
+            status=1,
         )
 
         Comment.objects.create(
             user=test_user,
             new_story=test_news_story,
-            comment_text = 'Test Item Text',
-            create_date = '01/01/2021',
+            comment_text='Test Item Text',
+            create_date='01/01/2021',
         )
 
     def test_news_str_method(self):
