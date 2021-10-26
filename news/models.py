@@ -23,6 +23,7 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     new_story = models.ForeignKey(
@@ -35,4 +36,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment_text
-

@@ -28,5 +28,6 @@ class CommentAdmin(admin.ModelAdmin):
         'create_date',
     )
 
+
 admin.site.register(News, NewsAdmin)
 admin.site.register(Comment, CommentAdmin)
