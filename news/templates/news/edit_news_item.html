@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<main class="container container-pd">
+    <div class="bg-overlay"></div>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="header-font mb-4 pt-2 text-center">News Item Management</h2>
+            <h5 class="text-muted text-center">Edit News Item</h5>
+            <hr>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-lg-8 pb-5">
+            <form method="POST" action="{% url 'edit_news_item' news_item.id %}" class="form mb-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in news_form %}
+                {% if field.name != 'image' %}
+                {{ field | as_crispy_field }}
+                {% else %}
+                {{ field }}
+                {% endif %}
+                {% endfor %}
+                <div class="text-center pb-3">
+                    <button class="btn btn-sm btn-blue rounded-1 text-uppercase" type="submit">Edit News Item</button>
+                    <a class="btn btn-sm btn-blue rounded-1 text-uppercase" href="{% url 'manage_news_items' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    /*jshint esversion: 6 */
+    $('#id_image').change(function () {
+        let file = $('#id_image')[0].files[0];
+        $('#filename').text(`Image will be set to: ${file.name}`);
+    });
+</script>
+{% endblock %}

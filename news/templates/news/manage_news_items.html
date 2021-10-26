@@ -35,8 +35,7 @@
                           <thead>
                             <tr>
                               <th scope="col">News Item Title</th>
-                              <th scope="col">Posted By</th>
-                              <th scope="col">Posted On</th>
+                              <th scope="col">Create Date</th>
                               <th scope="col">Status</th>
                               <th scope="col">Action</th>
                             </tr>
@@ -45,14 +44,16 @@
                                 {% for news_item in news_items %}
                                 <tr>
                                   <td>{{ news_item.title }}</td>
-                                  <td>{{ news_item.user }}</td>
                                   <td>{{ news_item.create_date }}</td>
-                                        {% if news_item.status == 0 %}
+                                        {% if news_item.status == 1 %}
                                             <td>Published</td>
                                         {% else %}
                                             <td>Draft</td>
                                         {% endif %}
-                                  <td>Edit Action</td>
+                                    <td>
+                                        <a href="{% url 'edit_news_item' news_item.id %}">Edit</a> |
+                                        <a class="text-danger" href="{% url 'edit_news_item' news_item.id %}">Delete</a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
