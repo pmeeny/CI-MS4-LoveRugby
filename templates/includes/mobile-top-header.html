@@ -31,6 +31,7 @@
     <div class="dropdown-menu border-0" aria-labelledby="user-options">
         {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
+                <a href="{% url 'manage_news_items' %}" class="dropdown-item">News Item Management</a>
                 <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
             {% endif %}
             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
