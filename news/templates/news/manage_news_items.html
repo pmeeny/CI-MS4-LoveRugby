@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="hero-image">
+    <div class="section-holder">
+        <div class="form-holder-xlg">
+            <main class="container">
+                <div class="bg-overlay"></div>
+                <div class="row">
+                    <div class="col mt-3">
+                        <h2 class="header-font mb-2 pt-1 text-center text-black">News Items <i class="fas fa-paw"></i></h2>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-12">
+                    <p class="text-uppercase text-center mt-3 text-black">
+                        <strong>Total news items: </strong>({{ news_items|length }})
+                    </p>
+                </div>
+                <!-- All News Items -->
+                <div class="row">
+                    <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">News Item Title</th>
+                              <th scope="col">Posted By</th>
+                              <th scope="col">Posted On</th>
+                              <th scope="col">Status</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                            <tbody>
+                                {% for news_item in news_items %}
+                                <tr>
+                                  <td>{{ news_item.title }}</td>
+                                  <td>{{ news_item.user }}</td>
+                                  <td>{{ news_item.create_date }}</td>
+                                        {% if news_item.status == 0 %}
+                                            <td>Published</td>
+                                        {% else %}
+                                            <td>Draft</td>
+                                        {% endif %}
+                                  <td>Edit Action</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                <hr>
+            </main>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="hero-image">
+    <div class="section-holder">
+        <div class="form-holder-xlg">
+            <main class="container">
+                <div class="bg-overlay"></div>
+                <div class="row">
+                        <div class="col-12">
+                            <h2 class="header-font mb-4 pt-4 text-center">News Item Management</h2>
+                            <h5 class="text-muted text-center">Add a News Item</h5>
+                            <hr>
+                        </div>
+                </div>
+                <!-- Add New Items -->
+                    <div class="row justify-content-center container-pd">
+                        <div class="col-sm-12 col-lg-8">
+                            <form method="POST" action="{% url 'add_news_item' %}" class="form mb-2" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% for field in post_form %}
+                                {% if field.name != 'image' %}
+                                {{ field | as_crispy_field }}
+                                {% else %}
+                                {{ field }}
+                                {% endif %}
+                                {% endfor %}
+                                <div class="text-center mt-2">
+                                    <p class="mt-0">*Select 'Draft' to save the news item for later or select 'Publish' to publish on the
+                                        site.</p>
+                                    <P>Draft posts will be saved in your<a class="text-info" href="{% url 'profile' %}"> Profile</a></P>
+                                    <button class="btn btn-sm btn-blue rounded-1 text-uppercase" type="submit">Add News Item</button>
+                                    <a class="btn btn-sm btn-blue rounded-1 text-uppercase" href="{% url 'news_items' %}">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    /*jshint esversion: 6 */
+    $('#id_image').change(function () {
+        let file = $('#id_image')[0].files[0];
+        $('#filename').text(`Image will be set to: ${file.name}`);
+    });
+</script>
+{% endblock %}
