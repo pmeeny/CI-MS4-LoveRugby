@@ -4,6 +4,7 @@ from django.test import TestCase
 
 from products.models import Category, Product
 
+
 class TestProductViews(TestCase):
     def setUp(self):
         Category.objects.create(
@@ -17,10 +18,10 @@ class TestProductViews(TestCase):
             description='Test Description',
         )
 
-        testuser = User.objects.create_user(
+        User.objects.create_user(
             username='test_user', password='test_password')
 
-        test_super_user = User.objects.create_superuser(
+        User.objects.create_superuser(
             username='test_super_user', password='test_password')
 
     def tearDown(self):
@@ -83,11 +84,11 @@ class TestProductViews(TestCase):
     def test_add_product_as_superuser_post(self):
         self.client.login(username='test_super_user', password='test_password')
         response = self.client.post('/products/add/', {
-            'name':'Test Name 2',
-            'price':'99.99',
-            'colour':'Test Colour',
-            'code':'12345678',
-            'description':'Test Description',
+            'name': 'Test Name 2',
+            'price': '99.99',
+            'colour': 'Test Colour',
+            'code': '12345678',
+            'description': 'Test Description',
         })
         self.assertRedirects(response, '/products/2/')
 
@@ -101,11 +102,11 @@ class TestProductViews(TestCase):
         self.client.login(username='test_super_user', password='test_password')
         product = Product.objects.get()
         self.client.post(f'/products/edit/{product.id}/', {
-            'name':'Test Name Update',
-            'price':'99.99',
-            'colour':'Test Colour Update',
-            'code':'123456',
-            'description':'Test Description Update',
+            'name': 'Test Name Update',
+            'price': '99.99',
+            'colour': 'Test Colour Update',
+            'code': '123456',
+            'description': 'Test Description Update',
         })
         updated_product = Product.objects.get()
         self.assertEqual(updated_product.name, 'Test Name Update')
@@ -115,11 +116,11 @@ class TestProductViews(TestCase):
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.get()
         response = self.client.post(f'/products/edit/{product.id}/', {
-            'name':'Test Name Update',
-            'price':'99.99',
-            'colour':'Test Colour Update',
-            'code':'123456',
-            'description':'Test Description Update',
+            'name': 'Test Name Update',
+            'price': '99.99',
+            'colour': 'Test Colour Update',
+            'code': '123456',
+            'description': 'Test Description Update',
         })
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
@@ -141,4 +142,3 @@ class TestProductViews(TestCase):
         self.assertRedirects(response, '/')
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
-
