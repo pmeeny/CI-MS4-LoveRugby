@@ -114,6 +114,12 @@
                             </a>
                         </p>
                         {% endif %}
+
+                        {% if is_product_in_favourites %}
+                            <a href="{% url 'add_product_to_favourites' product.id %}" aria-label="add_product_to_favourites" class="wishlist-remove text-danger ml-3"><i class="fas fa-heart"></i></a>
+                        {% else %}
+                            <a href="{% url 'add_product_to_favourites' product.id %}" aria-label="add_product_to_favourites" class="text-danger ml-3"><i class="far fa-heart"></i></a>
+                        {% endif %}
     
                         {% if product.rating %}
                             <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
