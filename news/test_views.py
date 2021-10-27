@@ -5,7 +5,7 @@ from django.test import TestCase
 from news.models import News
 
 
-class TestProductViews(TestCase):
+class TestNewsItemViews(TestCase):
     def setUp(self):
         test_user = User.objects.create_user(
             username='test_user', password='test_password')
@@ -94,7 +94,7 @@ class TestProductViews(TestCase):
         It is a negative test case and
         """
         self.client.login(username='test_super_user', password='test_password')
-        response = self.client.post('/news/add_news_item/', {
+        self.client.post('/news/add_news_item/', {
             'title': 'Test Title 2',
             'user': '{test_super_user}',
             'news_item_text': 'Test Item Text 1',
@@ -162,30 +162,30 @@ class TestProductViews(TestCase):
         self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
 
     def test_delete_news_item_as_non_superuser(self):
-            """
-            This test tests delete news item as a non superuser
-            """
-            self.client.login(username='test_user', password='test_password')
-            news_item = News.objects.get(title='Test Title')
-            response = self.client.post(f'/news/delete_news_item/{news_item.id}/', {
-            })
-            messages = list(get_messages(response.wsgi_request))
-            self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
+        """
+        This test tests delete news item as a non superuser
+        """
+        self.client.login(username='test_user', password='test_password')
+        news_item = News.objects.get(title='Test Title')
+        response = self.client.post(f'/news/delete_news_item/{news_item.id}/', {
+        })
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
 
     def test_delete_news_item_as_superuser(self):
-            """
-            This test tests delete news item as a superuser
-            """
-            self.client.login(username='test_super_user', password='test_password')
-            news_item = News.objects.get(title='Test Title')
-            response = self.client.post(f'/news/delete_news_item/{news_item.id}/', {
-            })
-            messages = list(get_messages(response.wsgi_request))
-            self.assertEqual(str(messages[0]), "Test Title Successfully Deleted")
-            self.assertEqual(News.objects.count(), 1)
-            news_item = News.objects.get(title='Test Title 1')
-            response = self.client.post(f'/news/delete_news_item/{news_item.id}/', {
-            })
-            messages = list(get_messages(response.wsgi_request))
-            self.assertEqual(str(messages[0]), "Test Title Successfully Deleted")
-            self.assertEqual(News.objects.count(), 0)
+        """
+        This test tests delete news item as a superuser
+        """
+        self.client.login(username='test_super_user', password='test_password')
+        news_item = News.objects.get(title='Test Title')
+        response = self.client.post(f'/news/delete_news_item/{news_item.id}/', {
+        })
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Test Title Successfully Deleted")
+        self.assertEqual(News.objects.count(), 1)
+        news_item = News.objects.get(title='Test Title 1')
+        response = self.client.post(f'/news/delete_news_item/{news_item.id}/', {
+        })
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Test Title Successfully Deleted")
+        self.assertEqual(News.objects.count(), 0)
