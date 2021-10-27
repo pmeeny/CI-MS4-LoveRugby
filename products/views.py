@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,7 @@ from django.db.models.functions import Lower
 
 from .models import Product, Category
 from .forms import ProductForm
+from favourites.models import Favourites
 
 
 def all_products(request):
@@ -63,8 +65,16 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    try:
+        favourites = get_object_or_404(Favourites, username=request.user.id)
+    except Http404:
+        is_product_in_favourites = False
+    else:
+        is_product_in_favourites = bool(product in favourites.products.all())
+
     context = {
         'product': product,
+        'is_product_in_favourites': is_product_in_favourites,
     }
 
     return render(request, 'products/product_detail.html', context)
