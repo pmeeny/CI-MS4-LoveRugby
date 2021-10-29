@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Products
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
@@ -16,9 +16,8 @@
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
-
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="rugby-boots-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="rugby-boots-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Rugby Boots
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="rugby-boots-link">
@@ -27,21 +26,19 @@
                 <a href="{% url 'products' %}?category=adidas_kakari,adidas_malice" class="dropdown-item">All Rugby Boots</a>
             </div>
         </li>
-
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="club-rugby-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="club-rugby-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Jerseys
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="club-rugby-link">
                 <a href="{% url 'products' %}?category=leinster"  class="dropdown-item">Leinster</a>
-                <a href="{% url 'products' %}?category=munster" " class="dropdown-item">Munster</a>
+                <a href="{% url 'products' %}?category=munster"  class="dropdown-item">Munster</a>
                 <a href="{% url 'products' %}?category=ulster"  class="dropdown-item">Ulster</a>
                 <a href="{% url 'products' %}?category=leinster,munster,ulster"  class="dropdown-item">All Jerseys</a>
             </div>
         </li>
-
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="training-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="training-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Accessories
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="training-link">
@@ -52,8 +49,8 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'news_items' %}" id="training-link" aria-haspopup="true" aria-expanded="false">
-                NEWS
+            <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'news_items' %}" id="news" aria-haspopup="true" aria-expanded="false">
+                News
             </a>
         </li>
     </ul>
