@@ -9,21 +9,11 @@ html {
     height: 100%;
 }
 body {
-	background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
-	background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-}
-.hero-image {
-    background-image: url("/media/homepage_background_cropped.jpg");
+    background: rgb(0,0,0);
     background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    min-height: 600px;
-    height: auto !important;
 }
 .section-holder{
-	padding: 50px 0;
+	padding: 50px 10px;
 }
 .form-holder{
     max-width: 600px;
@@ -36,7 +26,6 @@ body {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 .form-holder-lg{
-    max-width: 1000px;
     margin: auto;
     padding: 60px 50px;
     border-top-left-radius: 30px;
@@ -45,48 +34,61 @@ body {
     border-bottom-left-radius: 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
-.form-holder-xlg{
-    max-width: 1000px;
-    margin: auto;
-    padding: 60px 50px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+.uppercase {
+    text-transform: uppercase;
 }
-.red-strikethrough{
-    text-decoration: line-through;
-    color: red;
+.form-control{
+    padding: 0rem 0.75rem;
 }
-
 /* ----- Start of Color palette ----- */
 /* --- Global --- */
 body {
     color: #555;
 }
-a{
-    color:#1E5128;
+.products-page {
+    color: white;
 }
 .form-holder, .form-holder-lg, .form-holder-xlg{
     background-color: #fff;
 }
-
-
+.red-strikethrough{
+    text-decoration: line-through;
+    color: red;
+}
+.bg-grey {
+    background: #1E5128;
+}
+.bg-dark-green {
+    background: #1E5128;
+}
+.dark-green {
+    color: #1E5128;
+}
+.font-white {
+    color: white;
+}
+.font-black {
+    color: #555555;
+}
 /* Product Detail page */
-
 .product-name{
     font-size: 1.8rem;
 }
-
 .pricing {
     font-size: 1.6rem; 
 }
-
-.uppercase {
-    text-transform: uppercase;
+.favourite{
+    font-size: 1.6rem;
+    padding-left: 15px;
+}
+/* footer */
+.footer-text {
+    font-size: 1.2rem;
 }
 
+.form-group {
+    padding-bottom: 10px;
+}
 /* Homepage */
 .new-rel-img {
     width: 100px;
@@ -113,70 +115,55 @@ a{
     height: 1.5rem;
     width: 1.5rem;
 }
-
 .logo-font {
     text-transform: uppercase;
 }
-
 .main-logo-link {
     width: fit-content;
 }
-
 .shop-now-button {
     background: black;
     color: white;
     min-width: 260px;
 }
-
 .btn-black {
     background: black;
     color: white;
 }
-
-/*
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #222;
+/*Wishlist */
+.wishlist-remove:hover {
+    text-decoration: none;
+}
+/* Carousel */
+.carousel-text-area {
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 25px;
+}
+.carousel-image {
+   filter: brightness(50%);
+}
+.text-white {
     color: white;
-} */
-
-.text-black {
-    color: #1E5128 !important;
 }
-
-/*.border-black {
-    border: 1px solid black !important;
+.font-weight-bold {
+    font-weight: bold;
 }
-
-.bg-black {
-    background: #000 !important;
-} */
-
+.background-white {
+    background: white;
+}
+.landing-image {
+    max-height: 1000px;
+}
 /* Logo */
 .logo {
     height: 55px;
     width: 180px;
 }
-
-
-/* Banner */
-.bg-grey {
-    background: #f7f7f7;
-}
-
-.bg-white {
-    background: white;
-}
-
 /* Header */
 .mobile-nav-link-pd {
     padding: 0.5rem 0.5rem;
 }
-
 /* Products page */
 .overlay {
 	height: 100%;
@@ -184,15 +171,23 @@ a{
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: white;
+	background: whitesmoke;
 	z-index: -1;
 }
-/*
-a.category-badge > span.badge:hover {
-    background: #212529 !important;
-    color: #fff !important;
-}*/
-
+/* products page */
+.card {
+    width: 300px !important;
+    border: 0;
+    margin: auto;
+    margin-bottom: 10px;
+}
+/* Nav bar */
+.nav-link{
+    color: #1E5128;
+}
+.products-page {
+    padding-top: 2rem;
+}
 .btt-button {
     height: 42px;
     width: 42px;
@@ -200,42 +195,9 @@ a.category-badge > span.badge:hover {
     bottom: 10px;
     right: 10px;
 }
-
 .btt-link {
     cursor: pointer;
 }
-
-/*
-.btn-outline-black {
-    background: white;
-    color: black !important;  use important to override link colors for <a> elements 
-    border: 1px solid black;
-}
-
-.btn-outline-black:hover,
-.btn-outline-black:active,
-.btn-outline-black:focus {
-    background: black;
-    color: white !important;
-}
-
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #222;
-    color: white;
-}
-
-a.category-badge > span.badge:hover {
-    background: #212529 !important;
-    color: #fff !important;
-}
-
-*/
-
 .btt-button {
     height: 42px;
     width: 42px;
@@ -243,25 +205,19 @@ a.category-badge > span.badge:hover {
     bottom: 10px;
     right: 10px;
 }
-
 .btt-link,
 .update-link,
 .remove-item {
     cursor: pointer;
 }
-
 input[name='q']::placeholder {
     color: #aab7c4;
 }
-
-
 /* Product Form */
-
 .btn-file {
     position: relative;
     overflow: hidden;
 }
-
 .btn-file input[type="file"] {
     position: absolute;
     top: 0;
@@ -271,46 +227,14 @@ input[name='q']::placeholder {
     opacity: 0;
     cursor: pointer;
 }
-
 .custom-checkbox .custom-control-label::before {
     border-radius: 0;
     border-color: #dc3545;
 }
-
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #dc3545;
     border-color: #dc3545;
     border-radius: 0;
-}
-
-
-/*  reg form */
-.form-row {
-
-
-}
-
-
-
-
-
-/*
-.registration-form .social-icons a:hover{
-    text-decoration: none;
-    opacity: 0.6;
-}*/
-
-@media (max-width: 576px) {
-    .registration-form form{
-        padding: 50px 20px;
-    }
-
-    .registration-form .form-icon{
-        width: 70px;
-        height: 70px;
-        font-size: 30px;
-        line-height: 70px;
-    }
 }
 
 
@@ -394,7 +318,6 @@ input[name='q']::placeholder {
   }
   
   /* Allauth form formatting */
-  
   .allauth-form-inner-content p {
       margin-top: 1.5rem; /* mt-4 */
       color: #000; /* text-secondary */
@@ -412,47 +335,11 @@ input[name='q']::placeholder {
   .allauth-form-inner-content input::placeholder {
       color: #aab7c4;
   }
-  
-  /*
-  .allauth-form-inner-content button,
-  .allauth-form-inner-content input[type='submit'] {
-      /* btn 
-      display: inline-block;
-      font-weight: 400;
-      color: #fff;
-      text-align: center;
-      vertical-align: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      background-color: blue;
-      border: 1px solid blue;
-      padding: .375rem .75rem;
-      font-size: 1.0rem;
-      line-height: 1.5;
-      border-radius: 0;
-  
-      /* standard bootstrap btn transitions
-      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  } 
-  
-  .allauth-form-inner-content button:hover,
-  .allauth-form-inner-content input[type='submit']:hover {	
-      color: #fff;
-      background-color: #222;
-      border-color: #222;
-  }
-  
-  .allauth-form-inner-content a {
-      color: #17a2b8; /* text-info
-  } */
+    .black-btn{
+        background-color: #191A19;
+        color: white;
 
-.black-btn{
-    background-color: #191A19;
-    color: white;
-
-  }
+      }
 
 
 .bg-newcol{
@@ -537,5 +424,17 @@ input[name='q']::placeholder {
 
     .increment-qty, .decrement-qty {
         padding: .25rem .5rem !important;
+    }
+}
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
     }
 }
