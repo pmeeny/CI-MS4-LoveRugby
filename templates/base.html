@@ -202,7 +202,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h2 class="text-uppercase font-weight-bold mb-4">Products</h2>
+          <h2 class="text-uppercase font-weight-bold mb-4 footer-text">Products</h2>
           <ul class="list-unstyled mb-0">
             <li class="mb-2"><a href="{% url 'products' %}?category=adidas_kakari,adidas_malice" class="font-black">Rugby Boots</a></li>
             <li class="mb-2"><a href="{% url 'products' %}?category=leinster,munster,ulster" class="font-black">Jerseys</a></li>
@@ -210,7 +210,7 @@
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h2 class="text-uppercase font-weight-bold mb-4">Website</h2>
+          <h2 class="text-uppercase font-weight-bold mb-4 footer-text">Website</h2>
           <ul class="list-unstyled mb-0">
             {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
@@ -226,7 +226,7 @@
         </div>
         <div class="col-lg-4 col-md-6 mb-lg-0">
             <!-- Newsletter signup -->
-            <h2 class="text-uppercase font-weight-bold mb-4">Newsletter</h2>
+            <h2 class="text-uppercase font-weight-bold mb-4 footer-text">Newsletter</h2>
             <p class="mb-4">Sign up for a weekly newsletter for exclusive discounts</p>
             <div class="p-1 rounded border">
               <form id="mailinglistform" onsubmit="">
