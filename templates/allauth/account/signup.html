@@ -7,7 +7,7 @@
   <div class="form-holder">
   <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
-    <h2 class="logo-font mb-4 text-center">{% trans "Register" %}</h2>
+    <h1 class="logo-font mb-4 text-center">{% trans "Register" %}</h1>
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
     <div class="form-row">
       <div class="col-12">
