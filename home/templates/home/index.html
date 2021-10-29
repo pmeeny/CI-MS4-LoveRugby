@@ -7,48 +7,52 @@
         </div>
     </div>
 {% endblock %}
-
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-black">
-                    The new collections are here
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="{% url 'products' %}"  class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-                    </h4>
-                </div>
-            </div>
-        </div>
+<!-- Carousel with three images-->
+<div id="home-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-        <!-- New Releases -->
-        <div class="section-holder">
-            <div class="form-holder-xlg">   
-                    <h1>New Releases</h1>
-                    <div class="float-container">
-                    <div class="new-rel-holder">
-                        {% for product in products %}
-                         <div class="new-rel-item">
-                            {% if product.new_release %}
-                                {% if product.image %}
-                                <a href="{% url 'product_detail' product.id %}">
-                                    <img class="new-rel-img img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                </a>
-                                {% else %}
-                                <a href="{% url 'product_detail' product.id %}">
-                                    <img class="new-rel-img img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                </a>
-                                {% endif %}
-                                <p class="mb-0">{{ product.name }}</p>
-                                <p class="mb-0">{{ product.price }}</p>
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    </div> 
-                </div>     
-            </div>
-        </div>    
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ MEDIA_URL }}home/rugby_boots.jpg" class="carousel-image d-block w-100" alt="rugby boots">
+        <div class="carousel-caption ">
+            <h1 class="text-white ">Rugby Boots</h1>
+            <p class="text-white">Find our collection of <a href="{% url 'products' %}?category=adidas_kakari,adidas_malice">boots</a></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{{ MEDIA_URL }}home/rugby_scrum.jpg" class="carousel-image d-block w-100" alt="rugby scrum">
+        <div class="carousel-caption  ">
+            <h1 class="text-white">Jerseys</h1>
+            <p class="text-white">Find our collection of <a href="{% url 'products' %}?category=leinster,munster,ulster">jerseys</a></p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{{ MEDIA_URL }}home/rugby_ball.jpg" class="carousel-image d-block w-100" alt="rugby ball">
+        <div class="carousel-caption ">
+            <h1 class="text-white">News</h1>
+            <p class="text-white">Keep up to date with our <a href="{% url 'news_items' %}">news</a></p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#home-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#home-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 {% endblock %}
+<!-- Javascript to rotate images in carousel-->
+<script type="text/javascript">
+    var myCarousel = document.querySelector('#home-carousel')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+    interval: 200,
+    wrap: false
+    })
+</script>
