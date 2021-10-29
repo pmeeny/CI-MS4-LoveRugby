@@ -10,7 +10,9 @@
     {% block extra_meta %}
     {% endblock %}
     {% block corecss %}
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Bootstrap css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- Google fonts css -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
@@ -21,137 +23,121 @@
     {% block extra_css %}
     {% endblock %}
     {% block corejs %}
-        <!-- FontAwesome javascript -->
+        <!-- FontAwesome js -->
         <script src="https://kit.fontawesome.com/9e31b09f8c.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <!-- Stripe -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <!-- Bootstrap and popper js -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <!-- Stripe js -->
         <script src="https://js.stripe.com/v3/"></script>
         {% endblock %}
     {% block extra_js %}
     {% endblock %}
-    <title>Rugby Shop {% block extra_title %}{% endblock %}</title>
+    <title>Love Rugby {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top bg-white">
-        <div id="info-banner" class="row text-center bg-grey">
-            <div class="col bg-newcol text-black">
+    <!-- Header -->
+    <header class="container-fluid fixed-top background-white">
+        <!-- Banner -->
+        <div id="info-banner" class="row text-center bg-dark-green">
+            <div class="col">
                 <div class="mt-1 mb-1">
-                    <span>Fast dispatch - usually same day!</span>   
-                    <span class="ml-3 mr-3">-</span>
-                    <span>Free delivery on orders over ${{ free_delivery_threshold }}!</span>   
-                    <span class="ml-3 mr-3">-</span>
-                    <span> Professional packaging for EVERY order</span>
+                    <span class="d-none d-lg-inline font-white">Fast dispatch - usually same day!</span>
+                    <span class="d-none d-lg-inline ml-3 mr-3 font-white">-</span>
+                    <span class="font-white">Free delivery on orders over ${{ free_delivery_threshold }}!</span>
+                    <span class="d-none d-md-inline ml-3 mr-3 font-white">-</span>
+                    <span class="d-none d-md-inline font-white"> Professional packaging for EVERY order</span>
                 </div>                
             </div>            
         </div>
-          <div class="container">
-            <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
-                <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-left">
-                    <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                      <img src="/media/logo/logo.png" class="logo logo-font text-black my-0"  alt="website logo">
-                    </a>
-                </div>
-                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                  <form method="GET" action="{% url 'products' %}">
+        <!-- Navbar -->
+        <div id="topnav" class="row pt-lg-2 d-none d-lg-flex">
+            <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                    <img src="{{ MEDIA_URL }}logo/logo.png" class="logo logo-font text-black my-0"  alt="website logo">
+                </a>
+            </div>
+            <!-- Search area -->
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                    <form method="GET" action="{% url 'products' %}">
                         <div class="input-group w-100">
-                            <input class="form-control border border-black rounded-3 mt-1 mb-1" type="text" name="search-site" placeholder="Search..." aria-label="Search...">
+                            <label for="search" hidden>Search</label>
+                            <input class="form-control border border-black rounded-0" type="text" id="search" name="q" placeholder="Enter search criteria">
                             <div class="input-group-append">
-                                <button class="form-control btn btn-black border border-black rounded-3 mt-1 mb-1" type="submit">
-                                    <span class="icon">
-                                        <span class="material-icons">
-                                            search
-                                            </span>
-                                    </span>
+                                <button class="form-control btn btn-black border border-black rounded-0 green-btn" type="submit" value="search">Search
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-lg-5 my-auto py-1 py-lg-0">
-                    <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                        <li class="list-inline-item dropdown">
-                            <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="text-center">
-                                    <div><span class="material-icons">account_circle</span></div>
-                                    <p class="my-0">My Account</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                                {% if request.user.is_authenticated %}
-                                    {% if request.user.is_superuser %}
-                                      <a href="{% url 'manage_news_items' %}" class="dropdown-item">News Item Management</a>
-                                      <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
-                                    {% endif %}
+            <!-- My account -->
+            <div class="col-12 col-lg-5 my-auto py-1 py-lg-0">
+                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                    <li class="list-inline-item dropdown">
+                        <a class="text-black nav-link" href="#" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="text-center">
+                                <div><i class="fas fa-user fa-lg"></i></div>
+                                <p class="my-0">My Account</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+                                    <a href="{% url 'manage_news_items' %}" class="dropdown-item">News Item Management</a>
+                                {% endif %}
                                     <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                                 {% else %}
-                                    <div class="container">
-                                        <!--<span>Login to my account</span>
-                                        <span>Enter your e-mail and password:</span> -->
-                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> 
-                                        <!--<form>
-                                            <div class="form-group">
-                                              <label for="exampleInputEmail1">Email address</label>
-                                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="exampleInputPassword1">Password</label>
-                                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                          </form> -->
-                                    </div>            
-
-                                {% endif %}
+                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                     <li class="list-inline-item">
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                            <div class="text-center">
+                                <div><i class="fas fa-heart"></i></div>
+                                <p class="my-0">
+                                    {% if grand_total %}
+                                        Favourites1 ${{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        Favourites1 (0)
+                                    {% endif %}
+                                </p>
                             </div>
-                        </li>
-                        <li class="list-inline-item">
-                          <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
-
-                                <div class="text-center">
-                                    <div><span class="material-icons">shopping_cart</span></div>
-                                    <p class="my-0">
-                                        {% if grand_total %}
-                                            ${{ grand_total|floatformat:2 }}
-                                        {% else %}
-                                            0
-                                        {% endif %}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
-
-                                <div class="text-center">
-                                    <div><span class="material-icons">shopping_cart</span></div>
-                                    <p class="my-0">
-                                        {% if grand_total %}
-                                            ${{ grand_total|floatformat:2 }}
-                                        {% else %}
-                                            $0.00
-                                        {% endif %}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                        </a>
+                    </li>
+                     <li class="list-inline-item">
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                            <div class="text-center">
+                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                <p class="my-0">
+                                    {% if grand_total %}
+                                        ${{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        $0.00
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
-          <div class="row bg-white">
+        </div>
+        <!-- Mobile and main nav area -->
+        <div class="row bg-white">
             <nav class="navbar navbar-expand-lg navbar-light w-100">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                {% include 'includes/mobile-top-header.html' %}
-                {% include 'includes/main-nav.html' %}
+                    {% include 'includes/mobile-top-header.html' %}
+                    {% include 'includes/main-nav.html' %}
             </nav>
         </div>
-      </div>
     </header>
+    <!-- Toast messages -->
     {% if messages %}
         <div class="message-container">
             {% for message in messages %}
@@ -169,109 +155,104 @@
             {% endfor %}
         </div>
     {% endif %}
-
     {% block page_header %}
     {% endblock %}
-
     {% block content %}
     {% endblock %}
-
-    <div class="container-fluid bg-grey pt-4 pb-4">
+    <!-- Four text areas -->
+    <div class="container-fluid bg-dark-green pt-4 pb-4">
         <div class="container">
             <div class="row">
             <div class="col-lg-3">
-                <span class="material-icons">
-                    local_shipping
-                    </span>
-                <span><b>Free Shipping</b></span>
-                <span>for orders of £/€/$50 or more.</span>
+                <i class="fas fa-cart-plus font-white" aria-hidden=true></i>
+                <span class="font-white">Free Shipping</span>
+                <span class="font-white">for orders of €50 or more.</span>
             </div>
             <div class="col-lg-3">
-                <span class="material-icons">
-                    redeem
-                    </span>
-                <span><b>Professional Packaging</b></span>
-                <span>for EVERY order.</span>
+                <i class="fas fa-gifts font-white" aria-hidden=true></i>
+                <span class="font-white">Professional Packaging</span>
+                <span class="font-white">for EVERY order.</span>
             </div>
             <div class="col-lg-3">
-                <span class="material-icons">
-                    schedule
-                    </span>
-                <span><b>Fast Order Dispatch time</b></span>
-                <span>Usually on the next day.</span>
+                <i class="fas fa-shipping-fast font-white" aria-hidden=true></i>
+                <span class="font-white">Fast Order Dispatch time</span>
+                <span class="font-white">, usually on the next day.</span>
             </div>
             <div class="col-lg-3">
-                <span class="material-icons">
-                    favorite
-                    </span>
-                <span><b>Professional and Knowledgeable</b></span>
-                <span>We are big rugby fans.</span>
+                <i class="fas fa-grin-hearts font-white" aria-hidden=true></i>
+                <span class="font-white">Professional and Knowledgeable</span>
+                <span class="font-white">, we are big rugby fans.</span>
             </div>
         </div>    
       </div>
     </div>
   <!-- Footer -->
-  <footer class="bg-white">
+  <footer class="bg-light">
     <div class="container py-5">
-      <div class="row py-4">
-        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
-          <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+      <div class="row py-3">
+        <!-- Logo and social media links -->
+        <div class="col-lg-4 col-md-4 mb-4 mb-lg-0"><img src="{{ MEDIA_URL }}logo/logo.png" alt="website logo" class="mb-3 logo">
+          <p class="">Love Rugby is an online rugby shop selling boots, jerseys and accessories</p>
           <ul class="list-inline mt-4">
-            <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
-            <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
-            <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
-            <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+            <li class="list-inline-item"><a href="http://www.twitter.com" target="_blank" rel="noreferrer" aria-label="Go to our twitter page (opens in new tab)" title="twitter"><i class="dark-green fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="http://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Go to our facebook page (opens in new tab)" title="facebook"><i class="dark-green fa fa-facebook"></i></a></li>
+            <li class="list-inline-item"><a href="http://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Go to our instagram page (opens in new tab)" title="instagram"><i class="dark-green fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="http://www.pinterest.com" target="_blank" rel="noreferrer" aria-label="Go to our pinterest page (opens in new tab)" title="pinterest"><i class="dark-green fa fa-pinterest"></i></a></li>
+            <li class="list-inline-item"><a href="http://www.snapchat.com" target="_blank" rel="noreferrer" aria-label="Go to our snapchat page (opens in new tab)" title="snapchat"><i class="dark-green fa fa-snapchat"></i></a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h6 class="text-uppercase font-weight-bold mb-4">Shop</h6>
+          <h2 class="text-uppercase font-weight-bold mb-4">Products</h2>
           <ul class="list-unstyled mb-0">
-            <li class="mb-2"><a href="#" class="text-muted">For Women</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">For Men</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Stores</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Our Blog</a></li>
+            <li class="mb-2"><a href="{% url 'products' %}?category=adidas_kakari,adidas_malice" class="font-black">Rugby Boots</a></li>
+            <li class="mb-2"><a href="{% url 'products' %}?category=leinster,munster,ulster" class="font-black">Jerseys</a></li>
+            <li class="mb-2"><a href="{% url 'products' %}?category=balls,gum_shields,protection" class="font-black">Accessories</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
+          <h2 class="text-uppercase font-weight-bold mb-4">Website</h2>
           <ul class="list-unstyled mb-0">
-            <li class="mb-2"><a href="#" class="text-muted">Login</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Register</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Wishlist</a></li>
-            <li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <li class="mb-2"><a href="{% url 'add_product' %}" class="font-black">Product Management</a></li>
+                    <li class="mb-2"><a href="{% url 'manage_news_items' %}" class="font-black">News Item Management</a></li>
+                {% endif %}
+                  <li class="mb-2"><a href="{% url 'profile' %}" class="font-black">My Profile</a></li>
+              {% else %}
+                <li class="mb-2"><a href="{% url 'account_signup' %}" class="font-black">Register</a></li>
+                <li class="mb-2"><a href="{% url 'account_login' %}" class="font-black">Login</a></li>
+            {% endif %}
           </ul>
         </div>
         <div class="col-lg-4 col-md-6 mb-lg-0">
-          <h6 class="text-uppercase font-weight-bold mb-4">Newsletter</h6>
-          <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque temporibus.</p>
-          <div class="p-1 rounded border">
-            <div class="input-group">
-              <input type="email" placeholder="Enter your email address" aria-describedby="button-addon1" class="form-control border-0 shadow-0">
-              <div class="input-group-append">
-                <button id="button-addon1" type="submit" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
-              </div>
+            <!-- Newsletter signup -->
+            <h2 class="text-uppercase font-weight-bold mb-4">Newsletter</h2>
+            <p class="mb-4">Sign up for a weekly newsletter for exclusive discounts</p>
+            <div class="p-1 rounded border">
+              <form id="mailinglistform" onsubmit="">
+                <div class="input-group">
+                  <label for="email_address" hidden>Email Address:</label>
+                  <input type="email" placeholder="Enter your email address" id="email_address" name="email_address" aria-describedby="button-addon1" class="form-control border-0 shadow-0">
+                  <div class="input-group-append">
+                    <button id="button-addon1" type="submit" value="newsletter" class="btn btn-link green-btn">Signup</button>
+                  </div>
+                </div>
+              </form>
             </div>
-          </div>
         </div>
       </div>
     </div>
-
-    <!-- Copyrights -->
-    <div class="bg-light py-4">
+    <!-- Copyright information -->
+    <div class="bg-light py-1">
       <div class="container text-center">
-        <p class="text-muted mb-0 py-2">© 2019 Bootstrapious All rights reserved.</p>
+        <p class="mb-0 py-2 footer-font">© 2021 All rights reserved.</p>
       </div>
     </div>
   </footer>
-  <!-- End -->
-
   {% block postloadjs %}
-  <script type="text/javascript">
+  <script>
       $('.toast').toast('show');
   </script>
   {% endblock %}
-
-    
   </body>
 </html>
