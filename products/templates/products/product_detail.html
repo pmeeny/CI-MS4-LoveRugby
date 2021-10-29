@@ -9,9 +9,8 @@
 {% endblock %}
 {% block content %}
 <div class="overlay"></div>
-<div class="hero-image">
-    <div class="section-holder">
-        <div class="form-holder-xlg">   
+<div class="section-holder">
+        <div class="form-holder-lg">
             <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
@@ -36,34 +35,35 @@
                                 <p class="mb-0 text-left font-weight-bold">&nbsp</p>
                             {% endif %}
                             <p class="mb-0 text-left font-weight-bold">&nbsp;€{{ product.price }}</p>
+                                                                                    {% if is_product_in_favourites %}
+                            <a href="{% url 'add_product_to_favourites' product.id %}" aria-label="add_product_to_favourites" class="favourite wishlist-remove text-danger ml-3"><i class="fas fa-heart"></i></a>
+                        {% else %}
+                            <a href="{% url 'add_product_to_favourites' product.id %}" aria-label="add_product_to_favourites" class="favourite text-danger ml-3"><i class="far fa-heart"></i></a>
+                        {% endif %}
                         </div> 
                         <br>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="mb-0 uppercase">Colour: {{ product.colour }}</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="mb-0 uppercase">Code: {{ product.code }}</p>
-                            </div>
-                        </div>
+
                         <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                             {% csrf_token %}
-                            <div class="form-row">                       
+                            <div class="row">
                                 {% with product.has_sizes as s %}
                                 {% if s %}
                                     <div class="col-12">
-                                        <p><strong>Size:</strong></p>
+                                        <p class="mt-1"><strong>Size:</strong></p>
                                         <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
                                             <option value="8">8</option>
                                             <option value="9">9</option>
                                             <option value="10">10</option>
                                             <option value="11">11</option>
                                             <option value="12">12</option>
+                                            <option value="13">13</option>
                                         </select>
                                     </div>
-                                {% endif %} 
+                                {% endif %}
+                            </div>
+                            <div class="row">
                                 <div class="col-12">
-                                    <p class="mt-3"><strong>Quantity:</strong></p>
+                                    <p class="mt-2"><strong>Quantity:</strong></p>
                                     <div class="form-group w-50">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -89,24 +89,22 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col{% if s %}-12 mt-2{% endif %}">
-                                    <!--<a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
-                                        <span class="icon">
-                                            <i class="fas fa-chevron-left"></i>
-                                        </span> -->
+                             </div><br>
+                            <div class="row">
+                                <div class="col-12">
                                         <a href="{% url 'products' %}"class="btn black-btn">Keep Shopping</a>
-                                    <input type="submit" class="btn green-btn" value="Add to Bag">
-                                </div>
+                                        <input type="submit" class="btn green-btn" value="Add to Bag">
+                                    </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                 {% endwith %}
                             </div>
                         </form>
-
-                        <p>FREE DELIVERY FOR ALL ORDERS OVER €50!</p>
-                        <p>EASY, EXTENDED RETURNS FIND OUT MORE HERE</p>
-
-
+                    <br><br>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="mb-0 uppercase">Colour: {{ product.colour }}</p>
+                            </div>
+                        </div>
                         {% if product.category %}
                         <p class="small mt-1 mb-0">
                             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -114,26 +112,18 @@
                             </a>
                         </p>
                         {% endif %}
-
-                        {% if is_product_in_favourites %}
-                            <a href="{% url 'add_product_to_favourites' product.id %}" aria-label="add_product_to_favourites" class="wishlist-remove text-danger ml-3"><i class="fas fa-heart"></i></a>
-                        {% else %}
-                            <a href="{% url 'add_product_to_favourites' product.id %}" aria-label="add_product_to_favourites" class="text-danger ml-3"><i class="far fa-heart"></i></a>
-                        {% endif %}
-    
                         {% if product.rating %}
                             <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                         {% else %}
-                            <small class="text-muted">No Rating</small>
+                            <small class="text-muted">No Rating, be the first to rate below</small>
                         {% endif %}
                         {% if request.user.is_superuser %}
+                            <br>
                             <small class="ml-3">
                                 <a href="{% url 'edit_product' product.id %}">Edit</a> | 
                                 <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                             </small>
                         {% endif %}
-                        <p class="mt-3">{{ product.description }}</p>
-
                     </div>
                 </div>
             </div>
@@ -141,20 +131,25 @@
                     <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                         <p class="mb-0 product-name">{{ product.name }}</p>
                         <p class="mb-0">{{ product.description }}</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="mb-0 uppercase">Code: {{ product.code }}</p>
+                            </div>
+                        </div>
                     </div>  
                     <div class="col-12 col-md-6 col-lg-4">
                         <p class="mb-0 product-name">THE FINER DETAILS</p>  
                     {% if product.feature1 %}
-                        <p class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.feature1 }}</p>
+                        <p class="text-muted">- {{ product.feature1 }}</p>
                     {% endif %}
                     {% if product.feature2 %}
-                        <p class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.feature2 }}</p>
+                        <p class="text-muted">- {{ product.feature2 }}</p>
                     {% endif %}
                     {% if product.feature3 %}
-                    <p class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.feature3 }}</p>
+                    <p class="text-muted">- {{ product.feature3 }}</p>
                     {% endif %}
                     {% if product.feature4 %}
-                    <p class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.feature4 }}</p>
+                    <p class="text-muted">- {{ product.feature4 }}</p>
                     {% endif %}
                     </div>  
                 </div>
