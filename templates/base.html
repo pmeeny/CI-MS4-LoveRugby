@@ -165,23 +165,19 @@
             <div class="row">
             <div class="col-lg-3">
                 <i class="fas fa-cart-plus font-white" aria-hidden=true></i>
-                <span class="font-white">Free Shipping</span>
-                <span class="font-white">for orders of €50 or more.</span>
+                <span class="font-white">Free Shipping for orders of €50 or more</span>
             </div>
             <div class="col-lg-3">
                 <i class="fas fa-gifts font-white" aria-hidden=true></i>
-                <span class="font-white">Professional Packaging</span>
-                <span class="font-white">for EVERY order.</span>
+                <span class="font-white">Professional Packaging for EVERY order</span>
             </div>
             <div class="col-lg-3">
                 <i class="fas fa-shipping-fast font-white" aria-hidden=true></i>
-                <span class="font-white">Fast Order Dispatch time</span>
-                <span class="font-white">, usually on the next day.</span>
+                <span class="font-white">Fast Order Dispatch time usually on the next day</span>
             </div>
             <div class="col-lg-3">
                 <i class="fas fa-grin-hearts font-white" aria-hidden=true></i>
-                <span class="font-white">Professional and Knowledgeable</span>
-                <span class="font-white">, we are big rugby fans.</span>
+                <span class="font-white">Professional and Knowledgeable rugby fans</span>
             </div>
         </div>    
       </div>
@@ -251,7 +247,24 @@
   </footer>
   {% block postloadjs %}
   <script>
-      $('.toast').toast('show');
+      // The code below is from Richard Ash of Code Institute for toast functionality in Bootstrap5 //
+      let toastElList = [].slice.call(document.querySelectorAll('.toast'))
+      let toastList = toastElList.map(function (toastEl) {
+          let option = {
+              animation: true,
+              autohide: true,
+              delay: 5000,
+          }
+          let bsToast = new bootstrap.Toast(toastEl, option)
+          bsToast.show();
+          })
+
+      var myModal = document.getElementById('myModal')
+      var myInput = document.getElementById('myInput')
+
+      myModal.addEventListener('shown.bs.modal', function () {
+          myInput.focus()
+      })
   </script>
   {% endblock %}
   </body>
