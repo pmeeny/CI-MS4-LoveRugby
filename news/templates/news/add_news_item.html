@@ -13,14 +13,13 @@
 <div class="overlay"></div>
 <div class="hero-image">
     <div class="section-holder">
-        <div class="form-holder-xlg">
+        <div class="form-holder-lg">
             <main class="container">
                 <div class="bg-overlay"></div>
                 <div class="row">
                         <div class="col-12">
-                            <h2 class="header-font mb-4 pt-4 text-center">News Item Management</h2>
-                            <h5 class="text-muted text-center">Add a News Item</h5>
-                            <hr>
+                            <h1 class="header-font mb-4 pt-2 text-center">News Item Management</h1>
+                            <h2 class="text-muted text-center">Add News Item</h2>
                         </div>
                 </div>
                 <!-- Add New Items -->
@@ -38,14 +37,16 @@
                                 <div class="text-center mt-2">
                                     <p class="mt-0">*Select 'Draft' to save the news item for later or select 'Publish' to publish on the
                                         site.</p>
-                                    <P>Draft news items will be saved in your<a class="text-info" href="{% url 'profile' %}"> Profile</a></P>
-                                    <button class="btn btn-sm btn-blue rounded-1 text-uppercase" type="submit">Add News Item</button>
-                                    <a class="btn btn-sm btn-blue rounded-1 text-uppercase" href="{% url 'news_items' %}">Cancel</a>
+                                    <button class="btn green-btn" type="submit">Add News Item</button>
+                                    <a class="btn red-btn" href="{% url 'news_items' %}">Cancel</a>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </main>
+            </main>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
