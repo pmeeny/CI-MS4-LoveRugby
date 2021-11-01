@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -8,44 +7,33 @@
         </div>
     </div>
 {% endblock %}
-
 {% block content %}
 <div class="overlay"></div>
-<div class="hero-image">
-    <div class="section-holder">
-        <div class="form-holder-xlg">
-            <main class="container">
-                <div class="bg-overlay"></div>
+<div class="container px-3">
                 <div class="row">
                     <div class="col mt-3">
-                        <h2 class="header-font mb-2 pt-1 text-center text-black">News Items <i class="fas fa-paw"></i></h2>
+                        <h2 class="header-font mb-2 pt-1 text-center text-black">News Items ({{ news_items_published|length }}) </h2>
                     </div>
                 </div>
                 <hr>
-                <div class="col-12">
-                    <p class="text-uppercase text-center mt-3 text-black">
-                        <strong>Total news items: </strong>({{ posts|length }})
-                    </p>
-                </div>
-                <!-- All News Items -->
+
                 <div class="row">
-                    {% for news_item in news_items_published %}
-                    <div class="col-sm-12 col-md-6">
-                        <div class="card p-1 mt-3">
+                    <div class="">
+                        <div class="row">
+                                    {% for news_item in news_items_published %}
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="news-card p-1 mt-3">
                             <div class="">
                                 {% if news_item.image %}
-                                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}"/>
+                                <img class="card-img-top" src="{{ news_item.image.url }}" alt="{{ news_item.title }}"/>
                                 {% else %}
-                                <img src="{{ news_item.image_url }}" alt="{{ news_item.title }}"/>
+                                <img class="card-img-top" src="{{ news_item.image_url }}" alt="{{ news_item.title }}"/>
                                 {% endif %}
                             </div>
-                            <p class="text-uppercase text-black mt-3">{{ news_item.title }}</p>
                             <p class="text-muted mb-0">Posted By: {{ news_item.user }}</p>
                             <p class="text-muted">Posted On: {{ news_item.create_date }}</p>
-                            <p class="card-text">{{news_item.blog_content|slice:":200" }}</p>
-                            <!--<a href=" url 'post_detail' post.id " class="btn btn-sm btn-blue rounded-1 text-uppercase">
-                                Read More
-                            </a> -->
+                            <p class="text-muted">{{news_item.news_item_text|slice:":200" }}</p>
+                            <p class="text-muted">Comments:</p>
                         </div>
                     </div>
                     {% endfor %}

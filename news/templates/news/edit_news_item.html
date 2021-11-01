@@ -12,12 +12,16 @@
 {% endblock %}
 
 {% block content %}
-<main class="container container-pd">
-    <div class="bg-overlay"></div>
+<div class="overlay"></div>
+<div class="hero-image">
+    <div class="section-holder">
+        <div class="form-holder-lg">
+            <main class="container">
+                <div class="bg-overlay"></div>
     <div class="row">
         <div class="col-12">
-            <h2 class="header-font mb-4 pt-2 text-center">News Item Management</h2>
-            <h5 class="text-muted text-center">Edit News Item</h5>
+            <h1 class="header-font mb-4 pt-2 text-center">News Item Management</h1>
+            <h2 class="text-muted text-center">Edit News Item</h2>
             <hr>
         </div>
     </div>
@@ -33,8 +37,8 @@
                 {% endif %}
                 {% endfor %}
                 <div class="text-center pb-3">
-                    <button class="btn btn-sm btn-blue rounded-1 text-uppercase" type="submit">Edit News Item</button>
-                    <a class="btn btn-sm btn-blue rounded-1 text-uppercase" href="{% url 'manage_news_items' %}">Cancel</a>
+                    <button class="btn green-btn rounded-1 text-uppercase" type="submit">Edit News Item</button>
+                    <a class="btn red-btn rounded-1 text-uppercase" href="{% url 'manage_news_items' %}">Cancel</a>
                 </div>
             </form>
         </div>

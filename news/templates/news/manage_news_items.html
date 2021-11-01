@@ -13,20 +13,15 @@
 <div class="overlay"></div>
 <div class="hero-image">
     <div class="section-holder">
-        <div class="form-holder-xlg">
+        <div class="form-holder-lg">
             <main class="container">
                 <div class="bg-overlay"></div>
                 <div class="row">
                     <div class="col mt-3">
-                        <h2 class="header-font mb-2 pt-1 text-center text-black">News Items <i class="fas fa-paw"></i></h2>
+                        <h1 class="header-font mb-2 pt-1 text-center text-black">News Items ({{ news_items|length }}) <a class="btn green-btn" href="{% url 'add_news_item' %}">Add</a></h1>
                     </div>
                 </div>
                 <hr>
-                <div class="col-12">
-                    <p class="text-uppercase text-center mt-3 text-black">
-                        <strong>Total news items: </strong>({{ news_items|length }})
-                    </p>
-                </div>
                 <!-- All News Items -->
                 <div class="row">
                     <div class="col-12">
@@ -51,8 +46,8 @@
                                             <td>Draft</td>
                                         {% endif %}
                                     <td>
-                                        <a href="{% url 'edit_news_item' news_item.id %}">Edit</a> |
-                                        <a href="{% url 'delete_news_item' news_item.id  %}" class="btn-sm btn-danger">Delete</a>
+                                        <a class="btn black-btn" href="{% url 'edit_news_item' news_item.id %}">Edit</a>
+                                        <a class="btn btn-danger" href="{% url 'delete_news_item' news_item.id  %}" class="btn-sm btn-danger">Delete</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
