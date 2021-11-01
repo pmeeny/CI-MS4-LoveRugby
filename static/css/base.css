@@ -241,15 +241,22 @@ input[name='q']::placeholder {
 }
 .custom-checkbox .custom-control-label::before {
     border-radius: 0;
-    border-color: #dc3545;
+    border-color: #DB4437;
 }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #dc3545;
-    border-color: #dc3545;
+    background-color: #DB4437;
+    border-color: #DB4437;
     border-radius: 0;
 }
 
-
+/* News */
+.card-img-top {
+    width: 400px ;
+    height: 400px ;
+    border: 0;
+    margin: auto;
+    margin-bottom: 10px;
+}
 
 /* ------------------------------- bootstrap toasts */
 
@@ -267,72 +274,21 @@ input[name='q']::placeholder {
 .toast-capper {
     height: 2px;
 }
-
-
-/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
-/* Convenience classes - colors copied from Bootstrap */
-.arrow-primary {
-    border-bottom-color: #007bff !important;
-}
-
-.arrow-secondary {
-    border-bottom-color: #6c757d !important;
-}
-
-.arrow-success {
-    border-bottom-color: #28a745 !important;
-}
-
-.arrow-danger {
-    border-bottom-color: #dc3545 !important;
-}
-
-.arrow-warning {
-    border-bottom-color: #ffc107 !important;
-}
-
-.arrow-info {
-    border-bottom-color: #17a2b8 !important;
-}
-
-.arrow-light {
-    border-bottom-color: #f8f9fa !important;
-}
-
-.arrow-dark {
-    border-bottom-color: #343a40 !important;
-}
-
-.bag-notification-wrapper {
-    height: 100px;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-    .container {
-      max-width: 80%;
-    }
-  }
-  
   /* Allauth form formatting */
   .allauth-form-inner-content p {
       margin-top: 1.5rem; /* mt-4 */
       color: #000; /* text-secondary */
   }
-  
+
   .allauth-form-inner-content input {
       /*border-color: #000; */
      /* border-radius: 0; */
   }
-  
+
   .allauth-form-inner-content label:not([for='id_remember']) {
       display: none;
   }
-  
+
   .allauth-form-inner-content input::placeholder {
       color: #aab7c4;
   }
@@ -352,16 +308,35 @@ input[name='q']::placeholder {
 
   }
  .green-btn {
-    background-color: #1E5128; 
+    background-color: #1E5128;
     color: white;
   }
 
   .green-btn:hover {
-    background-color: #1E5128; 
+    background-color: #1E5128;
     color: white;
   }
 
-  
+.red-btn {
+    background-color: #DB4437;
+    color: white;
+  }
+
+.bag-notification-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+      max-width: 80%;
+    }
+  }
+
   /* fixed top navbar only on medium and up */
   @media (min-width: 992px) {
       .fixed-top-desktop-only {
