@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-
-
-{% block extra_title %}Favourites{% endblock %}
-
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -11,7 +7,95 @@
         </div>
     </div>
 {% endblock %}
-
 {% block content %}
-    <div>In here</div>
+<div class="overlay"></div>
+<div class="container-fluid px-3">
+    <div class="row">
+        <div class="col-12 col-sm-6 p-4 my-auto">
+            <h1>Favourites</h1>
+            <p class="font-black">Here are your favourites saved</p>
+        </div>
+        <div class="col-12 col-sm-6 p-4 my-auto">
+            <div class="sort-select-wrapper w-100">
+                <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                    <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                    <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                    <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                    <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="">
+            <div class="row">
+                {% for favourite in favourites_items %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                {% if favourite.image %}
+                                                    <a href="{% url 'product_detail' favourite.id %}">
+                                                        <img src="{{ favourite.image.url }}" class="card-img-top" alt="product image">
+                                                    </a>
+                                                {% else %}
+                                                    <a href="{% url 'product_detail' favourite.id %}">
+                                                        <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top" alt="no image available">
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="card-title font-black">{{ favourite.name }}</h5>
+                                            </div>
+                                            <div class="col-12">
+                                                <h6 class="font-weight-light font-black">{{ favourite.category }}</h6>
+                                            </div>
+                                            <div class="col-6 font-black">
+                                                {{ favourite.price }}
+                                            </div>
+                                            <div class="col-6 align-self-center font-black">
+                                                <strong>€{{ favourite.price }}</strong>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                        </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}
