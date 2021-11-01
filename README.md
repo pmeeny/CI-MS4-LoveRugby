@@ -8,7 +8,7 @@ Love Rugby is a website that allows users
 
 **View the live site [here](https://ci-ms4-loverugby.herokuapp.com/)**
 <br><br>
-![Responsive site example](football_memories/static/images/am_i_responsive/responsive_devices.png)
+![Responsive site example](readme/responsive/responsive.PNG)
 
 # Table of Contents
 
