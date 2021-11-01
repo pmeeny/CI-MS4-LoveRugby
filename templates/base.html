@@ -184,10 +184,10 @@
     </div>
   <!-- Footer -->
   <footer class="bg-light">
-    <div class="container py-5">
-      <div class="row py-3">
+    <div class="container pt-5">
+      <div class="row">
         <!-- Logo and social media links -->
-        <div class="col-lg-4 col-md-4 mb-4 mb-lg-0"><img src="{{ MEDIA_URL }}logo/logo.png" alt="website logo" class="mb-3 logo">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0"><img src="{{ MEDIA_URL }}logo/logo.png" alt="website logo" class="mb-3 logo">
           <p class="">Love Rugby is an online rugby shop selling boots, jerseys and accessories</p>
           <ul class="list-inline mt-4">
             <li class="list-inline-item"><a href="http://www.twitter.com" target="_blank" rel="noreferrer" aria-label="Go to our twitter page (opens in new tab)" title="twitter"><i class="dark-green fa fa-twitter"></i></a></li>
@@ -205,7 +205,7 @@
             <li class="mb-2"><a href="{% url 'products' %}?category=balls,gum_shields,protection" class="font-black">Accessories</a></li>
           </ul>
         </div>
-        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+        <div class="col-lg-2 col-md-6 col-xs-6 mb-4 mb-lg-0">
           <h2 class="text-uppercase font-weight-bold mb-4 footer-text">Website</h2>
           <ul class="list-unstyled mb-0">
             {% if request.user.is_authenticated %}
@@ -220,7 +220,7 @@
             {% endif %}
           </ul>
         </div>
-        <div class="col-lg-4 col-md-6 mb-lg-0">
+        <div class="col-lg-4 col-md-12 mb-lg-0">
             <!-- Newsletter signup -->
             <h2 class="text-uppercase font-weight-bold mb-4 footer-text">Newsletter</h2>
             <p class="mb-4">Sign up for a weekly newsletter for exclusive discounts</p>
@@ -247,24 +247,16 @@
   </footer>
   {% block postloadjs %}
   <script>
-      // The code below is from Richard Ash of Code Institute for toast functionality in Bootstrap5 //
       let toastElList = [].slice.call(document.querySelectorAll('.toast'))
-      let toastList = toastElList.map(function (toastEl) {
-          let option = {
-              animation: true,
-              autohide: true,
-              delay: 5000,
-          }
-          let bsToast = new bootstrap.Toast(toastEl, option)
-          bsToast.show();
-          })
-
-      var myModal = document.getElementById('myModal')
-      var myInput = document.getElementById('myInput')
-
-      myModal.addEventListener('shown.bs.modal', function () {
-          myInput.focus()
-      })
+        let toastList = toastElList.map(function (toastEl) {
+        let option = {
+            animation: true,
+            autohide: true,
+            delay: 5000,
+        }
+      let bsToast = new bootstrap.Toast(toastEl, option)
+      bsToast.show();
+    })
   </script>
   {% endblock %}
   </body>
