@@ -39,18 +39,6 @@
   <body>
     <!-- Header -->
     <header class="container-fluid fixed-top background-white">
-        <!-- Banner -->
-        <div id="info-banner" class="row text-center bg-dark-green">
-            <div class="col">
-                <div class="mt-1 mb-1">
-                    <span class="d-none d-lg-inline font-white">Fast dispatch - usually same day!</span>
-                    <span class="d-none d-lg-inline ml-3 mr-3 font-white">-</span>
-                    <span class="font-white">Free delivery on orders over ${{ free_delivery_threshold }}!</span>
-                    <span class="d-none d-md-inline ml-3 mr-3 font-white">-</span>
-                    <span class="d-none d-md-inline font-white"> Professional packaging for EVERY order</span>
-                </div>                
-            </div>            
-        </div>
         <!-- Navbar -->
         <div id="topnav" class="row pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-left">
@@ -96,12 +84,12 @@
                         </div>
                     </li>
                      <li class="list-inline-item">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                        <a class="{% if grand_total %} font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
                             <div class="text-center">
                                 <div><i class="fas fa-heart"></i></div>
                                 <p class="my-0">
                                     {% if grand_total %}
-                                        Favourites ${{ grand_total|floatformat:2 }}
+                                        Favourites (1)
                                     {% else %}
                                         Favourites (0)
                                     {% endif %}
@@ -110,7 +98,7 @@
                         </a>
                     </li>
                      <li class="list-inline-item">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                        <a class="{% if grand_total %} font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
                             <div class="text-center">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">
@@ -135,6 +123,18 @@
                     {% include 'includes/mobile-top-header.html' %}
                     {% include 'includes/main-nav.html' %}
             </nav>
+        </div>
+        <!-- Banner -->
+        <div id="info-banner" class="row text-center bg-dark-green">
+            <div class="col">
+                <div class="mt-1 mb-1">
+                    <span class="d-none d-lg-inline font-white">Fast dispatch - usually same day!</span>
+                    <span class="d-none d-lg-inline ml-3 mr-3 font-white">-</span>
+                    <span class="font-white">Free delivery on orders over ${{ free_delivery_threshold }}!</span>
+                    <span class="d-none d-md-inline ml-3 mr-3 font-white">-</span>
+                    <span class="d-none d-md-inline font-white"> Professional packaging for EVERY order</span>
+                </div>
+            </div>
         </div>
     </header>
     <!-- Toast messages -->
