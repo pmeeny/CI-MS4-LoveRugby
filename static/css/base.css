@@ -12,6 +12,9 @@ body {
     background: rgb(0,0,0);
     background-size: cover;
 }
+a {
+    color: #4285F4;
+}
 .section-holder{
 	padding: 50px 10px;
 }
@@ -53,7 +56,7 @@ body {
 }
 .red-strikethrough{
     text-decoration: line-through;
-    color: red;
+    color: #DB4437;
 }
 .bg-grey {
     background: #1E5128;
@@ -64,8 +67,17 @@ body {
 .dark-green {
     color: #1E5128;
 }
+.dark-red {
+   color: #DB4437;
+}
 .font-white {
     color: white;
+}
+.text-primary {
+   color: #1E5128 !important;
+}
+.bg-yellow {
+    background-color: #F4B400
 }
 .font-black {
     color: #555555;
@@ -258,17 +270,6 @@ input[name='q']::placeholder {
 
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
-.arrow-up {
-    width: 0; 
-    height: 0; 
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
-    border-bottom: 10px solid black;
-    position: absolute;
-    top: -10px;
-    right: 36px;
-}
-
 /* Convenience classes - colors copied from Bootstrap */
 .arrow-primary {
     border-bottom-color: #007bff !important;
@@ -341,19 +342,15 @@ input[name='q']::placeholder {
 
       }
 
-
 .bg-newcol{
     background-color: #D8E9A8;
 
 }
-
   .black-btn:hover{
     background-color: #191A19;
     color: white;
 
   }
-
-
  .green-btn {
     background-color: #1E5128; 
     color: white;
@@ -377,13 +374,14 @@ input[name='q']::placeholder {
   
       .header-container {
           padding-top: 164px;
+          background-color: white;
       }
   }
   
   /* pad the top a bit when navbar is collapsed on mobile */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 116px;
+        padding-top: 92px;
     }
 
     body {
