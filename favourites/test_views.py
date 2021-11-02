@@ -75,11 +75,12 @@ class TestFavouritesViews(TestCase):
         self.assertEqual(str(messages[1]), 'The product item is already '
                                            'in your favourites!')
 
-    def test_remove_item_from_favourites(self):
+    def test_remove_item_from_favourites_redirect_favourites(self):
         """
         This test removes a product from the users favourites list
+        with a redirect back to the favourites page
         """
-        User.objects.create_user(
+        test_user1 = User.objects.create_user(
             username='test_user1', password='test_password')
         self.client.login(username='test_user1', password='test_password')
         test_user1 = User.objects.get(username='test_user1')
@@ -93,8 +94,37 @@ class TestFavouritesViews(TestCase):
         product = Product.objects.get(name='Test Name 2')
         favourites = Favourites.objects.create(username=test_user1)
         favourites.products.add(product)
+        redirect_from = 'favourites'
         response = self.client.get(
-            f'/favourites/remove_product_from_favourites/{product.id}/')
+            f'/favourites/remove_product_from_favourites/'
+            f'{product.id}/{redirect_from}/')
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), 'Product item removed '
+                                           'from your favourites list')
+
+    def test_remove_item_from_favourites_redirect_product(self):
+        """
+        This test removes a product from the users favourites list
+        with a redirect back to the products page
+        """
+        test_user1 = User.objects.create_user(
+            username='test_user1', password='test_password')
+        self.client.login(username='test_user1', password='test_password')
+        test_user1 = User.objects.get(username='test_user1')
+        product = Product.objects.create(
+            name='Test Name 2',
+            price='99.99',
+            colour='Test Colour',
+            code='123456',
+            description='Test Description',
+        )
+        product = Product.objects.get(name='Test Name 2')
+        favourites = Favourites.objects.create(username=test_user1)
+        favourites.products.add(product)
+        redirect_from = 'product'
+        response = self.client.get(
+            f'/favourites/remove_product_from_favourites/'
+            f'{product.id}/{redirect_from}/')
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), 'Product item removed '
                                            'from your favourites list')
@@ -117,8 +147,10 @@ class TestFavouritesViews(TestCase):
         )
         product = Product.objects.get(name='Test Name 2')
         Favourites.objects.create(username=test_user1)
+        redirect_from = 'product'
         response = self.client.get(
-            f'/favourites/remove_product_from_favourites/{product.id}/')
+            f'/favourites/remove_product_from_favourites/'
+            f'{product.id}/{redirect_from}/')
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), 'That product item is not in '
                                            'your favourites list!')

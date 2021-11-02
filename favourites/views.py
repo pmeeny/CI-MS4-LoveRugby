@@ -50,7 +50,7 @@ def add_product_to_favourites(request, item_id):
 
 
 @login_required
-def remove_product_from_favourites(request, item_id):
+def remove_product_from_favourites(request, item_id, redirect_from):
     """
     Remove a product item from favourites
     """
@@ -63,4 +63,8 @@ def remove_product_from_favourites(request, item_id):
     else:
         messages.error(request, 'That product item is '
                                 'not in your favourites list!')
-    return redirect(reverse('product_detail', args=[item_id]))
+    if redirect_from == 'favourites':
+        redirect_url = reverse('view_product_favourites')
+    else:
+        redirect_url = reverse('product_detail', args=[item_id])
+    return redirect(redirect_url)
