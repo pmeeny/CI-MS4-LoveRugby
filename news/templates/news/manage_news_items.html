@@ -47,7 +47,7 @@
                                         {% endif %}
                                     <td>
                                         <a class="btn black-btn" href="{% url 'edit_news_item' news_item.id %}">Edit</a>
-                                        <a class="btn btn-danger" href="{% url 'delete_news_item' news_item.id  %}" class="btn-sm btn-danger">Delete</a>
+                                        <a class="btn btn-danger" href="{% url 'delete_news_item' news_item.id  %}">Delete</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
