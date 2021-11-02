@@ -36,7 +36,6 @@
             <div class="row">
                 {% for favourite in favourites_items %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-
                                 <div class="card" style="width: 18rem;">
                                     <div class="card-body">
                                         <div class="row">
@@ -64,6 +63,7 @@
                                                 <strong>€{{ favourite.price }}</strong>
                                             </div>
                                       </div>
+                                                                <a class="btn green-btn" href="{% url 'remove_product_from_favourites' favourite.id 'favourites' %}">Remove</a>
                                     </div>
                                   </div>
                         </div>
