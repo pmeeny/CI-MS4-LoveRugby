@@ -79,7 +79,7 @@ class TestFavouritesViews(TestCase):
         """
         This test removes a product from the users favourites list
         """
-        test_user1 = User.objects.create_user(
+        User.objects.create_user(
             username='test_user1', password='test_password')
         self.client.login(username='test_user1', password='test_password')
         test_user1 = User.objects.get(username='test_user1')
