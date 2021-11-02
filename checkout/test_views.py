@@ -7,7 +7,6 @@ from checkout.models import Order
 from profiles.models import UserProfile
 
 
-
 class TestCheckoutViews(TestCase):
 
     def setUp(self):
@@ -28,7 +27,7 @@ class TestCheckoutViews(TestCase):
             country='IE',
             town_or_city='Test City',
             street_address1='Test Address 1',
-            street_address2 = 'Test Address 2',
+            street_address2='Test Address 2',
             user_profile=test_user
         )
 

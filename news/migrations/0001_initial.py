@@ -24,7 +24,8 @@ class Migration(migrations.Migration):
                 ('update_date', models.DateTimeField(auto_now=True)),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
                 ('status', models.IntegerField(choices=[(0, 'Draft'), (1, 'Published')], default=0)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='news_items', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='news_items',
+                                           to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['-create_date'],
@@ -36,7 +37,8 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('comment_text', models.TextField()),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
-                ('new_story', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='news.news')),
+                ('new_story', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments',
+                                                to='news.news')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={

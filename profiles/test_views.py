@@ -66,5 +66,5 @@ class TestProfileViews(TestCase):
         response = self.client.get('/profile/order_history/' + order.order_number)
         self.assertEqual(response.status_code, 200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'This is a past confirmation for order number 12345678. A confirmation email was sent on the order date.')
-    
+        self.assertEqual(str(messages[0]), 'This is a past confirmation for order number 12345678. ' +
+                                           'A confirmation email was sent on the order date.')
