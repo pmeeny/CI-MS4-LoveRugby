@@ -98,9 +98,12 @@ body {
 .pricing {
     font-size: 1.6rem; 
 }
-.favourite{
+.favourite {
     font-size: 1.6rem;
     padding-left: 15px;
+}
+.favourite-remove {
+    cursor: pointer;
 }
 /* footer */
 .footer-text {

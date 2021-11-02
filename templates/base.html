@@ -84,16 +84,19 @@
                         </div>
                     </li>
                      <li class="list-inline-item">
-                        <a class="{% if grand_total %} font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_product_favourites' %}">
+                        <a class="nav-link" href="{% url 'view_product_favourites' %}">
                             <div class="text-center">
-                                <div><i class="fas fa-heart"></i></div>
-                                <p class="my-0">
-                                    {% if grand_total %}
-                                        Favourites (1)
-                                    {% else %}
+                                {% if favourites_count %}
+                                    <div><i class="fas fa-heart"></i></div>
+                                    <p class="my-0">
+                                        Favourites ({{ favourites_count }})
+                                    </p>
+                                {% else %}
+                                   <div><i class="fas fa-heart"></i></div>
+                                    <p class="my-0">
                                         Favourites (0)
-                                    {% endif %}
-                                </p>
+                                    </p>
+                                {% endif %}
                             </div>
                         </a>
                     </li>
