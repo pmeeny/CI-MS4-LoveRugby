@@ -8,13 +8,9 @@ The testing approach(described in detail in this testing readme) is as follows:
 2. Automated testing using the Django unit test framework
 
 ## Unit testing information
-Note: 
-- 
-![pytest](football_memories/static/images/testing/pytest.PNG)
-- Code coverage details of running the two tests is as follows, first install coverage(pip install coverage)
-- Then run "coverage run -m pytest" to run coverage against the codebase
-- -To generate a report run "coverage report -m"
-![coverage](football_memories/static/images/testing/coverage_report.PNG)
+- I wrote a number of unit tests using the Django unit test framework
+- I used coverage(coverage.py) for code coverage and to ensure a high code coverage was met on all python files in the project
+
 
 ## Automated testing information
 - I wrote a simple automated e2e testing on UILIcious(www.uilicious.com)
@@ -117,20 +113,114 @@ administration/dashboard.html |  ![Results](football_memories/static/images/ligh
 
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
-football_memories/templates/administration/dashboard.html | 0 errors and 0 contrast errors| [Results](football_memories/static/images/wave_validation/wave_dashboard.PNG)
+bag/templates/bag/bag.html  |  |
+checkout/templates/checkout/checkout.html | |
+checkout/templates/checkout/checkout_success.html | |
+favourites/templates/favourites/favourites.html | |
+home/templates/home/index.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_index.PNG)
+news/templates/news/add_news_item.html | | 
+news/templates/news/edit_news_item.html | | 
+news/templates/news/manage_news_items.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_news_item_management.PNG) 
+news/templates/news/news.html | | 
+products/templates/products/add_product.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_add_product.PNG)
+products/templates/products/edit_product.html | | 
+products/templates/products/product_detail.html | | 
+products/templates/products/products.html | | 
+profile/templates/profile/profile.html | |
+templates/allauth/account/login.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_login.PNG)
+templates/allauth/account/logout.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_logout.PNG)
+templates/allauth/account/register.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_register.PNG) 
+templates/allauth/account/password_change.html | |
+templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_password_reset.PNG)
+templates/allauth/account/password_reset_done.html | |
+templates/allauth/account/password_set.html | |
+templates/allauth/account/verification_sent.html | |
+templates/allauth/account/verification_email_required.html | |
+
 
 ## JSHint
 - JSHint(https://jshint.com/) was used to analyse the Javascript files
 
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
-authentication.js | 0 errors and 0 warnings | [Results](football_memories/static/images/jshint/authentication.PNG)
+bag/static/bag/js/bag.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_bag.PNG)
+checkout/static/checkout/carousel.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_stripe_elements.PNG) 
+home/static/home/carousel.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_carousel.PNG) 
+news/static/news/carousel.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_news.PNG) 
+favourites/static/favourites/favourites.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_favourites.PNG) 
+products/static/products/products.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_products.PNG)
 
 <br>
 
 ## PEP8online
 - PEP8online was used to analyse the Python files (https://pep8online.com/)
+- I used the pep8 checker in my IDE Pycharm, and created a scope and included the following files
+- ![PEP8 scope](readme/pep8/pep8_scope.PNG)
+- The report shows no errors/warnings for the files listed below
+- ![PEP8 report](readme/pep8/pep8_report.PNG)
+- One of the main errors on several files was to ensure the character count was less than 80 characters
 
-Page | Result | Test Detail/Screenshot
------------- | ------------- | -------------
-app.py | No errors/warnings | [Results](football_memories/static/images/pep8/app.PNG)
+Page | Result 
+------------ | ------------- 
+bag/admin.py | No errors/warnings 
+bag/apps.py | No errors/warnings 
+bag/contexts.py | No errors/warnings 
+bag/models.py | No errors/warnings 
+bag/test_views.py | No errors/warnings 
+bag/urls.py | No errors/warnings 
+bag/views.py | No errors/warnings 
+checkout/admin.py | No errors/warnings 
+checkout/apps.py | No errors/warnings 
+checkout/forms.py | No errors/warnings 
+checkout/models.py | No errors/warnings 
+checkout/signals.py | No errors/warnings 
+checkout/test_forms.py | No errors/warnings 
+checkout/test_models.py | No errors/warnings 
+checkout/test_views.py | No errors/warnings 
+checkout/urls.py | No errors/warnings 
+checkout/views.py | No errors/warnings 
+checkout/webhook_handler.py | No errors/warnings 
+checkout/webhooks.py | No errors/warnings 
+favourites/admin.py | No errors/warnings 
+favourites/apps.py | No errors/warnings 
+favourites/contexts.py | No errors/warnings 
+favourites/models.py | No errors/warnings 
+favourites/test_models.py | No errors/warnings 
+favourites/test_views.py | No errors/warnings 
+favourites/urls.py | No errors/warnings 
+favourites/views.py | No errors/warnings 
+home/admin.py | No errors/warnings 
+home/apps.py | No errors/warnings 
+home/models.py | No errors/warnings 
+home/test_views.py | No errors/warnings 
+home/urls.py | No errors/warnings 
+home/views.py | No errors/warnings 
+news/admin.py | No errors/warnings 
+news/apps.py | No errors/warnings 
+news/forms.py | No errors/warnings 
+news/models.py | No errors/warnings 
+news/test_models.py | No errors/warnings 
+news/test_views.py | No errors/warnings 
+news/urls.py | No errors/warnings 
+news/views.py | No errors/warnings 
+products/admin.py | No errors/warnings 
+products/apps.py | No errors/warnings 
+products/forms.py | No errors/warnings 
+products/models.py | No errors/warnings 
+products/test_forms.py | No errors/warnings 
+products/test_models.py | No errors/warnings 
+products/test_views.py | No errors/warnings 
+products/urls.py | No errors/warnings 
+products/views.py | No errors/warnings 
+products/widgets.py | No errors/warnings 
+profiles/admin.py | No errors/warnings 
+profiles/apps.py | No errors/warnings 
+profiles/forms.py | No errors/warnings 
+profiles/models.py | No errors/warnings 
+profiles/test_models.py | No errors/warnings 
+profiles/test_views.py | No errors/warnings 
+profiles/urls.py | No errors/warnings 
+profiles/views.py | No errors/warnings 
+custom_storages.py | No errors/warnings
+env.py | No errors/warnings
+manage.py | No errors/warnings
