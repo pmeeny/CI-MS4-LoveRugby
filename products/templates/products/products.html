@@ -12,8 +12,8 @@
 <div class="container-fluid px-3 products-page">
     <div class="row">
         <div class="col-12 col-sm-6 p-4 my-auto">
-            <h1 class="font-black">Products</h1>
-            <p class="font-black">Browse our extensive rugby boots, jerseys and accessories</p>
+            <h1 class="font-black-bg">Products</h1>
+            <p class="font-black-bg">Browse our extensive rugby boots, jerseys and accessories</p>
         </div>
         <div class="col-12 col-sm-6 p-4 my-auto">
             <div class="sort-select-wrapper w-100">
@@ -63,10 +63,8 @@
                                             </div>
                                       </div>
                                         {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> |
-                                                    <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                                                </small>
+                                            <a class="btn green-btn" href="{% url 'edit_product' product.id %}">Edit</a>
+                                            <a class="btn black-btn" href="{% url 'delete_product' product.id %}">Delete</a>
                                         {% endif %}
                                     </div>
                                   </div>

@@ -13,7 +13,7 @@ body {
     background-size: cover;
 }
 a {
-    color: #4285F4;
+    color: #0B51C1;
 }
 .section-holder{
 	padding: 50px 10px;
@@ -81,7 +81,17 @@ body {
 }
 .font-black {
     color: #555555;
+    background-color: white;
 }
+.font-black-bg {
+    color: #555555;
+    background-color: whitesmoke;
+}
+
+.edit-product{
+    background-color: whitesmoke;
+}
+
 /* Product Detail page */
 .product-name{
     font-size: 1.8rem;
@@ -153,7 +163,7 @@ body {
     border-radius: 25px;
 }
 .carousel-image {
-   filter: brightness(50%);
+   filter: brightness(30%);
 }
 .text-white {
     color: white;
@@ -251,8 +261,8 @@ input[name='q']::placeholder {
 
 /* News */
 .card-img-top {
-    width: 400px ;
-    height: 400px ;
+    width: 300px ;
+    height: 300px ;
     border: 0;
     margin: auto;
     margin-bottom: 10px;
