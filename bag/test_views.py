@@ -41,7 +41,8 @@ class TestBagViews(TestCase):
         """
         product = Product.objects.get(code='123456')
         response = self.client.post(f'/bag/add/{product.id}/',
-                                    {"quantity": 1, "redirect_url": "view_bag", "product_size": 1})
+                                    {"quantity": 1, "redirect_url": "view_bag",
+                                     "product_size": 1})
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), 'Added size 1 Test Name to your bag')
 
@@ -57,7 +58,8 @@ class TestBagViews(TestCase):
         self.assertEqual(bag[str(product.id)], 2)
         messages = list(get_messages(response.wsgi_request))
         product_id = bag[str(product.id)]
-        self.assertEqual(str(messages[0]), 'Updated Test Name quantity to ' + str(product_id))
+        self.assertEqual(str(messages[0]), 'Updated Test Name quantity to '
+                         + str(product_id))
 
     def test_adjust_bag_quantity_to_zero(self):
         """
@@ -108,7 +110,8 @@ class TestBagViews(TestCase):
         bag = self.client.session['bag']
         self.assertEqual(bag, {})
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[1]), 'Removed size 1 Test Name from your bag')
+        self.assertEqual(str(messages[1]),
+                         'Removed size 1 Test Name from your bag')
 
     def test_remove_product_from_bag_exception(self):
         """

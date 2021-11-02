@@ -14,8 +14,10 @@ def news_items(request):
     and news_items_drafts
     """
 
-    news_items_published = News.objects.filter(status=1).order_by('-create_date')
-    news_items_drafts = News.objects.filter(status=0).order_by('-create_date')
+    news_items_published = \
+        News.objects.filter(status=1).order_by('-create_date')
+    news_items_drafts = \
+        News.objects.filter(status=0).order_by('-create_date')
 
     context = {
         'news_items_published': news_items_published,
@@ -83,8 +85,10 @@ def edit_news_item(request, news_item_id):
         news_form = NewsForm(request.POST, request.FILES, instance=news_item)
         if news_form.is_valid():
             news_form.save()
-            messages.success(request, f'{news_item.title} was successfully updated')
-            """return redirect(reverse('edit_news_item', args=[news_item.id]))-->"""
+            messages.success(request, f'{news_item.title} '
+                                      f'was successfully updated')
+            """return redirect(reverse('edit_news_item', 
+            args=[news_item.id]))-->"""
             return redirect('manage_news_items')
         else:
             messages.error(

@@ -45,9 +45,11 @@ class TestFavouritesViews(TestCase):
             code='123456',
             description='Test Description',
         )
-        response = self.client.post(f'/favourites/add_product_to_favourites/{product.id}/')
+        response = self.client.post(f'/favourites/add_product_to_favourites/'
+                                    f'{product.id}/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Added product item to your favourites")
+        self.assertEqual(str(messages[0]), "Added product item "
+                                           "to your favourites")
 
     def test_add_item_already_in_product_favourites(self):
         """
@@ -62,12 +64,16 @@ class TestFavouritesViews(TestCase):
             code='123456',
             description='Test Description',
         )
-        response = self.client.post(f'/favourites/add_product_to_favourites/{product.id}/')
+        response = self.client.post(f'/favourites/add_product_to_favourites/'
+                                    f'{product.id}/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Added product item to your favourites")
-        response = self.client.post(f'/favourites/add_product_to_favourites/{product.id}/')
+        self.assertEqual(str(messages[0]), "Added product item "
+                                           "to your favourites")
+        response = self.client.post(f'/favourites/add_product_to_favourites/'
+                                    f'{product.id}/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[1]), 'The product item is already in your favourites!')
+        self.assertEqual(str(messages[1]), 'The product item is already '
+                                           'in your favourites!')
 
     def test_remove_item_from_favourites(self):
         """
@@ -90,7 +96,8 @@ class TestFavouritesViews(TestCase):
         response = self.client.get(
             f'/favourites/remove_product_from_favourites/{product.id}/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Product item removed from your favourites list')
+        self.assertEqual(str(messages[0]), 'Product item removed '
+                                           'from your favourites list')
 
     def test_remove_item_not_in_favourites(self):
         """
@@ -113,4 +120,5 @@ class TestFavouritesViews(TestCase):
         response = self.client.get(
             f'/favourites/remove_product_from_favourites/{product.id}/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'That product item is not in your favourites list!')
+        self.assertEqual(str(messages[0]), 'That product item is not in '
+                                           'your favourites list!')

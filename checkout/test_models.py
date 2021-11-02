@@ -42,4 +42,5 @@ class TestCheckoutModels(TestCase):
             order_line_item.lineitem_total, Decimal(
                 order_line_item.product.price * order_line_item.quantity)
         )
-        self.assertEqual(order.delivery_cost, settings.STANDARD_DELIVERY_PERCENTAGE)
+        self.assertEqual(order.delivery_cost,
+                         settings.STANDARD_DELIVERY_PERCENTAGE)

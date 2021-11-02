@@ -68,7 +68,8 @@ class TestNewsItemViews(TestCase):
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/news/add_news_item/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
+        self.assertEqual(str(messages[0]), "Sorry, only "
+                                           "store owners can do that.")
 
     def test_add_news_item_as_superuser_post(self):
         """
@@ -85,7 +86,8 @@ class TestNewsItemViews(TestCase):
             'status': '1',
         })
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Your news item was posted successfully!")
+        self.assertEqual(str(messages[0]), "Your news item was "
+                                           "posted successfully!")
         self.assertRedirects(response, '/news/')
 
     def test_add_news_item_as_superuser_post_already_exists(self):
@@ -113,7 +115,8 @@ class TestNewsItemViews(TestCase):
             'status': '1',
         })
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[1]), "Your news item failed to add, Please try again")
+        self.assertEqual(str(messages[1]), "Your news item failed to add, "
+                                           "Please try again")
 
     def test_get_edit_news_item_page(self):
         """
@@ -140,7 +143,8 @@ class TestNewsItemViews(TestCase):
             'status': '1',
         })
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Test Title 2 was successfully updated")
+        self.assertEqual(str(messages[0]), "Test Title 2 "
+                                           "was successfully updated")
         self.assertRedirects(response, '/news/manage_news_items/')
 
     def test_get_edit_news_item_as_non_superuser(self):
@@ -159,7 +163,8 @@ class TestNewsItemViews(TestCase):
             'status': '1',
         })
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
+        self.assertEqual(str(messages[0]), "Sorry, only store "
+                                           "owners can do that.")
 
     def test_delete_news_item_as_non_superuser(self):
         """
@@ -170,7 +175,8 @@ class TestNewsItemViews(TestCase):
         response = self.client.post(f'/news/delete_news_item/{news_item.id}/', {
         })
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
+        self.assertEqual(str(messages[0]), "Sorry, only store owners "
+                                           "can do that.")
 
     def test_delete_news_item_as_superuser(self):
         """

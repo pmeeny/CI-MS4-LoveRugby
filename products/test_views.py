@@ -51,7 +51,8 @@ class TestProductViews(TestCase):
         response = self.client.get('/products/', {'sort': 'category'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/products.html')
-        response = self.client.get('/products/', {'sort': 'category', 'direction': 'desc'})
+        response = self.client.get('/products/', {'sort': 'category',
+                                                  'direction': 'desc'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/products.html')
 
@@ -79,7 +80,8 @@ class TestProductViews(TestCase):
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/products/add/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
+        self.assertEqual(str(messages[0]),
+                         "Sorry, only store owners can do that.")
 
     def test_add_product_as_superuser_post(self):
         self.client.login(username='test_super_user', password='test_password')
@@ -123,7 +125,8 @@ class TestProductViews(TestCase):
             'description': 'Test Description Update',
         })
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
+        self.assertEqual(str(messages[0]), "Sorry, "
+                                           "only store owners can do that.")
 
     def test_delete_product_as_superuser(self):
         self.client.login(username='test_super_user', password='test_password')
@@ -141,4 +144,5 @@ class TestProductViews(TestCase):
         response = self.client.post(f'/products/delete/{product.id}/')
         self.assertRedirects(response, '/')
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Sorry, only store owners can do that.")
+        self.assertEqual(str(messages[0]), "Sorry, "
+                                           "only store owners can do that.")

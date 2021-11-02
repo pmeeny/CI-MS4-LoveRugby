@@ -1,4 +1,3 @@
-
 from django.test import TestCase
 from django.contrib.messages import get_messages
 
@@ -63,8 +62,11 @@ class TestProfileViews(TestCase):
         self.client.login(username='test_user1', password='test_password')
         test_user = User.objects.get(username='test_user')
         order = Order.objects.get(email=test_user.email)
-        response = self.client.get('/profile/order_history/' + order.order_number)
+        response = self.client.get('/profile/order_history/' +
+                                   order.order_number)
         self.assertEqual(response.status_code, 200)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'This is a past confirmation for order number 12345678. ' +
-                                           'A confirmation email was sent on the order date.')
+        self.assertEqual(str(messages[0]),
+                         'This is a past confirmation for '
+                         'order number 12345678. ' +
+                         'A confirmation email was sent on the order date.')
