@@ -37,8 +37,8 @@
                                 <div class="text-center mt-2">
                                     <p class="mt-0">*Select 'Draft' to save the news item for later or select 'Publish' to publish on the
                                         site.</p>
+                                    <a class="btn black-btn" href="{% url 'news_items' %}">Cancel</a>
                                     <button class="btn green-btn" type="submit">Add News Item</button>
-                                    <a class="btn red-btn" href="{% url 'news_items' %}">Cancel</a>
                                 </div>
                             </form>
                         </div>
@@ -51,11 +51,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script>
-    /*jshint esversion: 6 */
-    $('#id_image').change(function () {
-        let file = $('#id_image')[0].files[0];
-        $('#filename').text(`Image will be set to: ${file.name}`);
-    });
-</script>
+    <script src="{% static 'news/js/news.js' %}"></script>
 {% endblock %}

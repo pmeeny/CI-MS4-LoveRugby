@@ -48,11 +48,7 @@
     </button>
   </div>
 {% endblock %}
-<!-- Javascript to rotate images in carousel-->
-<script type="text/javascript">
-    var myCarousel = document.querySelector('#home-carousel')
-    var carousel = new bootstrap.Carousel(myCarousel, {
-    interval: 200,
-    wrap: false
-    })
-</script>
+{% block postloadjs %}
+{{ block.super }}
+    <script src="{% static 'home/js/carousel.js' %}"></script>
+{% endblock %}

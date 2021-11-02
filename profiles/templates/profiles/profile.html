@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <h2 class="logo-font mb-4 text-center">My Profile</h2>
+                        <h1 class="logo-font mb-4 text-center">My Profile</h1>
                         <hr>
                     </div>
                 </div>
@@ -83,5 +83,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+    <script src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}

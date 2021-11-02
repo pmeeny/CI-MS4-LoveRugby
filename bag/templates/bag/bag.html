@@ -107,13 +107,8 @@
                                 </table>
                             </div>
                         {% else %}
-                            <p class="lead mb-5">Your bag is empty.</p>
-                            <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                               <span class="icon">
-                                    <i class="fas fa-chevron-left"></i>
-                                </span>
-                                <a href="{% url 'products' %}"class="text-uppercase">Keep Shopping</span>
-                            </a>
+                            <p class="lead mb-2">Your bag is empty.</p>
+                                <a class="btn green-btn mb-4" href="{% url 'products' %}"class="text-uppercase">Keep Shopping</a>
                         {% endif %}
                     </div>
                 </div>
@@ -126,32 +121,6 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
-    $('.btt-link').click(function(e) {
-        window.scrollTo(0,0)
-    })
-</script>
-{% include 'products/includes/quantity_input_script.html' %}
-
-<script type="text/javascript">
-    // Update quantity on click
-    $('.update-link').click(function(e) {
-        var form = $(this).prev('.update-form');
-        form.submit();
-    })
-
-    // Remove item and reload on click
-    $('.remove-item').click(function(e) {
-        var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
-        var size = $(this).data('product_size');
-        var url = `/bag/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
-
-        $.post(url, data)
-         .done(function() {
-             location.reload();
-         });
-    })
-</script>
+    <script src="{% static 'bag/js/bag.js' %}"></script>
+    {% include 'products/includes/quantity_input_script.html' %}
 {% endblock %}
