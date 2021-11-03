@@ -238,6 +238,6 @@ class TestNewsItemViews(TestCase):
         news_item = News.objects.get(title='Test Title')
         response = self.client.post(f'/news/{news_item.id}/',
                                     { 'comment_text': 'Test Item Text'})
-        response1 = self.client.post(f'/delete_comment/1/')
+        response1 = self.client.post(f'/news/delete_comment/0/')
         messages = list(get_messages(response1.wsgi_request))
         self.assertEqual(str(messages[0]), "The comment was deleted")
