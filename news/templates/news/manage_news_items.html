@@ -47,7 +47,27 @@
                                         {% endif %}
                                     <td>
                                         <a class="btn black-btn" href="{% url 'edit_news_item' news_item.id %}">Edit</a>
-                                        <a class="btn btn-danger" href="{% url 'delete_news_item' news_item.id  %}">Delete</a>
+                                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteNewsItem{{ news_item.id }}
+                                            ">Delete</a>
+                                            <!-- Delete news item modal -->
+                                            <div class="modal fade" id="deleteNewsItem{{ news_item.id }}" tabindex="-1"  aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h2 class="modal-title">Delete News Item</h2>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete this news item?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <!-- Close and delete new item buttons-->
+                                                            <button type="button" class="btn black-btn" data-bs-dismiss="modal">Close</button>
+                                                                <a href="{% url 'delete_news_item' news_item.id  %}" class="btn red-btn">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </td>
                                 </tr>
                                 {% endfor %}
