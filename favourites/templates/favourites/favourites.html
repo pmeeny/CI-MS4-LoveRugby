@@ -9,11 +9,11 @@
 {% endblock %}
 {% block content %}
 <div class="overlay"></div>
-<div class="container-fluid px-3">
+<div class="container-fluid px-3 favourites-page">
     <div class="row">
         <div class="col-12 col-sm-6 p-4 my-auto">
-            <h1>Favourites</h1>
-            <p class="font-black">Here are your favourites saved</p>
+            <h1 class="font-black-bg">Favourites</h1>
+            <p class="font-black-bg">Here are your favourites saved</p>
         </div>
         <div class="col-12 col-sm-6 p-4 my-auto">
             <div class="sort-select-wrapper w-100">
@@ -63,7 +63,26 @@
                                                 <strong>€{{ favourite.price }}</strong>
                                             </div>
                                       </div>
-                                                                <a class="btn green-btn" href="{% url 'remove_product_from_favourites' favourite.id 'favourites' %}">Remove</a>
+                                        <a class="btn green-btn" data-bs-toggle="modal" data-bs-target="#deleteFavourite{{ favourite.id }}">Delete</a>
+                                        <!-- Delete favourite modal -->
+                                        <div class="modal fade" id="deleteFavourite{{ favourite.id }}" tabindex="-1"  aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title font-black">Delete Favourite</h2>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body font-black">
+                                                        Are you sure you want to delete this favourite?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- Close and delete favourite buttons-->
+                                                        <button type="button" class="btn black-btn" data-bs-dismiss="modal">Close</button>
+                                                        <a href="{% url 'remove_product_from_favourites' favourite.id 'favourites' %}" class="btn red-btn">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                   </div>
                         </div>
@@ -75,27 +94,5 @@
 {% endblock %}
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-		$('.btt-link').click(function(e) {
-			window.scrollTo(0,0)
-		})
-	</script>
-    <script type="text/javascript">
-        $('#sort-selector').change(function() {
-            var selector = $(this);
-            var currentUrl = new URL(window.location);
-            var selectedVal = selector.val();
-            if(selectedVal != "reset"){
-                var sort = selectedVal.split("_")[0];
-                var direction = selectedVal.split("_")[1];
-                currentUrl.searchParams.set("sort", sort);
-                currentUrl.searchParams.set("direction", direction);
-                window.location.replace(currentUrl);
-            } else {
-                currentUrl.searchParams.delete("sort");
-                currentUrl.searchParams.delete("direction");
-                window.location.replace(currentUrl);
-            }
-        })
-    </script>
+    <script src="{% static 'favourites/js/favourites.js' %}"></script>
 {% endblock %}
