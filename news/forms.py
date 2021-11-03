@@ -1,5 +1,5 @@
 from django import forms
-from .models import News
+from .models import News, Comment
 from products.widgets import CustomClearableFileInput
 
 
@@ -13,3 +13,23 @@ class NewsForm(forms.ModelForm):
         label='Image',
         required=False,
         widget=CustomClearableFileInput)
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('comment_text',)
+
+    def __init__(self, *args, **kwargs):
+        """ Add placeholder and remove auto-generated labels """
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'comment_text': 'Add Comment',
+        }
+
+        for field in self.fields:
+            placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'border-black rounded-1'
+            self.fields[field].label = True

@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+    <div class="overlay"></div>
+    <div class="hero-image">
+        <div class="section-holder">
+            <div class="form-holder-lg">
+                <div class="container">
+                    <div class="bg-overlay"></div>
+                    <div class="row">
+                        <div class="col">
+                            <h1 class="header-font mb-2 pt-4 text-center black-white">{{ news_item.title}}</h1>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Fully expanded Individual Blog Posts -->
+                    <div class="container">
+                        <div class="col">
+                            <div class="text-center">
+                                {% if news_item.image %}
+                                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}" />
+                                {% else %}
+                                <img src="{{ news_item.image_url }}" alt="{{ news_item.title }}" />
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="my-2">
+                                    <p class="card-text">{{ news_item.news_item_text }}</p>
+                                    <p class="text-muted">Posted By: {{ news_item.user }} on the {{ news_item.create_date }}</p>
+                                    {% if news_item.user == request.user or request.user.is_superuser %}
+                                        <a class="btn btn-black" href="{% url 'edit_news_item' news_item.id %}" role="button">Edit</a>
+                                        <button type="button" class="btn green-btn" data-toggle="modal"
+                                        data-target="#Blog-model">
+                                        Delete</button>
+                                        <!-- Delete Button Modal -->
+                                        <div class="modal fade" id="Blog-model" tabindex="-1" role="dialog" aria-labelledby="Blog-model"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5>Delete Blog news_item: {{ news_item.title }} </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        You are about to delete news_item Title ({{ news_item.title }}) and all
+                                                        ({{ comments|length }}) user comments, are you sure??
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <hr>
+                    </div>
+                    <!-- Post Comments to individual blogs -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col mb-4">
+                                <h2 class="text-uppercase mt-3">Comments: ({{ comments|length }})</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {% for comment in comments %}
+                                <div class="shadow-sm p-1 mb-3 bg-white rounded">
+                                    <p class="font-weight-bold mb-2 mt-3">Posted by: {{ comment.user }} on {{ comment.create_date }}</p>
+                                    <p class="text-black mb-2 mt-3">{{ comment.comment_text }}</p>
+                                    {% if comment.user == request.user or request.user.is_superuser %}
+                                    <!-- Delete Button trigger modal -->
+                                    <button type="button" class="btn green-btn" data-bs-toggle="modal"
+                                        data-bs-target="#delete-comment{{ comment.id }}">
+                                        Delete
+                                    </button>
+                                    <!-- Delete Comment Modal -->
+                                    <div class="modal fade" id="delete-comment{{ comment.id }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Delete Comment</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4>Are you sure you want to delete the comment?</h4>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="{% url 'news_item' news_item.id %}" class="btn green-btn"> Cancel</a>
+                                                    <a href="{% url 'delete_comment' comment.id %}" class="btn red-btn">
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- Comment Form -->
+                        <div class="container container-pd">
+                            <div class="row pb-5">
+                                <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
+                                    {% if request.user.is_authenticated %}
+                                    <h3 class="text-uppercase">Add a comment</h3>
+                                    <form class="form" method="POST">
+                                        {% csrf_token %}
+                                        <fieldset>
+                                            {{ comment_form|crispy }}
+                                        </fieldset>
+                                        <button class="btn black-btn" type="submit"> Post
+                                            Comment</button>
+                                    </form>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="form-check-label" for="id-save-info">
+                                <a class="text-info" href="{% url 'register' %}">Create an account</a> or
+                                <a class="text-info" href="{% url 'login' %}">login</a> to comment on this post.
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+    </div>
+        </div>
+    </div>
+        </div>
+{% endblock %}

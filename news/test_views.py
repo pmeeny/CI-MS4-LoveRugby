@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
 from django.test import TestCase
 
-from news.models import News
+from news.models import News, Comment
 
 
 class TestNewsItemViews(TestCase):
@@ -13,7 +13,7 @@ class TestNewsItemViews(TestCase):
         test_super_user = User.objects.create_superuser(
             username='test_super_user', password='test_password')
 
-        News.objects.create(
+        test_news_story = News.objects.create(
             title='Test Title',
             user=test_user,
             news_item_text='Test Item Text',
@@ -195,3 +195,49 @@ class TestNewsItemViews(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), "Test Title Successfully Deleted")
         self.assertEqual(News.objects.count(), 0)
+
+    def test_view_news_item_get(self):
+        """
+        This test tests a news item page
+        """
+        self.client.login(username='test_user', password='test_password')
+        news_item = News.objects.get(title='Test Title')
+        response = self.client.get(f'/news/{news_item.id}/')
+        self.assertTemplateUsed(response, 'news/news_item.html')
+
+    def test_view_news_item_add_comment(self):
+        """
+        This test tests a news item page with a succesful add of a comment
+        """
+        self.client.login(username='test_user', password='test_password')
+
+        news_item = News.objects.get(title='Test Title')
+        response = self.client.post(f'/news/{news_item.id}/',
+                                    { 'comment_text': 'Test Item Text'})
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Comment successfully posted")
+
+    def test_view_news_item_failed_to_add_comment(self):
+        """
+        This test tests a news item page with a failed add of a comment
+        """
+        self.client.login(username='test_user', password='test_password')
+        news_item = News.objects.get(title='Test Title')
+        response = self.client.post(f'/news/{news_item.id}/')
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Comment failed to add, "
+                                           "Please try again")
+
+    def test_view_news_item_delete_comment(self):
+        """
+        This test tests a news item page with a succesful add then
+         delete of a comment
+        """
+        self.client.login(username='test_user', password='test_password')
+
+        news_item = News.objects.get(title='Test Title')
+        response = self.client.post(f'/news/{news_item.id}/',
+                                    { 'comment_text': 'Test Item Text'})
+        response1 = self.client.post(f'/delete_comment/1/')
+        messages = list(get_messages(response1.wsgi_request))
+        self.assertEqual(str(messages[0]), "The comment was deleted")

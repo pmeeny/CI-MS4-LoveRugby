@@ -10,24 +10,27 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container px-3">
-                <div class="row">
-                    <div class="col mt-3">
-                        <h2 class="header-font mb-2 pt-1 text-center text-black">News Items ({{ news_items_published|length }}) </h2>
-                    </div>
-                </div>
-                <hr>
-
-                <div class="row">
-                    <div class="">
-                        <div class="row">
-                                    {% for news_item in news_items_published %}
-                                        <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="row">
+        <div class="col mt-3">
+            <h1 class="header-font mb-2 pt-1 text-center text-black">News Items ({{ news_items_published|length }}) </h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="">
+            <div class="row">
+                {% for news_item in news_items_published %}
+                    <div class="col-sm-12 col-md-6 col-lg-6">
                         <div class="news-card p-1 mt-3">
                             <div class="">
                                 {% if news_item.image %}
-                                <img class="card-img-top" src="{{ news_item.image.url }}" alt="{{ news_item.title }}"/>
+                                    <a href="{% url 'news_item' news_item.id %}">
+                                        <img class="card-img-top" src="{{ news_item.image.url }}" alt="{{ news_item.title }}"/>
+                                    </a>
                                 {% else %}
-                                <img class="card-img-top" src="{{ news_item.image_url }}" alt="{{ news_item.title }}"/>
+                                    <a href="{% url 'news_item' news_item.id %}">
+                                        <img class="card-img-top" src="{{ news_item.image_url }}" alt="{{ news_item.title }}"/>
+                                    </a>
                                 {% endif %}
                             </div>
                             <p class="text-muted mb-0">Posted By: {{ news_item.user }}</p>
@@ -36,9 +39,8 @@
                             <p class="text-muted">Comments:</p>
                         </div>
                     </div>
-                    {% endfor %}
-                </div>
-                <hr>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

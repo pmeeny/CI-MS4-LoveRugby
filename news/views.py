@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
-from .forms import NewsForm
-from .models import News
+from .forms import NewsForm, CommentForm
+from .models import News, Comment
 
 
 def news_items(request):
@@ -119,3 +119,47 @@ def delete_news_item(request, news_item_id):
     news_item.delete()
     messages.success(request, f'{news_item.title} Successfully Deleted')
     return redirect(reverse('manage_news_items'))
+
+
+def news_item(request, news_item_id):
+    """ A view to show an individual news item """
+    news_item = get_object_or_404(News, pk=news_item_id)
+    comments = news_item.comments.filter(new_story=news_item_id).order_by('-create_date')
+
+    comment = None
+
+    """ Adds comment to blog post """
+
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.new_story = news_item
+            comment.user = request.user
+            comment.save()
+            messages.success(request, 'Comment successfully posted')
+            return redirect(reverse('news_item', args=[news_item.id]))
+        else:
+            messages.error(
+                request, 'Comment failed to add, Please try again')
+            return redirect(reverse('news_item', args=[news_item.id]))
+    else:
+        comment_form = CommentForm()
+
+    context = {
+        'news_item': news_item,
+        'comment_form': comment_form,
+        'comments': comments,
+        'comment': comment,
+    }
+
+    return render(request, 'news/news_item.html', context)
+
+@login_required
+def delete_comment(request, comment_id):
+    """ A view to delete news item comments """
+
+    comment = get_object_or_404(Comment, pk=comment_id)
+    comment.delete()
+    messages.success(request, 'The comment was deleted')
+    return redirect(reverse('news_item', args=[comment.new_story_id]))
