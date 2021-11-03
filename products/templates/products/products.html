@@ -64,7 +64,26 @@
                                       </div>
                                         {% if request.user.is_superuser %}
                                             <a class="btn green-btn" href="{% url 'edit_product' product.id %}">Edit</a>
-                                            <a class="btn black-btn" href="{% url 'delete_product' product.id %}">Delete</a>
+                                            <a class="btn black-btn" data-bs-toggle="modal" data-bs-target="#deleteProduct{{ product.id }}">Delete</a>
+                                            <!-- Delete product modal -->
+                                            <div class="modal fade" id="deleteProduct{{ product.id }}" tabindex="-1"  aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h2 class="modal-title font-black">Delete Product</h2>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body font-black">
+                                                            Are you sure you want to delete this product?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <!-- Close and delete product buttons-->
+                                                            <button type="button" class="btn black-btn" data-bs-dismiss="modal">Close</button>
+                                                            <a href="{% url 'delete_product' product.id %}" class="btn red-btn">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         {% endif %}
                                     </div>
                                   </div>
