@@ -31,7 +31,8 @@ class TestProductViews(TestCase):
         """
         This test tests get all products
         """
-        response = self.client.get('/products/')
+        response = self.client.get('/products/', {'search_term': 'test',
+                                                  'current_categories': 'test'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/products.html')
 
@@ -61,7 +62,9 @@ class TestProductViews(TestCase):
         This test tests get product details
         """
         product = Product.objects.get()
-        response = self.client.get(f'/products/{product.id}/')
+        response = self.client.get(f'/products/{product.id}/',
+                                   {'product': product,
+                                    'is_product_in_favourites': 'true'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/product_detail.html')
 
@@ -84,6 +87,9 @@ class TestProductViews(TestCase):
                          "Sorry, only store owners can do that.")
 
     def test_add_product_as_superuser_post(self):
+        """
+        This test tests add product page as a superuser
+        """
         self.client.login(username='test_super_user', password='test_password')
         response = self.client.post('/products/add/', {
             'name': 'Test Name 2',
@@ -95,12 +101,18 @@ class TestProductViews(TestCase):
         self.assertRedirects(response, '/products/2/')
 
     def test_get_edit_product_page(self):
+        """
+        This test tests edit product page(get) as a superuser
+        """
         self.client.login(username='test_super_user', password='test_password')
         product = Product.objects.get()
         response = self.client.get(f'/products/edit/{product.id}/')
         self.assertTemplateUsed(response, 'products/edit_product.html')
 
     def test_edit_product_page_as_superuser(self):
+        """
+        This test tests edit product page(post) as a superuser
+        """
         self.client.login(username='test_super_user', password='test_password')
         product = Product.objects.get()
         self.client.post(f'/products/edit/{product.id}/', {
@@ -115,6 +127,9 @@ class TestProductViews(TestCase):
         self.assertEqual(updated_product.description, 'Test Description Update')
 
     def test_edit_product_page_as_non_superuser(self):
+        """
+        This test tests edit product page as a non superuser
+        """
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.get()
         response = self.client.post(f'/products/edit/{product.id}/', {
@@ -129,6 +144,9 @@ class TestProductViews(TestCase):
                                            "only store owners can do that.")
 
     def test_delete_product_as_superuser(self):
+        """
+        This test tests delete product as a superuser
+        """
         self.client.login(username='test_super_user', password='test_password')
         product = Product.objects.get()
         response = self.client.post(f'/products/delete/{product.id}/')
@@ -139,6 +157,9 @@ class TestProductViews(TestCase):
         self.assertEqual(len(deleted_product), 0)
 
     def test_delete_product_as_non_superuser(self):
+        """
+        This test tests delete product as a non superuser
+        """
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.get()
         response = self.client.post(f'/products/delete/{product.id}/')
