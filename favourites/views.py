@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from products.models import Product
+from util.util import setup_pagination
 from .models import Favourites
 
 
@@ -23,6 +24,7 @@ def view_product_favourites(request):
     if not favourites_items:
         messages.info(request, 'Your favourites list is empty!')
 
+    favourites_items = setup_pagination(favourites_items, request, 4)
     template = 'favourites/favourites.html'
     context = {
         'favourites_items': favourites_items,

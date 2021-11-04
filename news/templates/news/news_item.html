@@ -72,7 +72,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col mb-4">
-                                <h2 class="text-uppercase mt-3">Comments: ({{ comments|length }})</h2>
+                                <h2 class="text-uppercase mt-3">Comments:</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -109,9 +109,7 @@
                                     {% endif %}
                                 </div>
                                 {% endfor %}
-                            </div>
-                        </div>
-                        <!-- Comment Form -->
+                                                  <!-- Comment Form -->
                         <div class="container container-pd">
                             <div class="row pb-5">
                                 <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
@@ -127,13 +125,41 @@
                                     </form>
                                 </div>
                             </div>
-                            {% else %}
-                            <div class="form-check-label" for="id-save-info">
-                                <a class="text-info" href="{% url 'register' %}">Create an account</a> or
-                                <a class="text-info" href="{% url 'login' %}">login</a> to comment on this post.
+                                {% else %}
+                                <div class="form-check-label" for="id-save-info">
+                                    <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
+                                    <a class="text-info" href="{% url 'account_login' %}">login</a> to comment on this post.
+                                </div>
+                                {% endif %}
+                        </div>
                             </div>
+                            {% if comments.has_other_pages %}
+                                <div class="pagination-holder p-4">
+                                    <nav aria-label="Products sorted">
+                                      <ul class="pagination">
+                                        {% if comments.has_previous %}
+                                          <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a></li>
+                                        {% else %}
+                                          <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                                        {% endif %}
+                                        {% for i in comments.paginator.page_range %}
+                                          {% if comments.number == i %}
+                                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                                          {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                          {% endif %}
+                                        {% endfor %}
+                                        {% if comments.has_next %}
+                                          <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">Next</a></li>
+                                        {% else %}
+                                          <li class="disabled page-item"><span class="page-link">Next</span></li>
+                                        {% endif %}
+                                      </ul>
+                                    </nav>
+                                </div>
                             {% endif %}
                         </div>
+
                     </div>
                 </div>
     </div>

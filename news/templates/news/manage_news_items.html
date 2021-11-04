@@ -14,14 +14,13 @@
 <div class="hero-image">
     <div class="section-holder">
         <div class="form-holder-lg">
-            <main class="container">
+            <div class="container">
                 <div class="bg-overlay"></div>
                 <div class="row">
                     <div class="col mt-3">
-                        <h1 class="header-font mb-2 pt-1 text-center text-black">News Items ({{ news_items|length }}) <a class="btn green-btn" href="{% url 'add_news_item' %}">Add</a></h1>
+                        <h1 class="header-font mb-2 pt-1 text-center text-black">News Items <a class="btn green-btn" href="{% url 'add_news_item' %}">Add</a></h1>
                     </div>
                 </div>
-                <hr>
                 <!-- All News Items -->
                 <div class="row">
                     <div class="col-12">
@@ -75,9 +74,33 @@
                         </table>
                     </div>
                 </div>
+                    {% if news_items.has_other_pages %}
+                        <div class="pagination-holder p-4">
+                            <nav aria-label="Products sorted">
+                              <ul class="pagination">
+                                {% if news_items.has_previous %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ news_items.previous_page_number }}">Previous</a></li>
+                                {% else %}
+                                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                                {% endif %}
+                                {% for i in news_items.paginator.page_range %}
+                                  {% if news_items.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                                  {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                  {% endif %}
+                                {% endfor %}
+                                {% if news_items.has_next %}
+                                  <li class="page-item"><a class="page-link" href="?page={{ news_items.next_page_number }}">Next</a></li>
+                                {% else %}
+                                  <li class="disabled page-item"><span class="page-link">Next</span></li>
+                                {% endif %}
+                              </ul>
+                            </nav>
+                        </div>
+                    {% endif %}
                 </div>
-                <hr>
-            </main>
+            </div>
         </div>
     </div>
 </div>

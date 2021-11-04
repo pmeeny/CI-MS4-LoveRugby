@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
+from util.util import setup_pagination
 from .forms import NewsForm, CommentForm
 from .models import News, Comment
 
@@ -19,6 +20,8 @@ def news_items(request):
     news_items_drafts = \
         News.objects.filter(status=0).order_by('-create_date')
 
+    news_items_published = setup_pagination(news_items_published, request, 4)
+
     context = {
         'news_items_published': news_items_published,
         'news_items_drafts': news_items_drafts,
@@ -32,6 +35,7 @@ def manage_news_items(request):
     A view to manage all news items
     """
     all_news_items = News.objects.order_by('-create_date')
+    all_news_items = setup_pagination(all_news_items, request, 4)
 
     context = {
         'news_items': all_news_items,
@@ -124,7 +128,9 @@ def delete_news_item(request, news_item_id):
 def news_item(request, news_item_id):
     """ A view to show an individual news item """
     news_item = get_object_or_404(News, pk=news_item_id)
-    comments = news_item.comments.filter(new_story=news_item_id).order_by('-create_date')
+    comments = news_item.comments.filter(new_story=news_item_id).\
+        order_by('-create_date')
+    comments = setup_pagination(comments, request, 2)
 
     comment = None
 
@@ -154,6 +160,7 @@ def news_item(request, news_item_id):
     }
 
     return render(request, 'news/news_item.html', context)
+
 
 @login_required
 def delete_comment(request, comment_id):
