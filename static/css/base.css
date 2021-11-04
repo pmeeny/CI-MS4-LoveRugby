@@ -28,6 +28,9 @@ a {
     border-bottom-left-radius: 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
+.form-holder-add-product{
+    max-width: 1000px;
+}
 .form-holder-lg{
     margin: auto;
     padding: 60px 50px;
