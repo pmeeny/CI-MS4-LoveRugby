@@ -20,12 +20,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('comment_text',)
-        labels = {
-            'comment_text': '',
-        }
+
 
     def __init__(self, *args, **kwargs):
-        """ Add placeholder and remove auto-generated labels """
+        """ Add placeholder """
         super().__init__(*args, **kwargs)
         placeholders = {
             'comment_text': 'Add your comment text here and click the Post '

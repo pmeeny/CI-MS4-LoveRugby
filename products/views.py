@@ -7,7 +7,7 @@ from django.db.models.functions import Lower
 
 from util.util import setup_pagination
 from .models import Product, Category
-from .forms import ProductForm
+from .forms import ProductForm, ProductRatingCommentForm
 from favourites.models import Favourites
 
 
@@ -61,6 +61,7 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details """
     product = get_object_or_404(Product, pk=product_id)
+    rating_comment_form = ProductRatingCommentForm(data=request.POST or None)
 
     try:
         favourites = get_object_or_404(Favourites, username=request.user.id)
@@ -71,6 +72,7 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'is_product_in_favourites': is_product_in_favourites,
+        'rating_comment_form': rating_comment_form,
     }
 
     return render(request, 'products/product_detail.html', context)
