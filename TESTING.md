@@ -121,7 +121,7 @@ home/templates/home/index.html | 0 errors and 0 contrast errors| [Results](readm
 news/templates/news/add_news_item.html | | 
 news/templates/news/edit_news_item.html | | 
 news/templates/news/manage_news_items.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_news_item_management.PNG) 
-news/templates/news/news.html | | 
+news/templates/news/news.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_news.PNG)  
 products/templates/products/add_product.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_add_product.PNG)
 products/templates/products/edit_product.html | | 
 products/templates/products/product_detail.html | | 
@@ -224,3 +224,4 @@ profiles/views.py | No errors/warnings
 custom_storages.py | No errors/warnings
 env.py | No errors/warnings
 manage.py | No errors/warnings
+unit/unit.py | No errors/warnings
