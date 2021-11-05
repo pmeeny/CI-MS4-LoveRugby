@@ -297,6 +297,11 @@ for the memories gallery
 
 - For the send-email functionality I used some code from the code institute module from the course
 
+- Pagination- https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
+- Div alignment: https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ 
+
+- Django Comments: https://djangocentral.com/creating-comments-system-with-django/
+
 # Content
 - Font Awesome (http://fontawesome.com)    
     - The icons used on the site from font awesome
