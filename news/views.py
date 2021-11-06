@@ -84,28 +84,28 @@ def edit_news_item(request, news_item_id):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    news_item = get_object_or_404(News, pk=news_item_id)
+    news_item_to_edit = get_object_or_404(News, pk=news_item_id)
     if request.method == 'POST':
-        news_form = NewsForm(request.POST, request.FILES, instance=news_item)
+        news_form = NewsForm(request.POST, request.FILES, instance=news_item_to_edit)
         if news_form.is_valid():
             news_form.save()
-            messages.success(request, f'{news_item.title} '
+            messages.success(request, f'{news_item_to_edit.title} '
                                       f'was successfully updated')
             """return redirect(reverse('edit_news_item', 
             args=[news_item.id]))-->"""
             return redirect('manage_news_items')
         else:
             messages.error(
-                request, f'Error, {news_item.title} \
+                request, f'Error, {news_item_to_edit.title} \
                 was not successfully updated')
     else:
-        news_form = NewsForm(instance=news_item)
-        messages.info(request, f'You are currently editing {news_item.title}')
+        news_form = NewsForm(instance=news_item_to_edit)
+        messages.info(request, f'You are currently editing {news_item_to_edit.title}')
 
     template = 'news/edit_news_item.html'
     context = {
         'news_form': news_form,
-        'news_item': news_item,
+        'news_item': news_item_to_edit,
     }
 
     return render(request, template, context)
