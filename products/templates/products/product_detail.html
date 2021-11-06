@@ -108,12 +108,12 @@
                         {% if product.category %}
                         <p class="small mt-1 mb-0">
                             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                <i class="fas fa-tag mr-1"></i> {{ product.category.friendly_name }}
                             </a>
                         </p>
                         {% endif %}
-                        {% if product.rating %}
-                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                        {% if average_rating_rounded != 0 %}
+                            <small class="text-muted"><i class="fas fa-star mr-1"></i> {{ average_rating_rounded }} / 5.0</small>
                         {% else %}
                             <small class="text-muted">No Rating, be the first to rate below</small>
                         {% endif %}
@@ -131,6 +131,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
                         <p class="mb-0 product-name">{{ product.name }}</p>
                         <p class="mb-0">{{ product.description }}</p>
+                        <br>
                         <div class="row">
                             <div class="col-6">
                                 <p class="mb-0 uppercase">Code: {{ product.code }}</p>
@@ -155,15 +156,80 @@
             </div>
             <div class="row">
                 <div class="col-12 offset-lg-2">
+                                  <div class="container">
+                        <div class="row">
+                            <div class="col mb-4">
+                                <h2 class="text-uppercase mt-3">Comments:</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {% for review in reviews %}
+                                <div class="shadow-sm p-1 mb-3 bg-white rounded">
+                                    <p class="font-weight-bold mb-2 mt-3">Posted by: {{ review.user }} on {{ review.create_date }}</p>
+                                    <p class="text-black mb-2 mt-3">Rating: {{ review.product_rating }} </p>
+                                <p class="text-black mb-2 mt-3">Review Text: {{ review.review_text }}</p>
+                                    {% if comment.user == request.user or request.user.is_superuser %}
+                                    <!-- Delete Button trigger modal -->
+                                    <button type="button" class="btn green-btn" data-bs-toggle="modal"
+                                        data-bs-target="#delete-comment{{ review.id }}">
+                                        Delete
+                                    </button>
+                                    <!-- Delete Comment Modal -->
+                                    <div class="modal fade" id="delete-comment{{ review.id }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Delete Comment</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4>Are you sure you want to delete the comment?</h4>
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                        Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                                     {% if reviews.has_other_pages %}
+        <div class="pagination-holder p-4">
+            <nav aria-label="Reviews">
+              <ul class="pagination">
+                {% if reviews.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ reviews.previous_page_number }}">Previous</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                {% endif %}
+                {% for i in reviews.paginator.page_range %}
+                  {% if products.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% if reviews.has_next %}
+                  <li class="page-item"><a class="page-link" href="?page={{ reviews.next_page_number }}">Next</a></li>
+                {% else %}
+                  <li class="disabled page-item"><span class="page-link">Next</span></li>
+                {% endif %}
+              </ul>
+            </nav>
+        </div>
+    {% endif %}
                                                               <!-- Comment Form -->
                         <div class="container container-pd">
                             <div class="row pb-5">
                                 <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
                                     {% if request.user.is_authenticated %}
                                     <h3 class="text-uppercase">Add a comment</h3>
-                                    <form class="form" method="POST">
+                                    <form class="form" method="POST" action="{% url 'add_review' product.id %}">
                                         {% csrf_token %}
-                                            {{ rating_comment_form|crispy }}
+                                            {{ review_form|crispy }}
                                         <button class="btn black-btn" type="submit"> Post Rating and
                                             Review</button>
                                     </form>
@@ -181,8 +247,11 @@
 </div>
         </div>
 
+   </div>
+               </div>
     </div>
-</div>        
+</div>
+    </div>
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}

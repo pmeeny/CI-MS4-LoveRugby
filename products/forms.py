@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import Textarea
 from .widgets import CustomClearableFileInput
-from .models import Product, Category, User, RatingComment
+from .models import Product, Category, Review
 
 
 class ProductForm(forms.ModelForm):
@@ -23,7 +23,7 @@ class ProductForm(forms.ModelForm):
             field.widget.attrs['class'] = 'border-black rounded-0'
 
 
-class ProductRatingCommentForm(forms.ModelForm):
+class ProductReviewForm(forms.ModelForm):
     """
     Represents a form for product rating and comments
     """
@@ -31,13 +31,13 @@ class ProductRatingCommentForm(forms.ModelForm):
         """
         Fields and types for product rating and comments form.
         """
-        model = RatingComment
+        model = Review
         fields = (
             'product_rating',
-            'rating_text',
+            'review_text',
         )
 
         widgets = {
-            'product_rating': forms.Select(attrs={'id': 'choice'}),
-            'rating_text': Textarea(attrs={'rows': 4}),
+            'product_rating': forms.Select(attrs={'id': 'product_rating'}),
+            'review_text': Textarea(attrs={'rows': 3}),
         }

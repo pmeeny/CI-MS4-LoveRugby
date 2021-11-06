@@ -41,7 +41,7 @@ class Product(models.Model):
         return self.name
 
 
-class RatingComment(models.Model):
+class Review(models.Model):
     RATING_CHOICES = [
         (5, '5'),
         (4, '4'),
@@ -53,8 +53,8 @@ class RatingComment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     product_rating = models.IntegerField(choices=RATING_CHOICES,
                                          default=5)
-    rating_text = models.TextField(null=False, blank=False)
+    review_text = models.TextField(null=False, blank=False)
     create_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.rating_text
+        return self.review_text

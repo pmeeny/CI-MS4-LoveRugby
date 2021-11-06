@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
 from django.test import TestCase
 
-from products.models import Category, Product
+from products.models import Category, Product, Review
 
 
 class TestProductViews(TestCase):
@@ -167,3 +167,60 @@ class TestProductViews(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), "Sorry, "
                                            "only store owners can do that.")
+
+    def test_add_review_to_product_failure(self):
+        """
+        This test tests add review to product as a failed case
+        """
+        self.client.login(username='test_user', password='test_password')
+        product = Product.objects.get()
+        response = self.client.post(f'/products/add_review/{product.id}/')
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Failed to add product review")
+
+    def test_add_review_to_product(self):
+        """
+        This test tests add review to product as a success case
+        """
+        test_user = User.objects.create_user(
+            username='test_user1', password='test_password')
+        self.client.login(username='test_user', password='test_password')
+        product = Product.objects.get()
+
+        Review.objects.create(
+            user=test_user,
+            product=product,
+            product_rating='5',
+            review_text='Test Review Text',
+        )
+        response = self.client.post(f'/products/add_review/{product.id}/',
+                                    {'product_rating': '5',
+                                     'review_text': 'Test Review Text'})
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Successfully added a review!")
+
+    def test_add_two_review_one_user_to_product(self):
+        """
+        This test tests add two reviews to a product, failure case
+        """
+        test_user2 = User.objects.create_user(
+            username='test_user2', password='test_password')
+        self.client.login(username='test_user', password='test_password')
+        product = Product.objects.get()
+
+        Review.objects.create(
+            user=test_user2,
+            product=product,
+            product_rating='5',
+            review_text='Test Review Text',
+        )
+        self.client.post(f'/products/add_review/{product.id}/',
+                         {'product_rating': '4',
+                          'review_text': 'Test Review Text1'})
+        response = self.client.post(f'/products/add_review/{product.id}/',
+                                    {'product_rating': '3',
+                                     'review_text': 'Test Review Text2'})
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Successfully added a review!")
+        self.assertEqual(str(messages[1]), "You have already reviewed "
+                                           "this product!")

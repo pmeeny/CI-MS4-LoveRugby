@@ -6,8 +6,8 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from util.util import setup_pagination
-from .models import Product, Category
-from .forms import ProductForm, ProductRatingCommentForm
+from .models import Product, Category, Review
+from .forms import ProductForm, ProductReviewForm
 from favourites.models import Favourites
 
 
@@ -61,7 +61,11 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details """
     product = get_object_or_404(Product, pk=product_id)
-    rating_comment_form = ProductRatingCommentForm(data=request.POST or None)
+    review_form = ProductReviewForm(data=request.POST or None)
+
+    reviews = Review.objects.filter(product=product)
+    reviews = setup_pagination(reviews, request, 3)
+    average_rating_rounded = get_average_rating(reviews)
 
     try:
         favourites = get_object_or_404(Favourites, username=request.user.id)
@@ -72,10 +76,30 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'is_product_in_favourites': is_product_in_favourites,
-        'rating_comment_form': rating_comment_form,
+        'review_form': review_form,
+        'reviews': reviews,
+        'average_rating_rounded': average_rating_rounded
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+def get_average_rating(reviews):
+    """ Add a product to the store """
+    number_of_reviews = 0
+    sum_of_ratings = 0
+    average_rating_rounded = 0
+    for review in reviews:
+        number_of_reviews = number_of_reviews + 1
+        sum_of_ratings = sum_of_ratings + review.product_rating
+
+    if number_of_reviews > 0:
+        average_rating = (sum_of_ratings / number_of_reviews)
+        average_rating_rounded = round(average_rating, 1)
+        return average_rating_rounded
+    else:
+        return average_rating_rounded
+
 
 
 @login_required
@@ -146,3 +170,29 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
 
     return redirect(reverse('products'))
+
+
+@login_required
+def add_review(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        review_form = ProductReviewForm(request.POST)
+
+        if review_form.is_valid():
+            already_reviewed = Review.objects.filter(product=product,
+                                                     user=request.user)
+            if not already_reviewed:
+                Review.objects.create(
+                        product=product,
+                        user=request.user,
+                        product_rating=request.POST['product_rating'],
+                        review_text=request.POST['review_text'],
+                )
+                messages.info(request, 'Successfully added a review!')
+            else:
+                messages.error(request, 'You have already reviewed this product!')
+            return redirect(reverse('product_detail', args=[product.id]))
+
+        messages.error(request, 'Failed to add product review')
+    messages.error(request, 'Invalid Method.')
+    return redirect(reverse('product_detail', args=[product.id]))
