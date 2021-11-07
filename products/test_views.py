@@ -224,3 +224,33 @@ class TestProductViews(TestCase):
         self.assertEqual(str(messages[0]), "Successfully added a review!")
         self.assertEqual(str(messages[1]), "You have already reviewed "
                                            "this product!")
+        response = self.client.post(
+            f'/products/delete_review/{product.id}/{test_user2.username}/')
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Successfully added a review!")
+
+    def test_delete_review_from_product(self):
+        """
+        This test tests delete review from a product
+        """
+        test_user1 = User.objects.create_user(
+            username='testuser2', password='test_password')
+        self.client.login(username='testuser2', password='testpassword')
+        test_user_2 = User.objects.get(username='testuser2')
+        product = Product.objects.get()
+
+        Review.objects.create(
+            user=test_user_2,
+            product=product,
+            product_rating='5',
+            review_text='Test Review Text',
+        )
+        response = self.client.post(
+            f'/products/delete_review/{product.id}/{test_user_2.username}/')
+        messages = list(get_messages(response.wsgi_request))
+        #self.assertEqual(str(messages[0]), "Successfully added a review!")
+        #self.assertRedirects(response, f'/products/{product.id}/')
+        review = Review.objects.filter(product=product,
+                                              body='Test body')
+        self.assertEqual(len(review), 0)
+

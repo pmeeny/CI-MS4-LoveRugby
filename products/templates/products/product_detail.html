@@ -172,23 +172,28 @@
                                     {% if comment.user == request.user or request.user.is_superuser %}
                                     <!-- Delete Button trigger modal -->
                                     <button type="button" class="btn green-btn" data-bs-toggle="modal"
-                                        data-bs-target="#delete-comment{{ review.id }}">
+                                        data-bs-target="#delete-review{{ review.id }}">
                                         Delete
                                     </button>
                                     <!-- Delete Comment Modal -->
-                                    <div class="modal fade" id="delete-comment{{ review.id }}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal fade" id="delete-review{{ review.id }}" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h3 class="modal-title">Delete Comment</h3>
+                                                    <h3 class="modal-title">Delete Review</h3>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h4>Are you sure you want to delete the comment?</h4>
+                                                    <h4>Are you sure you want to delete the review?</h4>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <a href="{% url 'product_detail' product.id %}" class="btn green-btn"> Cancel</a>
 
-                                                        Delete</a>
+                                                    <form action="{% url 'delete_review' product.id review.user.username %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn red-btn">Delete</button>
+                                                    </form>
+
                                                 </div>
                                             </div>
                                         </div>

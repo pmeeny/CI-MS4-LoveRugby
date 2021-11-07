@@ -101,7 +101,6 @@ def get_average_rating(reviews):
         return average_rating_rounded
 
 
-
 @login_required
 def add_product(request):
     """ Add a product to the store """
@@ -195,4 +194,22 @@ def add_review(request, product_id):
 
         messages.error(request, 'Failed to add product review')
     messages.error(request, 'Invalid Method.')
+    return redirect(reverse('product_detail', args=[product.id]))
+
+
+@login_required
+def delete_review(request, product_id, review_user):
+
+    product = get_object_or_404(Product, pk=product_id)
+    review = get_object_or_404(
+        Review, product=product, user__username=review_user)
+
+    if request.user != review.user and not request.user.is_superuser:
+        messages.error(request, "Sorry, you don't have permission to do that.")
+        return redirect(reverse('home'))
+    if request.method == 'POST':
+        review.delete()
+        messages.info(request, 'Your review was deleted')
+    else:
+        messages.error(request, 'Invalid request')
     return redirect(reverse('product_detail', args=[product.id]))
