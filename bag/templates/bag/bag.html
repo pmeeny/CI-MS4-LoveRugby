@@ -18,9 +18,7 @@
             <div class="container mb-2">
                 <div class="row">
                     <div class="col">
-                        <hr>
-                        <h2 class="logo-font mb-4">Shopping Bag</h2>
-                        <hr>
+                        <h1 class="logo-font mb-4 pt-2">Shopping Bag</h1>
                     </div>
                 </div>
 
@@ -118,9 +116,36 @@
 </div>
 {% endblock %}
 
-
 {% block postloadjs %}
 {{ block.super }}
-    <script src="{% static 'bag/js/bag.js' %}"></script>
-    {% include 'products/includes/quantity_input_script.html' %}
+<script type="text/javascript">
+    $('.btt-link').click(function(e) {
+        window.scrollTo(0,0)
+    })
+</script>
+{% include 'products/includes/quantity_input_script.html' %}
+
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var size = $(this).data('product_size');
+        var url = `/bag/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 {% endblock %}
+
+
