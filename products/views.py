@@ -189,7 +189,8 @@ def add_review(request, product_id):
                 )
                 messages.info(request, 'Successfully added a review!')
             else:
-                messages.error(request, 'You have already reviewed this product!')
+                messages.error(request, 'You have already reviewed '
+                                        'this product!')
             return redirect(reverse('product_detail', args=[product.id]))
 
         messages.error(request, 'Failed to add product review')

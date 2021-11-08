@@ -3,6 +3,7 @@ from django.contrib.messages import get_messages
 from django.test import TestCase
 
 from products.models import Category, Product, Review
+from products.views import get_average_rating
 
 
 class TestProductViews(TestCase):
@@ -26,6 +27,8 @@ class TestProductViews(TestCase):
 
     def tearDown(self):
         Product.objects.all().delete()
+        User.objects.all().delete()
+        Review.objects.all().delete()
 
     def test_get_all_products(self):
         """
@@ -224,33 +227,87 @@ class TestProductViews(TestCase):
         self.assertEqual(str(messages[0]), "Successfully added a review!")
         self.assertEqual(str(messages[1]), "You have already reviewed "
                                            "this product!")
-        response = self.client.post(
-            f'/products/delete_review/{product.id}/{test_user2.username}/')
-        messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), "Successfully added a review!")
 
     def test_delete_review_from_product(self):
         """
         This test tests delete review from a product
         """
-        test_user1 = User.objects.create_user(
-            username='testuser2', password='test_password')
-        self.client.login(username='testuser2', password='testpassword')
-        test_user_2 = User.objects.get(username='testuser2')
+        test_user2 = User.objects.create_user(
+            username='test_user4', password='test_password')
+        self.client.login(username='test_user4', password='test_password')
         product = Product.objects.get()
 
         Review.objects.create(
-            user=test_user_2,
+            user=test_user2,
             product=product,
             product_rating='5',
             review_text='Test Review Text',
         )
+        # self.client.post(f'/products/add_review/{product.id}/',
+        #                  {'product_rating': '4',
+        #                  'review_text': 'Test Review Text'})
         response = self.client.post(
-            f'/products/delete_review/{product.id}/{test_user_2.username}/')
+            f'/products/delete_review/{product.id}/{test_user2.username}/')
         messages = list(get_messages(response.wsgi_request))
-        #self.assertEqual(str(messages[0]), "Successfully added a review!")
-        #self.assertRedirects(response, f'/products/{product.id}/')
-        review = Review.objects.filter(product=product,
-                                              body='Test body')
-        self.assertEqual(len(review), 0)
+        self.assertEqual(str(messages[0]), "Your review was deleted")
 
+    def test_delete_review_from_product_no_permission(self):
+        """
+        This test tests delete review from a product
+        """
+        test_user2 = User.objects.create_user(
+            username='test_user2', password='test_password')
+        self.client.login(username='test_user', password='test_password')
+        product = Product.objects.get()
+
+        Review.objects.create(
+            user=test_user2,
+            product=product,
+            product_rating='5',
+            review_text='Test Review Text',
+        )
+        self.client.post(f'/products/add_review/{product.id}/',
+                         {'product_rating': '4',
+                          'review_text': 'Test Review Text1'})
+        response = self.client.post(
+            f'/products/delete_review/{product.id}/{test_user2.username}/')
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(str(messages[0]), "Successfully added a review!")
+        self.assertEqual(str(messages[1]), "Sorry, you don't have permission "
+                                           "to do that.")
+
+    def test_get_average_rating_two_reviews(self):
+        """
+        This test tests delete review from a product
+        """
+        product = Product.objects.get()
+        test_user3 = User.objects.create_user(
+            username='test_user3', password='test_password')
+        self.client.login(username='test_user3', password='test_password')
+        review1 = Review.objects.create(
+            user=test_user3,
+            product=product,
+            product_rating='5',
+            review_text='Test Review Text',
+        )
+        test_user4 = User.objects.create_user(
+            username='test_user4', password='test_password')
+        self.client.login(username='test_user4', password='test_password')
+        review2 = Review.objects.create(
+            user=test_user4,
+            product=product,
+            product_rating='4',
+            review_text='Test Review Text 2',
+        )
+        reviews = Review.objects.filter(product=product)
+        average_rating = get_average_rating(reviews)
+        self.assertEqual(average_rating, 4.5)
+
+    def test_get_average_rating_no_reviews(self):
+        """
+        This test tests delete review from a product
+        """
+        product = Product.objects.get()
+        reviews = Review.objects.filter(product=product)
+        average_rating = get_average_rating(reviews)
+        self.assertEqual(average_rating, 0)

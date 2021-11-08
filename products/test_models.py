@@ -12,7 +12,7 @@ class TestProductModels(TestCase):
         Category.objects.create(
             name='test-category', friendly_name='test category')
 
-        Product.objects.create(
+        product = Product.objects.create(
             name='Test Name',
             price='99.99',
             colour='Test Colour',
@@ -20,8 +20,8 @@ class TestProductModels(TestCase):
             description='Test Description',
         )
         Review.objects.create(
-            user= test_user,
-            product='Test Product',
+            user=test_user,
+            product=product,
             product_rating='5',
             review_text='Test Review Text',
         )
@@ -38,7 +38,7 @@ class TestProductModels(TestCase):
         """
         This test tests the products str method
         """
-        product = Product.objects.get(code='Test Review Text')
+        product = Product.objects.get(code='123456')
         self.assertEqual((product.__str__()), product.name)
 
     def test_review_str_method(self):
