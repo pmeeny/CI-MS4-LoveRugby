@@ -10,3 +10,5 @@ node_modules/
 *.pyc
 htmlcov
 .coverage
+.vscode
+.idea
