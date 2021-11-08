@@ -29,18 +29,3 @@ class TestCheckoutModels(TestCase):
     def test_order_str_method(self):
         order = Order.objects.get(email='test@gmail.com')
         self.assertEqual(str(order), order.order_number)
-        
-    def test_order_with_delivery(self):
-        order = Order.objects.get(email='test@gmail.com')
-        product = Product.objects.get(code='123456')
-        order_line_item = OrderLineItem.objects.create(
-            order=order,
-            product=product,
-            quantity=1,
-        )
-        self.assertEqual(
-            order_line_item.lineitem_total, Decimal(
-                order_line_item.product.price * order_line_item.quantity)
-        )
-        self.assertEqual(order.delivery_cost,
-                         settings.STANDARD_DELIVERY_PERCENTAGE)

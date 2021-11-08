@@ -40,20 +40,3 @@ class TestCheckoutViews(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(
             str(messages[0]), "There's nothing in your bag at the moment")
-
-    def test_no_stripe_key_error(self):
-        """
-        Test that an error message is shown when Stripe key is missing
-        """
-        self.client.login(username='test_user', password='test_password')
-        bag = {'14': 1, '11': 1}
-        session = self.client.session
-        session['bag'] = bag
-        session.save()
-        settings.STRIPE_PUBLIC_KEY = ''
-        response = self.client.get('/checkout/')
-        messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(len(messages), 1)
-        self.assertEqual(messages[0].tags, 'warning')
-        self.assertEqual(
-            str(messages[0]), 'Stripe public key is missing.')
