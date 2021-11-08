@@ -99,57 +99,76 @@ body {
     color: #555555;
     background-color: whitesmoke;
 }
-
-.edit-product{
+.btn-black {
+    background: black;
+    color: white;
+}
+.text-white {
+    color: white;
+}
+.font-weight-bold {
+    font-weight: bold;
+}
+.background-white {
+    background: white;
+}
+.nav-link{
+    color: #1E5128;
+}
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+    border-color: #DB4437;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #DB4437;
+    border-color: #DB4437;
+    border-radius: 0;
+}
+.black-btn{
+    background-color: #191A19;
+    color: white;
+}
+.bg-newcol{
+    background-color: #D8E9A8;
+}
+.black-btn:hover{
+    background-color: #191A19;
+    color: white;
+}
+.green-btn {
+    background-color: #1E5128;
+    color: white;
+ }
+.green-btn:hover {
+    background-color: #1E5128;
+    color: white;
+}
+.news-items {
+       background-color: whitesmoke;
+}
+.red-btn {
+    background-color: #DB4437;
+    color: white;
+}
+/* --- Pagination --- */
+.page-link {
+    color: #1E5128;
+}
+.page-item.active .page-link {
+    background-color: #1E5128;
+    border-color: #1E5128;
+}
+.page-item:last-child .page-link {
+    color: #1E5128;
+}
+/* --- Edit Product --- */
+.edit-product {
     background-color: whitesmoke;
 }
-
-/* Product Detail page */
-.product-name{
-    font-size: 1.8rem;
-}
-.pricing {
-    font-size: 1.6rem; 
-}
-.favourite {
-    font-size: 1.6rem;
-    padding-left: 15px;
-}
-.favourite-remove {
-    cursor: pointer;
-}
-/* footer */
-.footer-text {
-    font-size: 1.2rem;
-}
-
-.form-group {
-    padding-bottom: 10px;
-}
-/* Homepage */
-.new-rel-img {
-    width: 100px;
-    height: 100px;
-}
-
-.preview-image {
-    width: 96px;
-    height: 96px;
-}
-
-.new-rel-holder{
-    width: 50%;
-    display: flex;
-    padding: 20px;
-}
-
-.new-rel-item{
-    float:left;
-    width: 50%;
-    padding: 20px;
-}
-
-/* from Bulma */
+/* ----- End of Color palette ----- */
+/* ----- Start of Styling ----- */
+/* --- Global --- */
+/* --- Reference (https://bulma.io/) --- */
 .icon {
     align-items: center;
     display: inline-flex;
@@ -168,115 +187,9 @@ body {
     color: white;
     min-width: 260px;
 }
-.btn-black {
-    background: black;
-    color: white;
-}
-/*Wishlist */
-.wishlist-remove:hover {
-    text-decoration: none;
-}
-/* Carousel */
-.carousel-text-area {
-    border: 2px solid white;
-    padding: 10px;
-    border-radius: 25px;
-}
-.carousel-image {
-   filter: brightness(30%);
-}
-.text-white {
-    color: white;
-}
-.font-weight-bold {
-    font-weight: bold;
-}
-.background-white {
-    background: white;
-}
 .landing-image {
     max-height: 1000px;
 }
-/* Logo */
-.logo {
-    height: 55px;
-    width: 180px;
-}
-/* Pagination */
-.pagination-holder {
-    display: flex;
-    justify-content: center;
-}
-.center-div {
-    display: flex;
-    justify-content: center;
-}
-
-.page-link {
-    color: #1E5128;
-}
-
-.page-item.active .page-link {
-    background-color: #1E5128;
-    border-color: #1E5128;
-}
-
-.page-item:last-child .page-link {
-    color: #1E5128;
-}
-
-
-/* Header */
-.mobile-nav-link-pd {
-    padding: 0.5rem 0.5rem;
-}
-/* Products page */
-.overlay {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: whitesmoke;
-	z-index: -1;
-}
-/* products page */
-.card {
-    width: 300px !important;
-    border: 0;
-    margin: auto;
-    margin-bottom: 10px;
-}
-/* Nav bar */
-.nav-link{
-    color: #1E5128;
-}
-.btt-button {
-    height: 42px;
-    width: 42px;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-}
-.btt-link {
-    cursor: pointer;
-}
-.btt-button {
-    height: 42px;
-    width: 42px;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-}
-.btt-link,
-.update-link,
-.remove-item {
-    cursor: pointer;
-}
-input[name='q']::placeholder {
-    color: #aab7c4;
-}
-/* Product Form */
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -290,17 +203,115 @@ input[name='q']::placeholder {
     opacity: 0;
     cursor: pointer;
 }
-.custom-checkbox .custom-control-label::before {
-    border-radius: 0;
-    border-color: #DB4437;
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
 }
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #DB4437;
-    border-color: #DB4437;
-    border-radius: 0;
+/* --- Boostrap toasts--- */
+.custom-toast {
+    overflow: visible;
 }
-
-/* News */
+.toast-capper {
+    height: 2px;
+}
+/* --- Allauth --- */
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    color: #000;
+}
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+/* --- Home Page/header/footer --- */
+.logo {
+    height: 55px;
+    width: 180px;
+}
+.carousel-text-area {
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 25px;
+}
+.carousel-image {
+   filter: brightness(30%);
+}
+.footer-text {
+    font-size: 1.2rem;
+}
+.form-group {
+    padding-bottom: 10px;
+}
+.mobile-nav-link-pd {
+    padding: 0.5rem 0.5rem;
+}
+/* --- Product Detail --- */
+.product-name{
+    font-size: 1.8rem;
+}
+.pricing {
+    font-size: 1.6rem; 
+}
+.favourite {
+    font-size: 1.6rem;
+    padding-left: 15px;
+}
+.favourite-remove {
+    cursor: pointer;
+}
+/* --- Add Product --- */
+.preview-image {
+    width: 96px;
+    height: 96px;
+}
+/* --- Pagination --- */
+.pagination-holder {
+    display: flex;
+    justify-content: center;
+}
+.center-div {
+    display: flex;
+    justify-content: center;
+}
+/* --- Products page --- */
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: whitesmoke;
+	z-index: -1;
+}
+.card {
+    width: 300px !important;
+    border: 0;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+.btt-link {
+    cursor: pointer;
+}
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+input[name='q']::placeholder {
+    color: #aab7c4;
+}
+/* --- News page --- */
 .card-img-top {
     width: 300px ;
     height: 300px ;
@@ -321,90 +332,20 @@ input[name='q']::placeholder {
     margin: auto;
     margin-bottom: 10px;
 }
-
-/* ------------------------------- bootstrap toasts */
-
-.message-container {
-    position: fixed;
-    top: 72px;
-    right: 15px;
-    z-index: 99999999999;
-}
-
-.custom-toast {
-    overflow: visible;
-}
-
-.toast-capper {
-    height: 2px;
-}
-  /* Allauth form formatting */
-  .allauth-form-inner-content p {
-      margin-top: 1.5rem; /* mt-4 */
-      color: #000; /* text-secondary */
-  }
-
-  .allauth-form-inner-content input {
-      /*border-color: #000; */
-     /* border-radius: 0; */
-  }
-
-  .allauth-form-inner-content label:not([for='id_remember']) {
-      display: none;
-  }
-
-  .allauth-form-inner-content input::placeholder {
-      color: #aab7c4;
-  }
-    .black-btn{
-        background-color: #191A19;
-        color: white;
-
-      }
-
-.bg-newcol{
-    background-color: #D8E9A8;
-
-}
-  .black-btn:hover{
-    background-color: #191A19;
-    color: white;
-
-  }
- .green-btn {
-    background-color: #1E5128;
-    color: white;
-  }
-
-  .green-btn:hover {
-    background-color: #1E5128;
-    color: white;
-  }
-
-.news-items {
-       background-color: whitesmoke;
-}
-
-.red-btn {
-    background-color: #DB4437;
-    color: white;
-  }
-
+/* --- Shopping bag --- */
 .bag-notification-wrapper {
     height: 100px;
     overflow-x: hidden;
     overflow-y: auto;
 }
-
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
+/* ----- End of Styling ----- */
+/* ----- Start of Media Queries ----- */
+/* --- Greater than 1200px --- */
 @media (min-width: 1200px) {
     .container {
       max-width: 80%;
     }
   }
-
   /* fixed top navbar only on medium and up */
   @media (min-width: 992px) {
       .fixed-top-desktop-only {
@@ -414,64 +355,53 @@ input[name='q']::placeholder {
           left: 0;
           z-index: 1030;
       }
-  
       .header-container {
           padding-top: 164px;
           background-color: white;
       }
   }
-  
-  /* pad the top a bit when navbar is collapsed on mobile */
+/* --- Greater than 991px --- */
 @media (max-width: 991px) {
     .header-container {
         padding-top: 92px;
     }
-
     body {
         height: calc(100vh - 116px);
     }
-
     .display-4.logo-font.text-black {
         font-size: 2rem;
     }
-
     .nav-link {
         padding: 0.15rem;
     }
-
     .nav-link i.fa-lg {
         font-size: 1rem;
     }
-
     .navbar-toggler {
         padding: .6rem .6rem;
         font-size: 1rem;
     }
-
     #delivery-banner h4 {
         font-size: .9rem;
     }
-
     .btn.btn-outline-black.rounded-0,
     .btn.btn-black.rounded-0 {
         padding: .375rem .375rem;
     }
-
     .btn.btn-outline-black.rounded-0.btn-lg,
     .btn.btn-black.rounded-0.btn-lg {
         padding: .375rem .375rem;
         font-size: .75rem;
     }
-
     .increment-qty, .decrement-qty {
         padding: .25rem .5rem !important;
     }
 }
+/* --- Greater than 576px --- */
 @media (max-width: 576px) {
     .registration-form form{
         padding: 50px 20px;
     }
-
     .registration-form .form-icon{
         width: 70px;
         height: 70px;
@@ -479,3 +409,4 @@ input[name='q']::placeholder {
         line-height: 70px;
     }
 }
+/* ----- End of Media Queries ----- */
