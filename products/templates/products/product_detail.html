@@ -51,12 +51,21 @@
                                     <div class="col-12">
                                         <p class="mt-1"><strong>Size:</strong></p>
                                         <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                            <option value="13">13</option>
+                                            {% if product.category.friendly_name == "Adidas Kakari" or product.category.friendly_name == "Adidas Malice" %}
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                            {% else %}
+                                                <option value="XS">XS</option>
+                                                <option value="S">S</option>
+                                                <option value="M">M</option>
+                                                <option value="L">L</option>
+                                                <option value="XL">XL</option>
+                                                <option value="XXL">XXL</option>
+                                            {% endif %}
                                         </select>
                                     </div>
                                 {% endif %}
@@ -180,11 +189,11 @@
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h3 class="modal-title">Delete Review</h3>
+                                                    <h2 class="modal-title">Delete Review</h2>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h4>Are you sure you want to delete the review?</h4>
+                                                    Are you sure you want to delete the review?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a href="{% url 'product_detail' product.id %}" class="btn green-btn"> Cancel</a>
