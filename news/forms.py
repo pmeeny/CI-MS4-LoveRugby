@@ -21,15 +21,12 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('comment_text',)
 
-
     def __init__(self, *args, **kwargs):
         """ Add placeholder """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'comment_text': 'Add your comment text here and click the Post '
-                            'Comment button',
+            'comment_text': 'Add your comment text here',
         }
-
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder

@@ -86,13 +86,12 @@ def edit_news_item(request, news_item_id):
 
     news_item_to_edit = get_object_or_404(News, pk=news_item_id)
     if request.method == 'POST':
-        news_form = NewsForm(request.POST, request.FILES, instance=news_item_to_edit)
+        news_form = NewsForm(request.POST, request.FILES,
+                             instance=news_item_to_edit)
         if news_form.is_valid():
             news_form.save()
             messages.success(request, f'{news_item_to_edit.title} '
                                       f'was successfully updated')
-            """return redirect(reverse('edit_news_item', 
-            args=[news_item.id]))-->"""
             return redirect('manage_news_items')
         else:
             messages.error(
@@ -100,7 +99,8 @@ def edit_news_item(request, news_item_id):
                 was not successfully updated')
     else:
         news_form = NewsForm(instance=news_item_to_edit)
-        messages.info(request, f'You are currently editing {news_item_to_edit.title}')
+        messages.info(request, f'You are currently editing '
+                               f'{news_item_to_edit.title}')
 
     template = 'news/edit_news_item.html'
     context = {
@@ -113,8 +113,9 @@ def edit_news_item(request, news_item_id):
 
 @login_required
 def delete_news_item(request, news_item_id):
-    """ A view to delete news items """
-
+    """
+    A view to delete news items
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -126,7 +127,9 @@ def delete_news_item(request, news_item_id):
 
 
 def news_item(request, news_item_id):
-    """ A view to show an individual news item """
+    """
+    A view to show an individual news item
+    """
     news_item = get_object_or_404(News, pk=news_item_id)
     comments = news_item.comments.filter(new_story=news_item_id).\
         order_by('-create_date')
@@ -134,8 +137,7 @@ def news_item(request, news_item_id):
 
     comment = None
 
-    """ Adds comment to blog post """
-
+    """ Adds comment to new item"""
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
@@ -147,7 +149,7 @@ def news_item(request, news_item_id):
             return redirect(reverse('news_item', args=[news_item.id]))
         else:
             messages.error(
-                request, 'Comment failed to add, Please try again')
+                request, 'Comment failed to add, Please retry')
             return redirect(reverse('news_item', args=[news_item.id]))
     else:
         comment_form = CommentForm()
@@ -164,8 +166,9 @@ def news_item(request, news_item_id):
 
 @login_required
 def delete_comment(request, comment_id):
-    """ A view to delete news item comments """
-
+    """
+    A view to delete news item comments
+    """
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
     messages.success(request, 'The comment was deleted')

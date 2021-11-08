@@ -213,7 +213,7 @@ class TestNewsItemViews(TestCase):
 
         news_item = News.objects.get(title='Test Title')
         response = self.client.post(f'/news/{news_item.id}/',
-                                    { 'comment_text': 'Test Item Text'})
+                                    {'comment_text': 'Test Item Text'})
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), "Comment successfully posted")
 
@@ -226,7 +226,7 @@ class TestNewsItemViews(TestCase):
         response = self.client.post(f'/news/{news_item.id}/')
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(str(messages[0]), "Comment failed to add, "
-                                           "Please try again")
+                                           "Please retry")
 
     def test_view_news_item_delete_comment(self):
         """
@@ -237,7 +237,7 @@ class TestNewsItemViews(TestCase):
 
         news_item = News.objects.get(title='Test Title')
         response = self.client.post(f'/news/{news_item.id}/',
-                                    { 'comment_text': 'Test Item Text'})
+                                    {'comment_text': 'Test Item Text'})
         comment = Comment.objects.get(comment_text='Test Item Text')
         response1 = self.client.post(f'/news/delete_comment/{comment.id}/')
         messages = list(get_messages(response1.wsgi_request))
