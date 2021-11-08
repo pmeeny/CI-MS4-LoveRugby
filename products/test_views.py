@@ -311,3 +311,11 @@ class TestProductViews(TestCase):
         reviews = Review.objects.filter(product=product)
         average_rating = get_average_rating(reviews)
         self.assertEqual(average_rating, 0)
+
+    def test_sale_item(self):
+        """
+        This test tests the sale item view
+        """
+        response = self.client.get('/products/sale_items')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'products/sale_items.html')

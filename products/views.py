@@ -200,7 +200,9 @@ def add_review(request, product_id):
 
 @login_required
 def delete_review(request, product_id, review_user):
-
+    """
+    A view to delete reviews
+    """
     product = get_object_or_404(Product, pk=product_id)
     review = get_object_or_404(
         Review, product=product, user__username=review_user)
@@ -214,3 +216,16 @@ def delete_review(request, product_id, review_user):
     else:
         messages.error(request, 'Invalid request')
     return redirect(reverse('product_detail', args=[product.id]))
+
+
+def sale_items(request):
+    """
+    A view to display all sale items
+    """
+    sale_items = None
+    sale_items = Product.objects.exclude(pre_sale_price__isnull=True)
+
+    context = {
+        'sale_items': sale_items,
+    }
+    return render(request, 'products/sale_items.html', context)
