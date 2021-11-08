@@ -28,7 +28,7 @@ a {
     border-bottom-left-radius: 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
-.form-holder-add-product{
+.form-holder-generic{
     max-width: 1000px;
 }
 .form-holder-lg{
@@ -130,6 +130,11 @@ body {
 .new-rel-img {
     width: 100px;
     height: 100px;
+}
+
+.preview-image {
+    width: 96px;
+    height: 96px;
 }
 
 .new-rel-holder{
