@@ -17,6 +17,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="icon" type="image/png" href="{{ MEDIA_URL }}favicon/favicon.ico"/>
         <!-- Font Awesome css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
     {% endblock %}
@@ -83,6 +84,7 @@
                             {% endif %}
                         </div>
                     </li>
+                    <!-- Favourites -->
                      <li class="list-inline-item">
                         <a class="nav-link" href="{% url 'view_product_favourites' %}">
                             <div class="text-center">
@@ -108,7 +110,7 @@
                                     {% if grand_total %}
                                         ${{ grand_total|floatformat:2 }}
                                     {% else %}
-                                        $0.00
+                                        €0.00
                                     {% endif %}
                                 </p>
                             </div>
