@@ -40,10 +40,18 @@
     </div>
 </div>
 <div class="list-inline-item">
-    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_product_favourites' %}">
+    <a class="{% if favourites_count %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_product_favourites' %}">
         <div class="text-center">
             <div><i class="fas fa-heart"></i></div>
+            <p class="my-0 d-none d-lg-block">
+                {% if favourites_count %}
+                    ({{ favourites_count }})
+                {% else %}
+                    (0)
+                {% endif %}
+            </p>
         </div>
+
     </a>
 </div>
 <div class="list-inline-item">
