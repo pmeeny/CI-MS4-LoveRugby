@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="product-details-container mb-5 mt-md-5">
-                            <p class="mb-0 product-name">{{ product.name }}</p>
+                            <h1 class="mb-0 product-name">{{ product.name }}</h1>
                             <div class="pricing" style="display: flex;">
                                 {% if product.pre_sale_price %}
                                     <p class="mb-0 text-left font-weight-bold red-strikethrough">€{{ product.pre_sale_price }}</p>
@@ -78,7 +78,7 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <button class="decrement-qty btn btn-black rounded-0"
-                                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}" aria-label="decrease quantity">
                                                         <span class="icon">
                                                             <i class="fas fa-minus"></i>
                                                         </span>
@@ -87,10 +87,11 @@
                                                 <input class="form-control qty_input" type="number"
                                                     name="quantity" value="1" min="1" max="99"
                                                     data-item_id="{{ product.id }}"
-                                                    id="id_qty_{{ product.id }}">
+                                                    id="id_qty_{{ product.id }}" aria-label="quantity">
                                                 <div class="input-group-append">
                                                     <button class="increment-qty btn btn-black rounded-0"
-                                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}" aria-label="increase quantity">
+                                                        <label for="increment-qty_{{ product.id }}" hidden>Quantity</label>
                                                         <span class="icon">
                                                             <i class="fas fa-plus"></i>
                                                         </span>
@@ -139,7 +140,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                        <p class="mb-0 product-name">{{ product.name }}</p>
+                        <h2 class="mb-0 product-name">{{ product.name }}</h2>
                         <p class="mb-0">{{ product.description }}</p>
                         <br>
                         <div class="row">
@@ -149,7 +150,7 @@
                         </div>
                     </div>
                         <div class="col-12 col-md-6 col-lg-4">
-                            <p class="mb-0 product-name">THE FINER DETAILS</p>
+                            <h2 class="mb-0 product-name">THE FINER DETAILS</h2>
                             {% if product.feature1 %}
                                 <p class="text-muted">- {{ product.feature1 }}</p>
                             {% endif %}
