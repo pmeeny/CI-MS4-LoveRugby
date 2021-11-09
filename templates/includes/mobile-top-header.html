@@ -40,16 +40,9 @@
     </div>
 </div>
 <div class="list-inline-item">
-    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_bag' %}">
+    <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none" href="{% url 'view_product_favourites' %}">
         <div class="text-center">
             <div><i class="fas fa-heart"></i></div>
-                <p class="my-0 d-none d-lg-block">
-                    {% if grand_total %}
-                        Favourites ${{ grand_total|floatformat:2 }}
-                    {% else %}
-                        Favourites (0)
-                    {% endif %}
-                </p>
         </div>
     </a>
 </div>
@@ -59,9 +52,9 @@
             <div><i class="fas fa-shopping-bag fa-lg"></i></div>
             <p class="my-0 d-none d-lg-block">
                 {% if grand_total %}
-                    ${{ grand_total|floatformat:2 }}
+                    €{{ grand_total|floatformat:2 }}
                 {% else %}
-                    $0.00
+                    €0.00
                 {% endif %}
             </p>
         </div>
