@@ -121,7 +121,6 @@ body {
 }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #DB4437;
-    border-color: #DB4437;
     border-radius: 0;
 }
 .black-btn{
@@ -156,7 +155,6 @@ body {
 }
 .page-item.active .page-link {
     background-color: #1E5128;
-    border-color: #1E5128;
 }
 .page-item:last-child .page-link {
     color: #1E5128;
