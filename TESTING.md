@@ -79,13 +79,14 @@ Page | Result | Test Detail/Screenshot
 bag/templates/bag/bag.html  |  |
 bag/templates/bag/bag.html (Empty)  | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_bag_empty.PNG) 
 checkout/templates/checkout/checkout.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_checkout.PNG)  
-checkout/templates/checkout/checkout_success.html | |
+checkout/templates/checkout/checkout_success.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_checkout_success.png)  
 favourites/templates/favourites/favourites.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_favourites.PNG)  
 home/templates/home/index.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_index.PNG)
 news/templates/news/add_news_item.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_add_news_item.PNG)   
 news/templates/news/edit_news_item.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_edit_news_item.png)  
 news/templates/news/manage_news_items.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_news_item_management.PNG) 
 news/templates/news/news.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_news.PNG)  
+news/templates/news/news_item.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_news_item.png)
 products/templates/products/add_product.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_add_product.PNG)
 products/templates/products/edit_product.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_edit_product.PNG)  
 products/templates/products/product_detail.html | | 
@@ -147,7 +148,7 @@ Page | Result | Test Detail/Screenshot
 bag/templates/bag/bag.html  | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_bag.PNG) 
 bag/templates/bag/bag.html (Empty)  | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_bag_empty.PNG) 
 checkout/templates/checkout/checkout.html | |
-checkout/templates/checkout/checkout_success.html | |
+checkout/templates/checkout/checkout_success.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_checkout_success.png) 
 favourites/templates/favourites/favourites.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_favourites.PNG)  
 home/templates/home/index.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_index.PNG)
 news/templates/news/add_news_item.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_add_news.PNG)   
