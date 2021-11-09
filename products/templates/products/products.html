@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_title %}Products{% endblock %}
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -36,68 +37,70 @@
         <div class="">
             <div class="row">
                 {% for product in products %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                <div class="card" style="width: 18rem;">
-                                    {% if product.image %}
-                                        <a href="{% url 'product_detail' product.id %}">
-                                            <img src="{{ product.image.url }}" class="card-img-top" alt={{ product.name }}>
-                                        </a>
-                                    {% else %}
-                                        <a href="{% url 'product_detail' product.id %}">
-                                            <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top" alt="no image available">
-                                        </a>
-                                    {% endif %}
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="card-title font-black">{{ product.name }}</h2>
+                    <!-- Products -->
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card" style="width: 18rem;">
+                            {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image.url }}" class="card-img-top" alt={{ product.name }}>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top" alt="no image available">
+                                </a>
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="card-title font-black">{{ product.name }}</h2>
+                                    </div>
+                                    <div class="col-12">
+                                        <h3 class="font-weight-light font-black">{{ product.category.friendly_name }}</h3>
+                                    </div>
+                                        {% if product.pre_sale_price %}
+                                            <div class="col-6">
+                                                <p class="font-weight-bold red-strikethrough">€{{ product.pre_sale_price }}</p>
                                             </div>
-                                            <div class="col-12">
-                                                <h3 class="font-weight-light font-black">{{ product.category.friendly_name }}</h3>
-                                            </div>
-                                            {% if product.pre_sale_price %}
-                                                <div class="col-6">
-                                                    <p class="font-weight-bold red-strikethrough">€{{ product.pre_sale_price }}</p>
-                                                </div>
-                                            {% endif %}
-                                            <div class="col-6 font-black">
-                                                <p>€{{ product.price }}</p>
-                                            </div>
-                                      </div>
-                                        {% if request.user.is_superuser %}
-                                            <div class="center-div pt-3">
-                                                <a class="btn green-btn mx-2" href="{% url 'edit_product' product.id %}">Edit</a>
-                                                <a class="btn black-btn" data-bs-toggle="modal" data-bs-target="#deleteProduct{{ product.id }}">Delete</a>
-                                                <!-- Delete product modal -->
-                                                <div class="modal fade" id="deleteProduct{{ product.id }}" tabindex="-1"  aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h2 class="modal-title font-black">Delete Product</h2>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body font-black">
-                                                                Are you sure you want to delete this product?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <!-- Close and delete product buttons-->
-                                                                <button type="button" class="btn black-btn" data-bs-dismiss="modal">Close</button>
-                                                                <a href="{% url 'delete_product' product.id %}" class="btn red-btn">Delete</a>
-                                                            </div>
-                                                        </div>
+                                        {% endif %}
+                                        <div class="col-6 font-black">
+                                            <p>€{{ product.price }}</p>
+                                        </div>
+                                  </div>
+                                {% if request.user.is_superuser %}
+                                    <div class="center-div pt-3">
+                                        <a class="btn green-btn mx-2" href="{% url 'edit_product' product.id %}">Edit</a>
+                                        <a class="btn black-btn" data-bs-toggle="modal" data-bs-target="#deleteProduct{{ product.id }}">Delete</a>
+                                        <!-- Delete product modal -->
+                                        <div class="modal fade" id="deleteProduct{{ product.id }}" tabindex="-1"  aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title font-black">Delete Product</h2>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body font-black">
+                                                        Are you sure you want to delete this product?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- Close and delete product buttons-->
+                                                        <button type="button" class="btn black-btn" data-bs-dismiss="modal">Close</button>
+                                                        <a href="{% url 'delete_product' product.id %}" class="btn red-btn">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        {% endif %}
+                                        </div>
                                     </div>
-                                  </div>
+                                {% endif %}
+                            </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
     {% if products.has_other_pages %}
         <div class="pagination-holder p-4">
+            <!-- Pagination -->
             <nav aria-label="Products sorted">
               <ul class="pagination">
                 {% if products.has_previous %}

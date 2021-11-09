@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load bag_tools %}
-
+{% block extra_title %}Bag{% endblock %}
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -9,7 +9,6 @@
         </div>
     </div>
 {% endblock %}
-
 {% block content %}
 <div class="overlay"></div>
 <div class="hero-image">
@@ -21,7 +20,6 @@
                         <h1 class="logo-font mb-4 pt-2">Shopping Bag</h1>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col">
                         {% if bag_items %}
@@ -72,7 +70,6 @@
                                             <th scope="col">Subtotal</th>
                                         </tr>
                                     </thead>
-
                                     {% for item in bag_items %}
                                         <tr>
                                             <td class="p-3 w-25">
@@ -106,7 +103,7 @@
                             </div>
                         {% else %}
                             <p class="lead mb-2">Your bag is empty.</p>
-                                <a class="btn green-btn mb-4" href="{% url 'products' %}"class="text-uppercase">Keep Shopping</a>
+                                <a class="btn green-btn mb-4 text-uppercase" href="{% url 'products' %}">Keep Shopping</a>
                         {% endif %}
                     </div>
                 </div>
@@ -115,7 +112,6 @@
     </div>
 </div>
 {% endblock %}
-
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
@@ -124,14 +120,12 @@
     })
 </script>
 {% include 'products/includes/quantity_input_script.html' %}
-
 <script type="text/javascript">
     // Update quantity on click
     $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
-
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
@@ -139,7 +133,6 @@
         var size = $(this).data('product_size');
         var url = `/bag/remove/${itemId}/`;
         var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
-
         $.post(url, data)
          .done(function() {
              location.reload();
@@ -147,5 +140,3 @@
     })
 </script>
 {% endblock %}
-
-

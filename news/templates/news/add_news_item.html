@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% block extra_title %}Add News Item{% endblock %}
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -8,20 +8,19 @@
         </div>
     </div>
 {% endblock %}
-
 {% block content %}
 <div class="overlay"></div>
-<div class="hero-image">
-    <div class="section-holder">
-        <div class="form-holder-lg form-holder-generic">
-            <main class="container">
-                <div class="row">
-                        <div class="col-12">
-                            <h1 class="header-font mb-4 pt-2 text-center">News Item Management</h1>
-                            <h2 class="text-muted text-center">Add News Item</h2>
-                        </div>
-                </div>
-                <!-- Add New Items -->
+    <div>
+        <div class="section-holder">
+            <div class="form-holder-lg form-holder-generic">
+                <div class="container">
+                    <div class="row">
+                            <div class="col-12">
+                                <h1 class="header-font mb-4 pt-2 text-center">News Item Management</h1>
+                                <h2 class="text-muted text-center">Add News Item</h2>
+                            </div>
+                    </div>
+                    <!-- Add New Item -->
                     <div class="row justify-content-center container-pd">
                         <div class="col-sm-12 col-lg-8">
                             <form method="POST" action="{% url 'add_news_item' %}" class="form mb-2" enctype="multipart/form-data">
@@ -42,12 +41,11 @@
                             </form>
                         </div>
                     </div>
-            </main>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
-
 {% block postloadjs %}
 {{ block.super }}
     <script src="{% static 'news/js/news.js' %}"></script>

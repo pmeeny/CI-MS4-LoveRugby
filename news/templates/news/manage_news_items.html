@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% block extra_title %}Manage News items{% endblock %}
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -8,45 +8,43 @@
         </div>
     </div>
 {% endblock %}
-
 {% block content %}
 <div class="overlay"></div>
-<div class="hero-image">
-    <div class="section-holder">
-        <div class="form-holder-lg">
-            <div class="container">
-                <div class="row">
-                    <div class="col mt-3">
-                        <h1 class="header-font mb-2 pt-1 text-center text-black">News Items <a class="btn green-btn" href="{% url 'add_news_item' %}">Add</a></h1>
+    <div>
+        <div class="section-holder">
+            <div class="form-holder-lg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col mt-3">
+                            <h1 class="header-font mb-2 pt-1 text-center text-black">News Items <a class="btn green-btn" href="{% url 'add_news_item' %}">Add</a></h1>
+                        </div>
                     </div>
-                </div>
-                <!-- All News Items -->
-                <div class="row">
-                    <div class="col-12">
-                    <div class="table-responsive">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">News Item Title</th>
-                              <th scope="col">Create Date</th>
-                              <th scope="col">Status</th>
-                              <th scope="col">Action</th>
-                            </tr>
-                          </thead>
-                            <tbody>
-                                {% for news_item in news_items %}
+                    <!-- All News Items -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                            <table class="table">
+                              <thead>
                                 <tr>
-                                  <td>{{ news_item.title }}</td>
-                                  <td>{{ news_item.create_date }}</td>
-                                        {% if news_item.status == 1 %}
-                                            <td>Published</td>
-                                        {% else %}
-                                            <td>Draft</td>
-                                        {% endif %}
-                                    <td>
-                                        <a class="btn black-btn" href="{% url 'edit_news_item' news_item.id %}">Edit</a>
-                                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteNewsItem{{ news_item.id }}
-                                            ">Delete</a>
+                                  <th scope="col">News Item Title</th>
+                                  <th scope="col">Create Date</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">Action</th>
+                                </tr>
+                              </thead>
+                                <tbody>
+                                    {% for news_item in news_items %}
+                                    <tr>
+                                      <td>{{ news_item.title }}</td>
+                                      <td>{{ news_item.create_date }}</td>
+                                            {% if news_item.status == 1 %}
+                                                <td>Published</td>
+                                            {% else %}
+                                                <td>Draft</td>
+                                            {% endif %}
+                                        <td>
+                                            <a class="btn black-btn" href="{% url 'edit_news_item' news_item.id %}">Edit</a>
+                                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteNewsItem{{ news_item.id }}">Delete</a>
                                             <!-- Delete news item modal -->
                                             <div class="modal fade" id="deleteNewsItem{{ news_item.id }}" tabindex="-1"  aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -59,48 +57,49 @@
                                                             Are you sure you want to delete this news item?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <!-- Close and delete new item buttons-->
+                                                            <!-- Close and delete news item buttons-->
                                                             <button type="button" class="btn black-btn" data-bs-dismiss="modal">Close</button>
                                                                 <a href="{% url 'delete_news_item' news_item.id  %}" class="btn red-btn">Delete</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                    {% if news_items.has_other_pages %}
-                        <div class="pagination-holder p-4">
-                            <nav aria-label="Products sorted">
-                              <ul class="pagination">
-                                {% if news_items.has_previous %}
-                                  <li class="page-item"><a class="page-link" href="?page={{ news_items.previous_page_number }}">Previous</a></li>
-                                {% else %}
-                                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
-                                {% endif %}
-                                {% for i in news_items.paginator.page_range %}
-                                  {% if news_items.number == i %}
-                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-                                  {% else %}
-                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                  {% endif %}
-                                {% endfor %}
-                                {% if news_items.has_next %}
-                                  <li class="page-item"><a class="page-link" href="?page={{ news_items.next_page_number }}">Next</a></li>
-                                {% else %}
-                                  <li class="disabled page-item"><span class="page-link">Next</span></li>
-                                {% endif %}
-                              </ul>
-                            </nav>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
+                        </div>
+                        {% if news_items.has_other_pages %}
+                            <!-- Pagination -->
+                            <div class="pagination-holder p-4">
+                                <nav aria-label="Products sorted">
+                                  <ul class="pagination">
+                                    {% if news_items.has_previous %}
+                                      <li class="page-item"><a class="page-link" href="?page={{ news_items.previous_page_number }}">Previous</a></li>
+                                    {% else %}
+                                      <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                                    {% endif %}
+                                    {% for i in news_items.paginator.page_range %}
+                                      {% if news_items.number == i %}
+                                        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                                      {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                      {% endif %}
+                                    {% endfor %}
+                                    {% if news_items.has_next %}
+                                      <li class="page-item"><a class="page-link" href="?page={{ news_items.next_page_number }}">Next</a></li>
+                                    {% else %}
+                                      <li class="disabled page-item"><span class="page-link">Next</span></li>
+                                    {% endif %}
+                                  </ul>
+                                </nav>
+                            </div>
                     {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
