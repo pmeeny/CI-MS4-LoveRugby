@@ -138,30 +138,30 @@
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                            <p class="mb-0 product-name">{{ product.name }}</p>
-                            <p class="mb-0">{{ product.description }}</p>
-                            <br>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="mb-0 uppercase">Code: {{ product.code }}</p>
-                                </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
+                        <p class="mb-0 product-name">{{ product.name }}</p>
+                        <p class="mb-0">{{ product.description }}</p>
+                        <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="mb-0 uppercase">Code: {{ product.code }}</p>
                             </div>
                         </div>
+                    </div>
                         <div class="col-12 col-md-6 col-lg-4">
                             <p class="mb-0 product-name">THE FINER DETAILS</p>
-                        {% if product.feature1 %}
-                            <p class="text-muted">- {{ product.feature1 }}</p>
-                        {% endif %}
-                        {% if product.feature2 %}
-                            <p class="text-muted">- {{ product.feature2 }}</p>
-                        {% endif %}
-                        {% if product.feature3 %}
-                        <p class="text-muted">- {{ product.feature3 }}</p>
-                        {% endif %}
-                        {% if product.feature4 %}
-                        <p class="text-muted">- {{ product.feature4 }}</p>
-                        {% endif %}
+                            {% if product.feature1 %}
+                                <p class="text-muted">- {{ product.feature1 }}</p>
+                            {% endif %}
+                            {% if product.feature2 %}
+                                <p class="text-muted">- {{ product.feature2 }}</p>
+                            {% endif %}
+                            {% if product.feature3 %}
+                                <p class="text-muted">- {{ product.feature3 }}</p>
+                            {% endif %}
+                            {% if product.feature4 %}
+                                <p class="text-muted">- {{ product.feature4 }}</p>
+                            {% endif %}
                         </div>
                 </div>
                 <div class="row">

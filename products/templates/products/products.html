@@ -18,7 +18,7 @@
         </div>
         <div class="col-12 col-sm-6 p-4 my-auto">
             <div class="sort-select-wrapper w-100">
-                <label for="sort-selector"hidden>Sort products</label>
+                <label for="sort-selector" hidden>Sort products</label>
                 <select id="sort-selector" class="custom-select custom-select-sm border">
                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                     <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
@@ -42,7 +42,7 @@
                         <div class="card" style="width: 18rem;">
                             {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
-                                    <img src="{{ product.image.url }}" class="card-img-top" alt={{ product.name }}>
+                                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                                 </a>
                             {% else %}
                                 <a href="{% url 'product_detail' product.id %}">
