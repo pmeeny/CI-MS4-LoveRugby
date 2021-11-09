@@ -25,11 +25,11 @@ def view_product_favourites(request):
         favourites_items = None
     else:
         favourites_items = all_favourites.products.all()
+        favourites_items = setup_pagination(favourites_items, request, 4)
 
     if not favourites_items:
         messages.info(request, 'Your favourites list is empty!')
 
-    favourites_items = setup_pagination(favourites_items, request, 4)
     template = 'favourites/favourites.html'
     context = {
         'favourites_items': favourites_items,
