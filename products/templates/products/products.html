@@ -59,11 +59,11 @@
                                     </div>
                                         {% if product.pre_sale_price %}
                                             <div class="col-6">
-                                                <p class="font-weight-bold red-strikethrough">€{{ product.pre_sale_price }}</p>
+                                                <h3 class="font-weight-bold red-strikethrough">€{{ product.pre_sale_price }}</h3>
                                             </div>
                                         {% endif %}
                                         <div class="col-6 font-black">
-                                            <p>€{{ product.price }}</p>
+                                            <h3>€{{ product.price }}</h3>
                                         </div>
                                   </div>
                                 {% if request.user.is_superuser %}
