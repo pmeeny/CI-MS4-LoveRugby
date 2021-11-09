@@ -1,5 +1,5 @@
 # Love Rugby shop
-Love Rugby is a website that allows users
+Love Rugby is a website that allows users 
 
 - There are two types of users, and I have set up accounts for both
     - An admin user account has been set up with username/password of administrator/Password123
@@ -13,9 +13,9 @@ Love Rugby is a website that allows users
 # Table of Contents
 
 # Project Overview
-- This project is a website that allows users to add/edit/delete football memories for given tournament for submission as milestone project 3 as part of the Code Institute - Diploma in Software Development (Full stack) course.
-- The website is deployed using Heroku pages at the following url: [Football Memories](https://ci-ms3-footballmemories.herokuapp.com/)
-- The repository on GitHub that contains the website source code and assets is available at the following url: [Code Repository](https://github.com/pmeeny/CI-MS3-FootballMemories)
+- This project is a website is for submission as milestone project 4 as part of the Code Institute - Diploma in Software Development (Full stack) course.
+- The website is deployed using Heroku pages at the following url: [Love Rugby](https://ci-ms4-loverugby.herokuapp.com/)
+- The repository on GitHub that contains the website source code and assets is available at the following url: [Code Repository](https://github.com/pmeeny/CI-MS4-LoveRugby)
 - The website was built with a responsive look and feel for desktop, tablet and mobile devices
 
 # UX
@@ -23,21 +23,40 @@ Love Rugby is a website that allows users
 ### Primary Goal
 The primary goal of the website from the site 
 owners perspective is as follows:
-- To 
+- To add, edit and delete products with the relevant information (price, description, rating, comments, image, sizes and category) on the website 
+- To allow a user make a purchase of the products on the website
+- To categorise sale items on the website
+- To add, edit and delete website news for publication to website users
 
 The primary goal of the website from a site users perspective is as follows:
-- To 
+- To register for an account on the website and receive an email after succesful registration
+- To login or logout from the website
+- To easily recover my password in case I forget it
+- Have a personalised user profile with my delivery, payment information and order history
+- View a list of products on the website
+- View an individual product detail(price, description, rating, comments, image, sizes and category)
+- To add an item to a shopping bag, and select the quantity and size if applicable
+- Complete a purchase of items in a shopping bag
+- To post a review(rating and comment) on a product
+- To sort the list of available products by rating, price and category
+- Search for a product by name or descrption and view the search results
+- To view website news
 
 ## Structure
 ### Website pages
 I have structured the website into 19 pages, each with clear, concise structure, information and purpose. I use the Bootstrap grid system throughout, which gave a consistent structure and responsive design "out of the box"
 
 ### Code Structure.
-
-    
+The project is divided into a number of apps, as is built using the Django Framework
+The apps are described as follows
+bag (part of the original Boutique Ado project)
+bag (part of the original Boutique Ado project)
+favourites (A new app that allows a user to view, add and remove favourites) 
+bag (part of the original Boutique Ado project, I built onto this app to add a review(rating and comment))
+   
 ### Database
-- The website is a data-centric one with html, javascript, css used with the bootstrap framework as a frontend
-- The backend consists of Python, flask and jinja templates with a database of a mongodb open-source document-oriented database
+- The website is a data-centric one with html, javascript, css used with the bootstrap(version 5) framework as a frontend
+- The backend consists of Python built with the Django framework with a database of a postgres
 
 
 #### Conceptual database model
@@ -52,16 +71,16 @@ when a memory is created in the memories' collection, it also stores the tournam
 ![conceptual](football_memories/static/images/database_design/physical_design_model.png)
 
 #### Postgres DB database information
-- One production database(football_memories_prod) was created to store site information, it contains five collections described below
+- One production database(Postgres) was created to store site information, it contains five collections described below
 
 
 #### Model
 - The model
 
 ### Amazon Web Services S3 bucket
-While mongodb stores the majority of the users' data in the database, any images added
-by a regular user or admin user when adding a new tournament or memory is stored in an 
-Amazon Web services(AWS) S3(storage) bucket. I made this choice for performance reasons(https://aws.amazon.com/s3/faqs/)
+While postgres stores the majority of the users' data in the database, any images added
+by an admin user for a product is stored in an Amazon Web services(AWS) S3(storage) bucket. 
+I made this choice for performance reasons(https://aws.amazon.com/s3/faqs/)
 and to challenge myself to learn how to integrate the site with AWS.
 Here are the steps I took for the integration
 1. I created an account with AWS, and created an S3 bucket named "ci-ms3-football-memories"
@@ -98,8 +117,10 @@ names memory_image and tournament_image in the memory and tournament collections
 ## Scope
 There is overlap in terms of user stories for the two types of users, and they are described below
 ### User Stories Potential or Existing Customer
-The user stories for the website user "regular user" (a potential or existing customer) are described as follows: 
-- User Story 1.1: As a regular user the navigation bar is displayed with a logo on all pages for easy navigation, with a burger menu on mobile devices
+The user stories for the website user "shopper user" (a potential or existing customer) are described as follows: 
+- User Story 1.1: As a shopper user the navigation bar is displayed with a logo on all pages for easy navigation, with a burger menu on mobile devices
+
+
 
 ### User Stories Website Owner
 The user stories for the website owner(admin user) are described as follows: 
@@ -128,7 +149,7 @@ I feel the colours complement each other very well, and I choose those colours a
 
 ### Typography
 The Poppins font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the Poppins font cannot be imported into the website correctly. This font is from the Google fonts library.
-![Font](football_memories/static/images/readme/font.PNG)
+![Font](readme/misc/font.PNG)
 
 # Features
 The website has seven distinct features, and they are described below
@@ -145,7 +166,8 @@ The website has seven distinct features, and they are described below
 
 Number | Feature  
  ------------ | ------- |
-1 | Social sharing of a memory on facebook, twitter  |
+1 | Sub categories within a category |
+1 | Sub categories within a category |
 
 # Technologies Used
 ## Languages 
@@ -154,23 +176,47 @@ Number | Feature
 - CSS (https://en.wikipedia.org/wiki/CSS)
     - The project uses CSS to style the relevant pages
 - Javascript (https://www.javascript.com/)
-    - Javascript was used for all scripting on the site
+    - Javascript was used for all scripting on the site 
+- Django (https://www.djangoproject.com/)
+    - Django is the framework used in this project
+    - The Django templating language was used to render pages
+    - The Django unit test librarywas used for unit tests (https://docs.djangoproject.com/en/3.2/topics/testing/overview/)
 - Python v3.9 (https://www.python.org/)
-    - Python was used for server side coding on the project, a number of libraries were also used: 
-        - boto, boto3, botocore, click, dnspython, Flask, flask-paginate, 
-        Flask-PyMongo, itsdangerous, Jinja2, jmespath, MarkupSafe, pymongo, s3transfer,Werkzeug
-- Jinja (https://jinja.palletsprojects.com/en/3.0.x/)
-    - Jinja is a templating engine for Python that is used throughout the project
+    - Python was used for server side coding on the project, a number of libraries were also used(The requirements.txt file 
+  contains this list):
+      - asgiref==3.4.1 (Support for Python asynchronous web apps and servers to communicate with each other) 
+      - boto3==1.18.47 (Python SDK for AWS)
+      - botocore==1.21.47 (Python SDK for AWS) 
+      - dj-database-url==0.5.0 (Support for DATABASE_URL enviroment variable)
+      - Django==3.2.7 (Web framework)
+      - django-allauth==0.41.0 (Web framework authetication)
+      - django-countries==7.2.1 (ISO 3166 countries list)
+      - django-crispy-forms==1.12.0 (Django rendering of forms)
+      - django-storages==1.11.1 (Django storage backend for AWS S3)
+      - gunicorn==20.1.0 (Python WSGI Http server)
+      - jmespath==0.10.0 (Full suite of data driven testcase)
+      - oauthlib==3.1.1 (Framework for oauth1 and oauth2)
+      - Pillow==8.3.2 (Imaging library)
+      - psycopg2-binary==2.9.1 (Postgres adapter)
+      - python3-openid==3.2.0 (Support for the OpenID decentralized identity system)
+      - pytz==2021.1 (Interface to the IANA database, which uses ASCII name)
+      - requests-oauthlib==1.3.0 (Authentication support for Requests)
+      - s3transfer==0.5.0 (Python library for managing Amazon S3 transfers)
+      - sqlparse==0.4.1 (Non-validating SQL parser for Python)
+      - stripe==2.60.0 (SDK for processing payments)
 
+    
 ## Libraries and other resources
 - Bootstrap 5.0 (https://getbootstrap.com/docs/5.0)
-    - The project uses the bootstrap library for some UI components in the website
+    - The project uses the bootstrap library for some UI components in the website (Buttons, Card, Carousel, Modal, Pagination, Navbar)
 - Gitpod (https://gitpod.io/)
-    - Gitpod was used as an IDE for the project
+    - Gitpod was used as an IDE for the project initially, then I switched to Pycharm
+- Pycharm (https://www.jetbrains.com/pycharm/)
+    - Pycharm was the main IDE used on the project
 - Github (https://github.com/)
     - GitHub was used to store the project code in a repository
 - Google Fonts (https://fonts.google.com/)
-    - Google font Roboto was used as the website font
+    - Google font Poppins was used as the website font
 - Balsamiq (https://balsamiq.com/)
     - Balsamiq was used to create the website wireframes
 - Font Awesome (https://fontawesome.com/)
@@ -181,8 +227,8 @@ Number | Feature
     - JQuery was used in some javascript files for DOM manipulation
 - TinyPNG (https://tinypng.com/)
     - TinyPNG was used to compress images to improve performance and reduce space
- - CSS Validation Service (https://jigsaw.w3.org/css-validator/)
-    - CSS validation service for validation the css in the project  
+- CSS Validation Service (https://jigsaw.w3.org/css-validator/)
+   - CSS validation service for validation the css in the project  
 - HTML Markup Validation Service (https://validator.w3.org/)   
     - HTML validation service for validation the css in the project  
 - Chrome dev tools (https://developers.google.com/web/tools/chrome-devtools)
@@ -195,18 +241,22 @@ Number | Feature
     - Used for testing html and css concepts
 - GitHub Wiki TOC generator (https://ecotrust-canada.github.io/markdown-toc/)
     - Used for generating a table of contents for this README
-- Google Maps api (https://developers.google.com/maps)
-    - The Google Maps api is used to display the stadium information on the memory page
-- Google maps geocode API (https://developers.google.com/maps/documentation/geocoding/start)
-    - The Google Maps geocode api is used to translate the event name returned from the memory stadium name value and translate to a Google Maps location on the memory page
 - Gofullpage chrome plugin  (https://chrome.google.com/webstore/detail/gofullpage-full-page-scre)
     - This plugin was used to take full page screenshots for testing images
 - Python online interpreter (https://www.programiz.com/python-programming/online-compiler/)
     - For testing python code snippets
-- Pytest (https://docs.pytest.org/en/6.2.x/)
+- Unittest (https://docs.djangoproject.com/en/3.2/topics/testing/overview/)
     - For Python unit testing
 - UILicious (www.uilicious.com)
     - For automated testing
+- JSHint (https://jshint.com/)
+  - For javascript code quality
+- PEP8 (https://www.python.org/dev/peps/pep-0008/)
+  - I used the pep8 code analysis plugin in Pycharm to check for pep8 errors
+- Stripe
+  - For processing a test credit card to test a payment as part of an order
+- Coverage
+  - For unit tets code coverage reports
 
 # Testing
 The testing information and results for this project are documented in [TESTING.md](TESTING.md)
@@ -284,23 +334,23 @@ To deploy this application to Heroku, run the following steps.
 14. If you encounter any issues accessing the build logs is a good way to troubleshoot the issue
 
 # Credits
-- For the memories page, I used some html and css code from https://bootstrapious.com/p/bootstrap-photo-gallery as a basis
+- The project is based on the Boutique Ado project by the Code Institute and was used as a basic for my project (https://github.com/Code-Institute-Solutions/boutique_ado_v1/)
+
+- For the product, favourties and sale items pages, I used some html and css code from https://bootstrapious.com/p/bootstrap-photo-gallery as a basis
 for the memories gallery
-
-- For storing images in an AWS S3 bucket, I found the following links very useful
-    - https://www.youtube.com/watch?v=s1Tu0yKmDKU
-    - https://stackoverflow.com/questions/44228422/s3-bucket-action-doesnt-apply-to-any-resources
-    - https://www.youtube.com/watch?v=7gqvV4tUxmY 
-
 
 - I used html/css code, then tweaked it accordingly for the site footer: https://jsfiddle.net/bootstrapious/c7ash30w/
 
 - For the send-email functionality I used some code from the code institute module from the course
 
-- Pagination- https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
-- Div alignment: https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ 
+- For pagination I found thistutorial invaluable https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
 
-- Django Comments: https://djangocentral.com/creating-comments-system-with-django/
+- For Div alignment I used code fro here: https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ 
+
+- For Django Comments, I found this link useful: https://djangocentral.com/creating-comments-system-with-django/
+
+- Bootstrap 5.0, I used some of the sample code from https://getbootstrap.com/docs/5.0/customize/components/ for a number of 
+  omponents(Buttons, Card, Carousel, Modal, Pagination, Navbar)
 
 # Content
 - Font Awesome (http://fontawesome.com)    
@@ -309,11 +359,12 @@ for the memories gallery
 - Fonts (https://fonts.google.com/)    
     - The text font(Poppins) is from Google fonts
     
-- The terms and conditions and privacy policy page content was copied from https://www.privacypolicies.com/blog/privacy-policy-template/
+- Product information, news (text) was taken from https://www.lifestylesports.com/ie/rugby/
 
 <br>
 
 # Media
+- Product information, news (images) was taken from https://www.lifestylesports.com/ie/rugby/
 
  <br>
 
