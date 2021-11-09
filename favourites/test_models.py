@@ -35,4 +35,3 @@ class TestNewsModels(TestCase):
         """
         favourite = Favourites.objects.get()
         self.assertEqual((favourite.__str__()), "test_user's Favourites")
-
