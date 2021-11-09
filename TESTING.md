@@ -4,11 +4,12 @@
 
 # Testing
 The testing approach(described in detail in this testing readme) is as follows:
-1. Manual testing using emulators and real devices
-2. Automated testing using the Django unit test framework
+2. Automated unit testing using the Django unit test framework
+3. Automated UI testing using the UILIcious framework
+4. Manual testing using emulators and real devices
 
 ## Unit testing information
-- I wrote a number of unit tests using the Django unit test framework
+- I wrote a number of unit tests(65) using the Django unit test framework
 - I used coverage(coverage.py) for code coverage and to ensure a high code coverage was met on all python files in the project
 
 
@@ -26,14 +27,14 @@ Device Number | Physical/Emulator | Device Name | Device Type | Browser | Versio
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 1 | Physical | iPad | Tablet |  Safari | 14.4 |
 2 | Physical | iPhone | Mobile |Safari | 14.4 |
-3 | Physical | One Plus 5 | Mobile | Chrome | 91.0 |
+3 | Physical | One Plus 5 | Mobile | Chrome | 94.0 |
 4 | Physical | Windows Desktop| Desktop | IE Edge | 42.0 |
 5 | Physical | Windows Desktop| Desktop | Mozilla Firefox | 85.0 |
-6 | Physical | Windows Desktop| Desktop | Chrome | 91.0 |
-7 | Emulator | Galaxy S5 | Mobile | Chrome Emulator | 91.0 |
-8 | Emulator | iPad | Tablet | Chrome Emulator | 91.0 |
-9 | Emulator | iPhone X | Mobile | Chrome Emulator | 91.0 |
-10 | Emulator | iPhone 5/SE | Mobile | Chrome Emulator | 91.0 |
+6 | Physical | Windows Desktop| Desktop | Chrome | 94.0 |
+7 | Emulator | Galaxy S5 | Mobile | Chrome Emulator | 94.0 |
+8 | Emulator | iPad | Tablet | Chrome Emulator | 94.0 |
+9 | Emulator | iPhone X | Mobile | Chrome Emulator | 94.0 |
+10 | Emulator | iPhone 5/SE | Mobile | Chrome Emulator | 94.0 |
 
 - Below are the test results for testing the website requirements against a range of browsers and devices
 - For the purpose of the screenshots I used a Chrome emulator for desktop, tablet and mobile (Device numbers 6(Desktop), 8(Tablet), 9(Mobile))
@@ -61,7 +62,9 @@ Step 1 | [Desktop Result](football_memories/static/images/testing/index_desktop.
 Bug no. | Bug description |  Bug fix |
 ------------ | ------------- | ------------- | 
 1 | When adding a memory, the memory_name was being stored as null in the memory collection| The "name" field was missing from the form field for the input type memory_name
-
+2. html validation, sales_items had same id as news, fix was to give both a unique id
+3. html validation, alt text for a number of images in a loop was the same, fix was the set it to the product name
+4. If a user has 0 favourites, pagination setup call in the view is being call even though there are no items, fix was to move the location of the pagination setup call.
 
 # Code Validators and Website Analysis
 The website's pages was tested against the following validators:
@@ -71,8 +74,34 @@ I used https://validator.w3.org/ to validate the html files
 
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
-administration/dashboard.html | Passed, No errors found | [Results](football_memories/static/images/html_validation/dashboard_html_validation.PNG)
-
+Page | Result | Test Detail/Screenshot
+------------ | ------------- | -------------
+bag/templates/bag/bag.html  |  |
+bag/templates/bag/bag.html (Empty)  | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_bag_empty.PNG) 
+checkout/templates/checkout/checkout.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_checkout.PNG)  
+checkout/templates/checkout/checkout_success.html | |
+favourites/templates/favourites/favourites.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_favourites.PNG)  
+home/templates/home/index.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_index.PNG)
+news/templates/news/add_news_item.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_add_news_item.PNG)   
+news/templates/news/edit_news_item.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_edit_news_item.png)  
+news/templates/news/manage_news_items.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_news_item_management.PNG) 
+news/templates/news/news.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_news.PNG)  
+products/templates/products/add_product.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_add_product.PNG)
+products/templates/products/edit_product.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_edit_product.PNG)  
+products/templates/products/product_detail.html | | 
+products/templates/products/products.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_products.PNG)   
+products/templates/products/sale_items.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_sale_items.png)     
+profile/templates/profile/profile.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_profile.PNG)  
+profile/templates/profile/order_history.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_order_history.PNG)  
+templates/allauth/account/login.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_login.PNG)
+templates/allauth/account/logout.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_logout.PNG)
+templates/allauth/account/register.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_register.PNG) 
+templates/allauth/account/password_change.html | |
+templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_password_forgot.PNG)
+templates/allauth/account/password_reset_done.html | |
+templates/allauth/account/password_set.html | |
+templates/allauth/account/verification_sent.html | |
+templates/allauth/account/verification_email_required.html | |
 <br>
 
 ## CSS Validation Service
@@ -87,7 +116,9 @@ I used https://jigsaw.w3.org/css-validator/ to validate the css(style.css)
 
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
-style.css | Passed, No errors found | [Results](football_memories/static/images/css_validation/css_validation.PNG)
+static/css/base.css | Passed, No errors found | [Results](readme/css_validation/base_css_validation.png) 
+checkout/static/checkout/css/checkout.css | Passed, No errors found | [Results](readme/css_validation/checkout_css_validation.png)  
+
 
 <br>
 
@@ -113,25 +144,29 @@ administration/dashboard.html |  ![Results](football_memories/static/images/ligh
 
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
-bag/templates/bag/bag.html  |  |
+bag/templates/bag/bag.html  | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_bag.PNG) 
+bag/templates/bag/bag.html (Empty)  | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_bag_empty.PNG) 
 checkout/templates/checkout/checkout.html | |
 checkout/templates/checkout/checkout_success.html | |
-favourites/templates/favourites/favourites.html | |
+favourites/templates/favourites/favourites.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_favourites.PNG)  
 home/templates/home/index.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_index.PNG)
-news/templates/news/add_news_item.html | | 
-news/templates/news/edit_news_item.html | | 
+news/templates/news/add_news_item.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_add_news.PNG)   
+news/templates/news/edit_news_item.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_edit_news.PNG)  
 news/templates/news/manage_news_items.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_news_item_management.PNG) 
 news/templates/news/news.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_news.PNG)  
+news/templates/news/news_item.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_news_item.PNG)  
 products/templates/products/add_product.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_add_product.PNG)
-products/templates/products/edit_product.html | | 
-products/templates/products/product_detail.html | | 
-products/templates/products/products.html | | 
-profile/templates/profile/profile.html | |
+products/templates/products/edit_product.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_edit_product.PNG)  
+products/templates/products/product_detail.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_product_detail.PNG)  
+products/templates/products/products.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_products.PNG)   
+products/templates/products/sale_items.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_sale_items.PNG) 
+profile/templates/profile/profile.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_profile.PNG)  
+profile/templates/profile/order_history.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_order_history.PNG)  
 templates/allauth/account/login.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_login.PNG)
 templates/allauth/account/logout.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_logout.PNG)
 templates/allauth/account/register.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_register.PNG) 
 templates/allauth/account/password_change.html | |
-templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_password_reset.PNG)
+templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_password_forgot.PNG)
 templates/allauth/account/password_reset_done.html | |
 templates/allauth/account/password_set.html | |
 templates/allauth/account/verification_sent.html | |
@@ -143,12 +178,13 @@ templates/allauth/account/verification_email_required.html | |
 
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
-bag/static/bag/js/bag.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_bag.PNG)
+bag/templates/bag/bag.html | 0 errors and 0 warnings | [Results](readme/jshint/jshint_bag.PNG)
 checkout/static/checkout/carousel.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_stripe_elements.PNG) 
 home/static/home/carousel.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_carousel.PNG) 
 news/static/news/carousel.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_news.PNG) 
 favourites/static/favourites/favourites.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_favourites.PNG) 
 products/static/products/products.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_products.PNG)
+static/js/toast.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_toast.PNG)
 
 <br>
 
