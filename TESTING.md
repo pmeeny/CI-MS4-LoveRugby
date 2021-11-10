@@ -100,10 +100,9 @@ profile/templates/profile/order_history.html | 0 errors and 0 contrast errors| [
 templates/allauth/account/login.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_login.PNG)
 templates/allauth/account/logout.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_logout.PNG)
 templates/allauth/account/register.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_register.PNG) 
-templates/allauth/account/password_change.html | |
+templates/allauth/account/password_change.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_change_password.png)
 templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_forgot_password.PNG)
-templates/allauth/account/password_reset_done.html | |
-templates/allauth/account/password_set.html | |
+templates/allauth/account/password_reset_done.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_change_password_confirmed.png)
 templates/allauth/account/verification_sent.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_verification_email_sent.png)
 templates/allauth/account/verification_email_required.html | |
 <br>
@@ -207,10 +206,9 @@ profile/templates/profile/order_history.html | 0 errors and 0 contrast errors| [
 templates/allauth/account/login.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_login.PNG)
 templates/allauth/account/logout.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_logout.PNG)
 templates/allauth/account/register.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_register.PNG) 
-templates/allauth/account/password_change.html | |
+templates/allauth/account/password_change.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_change_password.png) 
 templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_password_forgot.PNG)
-templates/allauth/account/password_reset_done.html | |
-templates/allauth/account/password_set.html | |
+templates/allauth/account/password_change_done.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_change_password_confirmed.png) 
 templates/allauth/account/verification_sent.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_verification_email_confirmation.png))
 templates/allauth/account/verification_email_required.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_verification_email_sent.png)
 
