@@ -278,13 +278,13 @@ Number | Update
 - Stripe
   - For processing a test credit card to test a payment as part of an order
 - Coverage
-  - For unit tets code coverage reports
+  - For unit test code coverage reports
 
 # Testing
 The testing information and results for this project are documented in [TESTING.md](TESTING.md)
 
-# APIs
-The project also uses a number of API's, below are the steps to configure the API in your environment
+# APIs and configuration
+The project also uses a number of API's and configuration, below are the steps to configure the API in your environment
 
 ## Email JS
 1. Create an account at emailjs.com 
@@ -292,6 +292,26 @@ The project also uses a number of API's, below are the steps to configure the AP
 3. Create an email service in the Email Services section and note the id, for example "gmail"
 4. Create an email template in the Email templates section and note the id, for example "love_rugby"
 5. Update the script /static/js/sendEmail.js, the method sendMail with your user id, email service id and email template id
+
+## Google emails
+To set up the project to send emails and to use a Google account as an SMTP server, the following steps are required
+1. Create an email account at google.com, login, navigate to Settings in your gmail account and then click on Other Google Account Settings
+2. Turn on 2-step verification and follow the steps to enable
+3. Click on app passwords, select Other as the app and give the password a name, for example Django
+
+![App password](readme/misc/gmail_app_password.png)
+4. Click create and a 16 digit password will be generated, note the password down
+5. In the env.py file, create an environment variable called EMAIL_HOST_PASS with the 16 digit password
+6. In the env.py file, create an environment variable called EMAIL_HOST_USER with the email address of the gmail account
+7. Set and confirm the following values in the settings.py file to successfully send emails
+<code>EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'</code>
+<code>EMAIL_USE_TLS = True</code>
+<code>EMAIL_PORT = 587</code>
+<code>EMAIL_HOST = 'smtp.gmail.com'</code>
+<code>EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')</code>
+<code>EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')</code>
+<code>DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')</code>
+8. You will also need to set the variables EMAIL_HOST_PASS and EMAIL_HOST_USER in your production instance, for example Heroku
 
 # Deployment
 There are a number of applications that need to be configured to run this application locally or on a cloud based service, for example Heroku
