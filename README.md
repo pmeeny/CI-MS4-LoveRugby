@@ -133,19 +133,39 @@ Each wireframe image below contains three sub images, one for desktop, tablet an
 
 Page | Wireframe | 
 ------------ | ------------- 
-index | [Desktop/Tablet/Mobile](football_memories/static/images/wireframes/index.png)
-
+bag/templates/bag/bag.html | [Desktop/Tablet/Mobile](readme/wireframes/bag.png)
+checkout/templates/checkout/checkout.html | [Desktop/Tablet/Mobile](readme/wireframes/checkout.png)
+checkout/templates/checkout/checkout_success.html | [Desktop/Tablet/Mobile](readme/wireframes/checkout_success.png)
+favourites/templates/favourites/favourites.html | [Desktop/Tablet/Mobile](readme/wireframes/favourites.png)
+home/templates/home/index.html | [Desktop/Tablet/Mobile](readme/wireframes/index.png)
+news/templates/news/add_news_item.html | [Desktop/Tablet/Mobile](readme/wireframes/add_news_item.png)
+news/templates/news/edit_news_item.html | [Desktop/Tablet/Mobile](readme/wireframes/edit_news_item.png)
+news/templates/news/manage_news_items.html  | [Desktop/Tablet/Mobile](readme/wireframes/manage_news_items.png)
+news/templates/news/news.html | [Desktop/Tablet/Mobile](readme/wireframes/news.png)
+news/templates/news/news_item.html | [Desktop/Tablet/Mobile](readme/wireframes/news_item.png)
+products/templates/products/add_product.html | [Desktop/Tablet/Mobile](readme/wireframes/add_product.png)
+products/templates/products/edit_product.html | [Desktop/Tablet/Mobile](readme/wireframes/edit_product.png)
+products/templates/products/product_detail.html | [Desktop/Tablet/Mobile](readme/wireframes/product_detail.png)
+products/templates/products/products.html  | [Desktop/Tablet/Mobile](readme/wireframes/products.png)
+products/templates/products/sale_items.html | [Desktop/Tablet/Mobile](readme/wireframes/sale_items.png)
+profile/templates/profile/profile.html | [Desktop/Tablet/Mobile](readme/wireframes/profile.png)
+profile/templates/profile/order_history.html | [Desktop/Tablet/Mobile](readme/wireframes/order_history.png)
+templates/allauth/account/login.html | [Desktop/Tablet/Mobile](readme/wireframes/login.png)
+templates/allauth/account/logout.html | [Desktop/Tablet/Mobile](readme/wireframes/logout.png)
+templates/allauth/account/register.html| [Desktop/Tablet/Mobile](readme/wireframes/register.png)
 
 ## Surface
 ### Color Palette
-I have gone for a simple and minimal design for the website, with predominately green, black and white font colours over a large hero image on all pages
+I have gone for a simple and minimal design for the website, with predominately green, grey and whitesmoke font colours
 There are five colours in the color palette
-
-- 000000 - Black color for some text
-
+- 000000/555555 - Black and grey colours for the majority ot text on the website
+- 1E5128 - Dark green for background and buttons
+- DB4437 - Warning and sale item buttons and text
+- 0B51C1 - Blue for links
+- F5F5F5/FFFFFF - Whitesmoke and white for background colours
 
 I feel the colours complement each other very well, and I choose those colours after testing a number of palettes while making sure the colour palette met accessibility standards.
-![Palette](football_memories/static/images/readme/color_palette.PNG)
+![Colour Palette](readme/misc/color_palette.png)
 
 ### Typography
 The Poppins font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the Poppins font cannot be imported into the website correctly. This font is from the Google fonts library.
@@ -161,13 +181,15 @@ The website has seven distinct features, and they are described below
 - User Story 1.1: As an admin/regular user the navigation bar is displayed with a logo on all pages for easy navigation, with a burger menu on mobile devices
 
 ##  Features Left to Implement
-- I am content with what was implemented. The site is a feature rich site using a number of linked namespaces in a mongodb collection.
-- However, here are some additional "nice to have" features that could be added to the site
+- I am content with what was implemented. The site is a feature rich site
+- However, here are some additional "nice to have" features and updates that could be added to the project
 
-Number | Feature  
+Number | Update  
  ------------ | ------- |
-1 | Sub categories within a category |
-1 | Sub categories within a category |
+1 | A communication app between shoppers and the store owner |
+2 | Increased code coverage and unit tests in the checkout view.py for stripe payments |
+3 | A new release section displaying new release products |
+4 | Improved searching and filtering on the products page, a side panel filter |
 
 # Technologies Used
 ## Languages 
@@ -266,10 +288,10 @@ The project also uses a number of API's, below are the steps to configure the AP
 
 ## Email JS
 1. Create an account at emailjs.com 
-2. In the integration screen in the emailjs dashboard, note your userid
-3. Create an email service in the Email Services section and note the id
-4. Create an email template in the Email templates section and note the id
-5. Update the script sendEmail.js, method sendMail with your user id, email service id and email template id
+2. In the integration screen in the emailjs dashboard, note your userid, this is a unique string for your users
+3. Create an email service in the Email Services section and note the id, for example "gmail"
+4. Create an email template in the Email templates section and note the id, for example "love_rugby"
+5. Update the script /static/js/sendEmail.js, the method sendMail with your user id, email service id and email template id
 
 # Deployment
 There are a number of applications that need to be configured to run this application locally or on a cloud based service, for example Heroku
@@ -283,36 +305,37 @@ There are a number of applications that need to be configured to run this applic
 5. With security best practices update the public access and policy bucket to enable the user created and the application access to read/write to the S3 bucket. Consult the AWS documentation if required: https://aws.amazon.com/s3/
 ![policy](football_memories/static/images/readme/policy.PNG)
 6. The s3 bucket is now updated to be accessed by your application
-7. In the util.py route update the variables s3_bucket_name and s3_bucket_url with the correct information that you have set up, for example:
-<br>
-<code>s3_bucket_name = "ci-ms3-football-memories"</code><br>
-<code>s3_bucket_url = "https://ci-ms3-football-memories.s3.eu-west-1.amazonaws.com/" </code>
-
+7. In the env.py file(described below) update the variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY with the correct information that you have set up, for example:
 
 ## Postgres Database
-Postgres is the database used in the application
+Postgres is the database used in the application for production. The database is created as part of setting up
+a deployment on Heroku
 
 ## Local Deployment
 To run this project locally, you will need to clone the repository
 1. Login to GitHub (https://wwww.github.com)
-2. Select the repository pmeeny/CI-MS3-FootballMemories
-3. Click the Code button and copy the HTTPS url, for example: https://github.com/pmeeny/CI-MS3-FootballMemories.git
+2. Select the repository pmeeny/CI-MS4-LoveRugby
+3. Click the Code button and copy the HTTPS url, for example: https://github.com/pmeeny/CI-MS4-LoveRugby.git
 4. In your IDE, open a terminal and run the git clone command, for example 
 
-    ```git clone https://github.com/pmeeny/CI-MS3-FootballMemories.git```
+    ```git clone https://github.com/pmeeny/CI-MS4-LoveRugby.git```
 
 5. The repository will now be cloned in your workspace
-6. Create an env.py file in the root folder in your project, and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values<br>
+6. Create an env.py file(do not commit this file to source control) in the root folder in your project, and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values<br>
 <code>import os</code><br>
-<code>os.environ.setdefault("IP", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("PORT", TO BE ADDED BY USER)</code><br>
 <code>os.environ.setdefault("SECRET_KEY", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("MONGO_URI", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("MONGO_DBNAME", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("STRIPE_PUBLIC_KEY", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("STRIPE_SECRET_KEY", TO BE ADDED BY USER)</code><br>
+<code>os.environ.setdefault("STRIPE_WH_SECRET", TO BE ADDED BY USER)</code><br>
 <code>os.environ.setdefault("AWS_ACCESS_KEY_ID", TO BE ADDED BY USER)</code><br>
 <code>os.environ.setdefault("AWS_SECRET_ACCESS_KEY", TO BE ADDED BY USER)</code>
+<code>os.environ.setdefault("EMAIL_HOST_USER", TO BE ADDED BY USER)</code>
+<code>os.environ.setdefault("EMAIL_HOST_PASS", TO BE ADDED BY USER)</code>
+<code>os.environ.setdefault("USE_AWS", TO BE ADDED BY USER)</code>
+<code>os.environ.setdefault("DATABASE_URL", TO BE ADDED BY USER)</code>
 7. Install the relevant packages as per the requirements.txt file
-8. Start the application by running <code>python3 app.py</code>
+8. Start the application by running <code>python3 manage.py runserver</code>
+9. Open the application in a web browser, for example: http://127.0.0.1:8000/
 
 ## Heroku
 To deploy this application to Heroku, run the following steps.
