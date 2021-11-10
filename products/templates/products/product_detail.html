@@ -33,7 +33,7 @@
                             <div class="pricing" style="display: flex;">
                                 {% if product.pre_sale_price %}
                                     <p class="mb-0 text-left font-weight-bold red-strikethrough">€{{ product.pre_sale_price }}</p>
-                                    <p class="mb-0 text-left font-weight-bold">&nbsp</p>
+                                    <p class="mb-0 text-left font-weight-bold">&nbsp;</p>
                                 {% endif %}
                                 <p class="mb-0 text-left font-weight-bold">&nbsp;€{{ product.price }}</p>
                                 {% if is_product_in_favourites %}
@@ -43,7 +43,6 @@
                                 {% endif %}
                             </div>
                             <br>
-
                             <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row">
@@ -149,21 +148,23 @@
                             </div>
                         </div>
                     </div>
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <h2 class="mb-0 product-name">THE FINER DETAILS</h2>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <h2 class="mb-0 product-name">THE FINER DETAILS</h2>
+                        <ul>
                             {% if product.feature1 %}
-                                <p class="text-muted">- {{ product.feature1 }}</p>
+                                <li class="text-muted">{{ product.feature1 }}</li>
                             {% endif %}
                             {% if product.feature2 %}
-                                <p class="text-muted">- {{ product.feature2 }}</p>
+                                <li class="text-muted">{{ product.feature2 }}</li>
                             {% endif %}
                             {% if product.feature3 %}
-                                <p class="text-muted">- {{ product.feature3 }}</p>
+                                <li class="text-muted">{{ product.feature3 }}</li>
                             {% endif %}
                             {% if product.feature4 %}
-                                <p class="text-muted">- {{ product.feature4 }}</p>
+                                <li class="text-muted">{{ product.feature4 }}</li>
                             {% endif %}
-                        </div>
+                        </ul>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12 offset-lg-2">
@@ -176,81 +177,55 @@
                             <div class="row">
                                 <div class="col">
                                     {% for review in reviews %}
-                                    <div class="shadow-sm p-1 mb-3 bg-white rounded">
-                                        <p class="font-weight-bold mb-2 mt-3">Posted by: {{ review.user }} on {{ review.create_date }}</p>
-                                        <p class="text-black mb-2 mt-3">Rating: {{ review.product_rating }} </p>
-                                    <p class="text-black mb-2 mt-3">Review Text: {{ review.review_text }}</p>
-                                        {% if comment.user == request.user or request.user.is_superuser %}
-                                        <!-- Delete Button trigger modal -->
-                                        <button type="button" class="btn green-btn" data-bs-toggle="modal"
-                                            data-bs-target="#delete-review{{ review.id }}">
-                                            Delete
-                                        </button>
-                                        <!-- Delete Comment Modal -->
-                                        <div class="modal fade" id="delete-review{{ review.id }}" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h2 class="modal-title">Delete Review</h2>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete the review?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a href="{% url 'product_detail' product.id %}" class="btn green-btn"> Cancel</a>
+                                        <div class="shadow-sm p-1 mb-3 bg-white rounded">
+                                            <p class="font-weight-bold mb-2 mt-3">Posted by: {{ review.user }} on {{ review.create_date }}</p>
+                                            <p class="text-black mb-2 mt-3">Rating: {{ review.product_rating }} </p>
+                                        <p class="text-black mb-2 mt-3">Review Text: {{ review.review_text }}</p>
+                                            {% if comment.user == request.user or request.user.is_superuser %}
+                                            <!-- Delete Button trigger modal -->
+                                            <button type="button" class="btn green-btn" data-bs-toggle="modal"
+                                                data-bs-target="#delete-review{{ review.id }}">
+                                                Delete
+                                            </button>
+                                            <!-- Delete Comment Modal -->
+                                            <div class="modal fade" id="delete-review{{ review.id }}" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h2 class="modal-title">Delete Review</h2>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete the review?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="{% url 'product_detail' product.id %}" class="btn green-btn"> Cancel</a>
 
-                                                        <form action="{% url 'delete_review' product.id review.user.username %}" method="POST">
-                                                            {% csrf_token %}
-                                                            <button type="submit" class="btn red-btn">Delete</button>
-                                                        </form>
+                                                            <form action="{% url 'delete_review' product.id review.user.username %}" method="POST">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn red-btn">Delete</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            {% endif %}
                                         </div>
-                                        {% endif %}
-                                    </div>
                                     {% endfor %}
-                                    {% if reviews.has_other_pages %}
-                                        <div class="pagination-holder p-4">
-                                            <nav aria-label="Reviews">
-                                              <ul class="pagination">
-                                                {% if reviews.has_previous %}
-                                                  <li class="page-item"><a class="page-link" href="?page={{ reviews.previous_page_number }}">Previous</a></li>
-                                                {% else %}
-                                                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
-                                                {% endif %}
-                                                {% for i in reviews.paginator.page_range %}
-                                                  {% if products.number == i %}
-                                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-                                                  {% else %}
-                                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                                  {% endif %}
-                                                {% endfor %}
-                                                {% if reviews.has_next %}
-                                                  <li class="page-item"><a class="page-link" href="?page={{ reviews.next_page_number }}">Next</a></li>
-                                                {% else %}
-                                                  <li class="disabled page-item"><span class="page-link">Next</span></li>
-                                                {% endif %}
-                                              </ul>
-                                            </nav>
-                                        </div>
-                                    {% endif %}
-                                    <!-- Comment Form -->
-                                    <div class="container container-pd">
-                                        <div class="row pb-5">
-                                            <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
-                                                {% if request.user.is_authenticated %}
-                                                <h3 class="text-uppercase">Add a comment</h3>
-                                                <form class="form" method="POST" action="{% url 'add_review' product.id %}">
-                                                    {% csrf_token %}
-                                                        {{ review_form|crispy }}
-                                                    <button class="btn black-btn" type="submit"> Post Review</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                            {% else %}
-                                            <div class="form-check-label" for="id-save-info">
+                                </div>
+                            </div>
+                            <!-- Comment Form -->
+                            <div class="row pb-5">
+                                    <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
+                                        {% if request.user.is_authenticated %}
+                                            <h3 class="text-uppercase">Add a comment</h3>
+                                            <form class="form" method="POST" action="{% url 'add_review' product.id %}">
+                                                {% csrf_token %}
+                                                {{ review_form|crispy }}
+                                                <button class="btn black-btn" type="submit"> Post Review</button>
+                                            </form>
+                                        {% else %}
+                                            <div>
                                                 <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
                                                 <a class="text-info" href="{% url 'account_login' %}">login</a> to comment on this post.
                                             </div>
@@ -263,7 +238,6 @@
                 </div>
             </div>
         </div>
-    </div>
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
