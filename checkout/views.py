@@ -108,10 +108,10 @@ def checkout(request):
         total = current_bag['grand_total']
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
-        ##intent = stripe.PaymentIntent.create(
-        ##    amount=stripe_total,
-        #    currency=settings.STRIPE_CURRENCY,
-        #)
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+        )
 
         # Attempt to prefill the form with any info the user
         # maintains in their profile
@@ -142,7 +142,7 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        #'client_secret': intent.client_secret,
+        'client_secret': intent.client_secret,
     }
 
     return render(request, template, context)
