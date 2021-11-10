@@ -62,9 +62,14 @@ Step 1 | [Desktop Result](football_memories/static/images/testing/index_desktop.
 Bug no. | Bug description |  Bug fix |
 ------------ | ------------- | ------------- | 
 1 | When adding a memory, the memory_name was being stored as null in the memory collection| The "name" field was missing from the form field for the input type memory_name
-2. html validation, sales_items had same id as news, fix was to give both a unique id
-3. html validation, alt text for a number of images in a loop was the same, fix was the set it to the product name
-4. If a user has 0 favourites, pagination setup call in the view is being call even though there are no items, fix was to move the location of the pagination setup call.
+2 | html validation, sales_items had same id as news, fix was to give both a unique id |
+3 | html validation, alt text for a number of images in a loop was the same, fix was the set it to the product name |
+4 | If a user has 0 favourites, pagination setup call in the view is being call even though there are no items, fix was to move the location of the pagination setup call. |
+5 | Ths stripe webhook was not working on production. I had the same secret set on heroku and local development, even though I had two different webhooks defined(development and production) |The fix was to set the correct webhook secret as an enviroment variable in Heroku
+ |Error in logs norderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'products.models.Product'> QuerySet.
+  paginator = Paginator(item_list, items_per_page) tHEfix was to update the product and review models to order by id
+    class Meta:
+        ordering = ['id'] |
 
 # Code Validators and Website Analysis
 The website's pages was tested against the following validators:
@@ -72,8 +77,6 @@ The website's pages was tested against the following validators:
 ## HTML Markup Validation Service
 I used https://validator.w3.org/ to validate the html files
 
-Page | Result | Test Detail/Screenshot
------------- | ------------- | -------------
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
 bag/templates/bag/bag.html  |  |
@@ -89,7 +92,7 @@ news/templates/news/news.html | 0 errors and 0 contrast errors| [Results](readme
 news/templates/news/news_item.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_news_item.png)
 products/templates/products/add_product.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_add_product.PNG)
 products/templates/products/edit_product.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_edit_product.PNG)  
-products/templates/products/product_detail.html | | 
+products/templates/products/product_detail.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_product_detail.PNG) 
 products/templates/products/products.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_products.PNG)   
 products/templates/products/sale_items.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_sale_items.png)     
 profile/templates/profile/profile.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_profile.PNG)  
@@ -98,10 +101,10 @@ templates/allauth/account/login.html | 0 errors and 0 contrast errors| [Results]
 templates/allauth/account/logout.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_logout.PNG)
 templates/allauth/account/register.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_register.PNG) 
 templates/allauth/account/password_change.html | |
-templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_password_forgot.PNG)
+templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_forgot_password.PNG)
 templates/allauth/account/password_reset_done.html | |
 templates/allauth/account/password_set.html | |
-templates/allauth/account/verification_sent.html | |
+templates/allauth/account/verification_sent.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_verification_email_sent.png)
 templates/allauth/account/verification_email_required.html | |
 <br>
 
@@ -129,14 +132,52 @@ checkout/static/checkout/css/checkout.css | Passed, No errors found | [Results](
 - Overall the results are very good. The memory pages performance is affected by the Google map load times and making this load more efficient was out of my control from a code perspective 
 
 ### Desktop
-Page | Result 
------------- | ------------- 
-administration/dashboard.html |  ![Results](football_memories/static/images/lighthouse_validation/dashboard_desktop.PNG)
+Page | Wireframe | Performance | Accessibility | Best Practices | SEO
+------------ | ------------- | ------------ | ------------- | ------------- | -------------
+bag/templates/bag/bag.html | |||||
+checkout/templates/checkout/checkout.html | ||||| 
+checkout/templates/checkout/checkout_success.html | |||||
+favourites/templates/favourites/favourites.html | ||||| 
+home/templates/home/index.html | |||||
+news/templates/news/add_news_item.html | ||||| 
+news/templates/news/edit_news_item.html | |||||
+news/templates/news/manage_news_items.html  | |||||
+news/templates/news/news.html | |||||
+news/templates/news/news_item.html | |||||
+products/templates/products/add_product.html | |||||
+products/templates/products/edit_product.html | |||||
+products/templates/products/product_detail.html | |||||
+products/templates/products/products.html  | |||||
+products/templates/products/sale_items.html | |||||
+profile/templates/profile/profile.html | |||||
+profile/templates/profile/order_history.html | ||||| 
+templates/allauth/account/login.html | |||||
+templates/allauth/account/logout.html | |||||
+templates/allauth/account/register.html | |||||
 
 ### Mobile
-Page | Result
------------- | ------------- 
-administration/dashboard.html |  ![Results](football_memories/static/images/lighthouse_validation/dashboard_mobile.PNG)
+Page | Wireframe | Performance | Accessibility | Best Practices | SEO
+------------ | ------------- | ------------ | ------------- | ------------- | -------------
+bag/templates/bag/bag.html | |||||
+checkout/templates/checkout/checkout.html | ||||| 
+checkout/templates/checkout/checkout_success.html | |||||
+favourites/templates/favourites/favourites.html | ||||| 
+home/templates/home/index.html | |||||
+news/templates/news/add_news_item.html | ||||| 
+news/templates/news/edit_news_item.html | |||||
+news/templates/news/manage_news_items.html  | |||||
+news/templates/news/news.html | |||||
+news/templates/news/news_item.html | |||||
+products/templates/products/add_product.html | |||||
+products/templates/products/edit_product.html | |||||
+products/templates/products/product_detail.html | |||||
+products/templates/products/products.html  | |||||
+products/templates/products/sale_items.html | |||||
+profile/templates/profile/profile.html | |||||
+profile/templates/profile/order_history.html | ||||| 
+templates/allauth/account/login.html | |||||
+templates/allauth/account/logout.html | |||||
+templates/allauth/account/register.html | |||||
 
 <br>
 
@@ -147,8 +188,8 @@ Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
 bag/templates/bag/bag.html  | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_bag.PNG) 
 bag/templates/bag/bag.html (Empty)  | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_bag_empty.PNG) 
-checkout/templates/checkout/checkout.html | |
-checkout/templates/checkout/checkout_success.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_checkout_success.png) 
+checkout/templates/checkout/checkout.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_checkout_success.png) 
+checkout/templates/checkout/checkout_success.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_checkout.png) 
 favourites/templates/favourites/favourites.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_favourites.PNG)  
 home/templates/home/index.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_index.PNG)
 news/templates/news/add_news_item.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_add_news.PNG)   
@@ -170,8 +211,8 @@ templates/allauth/account/password_change.html | |
 templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_password_forgot.PNG)
 templates/allauth/account/password_reset_done.html | |
 templates/allauth/account/password_set.html | |
-templates/allauth/account/verification_sent.html | |
-templates/allauth/account/verification_email_required.html | |
+templates/allauth/account/verification_sent.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_verification_email_confirmation.png))
+templates/allauth/account/verification_email_required.html | 0 errors and 0 contrast errors| [Results](readme/wave_validation/wave_verification_email_sent.png)
 
 
 ## JSHint
@@ -186,6 +227,7 @@ news/static/news/carousel.js | 0 errors and 0 warnings | [Results](readme/jshint
 favourites/static/favourites/favourites.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_favourites.PNG) 
 products/static/products/products.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_products.PNG)
 static/js/toast.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_toast.PNG)
+static/js/send_email.js | 0 errors and 0 warnings | [Results](readme/jshint/jshint_send_email.png)
 
 <br>
 
