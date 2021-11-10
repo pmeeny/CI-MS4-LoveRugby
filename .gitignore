@@ -12,3 +12,5 @@ htmlcov
 .coverage
 .vscode
 .idea
+.gitpod.dockerfile
+.gitpod.yml
