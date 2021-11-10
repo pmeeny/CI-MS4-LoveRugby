@@ -77,19 +77,28 @@
                                 {% csrf_token %}
                                 <fieldset class="rounded px-3 mb-5">
                                     <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
-                                    {{ order_form.full_name | as_crispy_field }}
-                                    {{ order_form.email | as_crispy_field }}
+                                    <label for="id_full_name" hidden>Full Name</label>
+                                        {{ order_form.full_name | as_crispy_field }}
+                                    <label for="id_email" hidden>Email</label>
+                                        {{ order_form.email | as_crispy_field }}
                                 </fieldset>
                                 <fieldset class="rounded px-3 mb-5">
                                     <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
-                                    {{ order_form.phone_number | as_crispy_field }}
-                                    {{ order_form.street_address1 | as_crispy_field }}
-                                    {{ order_form.street_address2 | as_crispy_field }}
-                                    {{ order_form.town_or_city | as_crispy_field }}
-                                    {{ order_form.county | as_crispy_field }}
-                                    {{ order_form.postcode | as_crispy_field }}
-                                    {{ order_form.country | as_crispy_field }}
-                                    <div class="form-check form-check-inline float-right mr-0">
+                                    <label for="id_phone_number" hidden>Phone Number</label>
+                                        {{ order_form.phone_number | as_crispy_field }}
+                                    <label for="id_street_address1" hidden>Street Address 1</label>
+                                        {{ order_form.street_address1 | as_crispy_field }}
+                                    <label for="id_street_address2" hidden>Street Address 2</label>
+                                        {{ order_form.street_address2 | as_crispy_field }}
+                                    <label for="id_town_or_city" hidden>Town or City</label>
+                                        {{ order_form.town_or_city | as_crispy_field }}
+                                    <label for="id_county" hidden>County</label>
+                                        {{ order_form.county | as_crispy_field }}
+                                    <label for="id_postcode" hidden>Postcode</label>
+                                        {{ order_form.postcode | as_crispy_field }}
+                                    <label for="id_country" hidden>Country</label>
+                                        {{ order_form.country | as_crispy_field }}
+                                    <div class="id_form-check form-check-inline float-right mr-0">
                                         {% if user.is_authenticated %}
                                             <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                                             <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>

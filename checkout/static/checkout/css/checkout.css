@@ -36,7 +36,7 @@ select option {
 }
 select:invalid,
 select option[value=""] {
-    color: #aab7c4 !important;
+    color: #2B3131 !important;
 }
 #loading-overlay {
 	display: none;
