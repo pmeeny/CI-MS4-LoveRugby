@@ -18,6 +18,10 @@ from .models import Favourites
 def view_product_favourites(request):
     """
     A view that displays users favourites
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Renders the request, template and context
     """
     try:
         all_favourites = Favourites.objects.filter(username=request.user.id)[0]
@@ -41,6 +45,11 @@ def view_product_favourites(request):
 def add_product_to_favourites(request, item_id):
     """
     Add a product item to favourites
+    Args:
+        request (object): HTTP request object.
+        item_id: Item id
+    Returns:
+        Renders the product detail page
     """
     product = get_object_or_404(Product, pk=item_id)
     try:
@@ -60,6 +69,12 @@ def add_product_to_favourites(request, item_id):
 def remove_product_from_favourites(request, item_id, redirect_from):
     """
     Remove a product item from favourites
+    Args:
+        request (object): HTTP request object.
+        item_id: Item id
+        redirect_from: Redirect form
+    Returns:
+        Reuturns the redirect url
     """
     product = get_object_or_404(Product, pk=item_id)
     favourites = get_object_or_404(Favourites, username=request.user.id)

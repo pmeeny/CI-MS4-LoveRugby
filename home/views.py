@@ -10,6 +10,12 @@ from products.models import Product
 
 
 def index(request):
-    """ A view to return the index page """
+    """
+    A view to return the index page
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Render index page
+    """
     products = Product.objects.all()
     return render(request, 'home/index.html', dict(products=products))

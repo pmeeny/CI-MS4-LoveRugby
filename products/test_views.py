@@ -12,7 +12,19 @@ from products.views import get_average_rating
 
 
 class TestProductViews(TestCase):
+    """
+    A class for testing product views
+    """
     def setUp(self):
+        """
+        Create test user(regular and super user), category and product
+         """
+        User.objects.create_user(
+            username='test_user', password='test_password')
+
+        User.objects.create_superuser(
+            username='test_super_user', password='test_password')
+
         Category.objects.create(
             name='test-category', friendly_name='test category')
 
@@ -24,20 +36,17 @@ class TestProductViews(TestCase):
             description='Test Description',
         )
 
-        User.objects.create_user(
-            username='test_user', password='test_password')
-
-        User.objects.create_superuser(
-            username='test_super_user', password='test_password')
-
     def tearDown(self):
-        Product.objects.all().delete()
+        """
+        Delete test user, category, product
+        """
         User.objects.all().delete()
-        Review.objects.all().delete()
+        Category.objects.all().delete()
+        Product.objects.all().delete()
 
     def test_get_all_products(self):
         """
-        This test tests get all products
+        This test tests get all products page and verifies
         """
         response = self.client.get('/products/', {'search_term': 'test',
                                                   'current_categories': 'test'})
@@ -45,15 +54,24 @@ class TestProductViews(TestCase):
         self.assertTemplateUsed(response, 'products/products.html')
 
     def test_search_all_products_no_query_string(self):
+        """
+        This test tests search all products with no query string
+        """
         response = self.client.get('/products/', {'q': ''})
         self.assertRedirects(response, '/products/')
 
     def test_search_all_products_category_string(self):
+        """
+        This test tests search all product category string
+        """
         response = self.client.get('/products/', {'category': 'rugby_boots'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/products.html')
 
     def test_sort(self):
+        """
+        This test tests product sort with parameters
+        """
         response = self.client.get('/products/', {'sort': 'name'})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'products/products.html')
@@ -67,7 +85,7 @@ class TestProductViews(TestCase):
 
     def test_get_product_detail(self):
         """
-        This test tests get product details
+        This test tests get product details page and verifies
         """
         product = Product.objects.get()
         response = self.client.get(f'/products/{product.id}/',
@@ -78,7 +96,7 @@ class TestProductViews(TestCase):
 
     def test_add_product_as_superuser(self):
         """
-        This test tests add product page as a superuser
+        This test tests add product page as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         response = self.client.get('/products/add/')
@@ -86,7 +104,7 @@ class TestProductViews(TestCase):
 
     def test_add_product_as_non_superuser(self):
         """
-        This test tests add product page as a non superuser
+        This test tests add product page as a non superuser and verifies
         """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/products/add/')
@@ -96,7 +114,7 @@ class TestProductViews(TestCase):
 
     def test_add_product_as_superuser_post(self):
         """
-        This test tests add product page as a superuser
+        This test tests add product page as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         response = self.client.post('/products/add/', {
@@ -110,7 +128,7 @@ class TestProductViews(TestCase):
 
     def test_get_edit_product_page(self):
         """
-        This test tests edit product page(get) as a superuser
+        This test tests edit product page(get) as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         product = Product.objects.get()
@@ -119,7 +137,7 @@ class TestProductViews(TestCase):
 
     def test_edit_product_page_as_superuser(self):
         """
-        This test tests edit product page(post) as a superuser
+        This test tests edit product page(post) as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         product = Product.objects.get()
@@ -136,7 +154,7 @@ class TestProductViews(TestCase):
 
     def test_edit_product_page_as_non_superuser(self):
         """
-        This test tests edit product page as a non superuser
+        This test tests edit product page as a non superuser and verifies
         """
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.get()
@@ -153,7 +171,7 @@ class TestProductViews(TestCase):
 
     def test_delete_product_as_superuser(self):
         """
-        This test tests delete product as a superuser
+        This test tests delete product as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         product = Product.objects.get()
@@ -166,7 +184,7 @@ class TestProductViews(TestCase):
 
     def test_delete_product_as_non_superuser(self):
         """
-        This test tests delete product as a non superuser
+        This test tests delete product as a non superuser and verifies
         """
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.get()
@@ -178,7 +196,7 @@ class TestProductViews(TestCase):
 
     def test_add_review_to_product_failure(self):
         """
-        This test tests add review to product as a failed case
+        This test tests add review to product as a failed case and verifies
         """
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.get()
@@ -188,7 +206,7 @@ class TestProductViews(TestCase):
 
     def test_add_review_to_product(self):
         """
-        This test tests add review to product as a success case
+        This test tests add review to product as a success case and verifies
         """
         test_user = User.objects.create_user(
             username='test_user1', password='test_password')
@@ -209,7 +227,7 @@ class TestProductViews(TestCase):
 
     def test_add_two_review_one_user_to_product(self):
         """
-        This test tests add two reviews to a product, failure case
+        This test tests add two reviews to a product, failure case and verifies
         """
         test_user2 = User.objects.create_user(
             username='test_user2', password='test_password')
@@ -235,7 +253,7 @@ class TestProductViews(TestCase):
 
     def test_delete_review_from_product(self):
         """
-        This test tests delete review from a product
+        This test tests delete review from a product and verifies
         """
         test_user2 = User.objects.create_user(
             username='test_user4', password='test_password')
@@ -248,9 +266,6 @@ class TestProductViews(TestCase):
             product_rating='5',
             review_text='Test Review Text',
         )
-        # self.client.post(f'/products/add_review/{product.id}/',
-        #                  {'product_rating': '4',
-        #                  'review_text': 'Test Review Text'})
         response = self.client.post(
             f'/products/delete_review/{product.id}/{test_user2.username}/')
         messages = list(get_messages(response.wsgi_request))
@@ -258,7 +273,7 @@ class TestProductViews(TestCase):
 
     def test_delete_review_from_product_no_permission(self):
         """
-        This test tests delete review from a product
+        This test tests delete review from a product and verifies
         """
         test_user2 = User.objects.create_user(
             username='test_user2', password='test_password')
@@ -283,7 +298,7 @@ class TestProductViews(TestCase):
 
     def test_get_average_rating_two_reviews(self):
         """
-        This test tests delete review from a product
+        This test tests delete review from a product and verifies
         """
         product = Product.objects.get()
         test_user3 = User.objects.create_user(
@@ -310,7 +325,7 @@ class TestProductViews(TestCase):
 
     def test_get_average_rating_no_reviews(self):
         """
-        This test tests delete review from a product
+        This test tests delete review from a product and verifies
         """
         product = Product.objects.get()
         reviews = Review.objects.filter(product=product)
@@ -319,7 +334,7 @@ class TestProductViews(TestCase):
 
     def test_sale_item(self):
         """
-        This test tests the sale item view
+        This test tests the sale item page and verifies
         """
         response = self.client.get('/products/sale_items')
         self.assertEqual(response.status_code, 200)

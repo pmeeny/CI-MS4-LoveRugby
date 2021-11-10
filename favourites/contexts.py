@@ -12,6 +12,10 @@ from .models import Favourites
 def wishlist_contents(request):
     """
     A context for Favourites to display count in users navbar
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        context: context
     """
     try:
         favourites = get_object_or_404(Favourites, username=request.user.id)

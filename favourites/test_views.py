@@ -12,7 +12,13 @@ from products.models import Product
 
 
 class TestFavouritesViews(TestCase):
+    """
+    A class for testing favourites views
+    """
     def setUp(self):
+        """
+        Create test user and favourite
+        """
         test_user = User.objects.create_user(
             username='test_user', password='test_password')
 
@@ -20,9 +26,16 @@ class TestFavouritesViews(TestCase):
             username=test_user
         )
 
+    def tearDown(self):
+        """
+        Delete test user and favourite
+        """
+        User.objects.all().delete()
+        Favourites.objects.all().delete()
+
     def test_get_product_favourites_page(self):
         """
-        This test tests get the product favourites page
+        This test tests get the product favourites page and verifies
         """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/favourites/view_product_favourites/')
@@ -31,7 +44,7 @@ class TestFavouritesViews(TestCase):
 
     def test_get_product_favourites_empty_list(self):
         """
-        This test tests an empty product favourites list
+        This test tests an empty product favourites list and verifies
         """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/favourites/view_product_favourites/')
@@ -40,7 +53,7 @@ class TestFavouritesViews(TestCase):
 
     def test_add_item_to_product_favourites(self):
         """
-        This test adds a product to the users favourites list
+        This test adds a product to the users favourites list and verifies
         """
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.create(
@@ -59,7 +72,7 @@ class TestFavouritesViews(TestCase):
     def test_add_item_already_in_product_favourites(self):
         """
         This test adds a product to the users favourites list
-        that already exists
+        that already exists and verifies
         """
         self.client.login(username='test_user', password='test_password')
         product = Product.objects.create(
@@ -83,7 +96,7 @@ class TestFavouritesViews(TestCase):
     def test_remove_item_from_favourites_redirect_favourites(self):
         """
         This test removes a product from the users favourites list
-        with a redirect back to the favourites page
+        with a redirect back to the favourites page and verifies
         """
         test_user1 = User.objects.create_user(
             username='test_user1', password='test_password')
@@ -110,7 +123,7 @@ class TestFavouritesViews(TestCase):
     def test_remove_item_from_favourites_redirect_product(self):
         """
         This test removes a product from the users favourites list
-        with a redirect back to the products page
+        with a redirect back to the products page and verifies
         """
         test_user1 = User.objects.create_user(
             username='test_user1', password='test_password')
@@ -137,7 +150,7 @@ class TestFavouritesViews(TestCase):
     def test_remove_item_not_in_favourites(self):
         """
         This test attempts to remove a product that does not exist in the
-        users favourites list
+        users favourites list and verifies
         """
         test_user1 = User.objects.create_user(
             username='test_user1', password='test_password')

@@ -12,6 +12,9 @@ from news.models import News, Comment
 
 class TestNewsItemViews(TestCase):
     def setUp(self):
+        """
+         Create test user(regular and admin) and news story
+         """
         test_user = User.objects.create_user(
             username='test_user', password='test_password')
 
@@ -39,11 +42,15 @@ class TestNewsItemViews(TestCase):
         )
 
     def tearDown(self):
+        """
+        Delete test users and news
+        """
+        User.objects.all().delete()
         News.objects.all().delete()
 
     def test_get_all_news_items(self):
         """
-        This test tests get all news items
+        This test tests get all news items page and verifies
         """
         response = self.client.get('/news/')
         self.assertEqual(News.objects.count(), 2)
@@ -52,7 +59,7 @@ class TestNewsItemViews(TestCase):
 
     def test_manage_news_items(self):
         """
-        This test tests manage news items
+        This test tests manage news items page and verifies
         """
         response = self.client.get('/news/manage_news_items/')
         self.assertEqual(response.status_code, 200)
@@ -60,7 +67,7 @@ class TestNewsItemViews(TestCase):
 
     def test_get_add_news_item_as_superuser(self):
         """
-        This test tests get add news item as a superuser
+        This test tests get add news item as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         response = self.client.get('/news/add_news_item/')
@@ -68,7 +75,7 @@ class TestNewsItemViews(TestCase):
 
     def test_get_add_news_item_as_non_superuser(self):
         """
-        This test tests get add news item as a non superuser
+        This test tests get add news item as a non superuser and verifies
         """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/news/add_news_item/')
@@ -78,7 +85,7 @@ class TestNewsItemViews(TestCase):
 
     def test_add_news_item_as_superuser_post(self):
         """
-        This test tests post add news item as a superuser
+        This test tests post add news item as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         response = self.client.post('/news/add_news_item/', {
@@ -98,7 +105,7 @@ class TestNewsItemViews(TestCase):
     def test_add_news_item_as_superuser_post_already_exists(self):
         """
         This test tests post add news item as a superuser
-        It is a negative test case and
+        It is a negative test case expects an error and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         self.client.post('/news/add_news_item/', {
@@ -125,7 +132,7 @@ class TestNewsItemViews(TestCase):
 
     def test_get_edit_news_item_page(self):
         """
-        This test tests the edit_news_item page
+        This test tests the edit_news_item page and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         news_item = News.objects.get(title='Test Title')
@@ -134,7 +141,7 @@ class TestNewsItemViews(TestCase):
 
     def test_edit_news_item_as_superuser_post(self):
         """
-        This test tests post edit news item as a superuser
+        This test tests post edit news item as a superuser and verifies
         """
         self.client.login(username='test_super_user', password='test_password')
         news_item = News.objects.get(title='Test Title')
@@ -154,7 +161,7 @@ class TestNewsItemViews(TestCase):
 
     def test_get_edit_news_item_as_non_superuser(self):
         """
-        This test tests get add news item as a non superuser
+        This test tests get add news item as a non superuser and verifies
         """
         self.client.login(username='test_user', password='test_password')
         news_item = News.objects.get(title='Test Title')
@@ -173,7 +180,7 @@ class TestNewsItemViews(TestCase):
 
     def test_delete_news_item_as_non_superuser(self):
         """
-        This test tests delete news item as a non superuser
+        This test tests delete news item as a non superuser and verifies
         """
         self.client.login(username='test_user', password='test_password')
         news_item = News.objects.get(title='Test Title')
@@ -213,6 +220,7 @@ class TestNewsItemViews(TestCase):
     def test_view_news_item_add_comment(self):
         """
         This test tests a news item page with a succesful add of a comment
+        and verifies
         """
         self.client.login(username='test_user', password='test_password')
 
@@ -225,6 +233,7 @@ class TestNewsItemViews(TestCase):
     def test_view_news_item_failed_to_add_comment(self):
         """
         This test tests a news item page with a failed add of a comment
+        and verifies
         """
         self.client.login(username='test_user', password='test_password')
         news_item = News.objects.get(title='Test Title')
@@ -236,7 +245,7 @@ class TestNewsItemViews(TestCase):
     def test_view_news_item_delete_comment(self):
         """
         This test tests a news item page with a succesful add then
-         delete of a comment
+         delete of a comment and verifies
         """
         self.client.login(username='test_user', password='test_password')
 

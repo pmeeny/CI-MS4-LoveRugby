@@ -12,7 +12,9 @@ from .models import Product, Category, Review
 
 
 class ProductForm(forms.ModelForm):
-
+    """
+    A class for product forms
+    """
     class Meta:
         model = Product
         fields = '__all__'
@@ -21,6 +23,15 @@ class ProductForm(forms.ModelForm):
                              widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
+        """
+        Field updates in the form
+        Args:
+            self (object): Self object
+            *args: *args
+            **kwargs: **kwargs
+        Returns:
+            N/A
+        """
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
@@ -32,11 +43,11 @@ class ProductForm(forms.ModelForm):
 
 class ProductReviewForm(forms.ModelForm):
     """
-    Represents a form for product rating and comments
+    A class for product rating and comments
     """
     class Meta:
         """
-        Fields and types for product rating and comments form.
+        A class for fields and types for product rating and comments form.
         """
         model = Review
         fields = (

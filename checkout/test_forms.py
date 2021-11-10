@@ -10,7 +10,9 @@ from .forms import OrderForm
 
 
 class TestCheckoutForms(TestCase):
-
+    """
+    A class for testing checkout forms
+    """
     def test_add_order_form(self):
         """
         This test tests the order form object

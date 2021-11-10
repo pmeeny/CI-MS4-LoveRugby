@@ -8,5 +8,8 @@ from django.apps import AppConfig
 
 
 class BagConfig(AppConfig):
+    """
+    A class for configuring a bag
+    """
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'bag'

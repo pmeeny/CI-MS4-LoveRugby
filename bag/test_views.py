@@ -10,8 +10,13 @@ from products.models import Product
 
 
 class TestBagViews(TestCase):
-
+    """
+    A class for testing bag views
+    """
     def setUp(self):
+        """
+        Create a test product
+        """
         Product.objects.create(
             name='Test Name',
             price='99.99',
@@ -19,10 +24,15 @@ class TestBagViews(TestCase):
             code='123456',
         )
 
+    def tearDown(self):
+        """
+        Delete test products
+        """
+        Product.objects.all().delete()
+
     def test_get_bag_page(self):
         """
-        This test checks that the bag page
-        is displayed
+        This test checks that the bag page is displayed
         """
         response = self.client.get('/bag/')
         self.assertEqual(response.status_code, 200)
@@ -30,7 +40,7 @@ class TestBagViews(TestCase):
 
     def test_add_to_empty_bag_no_size(self):
         """
-        This test adds a product with no size to an empty bag
+        This test adds a product with no size to an empty bag and verifies
         """
         product = Product.objects.get(code='123456')
         response = self.client.post(f'/bag/add/{product.id}/',
@@ -42,7 +52,7 @@ class TestBagViews(TestCase):
 
     def test_add_to_empty_bag_with_size(self):
         """
-        This test adds a product with a size to an empty bag
+        This test adds a product with a size to an empty bag and verifies
         """
         product = Product.objects.get(code='123456')
         response = self.client.post(f'/bag/add/{product.id}/',
@@ -53,7 +63,7 @@ class TestBagViews(TestCase):
 
     def test_adjust_bag_quantity_to_two(self):
         """
-        This test updates a products quantity to 2
+        This test updates a products quantity to 2 and verifies
         """
         product = Product.objects.get(code='123456')
         response = self.client.post(f'/bag/adjust/{product.id}/', {
@@ -68,7 +78,7 @@ class TestBagViews(TestCase):
 
     def test_adjust_bag_quantity_to_zero(self):
         """
-        This test reduces the bag from 1 item to 0 items
+        This test reduces the bag from 1 item to 0 items and verifies
         """
         product = Product.objects.get(code='123456')
         response = self.client.post(f'/bag/add/{product.id}/', {
@@ -88,7 +98,7 @@ class TestBagViews(TestCase):
 
     def test_remove_product_from_bag(self):
         """
-        This test removes a product from the bag
+        This test removes a product from the bag and verifies
         """
         product = Product.objects.get(code='123456')
         self.client.post(f'/bag/add/{product.id}/', {
@@ -104,7 +114,7 @@ class TestBagViews(TestCase):
 
     def test_remove_product_from_bag_with_size(self):
         """
-        This test removes a product with a size from the bag
+        This test removes a product with a size from the bag and verifies
         """
         product = Product.objects.get(code='123456')
         self.client.post(f'/bag/add/{product.id}/', {
@@ -121,7 +131,7 @@ class TestBagViews(TestCase):
     def test_remove_product_from_bag_exception(self):
         """
         This test tries to remove a product from a bag
-        that doesnt exist, and an exception is thrown
+        that doesnt exist, and an exception is thrown is verified
         """
         product = Product.objects.get(code='123456')
         response = self.client.post(f'/bag/remove/{product.id}/')

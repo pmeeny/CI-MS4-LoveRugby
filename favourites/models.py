@@ -26,4 +26,11 @@ class Favourites(models.Model):
     )
 
     def __str__(self):
+        """
+        Return object string
+        Args:
+            self (object): self object.
+        Returns:
+            str: users favourite string
+        """
         return f"{self.username}'s Favourites"

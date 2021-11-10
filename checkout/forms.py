@@ -9,7 +9,13 @@ from .models import Order
 
 
 class OrderForm(forms.ModelForm):
+    """
+    A class for the order form
+    """
     class Meta:
+        """
+        A class for Meta information
+        """
         model = Order
         fields = ('full_name', 'email', 'phone_number',
                   'street_address1', 'street_address2',
@@ -20,6 +26,12 @@ class OrderForm(forms.ModelForm):
         """
         Add placeholders and classes, remove auto-generated
         labels and set autofocus on first field
+        Args:
+            self (object): Self object
+            *args: *args
+            **kwargs: **kwargs
+        Returns:
+            N/A
         """
         super().__init__(*args, **kwargs)
         placeholders = {

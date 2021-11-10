@@ -13,7 +13,7 @@ from django_countries.fields import CountryField
 
 class UserProfile(models.Model):
     """
-    A user profile model for maintaining default
+    A class for the user profile model for maintaining default
     delivery information and order history
     """
     user = models.OneToOneField(
@@ -64,6 +64,13 @@ class UserProfile(models.Model):
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
     Create or update the user profile
+    Args:
+        sender (object): sender
+        instance (object): instance
+        created (object): created
+        **kwargs (object): **kwargs
+    Returns:
+        N/A
     """
     if created:
         UserProfile.objects.create(user=instance)

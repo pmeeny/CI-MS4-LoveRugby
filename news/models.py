@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 # Internal:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# Status of a news item, draft or published
 STATUS = (
     (0, "Draft"),
     (1, "Published")
@@ -18,6 +19,9 @@ class News(models.Model):
     """
     This model is for a news item
     """
+    class Meta:
+        ordering = ['-create_date']
+
     title = models.CharField(
         verbose_name=_('Title'),
         max_length=250,
@@ -44,10 +48,14 @@ class News(models.Model):
         default=0
     )
 
-    class Meta:
-        ordering = ['-create_date']
-
     def __str__(self):
+        """
+        Return new title string
+        Args:
+            self (object): self
+        Returns:
+            news title
+        """
         return self.title
 
 
@@ -55,6 +63,9 @@ class Comment(models.Model):
     """
     This model is for a news item comment
     """
+    class Meta:
+        ordering = ['create_date']
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE
@@ -73,8 +84,12 @@ class Comment(models.Model):
         auto_now_add=True
     )
 
-    class Meta:
-        ordering = ['create_date']
-
     def __str__(self):
+        """
+        Return comment text string
+        Args:
+            self (object): self
+        Returns:
+            comment text
+        """
         return self.comment_text

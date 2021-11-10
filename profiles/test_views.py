@@ -37,12 +37,17 @@ class TestProfileViews(TestCase):
             county='Test country',
         )
 
-    # Test Profile View
-    #
+    def tearDown(self):
+        """
+        Delete test user and order
+        """
+        User.objects.all().delete()
+        Order.objects.all().delete()
+
     def test_get_profile_page(self):
         """
         This test logins a test user and
-        accesses their profile page (get)
+        accesses their profile page (get) and verifies
         """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get('/profile/')
@@ -52,7 +57,7 @@ class TestProfileViews(TestCase):
     def test_post_profile_page(self):
         """
         This test logins a test user and
-        accesses their profile page (post)
+        accesses their profile page (post) and verifies
         """
         self.client.login(username='test_user', password='test_password')
         response = self.client.post('/profile/')
@@ -62,7 +67,7 @@ class TestProfileViews(TestCase):
     def test_get_order_detail_page(self):
         """
         This test logins a test user and accesses
-        the order history page for a test order
+        the order history page for a test order and verifies
         """
         self.client.login(username='test_user1', password='test_password')
         test_user = User.objects.get(username='test_user')

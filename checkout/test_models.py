@@ -13,7 +13,13 @@ from .models import OrderLineItem
 
 
 class TestCheckoutModels(TestCase):
+    """
+    A class for testing checkout models
+    """
     def setUp(self):
+        """
+        Create a test product and order
+        """
         Product.objects.create(
             name='Test Name',
             price='99.99',
@@ -31,6 +37,16 @@ class TestCheckoutModels(TestCase):
             street_address1='Test Address',
         )
 
+    def tearDown(self):
+        """
+        Delete test products and orders
+        """
+        Product.objects.all().delete()
+        Order.objects.all().delete()
+
     def test_order_str_method(self):
+        """
+        This test tests the order number string
+        """
         order = Order.objects.get(email='test@gmail.com')
         self.assertEqual(str(order), order.order_number)

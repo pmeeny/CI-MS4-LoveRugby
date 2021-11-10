@@ -8,4 +8,7 @@ from django.apps import AppConfig
 
 
 class ProfilesConfig(AppConfig):
+    """
+    A class for configuring the profiles app
+    """
     name = 'profiles'

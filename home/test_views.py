@@ -8,7 +8,9 @@ from django.test import TestCase
 
 
 class TestHomeViews(TestCase):
-
+    """
+    A class for testing home views
+    """
     def test_get_home_page(self):
         """
         This test checks that the index page

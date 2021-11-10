@@ -11,7 +11,9 @@ from profiles.models import UserProfile
 
 
 class TestProfileModels(TestCase):
-
+    """
+    A class for testing the profile model
+    """
     def setUp(self):
         """
         This setup creates a test user
@@ -21,6 +23,12 @@ class TestProfileModels(TestCase):
             password='test_password',
             email='test_user@test.com')
         testuser.save()
+
+    def tearDown(self):
+        """
+        Delete test user
+        """
+        User.objects.all().delete()
 
     def test_profile_str_method(self):
         """

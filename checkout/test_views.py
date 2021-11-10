@@ -13,8 +13,13 @@ from profiles.models import UserProfile
 
 
 class TestCheckoutViews(TestCase):
-
+    """
+    A class for testing checkout views
+    """
     def setUp(self):
+        """
+        Create test users(regular and superuser) and a test order
+        """
         test_user = User.objects.create_user(
             username='test_user', password='test_password')
         test_user_superuser = User.objects.create_superuser(
@@ -22,7 +27,6 @@ class TestCheckoutViews(TestCase):
 
         test_user.save()
         test_user_superuser.save()
-
         test_user = UserProfile.objects.get(user=test_user)
 
         Order.objects.create(
@@ -36,9 +40,15 @@ class TestCheckoutViews(TestCase):
             user_profile=test_user
         )
 
+    def tearDown(self):
+        """
+        Delete test orders
+        """
+        Order.objects.all().delete()
+
     def test_checkout_view_empty_cart(self):
         """
-        This test test an empty cart for checkout
+        This test test an empty cart for checkout and verifies
         """
         response = self.client.get('/checkout/')
         self.assertRedirects(response, '/products/')

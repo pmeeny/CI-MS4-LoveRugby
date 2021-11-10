@@ -18,8 +18,11 @@ def news_items(request):
     A view to show all news items
     The context contains the news_items_published
     and news_items_drafts
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Renders the news page.
     """
-
     news_items_published = \
         News.objects.filter(status=1).order_by('-create_date')
     news_items_drafts = \
@@ -38,6 +41,10 @@ def news_items(request):
 def manage_news_items(request):
     """
     A view to manage all news items
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Renders the manage news item page.
     """
     all_news_items = News.objects.order_by('-create_date')
     all_news_items = setup_pagination(all_news_items, request, 4)
@@ -53,6 +60,10 @@ def manage_news_items(request):
 def add_news_item(request):
     """
     A view to add a news_item
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Renders the add news item page
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
@@ -84,6 +95,11 @@ def add_news_item(request):
 def edit_news_item(request, news_item_id):
     """
     A view to editing news items
+    Args:
+        request (object): HTTP request object.
+        news_item_id: News item id
+    Returns:
+        Renders the edit news item page
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
@@ -120,6 +136,11 @@ def edit_news_item(request, news_item_id):
 def delete_news_item(request, news_item_id):
     """
     A view to delete news items
+    Args:
+        request (object): HTTP request object.
+        news_item_id: News item id
+    Returns:
+        Renders the manage news item after deleting the news item
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
@@ -134,6 +155,11 @@ def delete_news_item(request, news_item_id):
 def news_item(request, news_item_id):
     """
     A view to show an individual news item
+    Args:
+        request (object): HTTP request object.
+        news_item_id: News item id
+    Returns:
+        Renders the news item page
     """
     news_item = get_object_or_404(News, pk=news_item_id)
     comments = news_item.comments.filter(new_story=news_item_id).\
@@ -173,6 +199,11 @@ def news_item(request, news_item_id):
 def delete_comment(request, comment_id):
     """
     A view to delete news item comments
+    Args:
+        request (object): HTTP request object.
+        comment_id: Comment id
+    Returns:
+        Renders the edit news item page
     """
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()

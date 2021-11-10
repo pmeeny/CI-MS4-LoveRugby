@@ -14,14 +14,22 @@ from products.models import Product
 def view_bag(request):
     """
     A view that renders the bag contents page
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Renders the bag page.
     """
-
     return render(request, 'bag/bag.html')
 
 
 def add_to_bag(request, item_id):
     """
     Add a quantity of the specified product to the shopping bag
+    Args:
+        request (object): HTTP request object.
+        item_id: Item identifier
+    Returns:
+        redirect_url: Redirect to bag url
     """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -67,6 +75,11 @@ def add_to_bag(request, item_id):
 def adjust_bag(request, item_id):
     """
     Adjust the quantity of the specified product to the specified amount
+    Args:
+        request (object): HTTP request object.
+        item_id: Item identifier
+    Returns:
+        Redirect to bag url
     """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -107,6 +120,11 @@ def adjust_bag(request, item_id):
 def remove_from_bag(request, item_id):
     """
     Remove the item from the shopping bag
+    Args:
+        request (object): HTTP request object.
+        item_id: Item identifier
+    Returns:
+        Http response of 200
     """
     try:
         product = get_object_or_404(Product, pk=item_id)

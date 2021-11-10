@@ -9,7 +9,13 @@ from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
+    """
+    A class for the user profile form
+    """
     class Meta:
+        """
+        A class for the Meta information
+        """
         model = UserProfile
         exclude = ('user',)
 
@@ -17,6 +23,12 @@ class UserProfileForm(forms.ModelForm):
         """
         Add placeholders and classes, remove auto-generated
         labels and set autofocus on first field
+        Args:
+            self (object): Self object
+            *args: *args
+            **kwargs: **kwargs
+        Returns:
+            N/A
         """
         super().__init__(*args, **kwargs)
         placeholders = {

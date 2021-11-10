@@ -15,7 +15,7 @@ from profiles.models import UserProfile
 
 class Order(models.Model):
     """
-    A model for a website order
+    A class for a model for a website order
     """
     order_number = models.CharField(
         max_length=32,
@@ -110,6 +110,10 @@ class Order(models.Model):
     def _generate_order_number(self):
         """
         Generate a random, unique order number using UUID
+        Args:
+            self (object): self
+        Returns:
+            uuid: uuid
         """
         return uuid.uuid4().hex.upper()
 
@@ -138,6 +142,13 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """
+        Returns the order number string
+        Args:
+            self (object): self.
+        Returns:
+            The order number string
+        """
         return self.order_number
 
 
@@ -185,4 +196,11 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """
+        Returns the product code and order number
+        Args:
+            self (object): self.
+        Returns:
+            The product code and order number
+        """
         return f'SKU {self.product.code} on order {self.order.order_number}'

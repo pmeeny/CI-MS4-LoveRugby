@@ -11,9 +11,14 @@ from products.models import Product
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-class TestNewsModels(TestCase):
+class TestFavouriteModels(TestCase):
+    """
+    A class for testing favourites models
+    """
     def setUp(self):
-
+        """
+        Create test users, product and favourite
+        """
         test_user = User.objects.create_user(
             username='test_user', password='test_password')
 
@@ -28,6 +33,14 @@ class TestNewsModels(TestCase):
         Favourites.objects.create(
             username=test_user
         )
+
+    def tearDown(self):
+        """
+        Delete test user, product and favourite
+        """
+        User.objects.all().delete()
+        Product.objects.all().delete()
+        Favourites.objects.all().delete()
 
     def test_favourites_str_method(self):
         """

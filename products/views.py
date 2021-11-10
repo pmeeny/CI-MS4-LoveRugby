@@ -17,7 +17,13 @@ from favourites.models import Favourites
 
 
 def all_products(request):
-    """ A view to show all products, including sorting and search queries """
+    """
+    A view to show all products, including sorting and search queries
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Render of products page with context
+    """
     products = Product.objects.all()
     query = None
     categories = None
@@ -64,7 +70,14 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show individual product details """
+    """
+    A view to show individual product details
+    Args:
+        request (object): HTTP request object.
+        product_id: Product id
+    Returns:
+        Render of product detail page with context
+    """
     product = get_object_or_404(Product, pk=product_id)
     review_form = ProductReviewForm(data=request.POST or None)
 
@@ -90,7 +103,13 @@ def product_detail(request, product_id):
 
 
 def get_average_rating(reviews):
-    """ Add a product to the store """
+    """
+    Calculate average rating based on a number of reviews
+    Args:
+        reviews: Reviews object
+    Returns:
+        Average rating rounded to one decimal place
+    """
     number_of_reviews = 0
     sum_of_ratings = 0
     average_rating_rounded = 0
@@ -108,7 +127,13 @@ def get_average_rating(reviews):
 
 @login_required
 def add_product(request):
-    """ Add a product to the store """
+    """
+    A view to add a product
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Render of add product page with context
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -134,7 +159,14 @@ def add_product(request):
 
 @login_required
 def edit_product(request, product_id):
-    """ Edit a product in the store """
+    """
+    A view to add a product
+    Args:
+        request (object): HTTP request object.
+        product_id: Product id
+    Returns:
+        Render of edit product page with context
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -164,7 +196,14 @@ def edit_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
-    """ Delete a product from the store """
+    """
+    A view to delete a product
+    Args:
+        request (object): HTTP request object.
+        product_id: Product id
+    Returns:
+        Render of delete product page with context
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -178,6 +217,14 @@ def delete_product(request, product_id):
 
 @login_required
 def add_review(request, product_id):
+    """
+    A view to add a review to a product
+    Args:
+        request (object): HTTP request object.
+        product_id: Product id
+    Returns:
+        Render of product detail page with review context
+    """
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         review_form = ProductReviewForm(request.POST)
@@ -206,7 +253,13 @@ def add_review(request, product_id):
 @login_required
 def delete_review(request, product_id, review_user):
     """
-    A view to delete reviews
+    A view to delete a review to a product
+    Args:
+        request (object): HTTP request object.
+        product_id: Product id
+        review_user: Review user
+    Returns:
+        Render of product detail page with review deleted
     """
     product = get_object_or_404(Product, pk=product_id)
     review = get_object_or_404(
@@ -226,6 +279,10 @@ def delete_review(request, product_id, review_user):
 def sale_items(request):
     """
     A view to display all sale items
+    Args:
+        request (object): HTTP request object.
+    Returns:
+        Render of sale items page with context
     """
     sale_items = None
     sale_items = Product.objects.exclude(pre_sale_price__isnull=True)

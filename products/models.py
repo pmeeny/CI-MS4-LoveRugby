@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
     """
-    This model is for a category
+    A class for the category model
     """
     class Meta:
         verbose_name_plural = 'Categories'
@@ -27,16 +27,33 @@ class Category(models.Model):
     )
 
     def __str__(self):
+        """
+        Returns the category name string
+        Args:
+            self (object): self.
+        Returns:
+            The category name string
+        """
         return self.name
 
     def get_friendly_name(self):
+        """
+        Returns the category friendly name string
+        Args:
+            self (object): self.
+        Returns:
+            The category friendly name string
+        """
         return self.friendly_name
 
 
 class Product(models.Model):
     """
-    This model is for a product
+    A class for the product model
     """
+    class Meta:
+        ordering = ['id']
+
     name = models.CharField(
         verbose_name=_('Name'),
         max_length=254
@@ -119,13 +136,23 @@ class Product(models.Model):
     )
 
     def __str__(self):
+        """
+        Returns the product name
+        Args:
+            self (object): self.
+        Returns:
+            The product name string
+        """
         return self.name
 
 
 class Review(models.Model):
     """
-    This model is for a product review
+    A class for the review model
     """
+    class Meta:
+        ordering = ['id']
+
     RATING_CHOICES = [
         (5, '5'),
         (4, '4'),
@@ -156,4 +183,11 @@ class Review(models.Model):
     )
 
     def __str__(self):
+        """
+        Returns the review text
+        Args:
+            self (object): self.
+        Returns:
+            The review text string
+        """
         return self.review_text

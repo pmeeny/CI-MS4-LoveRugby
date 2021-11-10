@@ -11,8 +11,13 @@ from news.models import News, Comment
 
 
 class TestNewsModels(TestCase):
+    """
+    A class for testing news models
+    """
     def setUp(self):
-
+        """
+        Create test user, news story and comment
+        """
         test_user = User.objects.create_user(
             username='test_user', password='test_password')
 
@@ -33,16 +38,24 @@ class TestNewsModels(TestCase):
             create_date='01/01/2021',
         )
 
+    def tearDown(self):
+        """
+        Delete test user, news story and comment
+        """
+        User.objects.all().delete()
+        News.objects.all().delete()
+        Comment.objects.all().delete()
+
     def test_news_str_method(self):
         """
-        This test tests the news str method
+        This test tests the news str method and verifies
         """
         news_item = News.objects.get(title='Test Title')
         self.assertEqual((news_item.__str__()), news_item.title)
 
     def test_comment_str_method(self):
         """
-        This test tests the news str method
+        This test tests the news str method and verifies
         """
         comment = Comment.objects.get(comment_text='Test Item Text')
         self.assertEqual((comment.__str__()), comment.comment_text)
