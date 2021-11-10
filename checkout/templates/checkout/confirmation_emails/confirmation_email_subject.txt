@@ -1,1 +1,1 @@
-Boutique Ado Confirmation for Order Number {{ order.order_number }}
+Love Rugby Confirmation for Order Number {{ order.order_number }}

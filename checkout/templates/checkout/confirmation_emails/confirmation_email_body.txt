@@ -1,6 +1,6 @@
 Hello {{ order.full_name }}!
 
-This is a confirmation of your order at Boutique Ado. Your order information is below:
+This is a confirmation of your order at Love Rugby. Your order information is below:
 
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
@@ -19,4 +19,4 @@ Thank you for your order!
 
 Sincerely,
 
-Boutique Ado
+Love Rugby
