@@ -3,6 +3,7 @@
 # 3rd party:
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 # Internal:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -14,14 +15,34 @@ STATUS = (
 
 
 class News(models.Model):
-    title = models.CharField(max_length=250, unique=True)
+    """
+    This model is for a news item
+    """
+    title = models.CharField(
+        verbose_name=_('Title'),
+        max_length=250,
+        unique=True
+    )
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='news_items')
+        User,
+        on_delete=models.CASCADE,
+        related_name='news_items'
+    )
     news_item_text = models.TextField()
-    image = models.ImageField(null=True, blank=True)
-    update_date = models.DateTimeField(auto_now=True)
-    create_date = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    image = models.ImageField(
+        null=True,
+        blank=True
+    )
+    update_date = models.DateTimeField(
+        auto_now=True
+    )
+    create_date = models.DateTimeField(
+        auto_now_add=True
+    )
+    status = models.IntegerField(
+        choices=STATUS,
+        default=0
+    )
 
     class Meta:
         ordering = ['-create_date']
@@ -31,11 +52,26 @@ class News(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    """
+    This model is for a news item comment
+    """
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
     new_story = models.ForeignKey(
-        News, on_delete=models.CASCADE, related_name="comments")
-    comment_text = models.TextField(null=False, blank=False)
-    create_date = models.DateTimeField(auto_now_add=True)
+        News,
+        on_delete=models.CASCADE,
+        related_name="comments"
+    )
+    comment_text = models.TextField(
+        verbose_name=_('Comment Text'),
+        null=False,
+        blank=False
+    )
+    create_date = models.DateTimeField(
+        auto_now_add=True
+    )
 
     class Meta:
         ordering = ['create_date']
