@@ -71,9 +71,6 @@ body {
     text-decoration: line-through;
     color: #DB4437;
 }
-.bg-grey {
-    background: #1E5128;
-}
 .bg-dark-green {
     background: #1E5128;
 }
@@ -155,9 +152,11 @@ body {
 }
 .page-item.active .page-link {
     background-color: #1E5128;
+    border-color: green;
 }
 .page-item:last-child .page-link {
     color: #1E5128;
+    border-color: green;
 }
 /* --- Edit Product --- */
 .edit-product {
