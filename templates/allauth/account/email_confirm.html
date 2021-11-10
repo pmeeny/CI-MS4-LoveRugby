@@ -10,7 +10,7 @@
 <div class="section-holder">
     <div class="form-holder">
 <hr>
-<h2 class="logo-font mb-4">{% trans "Confirm E-mail Address" %}</h2>
+<h1 class="logo-font mb-4">{% trans "Confirm E-mail Address" %}</h1>
 <hr>
 
 {% if confirmation %}
@@ -21,7 +21,7 @@
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
-    <button type="submit">{% trans 'Confirm' %}</button>
+    <button class="btn green-btn" type="submit">{% trans 'Confirm' %}</button>
 </form>
 
 {% else %}
