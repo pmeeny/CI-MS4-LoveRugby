@@ -19,6 +19,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 - For the bag app one suite was written to test the views
 - The bag app does not have any forms or models
 - The suite contains 8 unit tests
+
 ![Suite](readme/unit_tests/bag_test_views.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 ![Coverage](readme/unit_tests/bag_coverage.PNG)
@@ -26,6 +27,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 ### Unit testing information for the Checkout app
 - For the checkout app three suites were written to test the views, form and models
 - The suites contain 3 unit tests
+
 ![Suite](readme/unit_tests/checkout_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 ![Coverage](readme/unit_tests/checkout_coverage.PNG)
@@ -34,6 +36,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 - For the favourites app two suites were written to test the views and models
 - The favourites app does not have any forms
 - The two suites contain 8 unit tests
+
 ![Suite](readme/unit_tests/favourites_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 ![Coverage](readme/unit_tests/favourites_coverage.PNG)
@@ -42,6 +45,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 - For the home app one suite was written to test the views
 - The home app does not have any forms or models
 - The suite contains 1 unit tests
+- 
 ![Suite](readme/unit_tests/home_test_views.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 ![Coverage](readme/unit_tests/home_coverage.PNG)
@@ -117,16 +121,13 @@ Step 1 | [Desktop Result](football_memories/static/images/testing/index_desktop.
 # Bugs found during the testing phase
 
 Bug no. | Bug description |  Bug fix |
------------- | ------------- | ------------- | 
-1 | When adding a memory, the memory_name was being stored as null in the memory collection| The "name" field was missing from the form field for the input type memory_name
-2 | html validation, sales_items had same id as news, fix was to give both a unique id |
-3 | html validation, alt text for a number of images in a loop was the same, fix was the set it to the product name |
-4 | If a user has 0 favourites, pagination setup call in the view is being call even though there are no items, fix was to move the location of the pagination setup call. |
-5 | Ths stripe webhook was not working on production. I had the same secret set on heroku and local development, even though I had two different webhooks defined(development and production) |The fix was to set the correct webhook secret as an enviroment variable in Heroku
- |Error in logs norderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'products.models.Product'> QuerySet.
-  paginator = Paginator(item_list, items_per_page) tHEfix was to update the product and review models to order by id
-    class Meta:
-        ordering = ['id'] |
+------------ | ------------- | ------------- |
+1 | When running html validation, sales_items had same id as news, | The fix was to give both a unique id (main-nav.html)
+2 | When running html validation, alt text for a number of images in a loop was the same | The fix was the set it to the product name (products.html) |
+3 | If a user has 0 favourites, pagination setup call in the view is being called even though there are no items | The fix was to move the location of the pagination setup call(util.py) |
+4 | Ths stripe webhook was not working on production. I had the same secret set on heroku and local development, even though I had two different webhooks defined(development and production) |The fix was to set the correct webhook secret as an enviroment variable in Heroku
+5 | The following error was displayed in logs norderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'products.models.Product'> QuerySet.| The fix was to update the product and review models to order by id (models.py in Product app)
+
 
 # Code Validators and Website Analysis
 The website's pages was tested against the following validators:
@@ -184,35 +185,35 @@ checkout/static/checkout/css/checkout.css | Passed, No errors found | [Results](
 ## Chrome Dev tools Lighthouse 
 
 - I used Lighthouse (https://developers.google.com/web/tools/lighthouse) to test the performance, seo, best practices and accessibility of the site
-- Overall the results are very good. The memory pages performance is affected by the Google map load times and making this load more efficient was out of my control from a code perspective 
+- Overall the results are very good for the 4 values: Performance, Accessibility, Best Practices and SEO
 
 ### Desktop
-Page | Wireframe | Performance | Accessibility | Best Practices | SEO
------------- | ------------- | ------------ | ------------- | ------------- | -------------
-bag/templates/bag/bag.html | |||||
-checkout/templates/checkout/checkout.html | ||||| 
+Page  | Performance (%) | Accessibility (%) | Best Practices (%) | SEO (%)
+------------  | ------------ | ------------- | ------------- | -------------
+bag/templates/bag/bag.html | 96 | 96 | 80 | 100 |
+checkout/templates/checkout/checkout.html | 82 | 100 | 80 | 100 |
 checkout/templates/checkout/checkout_success.html | |||||
-favourites/templates/favourites/favourites.html | ||||| 
-home/templates/home/index.html | |||||
+favourites/templates/favourites/favourites.html | 97 | 100 | 87 | 90 |
+home/templates/home/index.html | 91 | 100 | 87 | 100 ||
 news/templates/news/add_news_item.html | ||||| 
 news/templates/news/edit_news_item.html | |||||
 news/templates/news/manage_news_items.html  | |||||
-news/templates/news/news.html | |||||
-news/templates/news/news_item.html | |||||
+news/templates/news/news.html | 95 | 100 | 87 | 90 |
+news/templates/news/news_item.html | 96 | 100 | 87 | 100 |
 products/templates/products/add_product.html | |||||
 products/templates/products/edit_product.html | |||||
-products/templates/products/product_detail.html | |||||
-products/templates/products/products.html  | |||||
-products/templates/products/sale_items.html | |||||
-profile/templates/profile/profile.html | |||||
+products/templates/products/product_detail.html | 96 | 100 | 80 | 100 |
+products/templates/products/products.html  | 96 | 100 | 87 | 100 |
+products/templates/products/sale_items.html | 96 | 100 | 87 | 100 |
+profile/templates/profile/profile.html | 97 | 100 | 87 | 100 |
 profile/templates/profile/order_history.html | ||||| 
-templates/allauth/account/login.html | |||||
-templates/allauth/account/logout.html | |||||
-templates/allauth/account/register.html | |||||
+templates/allauth/account/login.html | 94 | 100 |87 | 100 |
+templates/allauth/account/logout.html | 93 | 100 | 87 | 100 |
+templates/allauth/account/register.html | 98| 100 | 87 | 100 |
 
 ### Mobile
-Page | Wireframe | Performance | Accessibility | Best Practices | SEO
------------- | ------------- | ------------ | ------------- | ------------- | -------------
+Page  | Performance (%) | Accessibility (%) | Best Practices (%) | SEO (%)
+------------  | ------------ | ------------- | ------------- | -------------
 bag/templates/bag/bag.html | |||||
 checkout/templates/checkout/checkout.html | ||||| 
 checkout/templates/checkout/checkout_success.html | |||||
@@ -230,9 +231,9 @@ products/templates/products/products.html  | |||||
 products/templates/products/sale_items.html | |||||
 profile/templates/profile/profile.html | |||||
 profile/templates/profile/order_history.html | ||||| 
-templates/allauth/account/login.html | |||||
-templates/allauth/account/logout.html | |||||
-templates/allauth/account/register.html | |||||
+templates/allauth/account/login.html | 78 | 97 | 87 | 98 |
+templates/allauth/account/logout.html | 74 | 97 | 87 | 100 |
+templates/allauth/account/register.html | 73 | 97 | 87 | 100 |
 
 <br>
 
