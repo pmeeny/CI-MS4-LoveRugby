@@ -339,6 +339,17 @@ There are a number of applications that need to be configured to run this applic
 
 ## Amazon WebServices
 1. Create an account at aws.amazon.com
+2. Open the S3 application and create an S3 bucket named "ci-ms4-rugby-shop"
+3. Uncheck the "Block All Public access setting"
+4. In the Properties section, navigate to the "Static Website Hosting" section and click edit
+5. Enable the setting, and set the index.html and the error.html values
+<br>![AWS Static](readme/misc/aws_static.png)
+6. In the Permissions section, click edit on the CORS configuration and set the below configuration
+<br>![AWS CORS](readme/misc/aws_cors.png)
+7. In the permissions section, click edit on the bucket policy and generate and set the below configuration(or similar to your settings)
+<br>![AWS Bucket Policy](readme/misc/aws_bucket_policy.png)
+8. In the permissions section, click edit on the Access control list(ACL)
+9. Set Read access for the Bucket ACL for Everyone(Public Access)
 
 ## Postgres Database
 Postgres is the database used in the application for production. The database is created as part of setting up
@@ -366,7 +377,7 @@ To run this project locally, you will need to clone the repository
 <br><code>os.environ.setdefault("EMAIL_HOST_PASS", TO BE ADDED BY USER)</code>
 <br><code>os.environ.setdefault("USE_AWS", TO BE ADDED BY USER)</code>
 <br><code>os.environ.setdefault("DATABASE_URL", TO BE ADDED BY USER)</code>
-7. Some of the values for the enviroment variables above are described in different sections of this readme
+7. Some values for the environment variables above are described in different sections of this readme
 8. Install the relevant packages as per the requirements.txt file
 9. In the settings.py ensure the connection is set to either the Heroku postgres database or the local dqllite database
 10. Ensure debug is set to true in the settings.py file for local development
