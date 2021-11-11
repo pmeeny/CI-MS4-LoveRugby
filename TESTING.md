@@ -188,21 +188,21 @@ Page  | Performance (%) | Accessibility (%) | Best Practices (%) | SEO (%)
 ------------  | ------------ | ------------- | ------------- | -------------
 bag/templates/bag/bag.html | 96 | 96 | 80 | 100 |
 checkout/templates/checkout/checkout.html | 82 | 100 | 80 | 100 |
-checkout/templates/checkout/checkout_success.html | |||||
+checkout/templates/checkout/checkout_success.html | 95 | 100 | 87 | 100 ||
 favourites/templates/favourites/favourites.html | 97 | 100 | 87 | 90 |
 home/templates/home/index.html | 91 | 100 | 87 | 100 ||
-news/templates/news/add_news_item.html | ||||| 
-news/templates/news/edit_news_item.html | |||||
-news/templates/news/manage_news_items.html  | |||||
+news/templates/news/add_news_item.html | 97 | 92 | 87 | 100 |
+news/templates/news/edit_news_item.html | 98 | 92 | 87 | 100 |
+news/templates/news/manage_news_items.html  | 98 | 100 | 87 | 90 |
 news/templates/news/news.html | 95 | 100 | 87 | 90 |
 news/templates/news/news_item.html | 96 | 100 | 87 | 100 |
-products/templates/products/add_product.html | |||||
-products/templates/products/edit_product.html | |||||
+products/templates/products/add_product.html | 94 | 92 | 87 | 100 |
+products/templates/products/edit_product.html | 97 | 92 | 87 | 100 |
 products/templates/products/product_detail.html | 96 | 100 | 80 | 100 |
 products/templates/products/products.html  | 96 | 100 | 87 | 100 |
 products/templates/products/sale_items.html | 96 | 100 | 87 | 100 |
 profile/templates/profile/profile.html | 97 | 100 | 87 | 100 |
-profile/templates/profile/order_history.html | ||||| 
+profile/templates/profile/order_history.html | 95 | 100 | 87 | 100 |
 templates/allauth/account/login.html | 94 | 100 |87 | 100 |
 templates/allauth/account/logout.html | 93 | 100 | 87 | 100 |
 templates/allauth/account/register.html | 98| 100 | 87 | 100 |
@@ -210,23 +210,23 @@ templates/allauth/account/register.html | 98| 100 | 87 | 100 |
 ### Mobile
 Page  | Performance (%) | Accessibility (%) | Best Practices (%) | SEO (%)
 ------------  | ------------ | ------------- | ------------- | -------------
-bag/templates/bag/bag.html | |||||
-checkout/templates/checkout/checkout.html | ||||| 
-checkout/templates/checkout/checkout_success.html | |||||
-favourites/templates/favourites/favourites.html | ||||| 
-home/templates/home/index.html | |||||
-news/templates/news/add_news_item.html | ||||| 
-news/templates/news/edit_news_item.html | |||||
-news/templates/news/manage_news_items.html  | |||||
-news/templates/news/news.html | |||||
-news/templates/news/news_item.html | |||||
-products/templates/products/add_product.html | |||||
-products/templates/products/edit_product.html | |||||
-products/templates/products/product_detail.html | |||||
-products/templates/products/products.html  | |||||
-products/templates/products/sale_items.html | |||||
-profile/templates/profile/profile.html | |||||
-profile/templates/profile/order_history.html | ||||| 
+bag/templates/bag/bag.html | 60 | 93 | 87 | 100 |
+checkout/templates/checkout/checkout.html | 65 | 98 | 87 | 100 |
+checkout/templates/checkout/checkout_success.html | 67 | 97 | 87 | 100 |
+favourites/templates/favourites/favourites.html | 70 | 97 | 87 | 100 |
+home/templates/home/index.html | 62 | 97 | 87 | 100 |
+news/templates/news/add_news_item.html | 81 | 89 | 87 | 100 |
+news/templates/news/edit_news_item.html | 74 | 89 | 87 | 100 |
+news/templates/news/manage_news_items.html  | 73 | 98 | 87 | 92 |
+news/templates/news/news.html | 72 | 97 | 80 | 92 |
+news/templates/news/news_item.html | 71 | 98 | 87 | 100 |
+products/templates/products/add_product.html | 77 | 89 | 87 | 100 |
+products/templates/products/edit_product.html | 79 | 89 | 87 | 100 |
+products/templates/products/product_detail.html | 70 | 98 | 80 | 100 |
+products/templates/products/products.html  | 76 | 97 | 87 | 92 |
+products/templates/products/sale_items.html | 72 | 97 | 87 | 92 |
+profile/templates/profile/profile.html | 76 | 98 | 87 | 100 |
+profile/templates/profile/order_history.html | 70 | 97 | 87 | 100 |
 templates/allauth/account/login.html | 78 | 97 | 87 | 98 |
 templates/allauth/account/logout.html | 74 | 97 | 87 | 100 |
 templates/allauth/account/register.html | 73 | 97 | 87 | 100 |
