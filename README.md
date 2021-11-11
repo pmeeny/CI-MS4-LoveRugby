@@ -300,28 +300,31 @@ To set up the project to send emails and to use a Google account as an SMTP serv
 3. Click on app passwords, select Other as the app and give the password a name, for example Django
 
 ![App password](readme/misc/gmail_app_password.png)
+
 4. Click create and a 16 digit password will be generated, note the password down
 5. In the env.py file, create an environment variable called EMAIL_HOST_PASS with the 16 digit password
 6. In the env.py file, create an environment variable called EMAIL_HOST_USER with the email address of the gmail account
 7. Set and confirm the following values in the settings.py file to successfully send emails
-<code>EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'</code>
-<code>EMAIL_USE_TLS = True</code>
-<code>EMAIL_PORT = 587</code>
-<code>EMAIL_HOST = 'smtp.gmail.com'</code>
-<code>EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')</code>
-<code>EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')</code>
-<code>DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')</code>
+<br><code>EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'</code>
+<br><code>EMAIL_USE_TLS = True</code>
+<br><code>EMAIL_PORT = 587</code>
+<br><code>EMAIL_HOST = 'smtp.gmail.com'</code>
+<br><code>EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')</code>
+<br><code>EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')</code>
+<br><code>DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')</code>
 8. You will also need to set the variables EMAIL_HOST_PASS and EMAIL_HOST_USER in your production instance, for example Heroku
 
 ## Stripe
 1. Register for an account at stripe.com
 2. Click on the Developers section of your account once logged in
 3. Under Developers, click on the API keys section
+
 ![API keys](readme/misc/stripe_keys1.png)
+
 4. Note the values for the publishable and secret keys
 5. In your local enviroment(env.py) and heroku, create enviroment variables STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY with the publishable and secret key values
-<code>os.environ.setdefault('STRIPE_PUBLIC_KEY', 'YOUR_VALUE_GOES_HERE')</code>
-<code>os.environ.setdefault('STRIPE_SECRET_KEY', 'YOUR_VALUE_GOES_HERE')</code>
+<br><code>os.environ.setdefault('STRIPE_PUBLIC_KEY', 'YOUR_VALUE_GOES_HERE')</code>
+<br><code>os.environ.setdefault('STRIPE_SECRET_KEY', 'YOUR_VALUE_GOES_HERE')</code>
 6. Back in the Developers section of your stripe account click on Webhooks
 7. Create a webhook with the url of your website <url>/checkout/wh/, for example: https://ci-ms4-loverugby.herokuapp.com/checkout/wh/
 8. Select the payment_intent.payment_failed and payment_intent.succeeded as events to send
@@ -352,17 +355,17 @@ To run this project locally, you will need to clone the repository
 
 5. The repository will now be cloned in your workspace
 6. Create an env.py file(do not commit this file to source control) in the root folder in your project, and add in the following code with the relevant key, value pairs, and ensure you enter the correct key values<br>
-<code>import os</code><br>
-<code>os.environ.setdefault("SECRET_KEY", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("STRIPE_PUBLIC_KEY", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("STRIPE_SECRET_KEY", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("STRIPE_WH_SECRET", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("AWS_ACCESS_KEY_ID", TO BE ADDED BY USER)</code><br>
-<code>os.environ.setdefault("AWS_SECRET_ACCESS_KEY", TO BE ADDED BY USER)</code>
-<code>os.environ.setdefault("EMAIL_HOST_USER", TO BE ADDED BY USER)</code>
-<code>os.environ.setdefault("EMAIL_HOST_PASS", TO BE ADDED BY USER)</code>
-<code>os.environ.setdefault("USE_AWS", TO BE ADDED BY USER)</code>
-<code>os.environ.setdefault("DATABASE_URL", TO BE ADDED BY USER)</code>
+<br><code>import os</code>
+<br><code>os.environ.setdefault("SECRET_KEY", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("STRIPE_PUBLIC_KEY", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("STRIPE_SECRET_KEY", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("STRIPE_WH_SECRET", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("AWS_ACCESS_KEY_ID", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("AWS_SECRET_ACCESS_KEY", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("EMAIL_HOST_USER", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("EMAIL_HOST_PASS", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("USE_AWS", TO BE ADDED BY USER)</code>
+<br><code>os.environ.setdefault("DATABASE_URL", TO BE ADDED BY USER)</code>
 7. Some of the values for the enviroment variables above are described in different sections of this readme
 8. Install the relevant packages as per the requirements.txt file
 9. In the settings.py ensure the connection is set to either the Heroku postgres database or the local dqllite database
@@ -383,6 +386,7 @@ To deploy this application to Heroku, run the following steps.
 3. Under resources search for postgres, and add a Postgres database to the app
 
 ![Heroku Postgres](readme/misc/heroku_postgres.png)
+    
 4. Note the DATABASE_URL, this can be set as an enviroment variable in Heroku and your local deployment(env.py)
 5. Install the plugins dj-database-url and psycopg2-binary.
 6. Run pip3 freeze > requirements.txt so both are added to the requirements.txt file
@@ -402,11 +406,13 @@ To deploy this application to Heroku, run the following steps.
 20. Ensure the following enviroment variables are set in Heroku
 
 ![Heroku Env variables](readme/misc/heroku_env_variables.png)
+    
 21. Connect the app to github, and enable automatic deploys from main
 
 ![Heroku Postgres](readme/misc/heroku_deployment.png)
+    
 22. Click deploy to deploy your application to Heroku for the first time
-23. Clcik on the link provided to access the application
+23. Click on the link provided to access the application
 24. If you encounter any issues accessing the build logs is a good way to troubleshoot the issue
 
 # Credits
