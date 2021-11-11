@@ -313,23 +313,33 @@ To set up the project to send emails and to use a Google account as an SMTP serv
 <code>DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')</code>
 8. You will also need to set the variables EMAIL_HOST_PASS and EMAIL_HOST_USER in your production instance, for example Heroku
 
+## Stripe
+1. Register for an account at stripe.com
+2. Click on the Developers section of your account once logged in
+3. Under Developers, click on the API keys section
+![API keys](readme/misc/stripe_keys1.png)
+4. Note the values for the publishable and secret keys
+5. In your local enviroment(env.py) and heroku, create enviroment variables STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY with the publishable and secret key values
+<code>os.environ.setdefault('STRIPE_PUBLIC_KEY', 'YOUR_VALUE_GOES_HERE')</code>
+<code>os.environ.setdefault('STRIPE_SECRET_KEY', 'YOUR_VALUE_GOES_HERE')</code>
+6. Back in the Developers section of your stripe account click on Webhooks
+7. Create a webhook with the url of your website <url>/checkout/wh/, for example: https://ci-ms4-loverugby.herokuapp.com/checkout/wh/
+8. Select the payment_intent.payment_failed and payment_intent.succeeded as events to send
+![Webhook](readme/misc/stripe_keys2.png)
+9. Note the key created for this webhook
+10. In your local enviroment(env.py) and heroku, create enviroment variable STRIPE_WH_SECRET with the secret values
+<code>os.environ.setdefault('STRIPE_WH_SECRET', 'YOUR_VALUE_GOES_HERE')</code>
+11. Feel free to test out the webhook and note the succcess/fail attempts for troubleshooting
+
 # Deployment
 There are a number of applications that need to be configured to run this application locally or on a cloud based service, for example Heroku
 
 ## Amazon WebServices
 1. Create an account at aws.amazon.com
-2. Open the IAM application and create a new user
-3. Set the AmazonS3FullAccess for the user and note the users AWS ACCESS and SECRET keys
-![Iam](football_memories/static/images/readme/iam.PNG)
-4. Open the S3 application and create a new bucket. For the purpose of this application the bucket name is ci-ms3-football-memories but this can be updated in the util.py route
-5. With security best practices update the public access and policy bucket to enable the user created and the application access to read/write to the S3 bucket. Consult the AWS documentation if required: https://aws.amazon.com/s3/
-![policy](football_memories/static/images/readme/policy.PNG)
-6. The s3 bucket is now updated to be accessed by your application
-7. In the env.py file(described below) update the variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY with the correct information that you have set up, for example:
 
 ## Postgres Database
 Postgres is the database used in the application for production. The database is created as part of setting up
-a deployment on Heroku
+a deployment on Heroku, which is described below
 
 ## Local Deployment
 To run this project locally, you will need to clone the repository
@@ -353,28 +363,51 @@ To run this project locally, you will need to clone the repository
 <code>os.environ.setdefault("EMAIL_HOST_PASS", TO BE ADDED BY USER)</code>
 <code>os.environ.setdefault("USE_AWS", TO BE ADDED BY USER)</code>
 <code>os.environ.setdefault("DATABASE_URL", TO BE ADDED BY USER)</code>
-7. Install the relevant packages as per the requirements.txt file
-8. Start the application by running <code>python3 manage.py runserver</code>
-9. Open the application in a web browser, for example: http://127.0.0.1:8000/
+7. Some of the values for the enviroment variables above are described in different sections of this readme
+8. Install the relevant packages as per the requirements.txt file
+9. In the settings.py ensure the connection is set to either the Heroku postgres database or the local dqllite database
+10. Ensure debug is set to true in the settings.py file for local development
+11. Add localhost/127.0.0.1 to the ALLOWED_HOSTS variable in settings.py
+12. Run "python3 manage.py showmigrations" to check the status of the migrations
+13. Run "python3 manage.py migrate" to migrate the database
+14. Run "python3 manage.py createsuperuser" to create a super/admin user
+15. Run "python3 manage.py loaddata categories.json" on the categories file in products/fixtures to create the categories
+16. Run "python3 manage.py loaddata products.json" on the products file in products/fixtures to create the products
+17. Start the application by running <code>python3 manage.py runserver</code>
+18. Open the application in a web browser, for example: http://127.0.0.1:8000/
 
 ## Heroku
 To deploy this application to Heroku, run the following steps.
-1. In the app.py file, ensure that debug is not enabled, i.e. set to True
-2. Create a file called ProcFile in the root directory, and add the line <code>web: python app.py</code> if the file does not already exist
-3. Create a requirements.txt file by running the command <code>pip freeze > requirements.txt</code> in your terminal if the file doesn't already exist
-5. Both the ProcFile and requirements.txt files should be added to your git repo in the root directory
-6. Create an account on heroku.com
-7. Create a new application and give it a unique name
-8. In the application dashboard, navigate to the deploy section and connect your application to your git repo, by selecting your repo
-![Heroku dashboard](football_memories/static/images/readme/heroku_dashboard.PNG)
-9. Select the branch for example master and enable automatic deploys if desired. Otherwise, a deployment will be manual
-10. The next step is to set the config variables in the Settings section
-![Config vars](football_memories/static/images/readme/config_vars.PNG)
-11. Set key/value pairs for the following keys: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, IP, MONGO_DBNAME, MONGO_URI, PORT, SECRET_KEY
-12. Go to the dashboard and trigger a deployment
-![Deploy](football_memories/static/images/readme/deploy.PNG)
-13. This will trigger a deployment, once the deployment has been successful click on the "Open App" link to open the app
-14. If you encounter any issues accessing the build logs is a good way to troubleshoot the issue
+1. Create an account at heroku.com
+2. Create an app, give it a name for example ci-ms4-loverugby, and select a region
+3. Under resources search for postgres, and add a Postgres database to the app
+
+![Heroku Postgres](readme/misc/heroku_postgres.png)
+4. Note the DATABASE_URL, this can be set as an enviroment variable in Heroku and your local deployment(env.py)
+5. Install the plugins dj-database-url and psycopg2-binary.
+6. Run pip3 freeze > requirements.txt so both are added to the requirements.txt file
+7. Create a Procfile with the text: web: gunicorn rugby_shop.wsgi:application for example
+8. In the settings.py ensure the connection is to the Heroku postgres database
+9. Ensure debug is set to false in the settings.py file
+10. Add localhost/127.0.0.1, and ci-ms4-loverugby.herokuapp.com to the ALLOWED_HOSTS variable in settings.py
+11. Run "python3 manage.py showmigrations" to check the status of the migrations
+12. Run "python3 manage.py migrate" to migrate the database
+13. Run "python3 manage.py createsuperuser" to create a super/admin user
+14. Run "python3 manage.py loaddata categories.json" on the categories file in products/fixtures to create the categories
+15. Run "python3 manage.py loaddata products.json" on the products file in products/fixtures to create the products
+16. Install gunicorn add add it to the requirements.tx file using the command pip3 freeze > requirements.txt
+17. From the CLI login to Heroku using the command heroku git:remote -a ci-ms4-loverugby
+18. Disable collectstatic in Heroku before any code is pushed using the command heroku config:set DISABLE_COLLECTSTATIC=1 -a ci-ms4-loverugby
+19. Push the code to Heroku using the command git push heroku master
+20. Ensure the following enviroment variables are set in Heroku
+
+![Heroku Env variables](readme/misc/heroku_env_variables.png)
+21. Connect the app to github, and enable automatic deploys from main
+
+![Heroku Postgres](readme/misc/heroku_deployment.png)
+22. Click deploy to deploy your application to Heroku for the first time
+23. Clcik on the link provided to access the application
+24. If you encounter any issues accessing the build logs is a good way to troubleshoot the issue
 
 # Credits
 - The project is based on the Boutique Ado project by the Code Institute and was used as a basic for my project (https://github.com/Code-Institute-Solutions/boutique_ado_v1/)
@@ -386,11 +419,15 @@ for the memories gallery
 
 - For the send-email functionality I used some code from the code institute module from the course
 
-- For pagination I found thistutorial invaluable https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
+- For pagination I found this tutorial invaluable https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
 
 - For Div alignment I used code fro here: https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ 
 
 - For Django Comments, I found this link useful: https://djangocentral.com/creating-comments-system-with-django/
+
+- For unit testing, I found the unit test code in the Code Institute chapter Hello Django very useful and this link also: 
+https://www.section.io/engineering-education/django-unit-testing/#testing-views where it gave me a good idea on the type of unit tests
+to write
 
 - Bootstrap 5.0, I used some of the sample code from https://getbootstrap.com/docs/5.0/customize/components/ for a number of 
   omponents(Buttons, Card, Carousel, Modal, Pagination, Navbar)
