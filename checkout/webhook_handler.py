@@ -12,16 +12,34 @@ import time
 from .models import Order, OrderLineItem
 from products.models import Product
 from profiles.models import UserProfile
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 class StripeWH_Handler:
-    """Handle Stripe webhooks"""
+    """
+    A class to handle Stripe webhooks
+    """
 
     def __init__(self, request):
+        """
+        Initilisation of handler
+        Args:
+            request (object): Request object
+        Returns:
+            Request
+        """
         self.request = request
 
     def _send_confirmation_email(self, order):
-        """Send the user a confirmation email"""
+        """
+        Sends the user a confirmation email
+        Args:
+            self (object): Self object
+            order: Order
+        Returns:
+            N/A
+        """
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -40,6 +58,11 @@ class StripeWH_Handler:
     def handle_event(self, event):
         """
         Handle a generic/unknown/unexpected webhook event
+        Args:
+            self (object): Self object
+            event: event
+        Returns:
+            HttpResponse object
         """
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
@@ -48,6 +71,11 @@ class StripeWH_Handler:
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
+        Args:
+            self (object): Self object
+            event: event
+        Returns:
+            HttpResponse object
         """
         intent = event.data.object
         pid = intent.id
@@ -134,7 +162,8 @@ class StripeWH_Handler:
                         )
                         order_line_item.save()
                     else:
-                        for size, quantity in item_data['items_by_size'].items():
+                        for size, quantity in \
+                                item_data['items_by_size'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
@@ -157,6 +186,11 @@ class StripeWH_Handler:
     def handle_payment_intent_payment_failed(self, event):
         """
         Handle the payment_intent.payment_failed webhook from Stripe
+        Args:
+            self (object): Self object
+            event: event
+        Returns:
+            HttpResponse object
         """
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',

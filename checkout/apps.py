@@ -15,7 +15,7 @@ class CheckoutConfig(AppConfig):
 
     def ready(self):
         """
-        import checkout.signals
+        import checkout signals library
         Args:
             N/A
         Returns:
