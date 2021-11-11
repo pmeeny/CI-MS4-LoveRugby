@@ -19,60 +19,56 @@ The testing approach(described in detail in this testing readme) is as follows:
 - For the bag app one suite was written to test the views
 - The bag app does not have any forms or models
 - The suite contains 8 unit tests
-
-![Suite](readme/unit_tests/bag_test_views.PNG)
+<br>![Suite](readme/unit_tests/bag_test_views.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
-![Coverage](readme/unit_tests/bag_coverage.PNG)
+<br>![Coverage](readme/unit_tests/bag_coverage.PNG)
 
 ### Unit testing information for the Checkout app
 - For the checkout app three suites were written to test the views, form and models
 - The suites contain 3 unit tests
-
-![Suite](readme/unit_tests/checkout_suites.PNG)
+<br>![Suite](readme/unit_tests/checkout_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
-![Coverage](readme/unit_tests/checkout_coverage.PNG)
+<br>![Coverage](readme/unit_tests/checkout_coverage.PNG)
 
 ### Unit testing information for the Favourites app
 - For the favourites app two suites were written to test the views and models
 - The favourites app does not have any forms
 - The two suites contain 8 unit tests
-
-![Suite](readme/unit_tests/favourites_suites.PNG)
+<br>![Suite](readme/unit_tests/favourites_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
-![Coverage](readme/unit_tests/favourites_coverage.PNG)
+<br>![Coverage](readme/unit_tests/favourites_coverage.PNG)
 
 ### Unit testing information for the Home app
 - For the home app one suite was written to test the views
 - The home app does not have any forms or models
-- The suite contains 1 unit tests
-- 
-![Suite](readme/unit_tests/home_test_views.PNG)
+- The suite contains 1 unit tests 
+<br>![Suite](readme/unit_tests/home_test_views.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
-![Coverage](readme/unit_tests/home_coverage.PNG)
+<br>![Coverage](readme/unit_tests/home_coverage.PNG)
 
 ### Unit testing information for the News app
 - For the news app two suites were written to test the views and models
 - The forms are tested as part of these suites
 - The two suites contain 17 unit tests
-![Suite](readme/unit_tests/news_suites.PNG)
+<br>![Suite](readme/unit_tests/news_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
-![Coverage](readme/unit_tests/news_coverage.PNG)
+<br>![Coverage](readme/unit_tests/news_coverage.PNG)
 
 ### Unit testing information for the Products app
 - For the products app two suites were written to test the views and models
 - The forms are tested as part of these suites
 - The two suites contain 24 unit tests
-![Suite](readme/unit_tests/products_suites.PNG)
+<br>![Suite](readme/unit_tests/products_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
-![Coverage](readme/unit_tests/products_coverage.PNG)
+<br>![Coverage](readme/unit_tests/products_coverage.PNG)
 
 ### Unit testing information for the Profile app
 - For the products app two suites were written to test the views and models
 - The forms are tested as part of these suites
 - The two suites contain 4 unit tests
-![Suite](readme/unit_tests/profiles_suites.PNG)
+<br>![Suite](readme/unit_tests/profiles_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
-![Coverage](readme/unit_tests/profiles_coverage.PNG)
+<br>![Coverage](readme/unit_tests/profiles_coverage.PNG)
 
 ## Automated UI testing information
 - I wrote a simple automated e2e testing on UILIcious(www.uilicious.com)
@@ -289,9 +285,9 @@ static/js/send_email.js | 0 errors and 0 warnings | [Results](readme/jshint/jshi
 ## PEP8online
 - PEP8online was used to analyse the Python files (https://pep8online.com/)
 - I used the pep8 checker in my IDE Pycharm, and created a scope and included the following files
-- ![PEP8 scope](readme/pep8/pep8_scope.PNG)
+<br>![PEP8 scope](readme/pep8/pep8_scope.PNG)
 - The report shows no errors/warnings for the files listed below
-- ![PEP8 report](readme/pep8/pep8_report.PNG)
+<br>![PEP8 report](readme/pep8/pep8_report.PNG)
 - One of the main errors on several files was to ensure the character count was less than 80 characters
 
 Page | Result 
