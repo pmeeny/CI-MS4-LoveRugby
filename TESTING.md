@@ -4,16 +4,73 @@
 
 # Testing
 The testing approach(described in detail in this testing readme) is as follows:
-2. Automated unit testing using the Django unit test framework
-3. Automated UI testing using the UILIcious framework
-4. Manual testing using emulators and real devices
+1. Automated unit testing using the Django unit test framework
+2. Automated UI testing using the UILIcious framework
+3. Manual testing using emulators and real devices
 
 ## Unit testing information
 - I wrote a number of unit tests(65) using the Django unit test framework
+- These test cases are structured in a number of suites(13)
+- The structure of the unit test is based on the model/form/view structure, for example test_views.py, test_model.py and test_forms.py on a per app basis
 - I used coverage(coverage.py) for code coverage and to ensure a high code coverage was met on all python files in the project
+- An overall report is available at the following link [Coverage Report](readme/coverage/index.html)
 
+### Unit testing information for the Bag app
+- For the bag app one suite was written to test the views
+- The bag app does not have any forms or models
+- The suite contains 8 unit tests
+![Suite](readme/unit_tests/bag_test_views.PNG)
+- In terms of coverage when run as part of the 13 suites, it gives the following code coverage
+![Coverage](readme/unit_tests/bag_coverage.PNG)
 
-## Automated testing information
+### Unit testing information for the Checkout app
+- For the checkout app three suites were written to test the views, form and models
+- The suites contain 3 unit tests
+![Suite](readme/unit_tests/checkout_suites.PNG)
+- In terms of coverage when run as part of the 13 suites, it gives the following code coverage
+![Coverage](readme/unit_tests/checkout_coverage.PNG)
+
+### Unit testing information for the Favourites app
+- For the favourites app two suites were written to test the views and models
+- The favourites app does not have any forms
+- The two suites contain 8 unit tests
+![Suite](readme/unit_tests/favourites_suites.PNG)
+- In terms of coverage when run as part of the 13 suites, it gives the following code coverage
+![Coverage](readme/unit_tests/favourites_coverage.PNG)
+
+### Unit testing information for the Home app
+- For the home app one suite was written to test the views
+- The home app does not have any forms or models
+- The suite contains 1 unit tests
+![Suite](readme/unit_tests/home_test_views.PNG)
+- In terms of coverage when run as part of the 13 suites, it gives the following code coverage
+![Coverage](readme/unit_tests/home_coverage.PNG)
+
+### Unit testing information for the News app
+- For the news app two suites were written to test the views and models
+- The forms are tested as part of these suites
+- The two suites contain 17 unit tests
+![Suite](readme/unit_tests/news_suites.PNG)
+- In terms of coverage when run as part of the 13 suites, it gives the following code coverage
+![Coverage](readme/unit_tests/news_coverage.PNG)
+
+### Unit testing information for the Products app
+- For the products app two suites were written to test the views and models
+- The forms are tested as part of these suites
+- The two suites contain 24 unit tests
+![Suite](readme/unit_tests/products_suites.PNG)
+- In terms of coverage when run as part of the 13 suites, it gives the following code coverage
+![Coverage](readme/unit_tests/products_coverage.PNG)
+
+### Unit testing information for the Profile app
+- For the products app two suites were written to test the views and models
+- The forms are tested as part of these suites
+- The two suites contain 4 unit tests
+![Suite](readme/unit_tests/profiles_suites.PNG)
+- In terms of coverage when run as part of the 13 suites, it gives the following code coverage
+![Coverage](readme/unit_tests/profiles_coverage.PNG)
+
+## Automated UI testing information
 - I wrote a simple automated e2e testing on UILIcious(www.uilicious.com)
 - The test accesses all pages and ensures the simple e2e flow of accessing all pages is successful
 - Below are screenshots of the tests(steps and results) running on UILicious(Desktop, Chrome and Mozilla Firefox)
@@ -79,7 +136,7 @@ I used https://validator.w3.org/ to validate the html files
 
 Page | Result | Test Detail/Screenshot
 ------------ | ------------- | -------------
-bag/templates/bag/bag.html  |  |
+bag/templates/bag/bag.html  | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_bag.PNG) 
 bag/templates/bag/bag.html (Empty)  | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_bag_empty.PNG) 
 checkout/templates/checkout/checkout.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_checkout.PNG)  
 checkout/templates/checkout/checkout_success.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_checkout_success.png)  
@@ -104,7 +161,6 @@ templates/allauth/account/password_change.html | 0 errors and 0 contrast errors|
 templates/allauth/account/password_reset.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_forgot_password.PNG)
 templates/allauth/account/password_reset_done.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_change_password_confirmed.png)
 templates/allauth/account/verification_sent.html | 0 errors and 0 contrast errors| [Results](readme/html_validation/html_validation_verification_email_sent.png)
-templates/allauth/account/verification_email_required.html | |
 <br>
 
 ## CSS Validation Service
