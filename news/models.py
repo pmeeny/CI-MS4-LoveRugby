@@ -32,7 +32,9 @@ class News(models.Model):
         on_delete=models.CASCADE,
         related_name='news_items'
     )
-    news_item_text = models.TextField()
+    news_item_text = models.TextField(
+        max_length=500,
+    )
     image = models.ImageField(
         null=True,
         blank=True
@@ -68,6 +70,7 @@ class Comment(models.Model):
 
     user = models.ForeignKey(
         User,
+        null=True,
         on_delete=models.CASCADE
     )
     new_story = models.ForeignKey(
@@ -77,6 +80,7 @@ class Comment(models.Model):
     )
     comment_text = models.TextField(
         verbose_name=_('Comment Text'),
+        max_length=250,
         null=False,
         blank=False
     )

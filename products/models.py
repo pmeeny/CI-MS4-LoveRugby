@@ -120,9 +120,6 @@ class Product(models.Model):
         null=True,
         blank=True
     )
-    new_release = models.BooleanField(
-        default=False
-    )
     image_url = models.URLField(
         verbose_name=_('Image url'),
         max_length=1024,
@@ -175,6 +172,7 @@ class Review(models.Model):
     )
     review_text = models.TextField(
         verbose_name=_('Review Text'),
+        max_length=250,
         null=False,
         blank=False
     )
