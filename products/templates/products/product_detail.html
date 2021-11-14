@@ -171,7 +171,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col mb-4">
-                                    <h2 class="text-uppercase mt-3">Comments:</h2>
+                                    <h2 class="text-uppercase mt-3">reviews:</h2>
                                 </div>
                             </div>
                             <div class="row">
@@ -218,7 +218,7 @@
                             <div class="row pb-5">
                                     <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
                                         {% if request.user.is_authenticated %}
-                                            <h3 class="text-uppercase">Add a comment</h3>
+                                            <h3 class="text-uppercase">Add a review</h3>
                                             <form class="form" method="POST" action="{% url 'add_review' product.id %}">
                                                 {% csrf_token %}
                                                 {{ review_form|crispy }}

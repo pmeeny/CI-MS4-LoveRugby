@@ -29,10 +29,12 @@ def news_items(request):
         News.objects.filter(status=0).order_by('-create_date')
 
     news_items_published = setup_pagination(news_items_published, request, 4)
+    news_items_count = News.objects.filter().count()
 
     context = {
         'news_items_published': news_items_published,
         'news_items_drafts': news_items_drafts,
+        'news_items_count': news_items_count
     }
 
     return render(request, 'news/news.html', context)

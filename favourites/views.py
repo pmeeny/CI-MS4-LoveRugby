@@ -23,12 +23,14 @@ def view_product_favourites(request):
     Returns:
         Renders the request, template and context
     """
+    favourites_items_count=0
     try:
         all_favourites = Favourites.objects.filter(username=request.user.id)[0]
     except IndexError:
         favourites_items = None
     else:
         favourites_items = all_favourites.products.all()
+        favourites_items_count = all_favourites.products.all().count()
         favourites_items = setup_pagination(favourites_items, request, 4)
 
     if not favourites_items:
@@ -37,6 +39,7 @@ def view_product_favourites(request):
     template = 'favourites/favourites.html'
     context = {
         'favourites_items': favourites_items,
+        'favourites_items_count': favourites_items_count
     }
     return render(request, template, context)
 

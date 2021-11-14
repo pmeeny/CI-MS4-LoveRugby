@@ -57,6 +57,7 @@ def all_products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
+    product_count = products.count()
     products = setup_pagination(products, request, 4)
 
     context = {
@@ -64,6 +65,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        'product_count' : product_count
     }
 
     return render(request, 'products/products.html', context)
@@ -286,8 +288,10 @@ def sale_items(request):
     """
     sale_items = None
     sale_items = Product.objects.exclude(pre_sale_price__isnull=True)
+    sale_items_count = sale_items.count()
 
     context = {
         'sale_items': sale_items,
+        'sale_items_count': sale_items_count
     }
     return render(request, 'products/sale_items.html', context)
