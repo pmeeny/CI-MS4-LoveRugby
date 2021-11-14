@@ -14,18 +14,23 @@ The testing approach(described in detail in this testing readme) is as follows:
 - The structure of the unit test is based on the model/form/view structure, for example test_views.py, test_model.py and test_forms.py on a per app basis
 - I used coverage(coverage.py) for code coverage and to ensure a high code coverage was met on all python files in the project
 - An overall report is available at the following link [Coverage Report](readme/coverage/index.html)
+- To run the unit tests click on Run "Test with Coverage" in your IDE, or at the command line "python manage.py test"
+<br>![Unit test run 1](readme/misc/unit_test1.PNG)
+- A tests database is created and deleted for the test run, and each suite has setup:<code>def setUp(self):</code> and teardown:<code>def tearDown(self):</code> methods to create 
+the relevant objects needed for the test suite
+<br>![Unit test run 1](readme/misc/unit_test2.PNG)
 
 ### Unit testing information for the Bag app
 - For the bag app one suite was written to test the views
 - The bag app does not have any forms or models
-- The suite contains 8 unit tests
+- The views suite contains 8 unit tests testing add/removing items from the bag
 <br>![Suite](readme/unit_tests/bag_test_views.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 <br>![Coverage](readme/unit_tests/bag_coverage.PNG)
 
 ### Unit testing information for the Checkout app
 - For the checkout app three suites were written to test the views, form and models
-- The suites contain 3 unit tests
+- The suites contain 3 unit tests testing the order creation and forms
 <br>![Suite](readme/unit_tests/checkout_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 <br>![Coverage](readme/unit_tests/checkout_coverage.PNG)
@@ -33,7 +38,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 ### Unit testing information for the Favourites app
 - For the favourites app two suites were written to test the views and models
 - The favourites app does not have any forms
-- The two suites contain 8 unit tests
+- The two suites contain 8 unit tests testing adding and removing favourites
 <br>![Suite](readme/unit_tests/favourites_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 <br>![Coverage](readme/unit_tests/favourites_coverage.PNG)
@@ -41,7 +46,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 ### Unit testing information for the Home app
 - For the home app one suite was written to test the views
 - The home app does not have any forms or models
-- The suite contains 1 unit tests 
+- The suite contains 1 unit tests testin the home page template
 <br>![Suite](readme/unit_tests/home_test_views.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 <br>![Coverage](readme/unit_tests/home_coverage.PNG)
@@ -49,7 +54,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 ### Unit testing information for the News app
 - For the news app two suites were written to test the views and models
 - The forms are tested as part of these suites
-- The two suites contain 17 unit tests
+- The two suites contain 17 unit tests testing add/modify/views and delete of news items and comments
 <br>![Suite](readme/unit_tests/news_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 <br>![Coverage](readme/unit_tests/news_coverage.PNG)
@@ -57,7 +62,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 ### Unit testing information for the Products app
 - For the products app two suites were written to test the views and models
 - The forms are tested as part of these suites
-- The two suites contain 24 unit tests
+- The two suites contain 24 unit tests testing add/modify/views and delete of reviews and products
 <br>![Suite](readme/unit_tests/products_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 <br>![Coverage](readme/unit_tests/products_coverage.PNG)
@@ -65,7 +70,7 @@ The testing approach(described in detail in this testing readme) is as follows:
 ### Unit testing information for the Profile app
 - For the products app two suites were written to test the views and models
 - The forms are tested as part of these suites
-- The two suites contain 4 unit tests
+- The two suites contain 4 unit tests testing the users profile and profile updates
 <br>![Suite](readme/unit_tests/profiles_suites.PNG)
 - In terms of coverage when run as part of the 13 suites, it gives the following code coverage
 <br>![Coverage](readme/unit_tests/profiles_coverage.PNG)
