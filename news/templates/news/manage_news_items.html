@@ -29,7 +29,8 @@
                                   <th scope="col">News Item Title</th>
                                   <th scope="col">Create Date</th>
                                   <th scope="col">Status</th>
-                                  <th scope="col">Action</th>
+                                  <th scope="col">Edit</th>
+                                  <th scope="col">Delete</th>
                                 </tr>
                               </thead>
                                 <tbody>
@@ -44,6 +45,8 @@
                                             {% endif %}
                                         <td>
                                             <a class="btn black-btn" href="{% url 'edit_news_item' news_item.id %}">Edit</a>
+                                        </td>
+                                        <td>
                                             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteNewsItem{{ news_item.id }}">Delete</a>
                                             <!-- Delete news item modal -->
                                             <div class="modal fade" id="deleteNewsItem{{ news_item.id }}" tabindex="-1"  aria-hidden="true">
