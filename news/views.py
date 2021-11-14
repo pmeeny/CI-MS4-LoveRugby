@@ -166,6 +166,7 @@ def news_item(request, news_item_id):
     news_item = get_object_or_404(News, pk=news_item_id)
     comments = news_item.comments.filter(new_story=news_item_id).\
         order_by('-create_date')
+    number_of_comments = comments.count()
     comments = setup_pagination(comments, request, 2)
 
     comment = None
@@ -192,6 +193,7 @@ def news_item(request, news_item_id):
         'comment_form': comment_form,
         'comments': comments,
         'comment': comment,
+        'number_of_comments': number_of_comments,
     }
 
     return render(request, 'news/news_item.html', context)
