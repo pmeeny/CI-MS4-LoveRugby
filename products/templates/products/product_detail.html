@@ -113,6 +113,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <p class="mb-0 uppercase">Colour: {{ product.colour }}</p>
+                                    <p class="mb-0 uppercase">Code: {{ product.code }}</p>
                                 </div>
                             </div>
                             {% if product.category %}
@@ -142,11 +143,6 @@
                         <h2 class="mb-0 product-name">{{ product.name }}</h2>
                         <p class="mb-0">{{ product.description }}</p>
                         <br>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="mb-0 uppercase">Code: {{ product.code }}</p>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
                         <h2 class="mb-0 product-name">THE FINER DETAILS</h2>
@@ -171,11 +167,11 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col mb-4">
-                                    <h2 class="text-uppercase mt-3">reviews:</h2>
+                                    <h2 class="text-uppercase mt-3">reviews ({{ number_of_reviews }})</h2>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-6">
                                     {% for review in reviews %}
                                         <div class="shadow-sm p-1 mb-3 bg-white rounded">
                                             <p class="font-weight-bold mb-2 mt-3">Posted by: {{ review.user }} on {{ review.create_date }}</p>
