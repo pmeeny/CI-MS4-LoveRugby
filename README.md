@@ -1,9 +1,11 @@
 # Love Rugby shop
-Love Rugby is a website that allows users 
+Love Rugby is a an ecommerce rugby website allowing users to purchase rugby boots, jerseys and accesories developed for Milestone 4 as milestone project 4 as part of the Code Institute - Diploma in Software Development (Full stack) course.
 
 - There are two types of users, and I have set up accounts for both
     - An admin user account has been set up with username/password of administrator/Password123
     - A regular user account has been set up with username/password of mikemurphy/Password123
+    - When making a payment as a regular user, a test credit card of 4242424242424242 has been setup for the card number
+    - For the expiry date and CVC any number(s) can be used
 <br>
 
 **View the live site [here](https://ci-ms4-loverugby.herokuapp.com/)**
@@ -50,69 +52,76 @@ I have structured the website into 19 pages, each with clear, concise structure,
 The project is divided into a number of apps, as is built using the Django Framework
 The apps are described as follows
 bag (part of the original Boutique Ado project)
-bag (part of the original Boutique Ado project)
+checkout (part of the original Boutique Ado project)
 favourites (A new app that allows a user to view, add and remove favourites) 
 bag (part of the original Boutique Ado project, I built onto this app to add a review(rating and comment))
    
+
+
 ### Database
 - The website is a data-centric one with html, javascript, css used with the bootstrap(version 5) framework as a frontend
-- The backend consists of Python built with the Django framework with a database of a postgres
-
-
-#### Conceptual database model
-The first step in the database design was to create a conceptual data model. The helped me understand the design at a conceptual level while enabling me to understand the required collections in the database
-![conceptual](football_memories/static/images/database_design/conceptual_design_model.png)
+- The backend consists of Python built with the Django framework with a database of a Postgres for the deployed Heroku version(production)
+- Postgres is a powerful, open source object-relational database system (https://www.postgresql.org/)
+- A SQLLite database was used for local development (https://www.sqlite.org/index.html)
 
 #### Physical database model
-From the conceptual database model I created the physical database model. This model contains all fields stored in the database collections with their data type and mimics the structure of what is actually stored in the mongo database(mongodb)
-<br>
-Note: The lines/links in the diagram denote the relationship in the python code between the different collection fields and not foreign keys, for example 
-when a memory is created in the memories' collection, it also stores the tournament name from the tournament's collection.
-![conceptual](football_memories/static/images/database_design/physical_design_model.png)
-
-#### Postgres DB database information
-- One production database(Postgres) was created to store site information, it contains five collections described below
+This model contains all fields stored in the database collections with their data type and mimics the structure of what is actually stored in the Postgres database
+<br>![Database model](readme/misc/database_schema.png)
 
 
-#### Model
-- The model
+#### Models
+- The following models were created to represent the database model structure for the websit
+##### User Model
+- The User model contains information about the user. It is part of the Django allauth library
+- The model contains the following fields: username, password, first_name, last_name, email, is_staff, is_active, is_superuser, last_login, date_joined
 
-### Amazon Web Services S3 bucket
-While postgres stores the majority of the users' data in the database, any images added
-by an admin user for a product is stored in an Amazon Web services(AWS) S3(storage) bucket. 
-I made this choice for performance reasons(https://aws.amazon.com/s3/faqs/)
-and to challenge myself to learn how to integrate the site with AWS.
-Here are the steps I took for the integration
-1. I created an account with AWS, and created an S3 bucket named "ci-ms3-football-memories"
-![s3 bucket](football_memories/static/images/readme/aws_s3_bucket.PNG)
-2. I created a user in AWS IAM, and gave the user the AmazonS3FullAccess permission   
-3. I then gave the bucket policy the necessary permissions to allow my application to access 
-the S3 bucket
-![s3 bucket policy](football_memories/static/images/readme/aws_s3_policy.PNG)
-4. I imported the Boto3 python library (https://boto3.amazonaws.com/) in the util.py file
-I made a design decision to have an util.py in an util flask route python file that would be used to store common code
-that could be used by multiple routes
-5. The relevant s3 variables for the bucket name, url and access/secret keys are defined at the top of the util.py file
-   <code>
-   s3_bucket_name = "ci-ms3-football-memories"
-s3_bucket_url = "https://ci-ms3-football-memories.s3.eu-west-1.amazonaws.com/"
-client = boto3.client('s3', 
-                aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
-                aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"))
-   </code>
-6. A single function was written named storeImageAWSS3Bucket that takes one parameter, the filename to store
-7. This single function is used by the tournament and memories routes to store the images in the S3 bucket
-8. This function stores a file in an AWS S3 bucket using boto3. The filename is in the form timestamp + name of file added by the user. The timestamp ensures uniqueness for every file added to the s3 bucket allowing users to use the same filename if desired.<code>
-   image_file = secure_filename(image.filename)
-    image_to_upload = timestamp + image_file</code>
-9. The boto3 put_object method is used to store the image taking two parameters, the file name and actual file
-<code>s3.Bucket(s3_bucket_name).put_object(Key=image_to_upload, Body=image)</code>
-10. An image url is returned, and it is the image url that is stored in the mongodb for the relevant tournament or memory, described below in the two screenshots, field 
-names memory_image and tournament_image in the memory and tournament collections
-<code>image_url = s3_bucket_url + image_to_upload</code>
-![tournaments](football_memories/static/images/database_design/tournaments.PNG)
-![memories](football_memories/static/images/database_design/memories.PNG)
-   
+##### UserProfile Model
+- The UserProfile model has a one-to-one relationship with User
+- The model contains the following fields: default_phone_number, default_street_address1, default_street_address2
+default_town_or_city, default_county, default_postcode and default_country
+
+##### Order Model
+- The Order model contains information about orders made on the website.
+- It contains UserProfile as a foreign-key.
+- The model contains the following fields: order_number, user_profile, full_name, email, phone_number, country, postcode, town_or_city, street_address1
+, street_address2, county, date, delivery_cost, order_total, grand_total, original_bag, stripe_pid
+
+##### OrderLineItem Model
+- The OrderLineItem model contains information about an entry in a order, for orders made on the website.
+- It contains Order and Product as foreign-keys.
+- The model contains the following fields: order, product, product_size, quantity, lineitem_total
+
+##### Favourites Model
+- The Favourites model contains a users favourite products
+- It contains Products as many-to-many field, and User as a one-to-one relationaship
+- The model contains the following fields: products, username
+
+##### Product Model
+- The Product Model represents a product and its details
+- It contains Category as a foreign-key
+- The model contains the following fields: name, category, price, colour, code, description, feature1, feature2, feature3, feature4, has_sizes, rating, pre_sale_price, image_url, image
+- The image field contains the product image
+- The image_url field contains the url to where the image file is physically stored, for example AWS S3 bucket
+
+##### Category Model
+- The Category model contains a product category
+- The model contains the following fields: name, friendly_name
+
+##### News Model
+- The News model contains a new item and its details
+- It contains User as a foreign-key
+- The model contains the following fields: title, user, news_item_text, update_date, create_date, status
+
+##### Comment Model
+- The News model contains a comment on a new story
+- It contains News as a foreign-key
+- The model contains the following fields: user, new_story, comment_text, create_date
+
+##### Review Model
+- The Review model contains a review of a product by a user
+- It contains Uer and Product as foreign-keys.
+- The model contains the following fields: user, product, product_rating, review_text, create_date
+
 
 ## Scope
 There is overlap in terms of user stories for the two types of users, and they are described below
@@ -231,6 +240,10 @@ Number | Update
 ## Libraries and other resources
 - Bootstrap 5.0 (https://getbootstrap.com/docs/5.0)
     - The project uses the bootstrap library for some UI components in the website (Buttons, Card, Carousel, Modal, Pagination, Navbar)
+- Postgres (https://www.postgresql.org/)
+  - The deployed project on Heroku uses a Postgres database
+- SQLLite (https://www.sqlite.org/index.html)
+  - The database uses in local development was a SQLLite database
 - Gitpod (https://gitpod.io/)
     - Gitpod was used as an IDE for the project initially, then I switched to Pycharm
 - Pycharm (https://www.jetbrains.com/pycharm/)
@@ -275,10 +288,12 @@ Number | Update
   - For javascript code quality
 - PEP8 (https://www.python.org/dev/peps/pep-0008/)
   - I used the pep8 code analysis plugin in Pycharm to check for pep8 errors
-- Stripe
+- Stripe (https://www.stripe.com)
   - For processing a test credit card to test a payment as part of an order
-- Coverage
+- Coverage (https://coverage.readthedocs.io/en/6.1.2/)
   - For unit test code coverage reports
+- Quick Database diagrams (https://www.quickdatabasediagrams.com)
+  - For the database schema diagram
 
 # Testing
 The testing information and results for this project are documented in [TESTING.md](TESTING.md)
@@ -298,9 +313,7 @@ To set up the project to send emails and to use a Google account as an SMTP serv
 1. Create an email account at google.com, login, navigate to Settings in your gmail account and then click on Other Google Account Settings
 2. Turn on 2-step verification and follow the steps to enable
 3. Click on app passwords, select Other as the app and give the password a name, for example Django
-
-![App password](readme/misc/gmail_app_password.png)
-
+<br>![App password](readme/misc/gmail_app_password.png)
 4. Click create and a 16 digit password will be generated, note the password down
 5. In the env.py file, create an environment variable called EMAIL_HOST_PASS with the 16 digit password
 6. In the env.py file, create an environment variable called EMAIL_HOST_USER with the email address of the gmail account
@@ -318,9 +331,7 @@ To set up the project to send emails and to use a Google account as an SMTP serv
 1. Register for an account at stripe.com
 2. Click on the Developers section of your account once logged in
 3. Under Developers, click on the API keys section
-
-![API keys](readme/misc/stripe_keys1.png)
-
+<br>![API keys](readme/misc/stripe_keys1.png)
 4. Note the values for the publishable and secret keys
 5. In your local enviroment(env.py) and heroku, create enviroment variables STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY with the publishable and secret key values
 <br><code>os.environ.setdefault('STRIPE_PUBLIC_KEY', 'YOUR_VALUE_GOES_HERE')</code>
@@ -328,7 +339,7 @@ To set up the project to send emails and to use a Google account as an SMTP serv
 6. Back in the Developers section of your stripe account click on Webhooks
 7. Create a webhook with the url of your website <url>/checkout/wh/, for example: https://ci-ms4-loverugby.herokuapp.com/checkout/wh/
 8. Select the payment_intent.payment_failed and payment_intent.succeeded as events to send
-![Webhook](readme/misc/stripe_keys2.png)
+<br>![Webhook](readme/misc/stripe_keys2.png)
 9. Note the key created for this webhook
 10. In your local enviroment(env.py) and heroku, create enviroment variable STRIPE_WH_SECRET with the secret values
 <code>os.environ.setdefault('STRIPE_WH_SECRET', 'YOUR_VALUE_GOES_HERE')</code>
@@ -350,6 +361,30 @@ There are a number of applications that need to be configured to run this applic
 <br>![AWS Bucket Policy](readme/misc/aws_bucket_policy.png)
 8. In the permissions section, click edit on the Access control list(ACL)
 9. Set Read access for the Bucket ACL for Everyone(Public Access)
+10. The bucket is created, the next step is to open the IAM application to setup access
+11. Create a new user group caleld "ci-ms4-rugby-shop"
+12. Add the "AmazonS3FullAccess" policy permission for the user group
+<br>![AWS Bucket Policy](readme/misc/aws_user_group.png)
+13. Go to "Policies" and click "Create New Policy"
+14. Click "Import Managed Policy" and select "AmazonS3FullAccess" > Click 'Import'.
+15. In the JSON editor, update the policy "Resource" to the following
+<br><code>"Resource": [</code>
+<br><code>"arn:aws:s3:::ci-ms4-rugby-shop",</code>
+<br><code>"arn:aws:s3:::ci-ms4-rugby-shop/*"</code>
+<br><code>]</code>
+16. Give the policy a name and click "Create Policy"
+17. Add the newly created policy to the user group
+<br>![AWS Bucket Policy](readme/misc/aws_policy.png)
+18. Go to Users and create a new user
+19. Add the user to the user group ci-ms4-rugby-shop
+20. Select "Programmatic access" for the access type
+21. Note the AWS_SECRET_ACCESS_KEY and AWS_ACCESS_KEY_ID variables, they are used in other parts of this README for local deployment and Heroku setup
+22. The user is now created with the correct user group and policy
+<br>![AWS Bucket Policy](readme/misc/aws_user.png)
+23. Note the AWS code in settings.py. Note an enviroment variable called USE_AWS must be set to use these settings, otherwise it will use local storage
+<br>![AWS Settings](readme/misc/aws_settings.png)
+24. These settings setup a cache policy, set the bucket name, and the enviroment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY that you set in your aws account
+25. The also set the media/static folders that must be setup in the AWS S3 bucket to store the media and static files 
 
 ## Postgres Database
 Postgres is the database used in the application for production. The database is created as part of setting up
