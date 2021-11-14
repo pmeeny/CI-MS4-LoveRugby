@@ -40,6 +40,7 @@ class UserProfileForm(forms.ModelForm):
             'default_county': 'County, State or Locality',
         }
 
+
         self.fields['default_phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if field != 'default_country':
@@ -50,3 +51,4 @@ class UserProfileForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'profile-form-input'
             self.fields[field].label = True
+            self.fields[field].label = placeholder.__str__()
