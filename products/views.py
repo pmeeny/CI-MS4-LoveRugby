@@ -84,6 +84,7 @@ def product_detail(request, product_id):
     review_form = ProductReviewForm(data=request.POST or None)
 
     reviews = Review.objects.filter(product=product)
+    number_of_reviews = reviews.count()
     reviews = setup_pagination(reviews, request, 3)
     average_rating_rounded = get_average_rating(reviews)
 
@@ -98,6 +99,7 @@ def product_detail(request, product_id):
         'is_product_in_favourites': is_product_in_favourites,
         'review_form': review_form,
         'reviews': reviews,
+        'number_of_reviews': number_of_reviews,
         'average_rating_rounded': average_rating_rounded
     }
 
