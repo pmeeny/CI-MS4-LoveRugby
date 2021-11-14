@@ -285,7 +285,7 @@ body {
 	z-index: -1;
 }
 .card {
-    width: 300px !important;
+    width: 300px;
     border: 0;
     margin: auto;
     margin-bottom: 10px;
@@ -317,7 +317,7 @@ input[name='q']::placeholder {
     margin-bottom: 10px;
 }
 .news-card {
-    width: 400px !important;
+    width: 400px;
     border: 0;
     margin: auto;
     margin-bottom: 10px;
@@ -338,27 +338,27 @@ input[name='q']::placeholder {
 /* ----- End of Styling ----- */
 /* ----- Start of Media Queries ----- */
 /* --- Greater than 1200px --- */
-@media (min-width: 1200px) {
+@media screen and (max-width: 1200px) {
     .container {
       max-width: 80%;
     }
   }
-  /* fixed top navbar only on medium and up */
-  @media (min-width: 992px) {
-      .fixed-top-desktop-only {
-          position: fixed;
-          top: 0;
-          right: 0;
-          left: 0;
-          z-index: 1030;
-      }
-      .header-container {
-          padding-top: 164px;
-          background-color: white;
-      }
+/* fixed top navbar only on medium and up */
+@media screen and (max-width: 992px) {
+  .fixed-top-desktop-only {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
   }
+  .header-container {
+      padding-top: 164px;
+      background-color: white;
+  }
+}
 /* --- Greater than 991px --- */
-@media (max-width: 991px) {
+@media screen and (max-width: 991px) {
     .header-container {
         padding-top: 92px;
     }
@@ -393,17 +393,68 @@ input[name='q']::placeholder {
     .increment-qty, .decrement-qty {
         padding: .25rem .5rem !important;
     }
+    .message-container {
+        top: 60px;
+    }
 }
 /* --- Greater than 576px --- */
-@media (max-width: 576px) {
-    .registration-form form{
+@media screen and (max-width: 576px) {
+    .container {
+      max-width: 100%;
+    }
+    .registration-form form {
         padding: 50px 20px;
     }
-    .registration-form .form-icon{
+    .registration-form .form-icon {
         width: 70px;
         height: 70px;
         font-size: 30px;
         line-height: 70px;
+    }
+    .news-card {
+        width: 300px;
+    }
+    .news-card-img-top {
+        width: 280px;
+        height: 280px;
+    }
+    .card-img-top {
+        width: 280px;
+        height: 280px;
+    }
+}
+/* SMALL SCREEN */
+@media screen and (max-width: 481px) {
+    .dropdown-menu {
+        font-size: 0.8rem;
+    }
+    .message-container {
+        top: 60px;
+        right: 15px;
+    }
+}
+/* X-SMALL SCREEN */
+@media (max-width: 320px) {
+    .container {
+      max-width: 100%;
+    }
+    .news-card {
+        width: 250px;
+    }
+    .news-card-img-top {
+        width: 200px;
+        height: 200px;
+    }
+    .card-img-top {
+        width: 200px;
+        height: 200px;
+    }
+    .dropdown-menu {
+        font-size: 0.7rem;
+    }
+    .message-container {
+        top: 60px;
+        right: -25px;
     }
 }
 /* ----- End of Media Queries ----- */
