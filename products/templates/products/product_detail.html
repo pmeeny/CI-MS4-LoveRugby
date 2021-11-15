@@ -179,7 +179,7 @@
                                         <p class="text-black mb-2 mt-3">Review Text: {{ review.review_text }}</p>
                                             {% if comment.user == request.user or request.user.is_superuser %}
                                             <!-- Delete Button trigger modal -->
-                                            <button type="button" class="btn green-btn" data-bs-toggle="modal"
+                                            <button type="button" class="btn black-btn" data-bs-toggle="modal"
                                                 data-bs-target="#delete-review{{ review.id }}">
                                                 Delete
                                             </button>
@@ -196,7 +196,6 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a href="{% url 'product_detail' product.id %}" class="btn green-btn"> Cancel</a>
-
                                                             <form action="{% url 'delete_review' product.id review.user.username %}" method="POST">
                                                                 {% csrf_token %}
                                                                 <button type="submit" class="btn red-btn">Delete</button>
@@ -218,7 +217,7 @@
                                             <form class="form" method="POST" action="{% url 'add_review' product.id %}">
                                                 {% csrf_token %}
                                                 {{ review_form|crispy }}
-                                                <button class="btn black-btn" type="submit"> Post Review</button>
+                                                <button class="btn green-btn" type="submit"> Post Review</button>
                                             </form>
                                         {% else %}
                                             <div>

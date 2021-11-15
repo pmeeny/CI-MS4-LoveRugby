@@ -36,8 +36,8 @@
                             <p class="card-text">{{ news_item.news_item_text }}</p>
                             <p class="text-muted">Posted By: {{ news_item.user }} on the {{ news_item.create_date }}</p>
                             {% if news_item.user == request.user or request.user.is_superuser %}
-                                <a class="btn btn-black" href="{% url 'edit_news_item' news_item.id %}" role="button">Edit</a>
-                                <button type="button" class="btn green-btn" data-toggle="modal"
+                                <a class="btn green-btn" href="{% url 'edit_news_item' news_item.id %}" role="button">Edit</a>
+                                <button type="button" class="btn black-btn" data-toggle="modal"
                                 data-target="#deleteNewsItem">
                                 Delete</button>
                                 <!-- Delete Button Modal -->
@@ -77,7 +77,7 @@
                             <p class="text-black mb-2 mt-3">{{ comment.comment_text }}</p>
                             {% if comment.user == request.user or request.user.is_superuser %}
                             <!-- Delete Button trigger modal -->
-                            <button type="button" class="btn green-btn" data-bs-toggle="modal"
+                            <button type="button" class="btn black-btn" data-bs-toggle="modal"
                                 data-bs-target="#delete-comment{{ comment.id }}">
                                 Delete
                             </button>
@@ -141,7 +141,7 @@
                                     <fieldset>
                                         {{ comment_form|crispy }}
                                     </fieldset>
-                                    <button class="btn black-btn" type="submit"> Post
+                                    <button class="btn green-btn" type="submit"> Post
                                         Comment</button>
                                 </form>
                         {% else %}
