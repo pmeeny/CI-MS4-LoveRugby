@@ -224,9 +224,12 @@
                 {% if request.user.is_superuser %}
                     <li class="mb-2"><a href="{% url 'add_product' %}" class="font-black">Product Management</a></li>
                     <li class="mb-2"><a href="{% url 'manage_news_items' %}" class="font-black">News Item Management</a></li>
+                {% else %}
+                    <li class="mb-2"><a href="{% url 'profile' %}" class="font-black">My Profile</a></li>
+                    <li class="mb-2"><a href="{% url 'news_items' %}" class="font-black">News</a></li>
+                    <li class="mb-2"><a href="{% url 'sale_items' %}" class="font-black">Sale</a></li>
                 {% endif %}
-                  <li class="mb-2"><a href="{% url 'profile' %}" class="font-black">My Profile</a></li>
-              {% else %}
+            {% else %}
                 <li class="mb-2"><a href="{% url 'account_signup' %}" class="font-black">Register</a></li>
                 <li class="mb-2"><a href="{% url 'account_login' %}" class="font-black">Login</a></li>
             {% endif %}
