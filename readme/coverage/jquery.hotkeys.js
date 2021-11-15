@@ -61,7 +61,7 @@
 			if ( event.ctrlKey && special !== "ctrl" ) {
 				modif += "ctrl+";
 			}
-			
+
 			if ( event.metaKey && !event.ctrlKey && special !== "meta" ) {
 				modif += "meta+";
 			}
