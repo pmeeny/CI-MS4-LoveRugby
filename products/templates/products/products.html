@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load product_tools %}
 {% block extra_title %}Products{% endblock %}
 {% block page_header %}
     <div class="container header-container">
@@ -104,7 +105,7 @@
             <nav aria-label="Products sorted">
               <ul class="pagination">
                 {% if products.has_previous %}
-                  <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a></li>
+                  <li class="page-item"><a class="page-link" href="?{% param_replace page=products.previous_page_number %}">Previous</a></li>
                 {% else %}
                   <li class="disabled page-item"><span class="page-link">Previous</span></li>
                 {% endif %}
@@ -112,11 +113,11 @@
                   {% if products.number == i %}
                     <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
                   {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    <li class="page-item"><a class="page-link" href="?{% param_replace page=i %}">{{ i }}</a></li>
                   {% endif %}
                 {% endfor %}
                 {% if products.has_next %}
-                  <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
+                  <li class="page-item"><a class="page-link" href="?{% param_replace page=products.next_page_number %}">Next</a></li>
                 {% else %}
                   <li class="disabled page-item"><span class="page-link">Next</span></li>
                 {% endif %}
