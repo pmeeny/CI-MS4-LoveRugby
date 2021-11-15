@@ -128,7 +128,8 @@ Bug no. | Bug description |  Bug fix |
 3 | If a user has 0 favourites, pagination setup call in the view is being called even though there are no items | The fix was to move the location of the pagination setup call(util.py) |
 4 | Ths stripe webhook was not working on production. I had the same secret set on heroku and local development, even though I had two different webhooks defined(development and production) |The fix was to set the correct webhook secret as an enviroment variable in Heroku
 5 | The following error was displayed in logs norderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'products.models.Product'> QuerySet.| The fix was to update the product and review models to order by id (models.py in Product app)
-
+6 | Combining filtering and pagination does not include the filter text in the pagination page link | Fix was to implement a product_tools template tags from https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/
+7 | The news item count on the news page was incorrect as it included draft and published in its count | The fix was to update the filter to only include published items <code>News.objects.filter(status=1).count()</code>
 
 # Code Validators and Website Analysis
 The website's pages was tested against the following validators:
