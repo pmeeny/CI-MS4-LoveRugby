@@ -1,0 +1,67 @@
+[
+   {
+      "model":"news.news",
+      "pk":7,
+      "fields":{
+         "title":"REVEAL: THE LEINSTER HOME KIT 20/21",
+         "user":1,
+         "news_item_text":"The new home jersey design has been inspired by the number that is assigned to Leinster Rugby players when they make their first senior appearance for the province.\r\n\r\nThat number stays with each player forever and represents their contribution to Leinster Rugby.\r\n\r\nThe fade from ænight indigoÆ into æglory blueÆ on the jersey represents the proud tradition of producing players From The Ground Up.",
+         "image":"https://ci-ms4-rugby-shop.s3.eu-west-1.amazonaws.com/media/products/600x400_2.jpg",
+         "update_date":"2021-11-15T13:54:10.219Z",
+         "create_date":"2021-11-15T13:54:10.219Z",
+         "status":1
+      }
+   },
+   {
+      "model":"news.news",
+      "pk":8,
+      "fields":{
+         "title":"MUNSTER RUGBY HOME 21/22",
+         "user":1,
+         "news_item_text":"This yearÆs Munster Rugby Home jersey includes interwoven crown graphics which link to the provincial coat of arms.\r\nThe 2021/22 Munster Rugby Home kit returns to a deeper shade of red and features a subtle hoop design.\r\nA pinstripe, ribbed collar and 3D club crest have been added to the jersey to create a more premium feel for fans.",
+         "image":"https://ci-ms4-rugby-shop.s3.eu-west-1.amazonaws.com/media/products/Munster_Mike.jpg",
+         "update_date":"2021-11-15T14:03:58.716Z",
+         "create_date":"2021-11-15T14:03:46.472Z",
+         "status":1
+      }
+   },
+   {
+      "model":"news.news",
+      "pk":9,
+      "fields":{
+         "title":"IRELAND 29-20 NEW ZEALAND",
+         "user":1,
+         "news_item_text":"Ireland celebrated their greatest win of the Andy Farrell era so far as they deservedly held on to defeat New Zealand 29-20 in a pulsating encounter in Dublin. The Irish controlled much of a frenetic contest against the worldÆs top-ranked side to send a boisterous Aviva Stadium crowd home happy.",
+         "image":"https://ci-ms4-rugby-shop.s3.eu-west-1.amazonaws.com/media/products/3168.jpg",
+         "update_date":"2021-11-15T14:05:48.621Z",
+         "create_date":"2021-11-15T14:05:48.621Z",
+         "status":1
+      }
+   },
+   {
+      "model":"news.news",
+      "pk":10,
+      "fields":{
+         "title":"WALES 38-23 FIJI",
+         "user":1,
+         "news_item_text":"For 60 minutes a first Welsh defeat to Fiji since 2007 looked on the cards as Wayne PivacÆs side huffed and puffed against 14 men. Wales, frankly, were awful for large parts.\r\n\r\nThat they came out on top to record a first win in the autumn was down to a late salvo which saw them score three tries in the final quarter through Alex Cuthbert, Louis Rees-Zammit and Liam Williams. Rees-ZammitÆs effort clinched the game as he showed his trademark pace. It was a stunning effort.",
+         "image":"https://ci-ms4-rugby-shop.s3.eu-west-1.amazonaws.com/media/products/3300.jpg",
+         "update_date":"2021-11-15T14:07:20.010Z",
+         "create_date":"2021-11-15T14:07:20.010Z",
+         "status":1
+      }
+   },
+   {
+      "model":"news.news",
+      "pk":11,
+      "fields":{
+         "title":"SCOTLAND 15-30 SOUTH AFRICA",
+         "user":1,
+         "news_item_text":"South Africa, who were slow to lineout before are now moving like a glacier carrying heavy shopping. When they finally arrive, their latest in their own half is won cleanly and cleared. You have to admire the top-tier gamesmanship combined with ability of this team.\r\n\r\nSpeaking of ability, Cobus Reinach has been a revelation in this second half.",
+         "image":"https://ci-ms4-rugby-shop.s3.eu-west-1.amazonaws.com/media/products/3269.jpg",
+         "update_date":"2021-11-15T14:09:40.182Z",
+         "create_date":"2021-11-15T14:09:40.182Z",
+         "status":1
+      }
+   }
+]
