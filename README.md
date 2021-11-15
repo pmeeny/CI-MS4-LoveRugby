@@ -422,8 +422,9 @@ To run this project locally, you will need to clone the repository
 14. Run "python3 manage.py createsuperuser" to create a super/admin user
 15. Run "python3 manage.py loaddata categories.json" on the categories file in products/fixtures to create the categories
 16. Run "python3 manage.py loaddata products.json" on the products file in products/fixtures to create the products
-17. Start the application by running <code>python3 manage.py runserver</code>
-18. Open the application in a web browser, for example: http://127.0.0.1:8000/
+17. Run "python3 manage.py loaddata news.json" on the news file in news/fixtures to create the news items(optional)
+18. Start the application by running <code>python3 manage.py runserver</code>
+19. Open the application in a web browser, for example: http://127.0.0.1:8000/
 
 ## Heroku
 To deploy this application to Heroku, run the following steps.
@@ -484,6 +485,8 @@ to write
 - Bootstrap 5.0, I used some of the sample code from https://getbootstrap.com/docs/5.0/customize/components/ for a number of 
   omponents(Buttons, Card, Carousel, Modal, Pagination, Navbar)
 
+- For combining filtering and pagination, I used code from https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/
+
 # Content
 - Font Awesome (http://fontawesome.com)    
     - The icons used on the site from font awesome
@@ -497,6 +500,8 @@ to write
 
 # Media
 - Product information, news (images) was taken from https://www.lifestylesports.com/ie/rugby/
+
+- News stories and images was taken from https://www.theguardian.com/ and https://www.lifestylesports.com/ie/rugby/
 
  <br>
 
