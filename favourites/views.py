@@ -60,11 +60,11 @@ def add_product_to_favourites(request, item_id):
     except Http404:
         favourites = Favourites.objects.create(username=request.user)
     if product in favourites.products.all():
-        messages.info(request, 'The product item is '
+        messages.info(request, 'The product is '
                                'already in your favourites!')
     else:
         favourites.products.add(product)
-        messages.info(request, 'Added product item to your favourites')
+        messages.info(request, 'Added the product to your favourites')
     return redirect(reverse('product_detail', args=[item_id]))
 
 
@@ -83,10 +83,10 @@ def remove_product_from_favourites(request, item_id, redirect_from):
     favourites = get_object_or_404(Favourites, username=request.user.id)
     if product in favourites.products.all():
         favourites.products.remove(product)
-        messages.info(request, 'Product item removed '
+        messages.info(request, 'Removed the product '
                                'from your favourites list')
     else:
-        messages.error(request, 'That product item is '
+        messages.error(request, 'That product is '
                                 'not in your favourites list!')
     if redirect_from == 'favourites':
         redirect_url = reverse('view_product_favourites')
