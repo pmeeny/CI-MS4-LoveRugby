@@ -22,8 +22,8 @@
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            15 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">15 run</button>
+            17 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">17 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
@@ -77,55 +77,67 @@
     <p id="t23" class="pln"><span class="n"><a href="#t23">23</a></span><span class="t">        <span class="str">'image'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t24" class="pln"><span class="n"><a href="#t24">24</a></span><span class="t">        <span class="str">'image_url'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t25" class="pln"><span class="n"><a href="#t25">25</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t26" class="pln"><span class="n"><a href="#t26">26</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t27" class="run"><span class="n"><a href="#t27">27</a></span><span class="t">    <span class="nam">ordering</span> <span class="op">=</span> <span class="op">(</span><span class="str">'code'</span><span class="op">,</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t28" class="pln"><span class="n"><a href="#t28">28</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t29" class="pln"><span class="n"><a href="#t29">29</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t30" class="run"><span class="n"><a href="#t30">30</a></span><span class="t"><span class="key">class</span> <span class="nam">CategoryAdmin</span><span class="op">(</span><span class="nam">admin</span><span class="op">.</span><span class="nam">ModelAdmin</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t31" class="pln"><span class="n"><a href="#t31">31</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t32" class="pln"><span class="n"><a href="#t32">32</a></span><span class="t"><span class="str">    Admin class for the Category model.</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t33" class="pln"><span class="n"><a href="#t33">33</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t34" class="run"><span class="n"><a href="#t34">34</a></span><span class="t">    <span class="nam">list_display</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t35" class="pln"><span class="n"><a href="#t35">35</a></span><span class="t">        <span class="str">'friendly_name'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t36" class="pln"><span class="n"><a href="#t36">36</a></span><span class="t">        <span class="str">'name'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t26" class="run"><span class="n"><a href="#t26">26</a></span><span class="t">    <span class="nam">list_filter</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t27" class="pln"><span class="n"><a href="#t27">27</a></span><span class="t">        <span class="str">'code'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t28" class="pln"><span class="n"><a href="#t28">28</a></span><span class="t">        <span class="str">'category'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t29" class="pln"><span class="n"><a href="#t29">29</a></span><span class="t">        <span class="str">'name'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t30" class="pln"><span class="n"><a href="#t30">30</a></span><span class="t">        <span class="str">'price'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t31" class="pln"><span class="n"><a href="#t31">31</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t32" class="run"><span class="n"><a href="#t32">32</a></span><span class="t">    <span class="nam">search_fields</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t33" class="pln"><span class="n"><a href="#t33">33</a></span><span class="t">        <span class="str">'code'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t34" class="pln"><span class="n"><a href="#t34">34</a></span><span class="t">        <span class="str">'category'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t35" class="pln"><span class="n"><a href="#t35">35</a></span><span class="t">        <span class="str">'name'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t36" class="pln"><span class="n"><a href="#t36">36</a></span><span class="t">        <span class="str">'price'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t37" class="pln"><span class="n"><a href="#t37">37</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t38" class="pln"><span class="n"><a href="#t38">38</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t39" class="pln"><span class="n"><a href="#t39">39</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t40" class="run"><span class="n"><a href="#t40">40</a></span><span class="t"><span class="key">class</span> <span class="nam">ReviewAdmin</span><span class="op">(</span><span class="nam">admin</span><span class="op">.</span><span class="nam">ModelAdmin</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t41" class="pln"><span class="n"><a href="#t41">41</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t42" class="pln"><span class="n"><a href="#t42">42</a></span><span class="t"><span class="str">    Admin class for the Review model.</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t43" class="pln"><span class="n"><a href="#t43">43</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t44" class="run"><span class="n"><a href="#t44">44</a></span><span class="t">    <span class="nam">list_display</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t45" class="pln"><span class="n"><a href="#t45">45</a></span><span class="t">        <span class="str">'user'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t46" class="pln"><span class="n"><a href="#t46">46</a></span><span class="t">        <span class="str">'product'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t47" class="pln"><span class="n"><a href="#t47">47</a></span><span class="t">        <span class="str">'product_rating'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t48" class="pln"><span class="n"><a href="#t48">48</a></span><span class="t">        <span class="str">'review_text'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t49" class="pln"><span class="n"><a href="#t49">49</a></span><span class="t">        <span class="str">'create_date'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t50" class="pln"><span class="n"><a href="#t50">50</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t51" class="run"><span class="n"><a href="#t51">51</a></span><span class="t">    <span class="nam">list_filter</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t52" class="pln"><span class="n"><a href="#t52">52</a></span><span class="t">        <span class="str">'user'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t53" class="pln"><span class="n"><a href="#t53">53</a></span><span class="t">        <span class="str">'product'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t54" class="pln"><span class="n"><a href="#t54">54</a></span><span class="t">        <span class="str">'product_rating'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t55" class="pln"><span class="n"><a href="#t55">55</a></span><span class="t">        <span class="str">'create_date'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t56" class="pln"><span class="n"><a href="#t56">56</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t57" class="run"><span class="n"><a href="#t57">57</a></span><span class="t">    <span class="nam">search_fields</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t58" class="pln"><span class="n"><a href="#t58">58</a></span><span class="t">        <span class="str">'user'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t59" class="pln"><span class="n"><a href="#t59">59</a></span><span class="t">        <span class="str">'product'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t60" class="pln"><span class="n"><a href="#t60">60</a></span><span class="t">        <span class="str">'product_rating'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t61" class="pln"><span class="n"><a href="#t61">61</a></span><span class="t">        <span class="str">'review_text'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t39" class="run"><span class="n"><a href="#t39">39</a></span><span class="t">    <span class="nam">ordering</span> <span class="op">=</span> <span class="op">(</span><span class="str">'code'</span><span class="op">,</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t40" class="pln"><span class="n"><a href="#t40">40</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t41" class="pln"><span class="n"><a href="#t41">41</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t42" class="run"><span class="n"><a href="#t42">42</a></span><span class="t"><span class="key">class</span> <span class="nam">CategoryAdmin</span><span class="op">(</span><span class="nam">admin</span><span class="op">.</span><span class="nam">ModelAdmin</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t43" class="pln"><span class="n"><a href="#t43">43</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t44" class="pln"><span class="n"><a href="#t44">44</a></span><span class="t"><span class="str">    Admin class for the Category model.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t45" class="pln"><span class="n"><a href="#t45">45</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t46" class="run"><span class="n"><a href="#t46">46</a></span><span class="t">    <span class="nam">list_display</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t47" class="pln"><span class="n"><a href="#t47">47</a></span><span class="t">        <span class="str">'friendly_name'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t48" class="pln"><span class="n"><a href="#t48">48</a></span><span class="t">        <span class="str">'name'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t49" class="pln"><span class="n"><a href="#t49">49</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t50" class="pln"><span class="n"><a href="#t50">50</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t51" class="pln"><span class="n"><a href="#t51">51</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t52" class="run"><span class="n"><a href="#t52">52</a></span><span class="t"><span class="key">class</span> <span class="nam">ReviewAdmin</span><span class="op">(</span><span class="nam">admin</span><span class="op">.</span><span class="nam">ModelAdmin</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t53" class="pln"><span class="n"><a href="#t53">53</a></span><span class="t">    <span class="str">"""</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t54" class="pln"><span class="n"><a href="#t54">54</a></span><span class="t"><span class="str">    Admin class for the Review model.</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t55" class="pln"><span class="n"><a href="#t55">55</a></span><span class="t"><span class="str">    """</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t56" class="run"><span class="n"><a href="#t56">56</a></span><span class="t">    <span class="nam">list_display</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t57" class="pln"><span class="n"><a href="#t57">57</a></span><span class="t">        <span class="str">'user'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t58" class="pln"><span class="n"><a href="#t58">58</a></span><span class="t">        <span class="str">'product'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t59" class="pln"><span class="n"><a href="#t59">59</a></span><span class="t">        <span class="str">'product_rating'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t60" class="pln"><span class="n"><a href="#t60">60</a></span><span class="t">        <span class="str">'review_text'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t61" class="pln"><span class="n"><a href="#t61">61</a></span><span class="t">        <span class="str">'create_date'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t62" class="pln"><span class="n"><a href="#t62">62</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t63" class="run"><span class="n"><a href="#t63">63</a></span><span class="t">    <span class="nam">list_per_page</span> <span class="op">=</span> <span class="num">20</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t64" class="pln"><span class="n"><a href="#t64">64</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t65" class="pln"><span class="n"><a href="#t65">65</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t66" class="run"><span class="n"><a href="#t66">66</a></span><span class="t"><span class="nam">admin</span><span class="op">.</span><span class="nam">site</span><span class="op">.</span><span class="nam">register</span><span class="op">(</span><span class="nam">Product</span><span class="op">,</span> <span class="nam">ProductAdmin</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t67" class="run"><span class="n"><a href="#t67">67</a></span><span class="t"><span class="nam">admin</span><span class="op">.</span><span class="nam">site</span><span class="op">.</span><span class="nam">register</span><span class="op">(</span><span class="nam">Category</span><span class="op">,</span> <span class="nam">CategoryAdmin</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t68" class="run"><span class="n"><a href="#t68">68</a></span><span class="t"><span class="nam">admin</span><span class="op">.</span><span class="nam">site</span><span class="op">.</span><span class="nam">register</span><span class="op">(</span><span class="nam">Review</span><span class="op">,</span> <span class="nam">ReviewAdmin</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t63" class="run"><span class="n"><a href="#t63">63</a></span><span class="t">    <span class="nam">list_filter</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t64" class="pln"><span class="n"><a href="#t64">64</a></span><span class="t">        <span class="str">'user'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t65" class="pln"><span class="n"><a href="#t65">65</a></span><span class="t">        <span class="str">'product'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t66" class="pln"><span class="n"><a href="#t66">66</a></span><span class="t">        <span class="str">'product_rating'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t67" class="pln"><span class="n"><a href="#t67">67</a></span><span class="t">        <span class="str">'create_date'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t68" class="pln"><span class="n"><a href="#t68">68</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t69" class="run"><span class="n"><a href="#t69">69</a></span><span class="t">    <span class="nam">search_fields</span> <span class="op">=</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t70" class="pln"><span class="n"><a href="#t70">70</a></span><span class="t">        <span class="str">'user'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t71" class="pln"><span class="n"><a href="#t71">71</a></span><span class="t">        <span class="str">'product'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t72" class="pln"><span class="n"><a href="#t72">72</a></span><span class="t">        <span class="str">'product_rating'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t73" class="pln"><span class="n"><a href="#t73">73</a></span><span class="t">        <span class="str">'review_text'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t74" class="pln"><span class="n"><a href="#t74">74</a></span><span class="t">    <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t75" class="run"><span class="n"><a href="#t75">75</a></span><span class="t">    <span class="nam">list_per_page</span> <span class="op">=</span> <span class="num">20</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t76" class="pln"><span class="n"><a href="#t76">76</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t77" class="pln"><span class="n"><a href="#t77">77</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t78" class="run"><span class="n"><a href="#t78">78</a></span><span class="t"><span class="nam">admin</span><span class="op">.</span><span class="nam">site</span><span class="op">.</span><span class="nam">register</span><span class="op">(</span><span class="nam">Product</span><span class="op">,</span> <span class="nam">ProductAdmin</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t79" class="run"><span class="n"><a href="#t79">79</a></span><span class="t"><span class="nam">admin</span><span class="op">.</span><span class="nam">site</span><span class="op">.</span><span class="nam">register</span><span class="op">(</span><span class="nam">Category</span><span class="op">,</span> <span class="nam">CategoryAdmin</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t80" class="run"><span class="n"><a href="#t80">80</a></span><span class="t"><span class="nam">admin</span><span class="op">.</span><span class="nam">site</span><span class="op">.</span><span class="nam">register</span><span class="op">(</span><span class="nam">Review</span><span class="op">,</span> <span class="nam">ReviewAdmin</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v6.0.2</a>,
-            created at 2021-11-11 09:29 +0000
+            created at 2021-11-15 14:37 +0000
         </p>
     </div>
 </div>
