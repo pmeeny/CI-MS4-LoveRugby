@@ -142,7 +142,7 @@ body {
 .news-items {
        background-color: whitesmoke;
 }
-.red-btn {
+.red-btn, .red-btn:hover {
     background-color: #DB4437;
     color: white;
 }
@@ -156,7 +156,6 @@ body {
 }
 .page-item:last-child .page-link {
     color: #1E5128;
-    border-color: green;
 }
 /* --- Edit Product --- */
 .edit-product {
@@ -260,6 +259,9 @@ body {
 .favourite-remove {
     cursor: pointer;
 }
+.quantity-width {
+    width: 50%;
+}
 /* --- Add Product --- */
 .preview-image {
     width: 96px;
@@ -308,10 +310,18 @@ body {
 input[name='q']::placeholder {
     color: #aab7c4;
 }
+/* --- Products page --- */
+.card-img-product-detail {
+    height: 400px;
+    width: 400px;
+    border: 0;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
 /* --- News page --- */
 .card-img-top {
-    width: 300px ;
-    height: 300px ;
+    height: 300px;
     border: 0;
     margin: auto;
     margin-bottom: 10px;
@@ -329,6 +339,12 @@ input[name='q']::placeholder {
     margin: auto;
     margin-bottom: 10px;
 }
+/* --- News item --- */
+.news-card-detail-img-top {
+    width: 500px ;
+    height: 500px ;
+}
+
 /* --- Shopping bag --- */
 .bag-notification-wrapper {
     height: 100px;
@@ -342,9 +358,22 @@ input[name='q']::placeholder {
     .container {
       max-width: 80%;
     }
+    /* --- News --- */
+    .news-card {
+        width: 300px;
+    }
+    .news-card-img-top {
+        height: 300px;
+        width: 300px;
+    }
+    /* --- News item detail --- */
+    .news-card-detail-img-top {
+        width: 400px ;
+        height: 400px ;
+    }
   }
 /* fixed top navbar only on medium and up */
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 992px) {
   .fixed-top-desktop-only {
       position: fixed;
       top: 0;
@@ -422,15 +451,43 @@ input[name='q']::placeholder {
         width: 280px;
         height: 280px;
     }
+    /* --- News item --- */
+    .news-card-detail-img-top {
+        width: 300px ;
+        height: 300px ;
+    }
 }
 /* SMALL SCREEN */
 @media screen and (max-width: 481px) {
+    h1{
+        font-size: 1.6rem;
+    }
+    h2 {
+        font-size: 1.4rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    .product-name {
+        font-size: 1.6rem;
+    }
+    .pricing {
+        font-size: 1.3rem;
+    }
     .dropdown-menu {
         font-size: 0.8rem;
     }
     .message-container {
         top: 60px;
         right: 15px;
+    }
+    /* --- Product detail page --- */
+    .card-img-product-detail {
+        height: 300px;
+        width: 300px;
+    }
+    .mobile-padding {
+        margin-bottom: 10px;
     }
 }
 /* X-SMALL SCREEN */
@@ -455,6 +512,19 @@ input[name='q']::placeholder {
     .message-container {
         top: 60px;
         right: -25px;
+    }
+    /* --- Product detail page --- */
+    .card-img-product-detail {
+        height: 200px;
+        width: 200px;
+    }
+    .quantity-width {
+        width: 70%;
+    }
+    /* --- News item --- */
+    .news-card-detail-img-top {
+        width: 200px ;
+        height: 200px ;
     }
 }
 /* ----- End of Media Queries ----- */
