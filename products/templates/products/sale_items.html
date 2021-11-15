@@ -16,27 +16,12 @@
                 <h1 class="font-black-bg">Sale Items ({{ sale_items_count }})</h1>
                 <p class="font-black-bg">Browse our extensive rugby boots, jerseys and accessories on sale</p>
             </div>
-            <div class="col-12 col-sm-6 p-4 my-auto">
-                <div class="sort-select-wrapper w-100">
-                    <label for="sort-selector" hidden>Sort products</label>
-                    <select id="sort-selector" class="custom-select custom-select-sm border">
-                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
-                        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
-                        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                        <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
-                        <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
-                    </select>
-                </div>
-            </div>
         </div>
     <div class="row">
         <div>
             <div class="row">
                 {% for product in sale_items %}
+                    <!-- Sale Items -->
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                         <div class="card" style="width: 18rem;">
                             {% if product.image %}
@@ -97,25 +82,25 @@
             </div>
         </div>
     </div>
-    {% if products.has_other_pages %}
+    {% if sale_items.has_other_pages %}
         <!-- Pagination -->
         <div class="pagination-holder p-4">
-            <nav aria-label="Products sorted">
+            <nav aria-label="Sale items sorted">
               <ul class="pagination">
-                {% if products.has_previous %}
-                  <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a></li>
+                {% if sale_items.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page={{ sale_items.previous_page_number }}">Previous</a></li>
                 {% else %}
                   <li class="disabled page-item"><span class="page-link">Previous</span></li>
                 {% endif %}
-                {% for i in products.paginator.page_range %}
-                  {% if products.number == i %}
+                {% for i in sale_items.paginator.page_range %}
+                  {% if sale_items.number == i %}
                     <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
                   {% else %}
                     <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
                   {% endif %}
                 {% endfor %}
                 {% if products.has_next %}
-                  <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
+                  <li class="page-item"><a class="page-link" href="?page={{ sale_items.next_page_number }}">Next</a></li>
                 {% else %}
                   <li class="disabled page-item"><span class="page-link">Next</span></li>
                 {% endif %}
