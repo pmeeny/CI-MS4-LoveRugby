@@ -26,11 +26,11 @@
                             <form method="POST" action="{% url 'add_news_item' %}" class="form mb-2" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% for field in post_form %}
-                                {% if field.name != 'image' %}
-                                {{ field | as_crispy_field }}
-                                {% else %}
-                                {{ field }}
-                                {% endif %}
+                                    {% if field.name != 'image' %}
+                                        {{ field | as_crispy_field }}
+                                    {% else %}
+                                        {{ field }}
+                                    {% endif %}
                                 {% endfor %}
                                 <div class="text-center mt-2">
                                     <p class="mt-0">*Select 'Draft' to save the news item for later or select 'Publish' to publish on the
