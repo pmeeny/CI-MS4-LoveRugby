@@ -23,6 +23,18 @@ class ProductAdmin(admin.ModelAdmin):
         'image',
         'image_url',
     )
+    list_filter = (
+        'code',
+        'category',
+        'name',
+        'price',
+    )
+    search_fields = (
+        'code',
+        'category',
+        'name',
+        'price',
+    )
 
     ordering = ('code',)
 
