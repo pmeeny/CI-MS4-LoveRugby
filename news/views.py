@@ -29,7 +29,7 @@ def news_items(request):
         News.objects.filter(status=0).order_by('-create_date')
 
     news_items_published = setup_pagination(news_items_published, request, 4)
-    news_items_count = News.objects.filter().count()
+    news_items_count = News.objects.filter(status=1).count()
 
     context = {
         'news_items_published': news_items_published,
@@ -49,10 +49,12 @@ def manage_news_items(request):
         Renders the manage news item page.
     """
     all_news_items = News.objects.order_by('-create_date')
+    news_items_count = News.objects.filter().count()
     all_news_items = setup_pagination(all_news_items, request, 4)
 
     context = {
         'news_items': all_news_items,
+        'news_items_count': news_items_count
     }
 
     return render(request, 'news/manage_news_items.html', context)
