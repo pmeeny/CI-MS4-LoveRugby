@@ -5,15 +5,15 @@
 <div class="section-holder">
   <div class="form-holder">
     <h1 class="logo-font mb-4 text-center">{% trans "Sign Out" %}</h1>
-    <p>{% trans 'Are you sure you want to sign out?' %}</p>
+    <p class="center-div">{% trans 'Are you sure you want to sign out?' %}</p>
     <form method="post" action="{% url 'account_logout' %}">
       {% csrf_token %}
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
       {% endif %}
       <!-- Cancel and Sign out buttons -->
-      <div class="float-right">
-        <a class="btn black-btn" href="{% url 'home' %}">Cancel</a>
+      <div class="logout">
+        <a class="btn black-btn mobile-padding" href="{% url 'home' %}">Cancel</a>
         <button class="btn green-btn" type="submit">{% trans 'Sign Out' %}</button>
       </div>  
     </form>

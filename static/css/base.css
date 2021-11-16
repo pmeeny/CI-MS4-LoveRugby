@@ -318,7 +318,10 @@ input[name='q']::placeholder {
     margin: auto;
     margin-bottom: 10px;
 }
-
+/* --- Products page --- */
+.logout {
+    text-align: center;
+}
 /* --- News page --- */
 .card-img-top {
     height: 300px;
@@ -344,7 +347,6 @@ input[name='q']::placeholder {
     width: 500px ;
     height: 500px ;
 }
-
 /* --- Shopping bag --- */
 .bag-notification-wrapper {
     height: 100px;
@@ -374,20 +376,22 @@ input[name='q']::placeholder {
   }
 /* fixed top navbar only on medium and up */
 @media screen and (min-width: 992px) {
-  .fixed-top-desktop-only {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 1030;
-  }
-  .header-container {
-      padding-top: 164px;
-      background-color: white;
-  }
+    /* --- Generic --- */
+    .fixed-top-desktop-only {
+       position: fixed;
+       top: 0;
+       right: 0;
+       left: 0;
+       z-index: 1030;
+    }
+   .header-container {
+       padding-top: 164px;
+       background-color: white;
+   }
 }
 /* --- Greater than 991px --- */
 @media screen and (max-width: 991px) {
+    /* --- Generic --- */
     .header-container {
         padding-top: 92px;
     }
@@ -425,12 +429,18 @@ input[name='q']::placeholder {
     .message-container {
         top: 60px;
     }
+    /* --- Order history --- */
+    .order-history-text {
+       margin-top: 20px;
+    }
 }
 /* --- Greater than 576px --- */
 @media screen and (max-width: 576px) {
+    /* --- Generic --- */
     .container {
       max-width: 100%;
     }
+    /* --- Registration page --- */
     .registration-form form {
         padding: 50px 20px;
     }
@@ -440,6 +450,7 @@ input[name='q']::placeholder {
         font-size: 30px;
         line-height: 70px;
     }
+    /* --- News item --- */
     .news-card {
         width: 300px;
     }
@@ -459,6 +470,7 @@ input[name='q']::placeholder {
 }
 /* SMALL SCREEN */
 @media screen and (max-width: 481px) {
+    /* --- Generic --- */
     h1{
         font-size: 1.6rem;
     }
@@ -486,21 +498,18 @@ input[name='q']::placeholder {
         height: 300px;
         width: 300px;
     }
-    .mobile-padding {
+}
+/* X-SMALL SCREEN */
+@media (max-width: 375px) {
+    .mobile-padding-product {
         margin-bottom: 10px;
     }
 }
 /* X-SMALL SCREEN */
 @media (max-width: 320px) {
+    /* --- Generic --- */
     .container {
       max-width: 100%;
-    }
-    .news-card {
-        width: 250px;
-    }
-    .news-card-img-top {
-        width: 200px;
-        height: 200px;
     }
     .card-img-top {
         width: 200px;
@@ -514,6 +523,13 @@ input[name='q']::placeholder {
         right: -25px;
     }
     /* --- Product detail page --- */
+    .news-card {
+        width: 250px;
+    }
+    .news-card-img-top {
+        width: 200px;
+        height: 200px;
+    }
     .card-img-product-detail {
         height: 200px;
         width: 200px;

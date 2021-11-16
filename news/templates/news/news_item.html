@@ -29,128 +29,130 @@
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col">
-                        <div class="my-2">
-                            <p class="card-text">{{ news_item.news_item_text }}</p>
-                            <p class="text-muted">Posted By: {{ news_item.user }} on the {{ news_item.create_date }}</p>
-                            {% if news_item.user == request.user or request.user.is_superuser %}
-                                <a class="btn green-btn" href="{% url 'edit_news_item' news_item.id %}" role="button">Edit</a>
-                                <button type="button" class="btn black-btn" data-toggle="modal"
-                                data-target="#deleteNewsItem">
-                                Delete</button>
-                                <!-- Delete Button Modal -->
-                                <div class="modal fade" id="deleteNewsItem" tabindex="-1" role="dialog" aria-labelledby="deleteNewsItem" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5>Delete News Item {{ news_item.title }} </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                <div class="container">
+                    <hr>
+                        <div class="row">
+                            <div class="col">
+                                <div class="my-2">
+                                    <p class="card-text">{{ news_item.news_item_text }}</p>
+                                    <p class="text-muted">Posted By: {{ news_item.user }} on the {{ news_item.create_date }}</p>
+                                    {% if news_item.user == request.user or request.user.is_superuser %}
+                                        <a class="btn green-btn" href="{% url 'edit_news_item' news_item.id %}" role="button">Edit</a>
+                                        <button type="button" class="btn black-btn" data-toggle="modal"
+                                        data-target="#deleteNewsItem">
+                                        Delete</button>
+                                        <!-- Delete Button Modal -->
+                                        <div class="modal fade" id="deleteNewsItem" tabindex="-1" role="dialog" aria-labelledby="deleteNewsItem" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5>Delete News Item {{ news_item.title }} </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        You are about to delete Title ({{ news_item.title }}) and all
+                                                        ({{ comments|length }}) user comments, are you sure??
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                You are about to delete Title ({{ news_item.title }}) and all
-                                                ({{ comments|length }}) user comments, are you sure??
-                                            </div>
-                                            <div class="modal-footer">
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col mb-2">
+                                <h2 class="text-uppercase mt-3">Comments ({{ number_of_comments }})</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {% for comment in comments %}
+                                <div class="shadow-sm p-1 mb-3 bg-white rounded">
+                                    <p class="font-weight-bold mb-2 mt-3">Posted by: {{ comment.user }} on {{ comment.create_date }}</p>
+                                    <p class="text-black mb-2 mt-3">{{ comment.comment_text }}</p>
+                                    {% if comment.user == request.user or request.user.is_superuser %}
+                                    <!-- Delete Button trigger modal -->
+                                    <button type="button" class="btn black-btn" data-bs-toggle="modal"
+                                        data-bs-target="#delete-comment{{ comment.id }}">
+                                        Delete
+                                    </button>
+                                    <!-- Delete Comment Modal -->
+                                    <div class="modal fade" id="delete-comment{{ comment.id }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Delete Comment</h3>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4>Are you sure you want to delete the comment?</h4>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="{% url 'news_item' news_item.id %}" class="btn green-btn"> Cancel</a>
+                                                    <a href="{% url 'delete_comment' comment.id %}" class="btn red-btn">
+                                                        Delete</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {% endif %}
                                 </div>
+                                {% endfor %}
+                            </div>
+                            {% if comments.has_other_pages %}
+                            <!-- Pagination -->
+                            <div class="pagination-holder p-4">
+                                            <nav aria-label="Products sorted">
+                                              <ul class="pagination">
+                                                {% if comments.has_previous %}
+                                                  <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a></li>
+                                                {% else %}
+                                                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                                                {% endif %}
+                                                {% for i in comments.paginator.page_range %}
+                                                  {% if comments.number == i %}
+                                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                                                  {% else %}
+                                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                                  {% endif %}
+                                                {% endfor %}
+                                                {% if comments.has_next %}
+                                                  <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">Next</a></li>
+                                                {% else %}
+                                                  <li class="disabled page-item"><span class="page-link">Next</span></li>
+                                                {% endif %}
+                                              </ul>
+                                            </nav>
+                                        </div>
                             {% endif %}
                         </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col mb-2">
-                        <h2 class="text-uppercase mt-3">Comments ({{ number_of_comments }})</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {% for comment in comments %}
-                        <div class="shadow-sm p-1 mb-3 bg-white rounded">
-                            <p class="font-weight-bold mb-2 mt-3">Posted by: {{ comment.user }} on {{ comment.create_date }}</p>
-                            <p class="text-black mb-2 mt-3">{{ comment.comment_text }}</p>
-                            {% if comment.user == request.user or request.user.is_superuser %}
-                            <!-- Delete Button trigger modal -->
-                            <button type="button" class="btn black-btn" data-bs-toggle="modal"
-                                data-bs-target="#delete-comment{{ comment.id }}">
-                                Delete
-                            </button>
-                            <!-- Delete Comment Modal -->
-                            <div class="modal fade" id="delete-comment{{ comment.id }}" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h3 class="modal-title">Delete Comment</h3>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h4>Are you sure you want to delete the comment?</h4>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a href="{% url 'news_item' news_item.id %}" class="btn green-btn"> Cancel</a>
-                                            <a href="{% url 'delete_comment' comment.id %}" class="btn red-btn">
-                                                Delete</a>
-                                        </div>
+                        <!-- Add a comment form -->
+                        <div class="row pb-5">
+                            <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
+                                {% if request.user.is_authenticated %}
+                                    <h3 class="text-uppercase">Add a comment</h3>
+                                        <form class="form" method="POST">
+                                            {% csrf_token %}
+                                            <fieldset>
+                                                {{ comment_form|crispy }}
+                                            </fieldset>
+                                            <button class="btn green-btn" type="submit"> Post
+                                                Comment</button>
+                                        </form>
+                                {% else %}
+                                    <div>
+                                        <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
+                                        <a class="text-info" href="{% url 'account_login' %}">login</a> to comment on this post.
                                     </div>
-                                </div>
+                                {% endif %}
                             </div>
-                            {% endif %}
                         </div>
-                        {% endfor %}
-                    </div>
-                    {% if comments.has_other_pages %}
-                    <!-- Pagination -->
-                    <div class="pagination-holder p-4">
-                                    <nav aria-label="Products sorted">
-                                      <ul class="pagination">
-                                        {% if comments.has_previous %}
-                                          <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a></li>
-                                        {% else %}
-                                          <li class="disabled page-item"><span class="page-link">Previous</span></li>
-                                        {% endif %}
-                                        {% for i in comments.paginator.page_range %}
-                                          {% if comments.number == i %}
-                                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-                                          {% else %}
-                                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                          {% endif %}
-                                        {% endfor %}
-                                        {% if comments.has_next %}
-                                          <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">Next</a></li>
-                                        {% else %}
-                                          <li class="disabled page-item"><span class="page-link">Next</span></li>
-                                        {% endif %}
-                                      </ul>
-                                    </nav>
-                                </div>
-                    {% endif %}
-                </div>
-                <!-- Add a comment form -->
-                <div class="row pb-5">
-                    <div class="col-lg-6 col-md-12 mt-1 pl-0 pb-4">
-                        {% if request.user.is_authenticated %}
-                            <h3 class="text-uppercase">Add a comment</h3>
-                                <form class="form" method="POST">
-                                    {% csrf_token %}
-                                    <fieldset>
-                                        {{ comment_form|crispy }}
-                                    </fieldset>
-                                    <button class="btn green-btn" type="submit"> Post
-                                        Comment</button>
-                                </form>
-                        {% else %}
-                            <div>
-                                <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
-                                <a class="text-info" href="{% url 'account_login' %}">login</a> to comment on this post.
-                            </div>
-                        {% endif %}
-                    </div>
                 </div>
             </div>
         </div>
