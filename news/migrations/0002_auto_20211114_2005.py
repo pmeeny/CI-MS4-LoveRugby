@@ -18,6 +18,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='news',
             name='title',
-            field=models.CharField(max_length=250, unique=True, verbose_name='Title'),
+            field=models.CharField(max_length=250, unique=True,
+                                   verbose_name='Title'),
         ),
     ]
