@@ -60,12 +60,20 @@ def all_products(request):
     product_count = products.count()
     products = setup_pagination(products, request, 4)
 
+    for product in products:
+        reviews = Review.objects.filter(product=product)
+        average_rating_rounded = get_average_rating(reviews)
+        product.rating = average_rating_rounded
+
+    for product in products:
+        reviews = Review.objects.filter(product=product)
+
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
-        'product_count' : product_count
+        'product_count': product_count
     }
 
     return render(request, 'products/products.html', context)

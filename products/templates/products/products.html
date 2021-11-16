@@ -66,6 +66,12 @@
                                         <div class="col-6 font-black">
                                             <h3>€{{ product.price }}</h3>
                                         </div>
+                                    <small class="text-muted">{{ product.review }}</small>
+                                    {% if product.rating %}
+                                        <small class="text-muted"><i class="fas fa-star mr-1"></i> {{ product.rating }} / 5.0</small>
+                                    {% else %}
+                                        <small class="text-muted">No Rating, be the first to rate below</small>
+                                    {% endif %}
                                   </div>
                                 {% if request.user.is_superuser %}
                                     <div class="center-div pt-3">
