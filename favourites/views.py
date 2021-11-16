@@ -23,7 +23,7 @@ def view_product_favourites(request):
     Returns:
         Renders the request, template and context
     """
-    favourites_items_count=0
+    favourites_items_count = 0
     try:
         all_favourites = Favourites.objects.filter(username=request.user.id)[0]
     except IndexError:
