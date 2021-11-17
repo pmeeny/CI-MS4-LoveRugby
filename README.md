@@ -145,6 +145,7 @@ The user stories for the regular user eg: "shopper user" (a potential or existin
 - User Story 1.18: As a regular/admin user I can click on the "Rugby Boots" filter, and filter by Adidas Kakari, Adidas Malice or All Rugby Boots
 - User Story 1.19: As a regular/admin user I can click on the "Jerseys" filter, and filter by Leinster, Munster, Ulster or All Jerseys
 - User Story 1.20: As a regular/admin user I can click on the "Accessories" filter, and filter by Balls, Gum shields, Protection or All Accessories
+- User Story 1.21: As a regular/admin user if I encounter an error on the site, I will be navigated to the applicable 400, 403, 404 or 500 error page
 - User Story 2.1: As an admin/regular user four text messages are displayed with icons regarding delivery, packaging, dispatch and knowledge
 - User Story 2.2: As a regular user the footer is displayed with a logo, product links(Rugby Boots, Jerseys, Accessories), website links(Profile/News/Sale)
 - User Story 2.4: As a regular user I can sign up for a newsletter by entering my email address and clicking Signup. I will receive an email after signing up
@@ -215,6 +216,7 @@ are defined
 - User Story 1.18: As a regular/admin user I can click on the "Rugby Boots" filter, and filter by Adidas Kakari, Adidas Malice or All Rugby Boots
 - User Story 1.19: As a regular/admin user I can click on the "Jerseys" filter, and filter by Leinster, Munster, Ulster or All Jerseys
 - User Story 1.20: As a regular/admin user I can click on the "Accessories" filter, and filter by Balls, Gum shields, Protection or All Accessories
+- User Story 1.21: As a regular/admin user if I encounter an error on the site, I will be navigated to the applicable 400, 403, 404 or 500 error page
 - User Story 2.1: As an admin/regular user four text messages are displayed with icons regarding delivery, packaging, dispatch and knowledge
 - User Story 2.3: As an admin user logged in the footer is displayed with a logo, product links(Rugby Boots, Jerseys, Accessories), website links(Product Management/News Item Management)
 - User Story 4.1: As an admin/regular user I can log in to the website using my username or email address and password. Both fields are mandatory. Once correct, I will be navigated to the homepage and a message displayed
@@ -310,20 +312,20 @@ The navigation buttons update depending on whether a user is logged in or not, a
 Home     |&#9989;        |&#9989;          |&#9989; |
 Products           |&#9989;        |&#9989;          |&#9989; |
 Product Detail           |&#9989;        |&#9989;          |&#9989; |
-Products Detail Review          |&#10060;        |&#9989;          |&#9989; |
+Products Detail (Review)          |&#10060;        |&#9989;          |&#9989; |
 Product Management(Add Product)     |&#10060;       |&#10060;         |&#9989; |
 Product Management(Edit Product)     |&#10060;       |&#10060;         |&#9989; |
 Product Management(Delete Product)     |&#10060;       |&#10060;         |&#9989; |
-Favourites     |&#10060;       |&#10060;         |&#9989; |
-Add to Favourites     |&#10060;       |&#10060;         |&#9989; |
+Favourites     |&#10060;       |&#9989;         |&#9989; |
+Add to Favourites     |&#10060;       |&#9989;        |&#9989; |
 My Profile             |&#10060;       |&#9989;          |&#9989; |
 Order History         |&#10060;       |&#9989;          |&#9989; |
-Sign Out               |&#10060;       |&#9989;          |&#9989; |
+Log out               |&#10060;       |&#9989;          |&#9989; |
 Register               |&#9989;        |&#10060;         |&#10060; |
-Sign In                |&#9989;        |&#10060;         |&#10060; |
+Log in               |&#9989;        |&#10060;         |&#10060; |
 News                |&#9989;        |&#9989;         |&#9989; |
 News Item             |&#9989;        |&#9989;        |&#9989; |
-News Item comment |&#10060;        |&#9989;          |&#9989; |
+News Item (comment) |&#10060;        |&#9989;          |&#9989; |
 Bag |&#9989;        |&#9989;          |&#9989; |
 Checkout |&#9989;        |&#9989;          |&#9989; |
 Checkout success |&#9989;        |&#9989;          |&#9989; |
@@ -353,6 +355,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - User Story 1.18: As a regular/admin user I can click on the "Rugby Boots" filter, and filter by Adidas Kakari, Adidas Malice or All Rugby Boots
 - User Story 1.19: As a regular/admin user I can click on the "Jerseys" filter, and filter by Leinster, Munster, Ulster or All Jerseys
 - User Story 1.20: As a regular/admin user I can click on the "Accessories" filter, and filter by Balls, Gum shields, Protection or All Accessories
+- User Story 1.21: As a regular/admin user if I encounter an error on the site, I will be navigated to the applicable 400, 403, 404 or 500 error page 
 
 ### Feature 2 Footer
 #### Description feature 2
@@ -404,6 +407,8 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 
 ### Feature 5 Products and Product Detail Pages
 #### Description feature 5
+- A user must have an account and be logged in to review a product, otherwise they will see a link to login or create an account
+
 #### User Stories feature 5
 - User Story 5.1: As a regular user I can view the products page with product count and with each product image, title, category, price and presale price(if applicable)
 - User Story 5.2: As a regular user I can sort the products by Price(high to low, low to high), Rating(high to low, low to high), Name(A-Z, Z-A), Category(A-Z, Z-A)
@@ -440,6 +445,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 #### Description feature 7
 - The app "favourites" contains the admin, forms, views, models and templates for this functionality
 - A user has their own favourites list and that is unique to them
+- A user must have an account and be logged in to add products to the favourites list, otherwise they will be navigated to the login page
 <br>![Favourites 2](readme/testing/favourites2_desktop.PNG)
 <br>![Favourites](readme/testing/favourites_desktop.PNG)
 - There is no limit to how many products can be in a users favourites list and if there are more than four the paginated is paginated
@@ -458,6 +464,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 ### Feature 8 News Page
 - The app "news" contains the admin, forms, views, models and templates for this functionality
 - A regular user can view news items, and add a comment to a news item.
+- A user must have an account and be logged in to comment on a news item, otherwise they will see a link to login or create an account
 - Four news items are displayed and the page is paginated if there are more than four news entries
 <br>![News desktop](readme/testing/news_desktop.PNG)
 <br>![News tablet](readme/testing/news_tablet.PNG)
@@ -480,6 +487,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 ### Feature 9 Profile Page
 #### Description feature 9
 - A regular user can update their default delivery information as per the user stories below
+- A use must be logged in to see their profile page
 - This is the information that is displayed when the user is checking out an order
 - A user can view and update their Default delivery information
 <br>![Default delivery information](readme/testing/myprofile_desktop.PNG)
