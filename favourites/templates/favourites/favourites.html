@@ -41,9 +41,11 @@
                                                 <div class="col-12">
                                                     <h3 class="font-weight-light font-black">{{ favourite.category.friendly_name }}</h3>
                                                 </div>
-                                                <div class="col-6 font-black">
-                                                    {{ favourite.price }}
-                                                </div>
+                                                {% if favourite.pre_sale_price %}
+                                                    <div class="col-6 align-self-center font-black">
+                                                        <p class="mb-0 text-left font-weight-bold red-strikethrough">€{{ favourite.pre_sale_price }}</p>
+                                                    </div>
+                                                {% endif %}
                                                 <div class="col-6 align-self-center font-black">
                                                     <strong>€{{ favourite.price }}</strong>
                                                 </div>
