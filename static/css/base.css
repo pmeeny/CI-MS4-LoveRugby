@@ -498,6 +498,10 @@ input[name='q']::placeholder {
         height: 300px;
         width: 300px;
     }
+    /* --- Pagination --- */
+    .pagination {
+        flex-wrap: wrap
+    }
 }
 /* X-SMALL SCREEN */
 @media (max-width: 375px) {
