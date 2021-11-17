@@ -65,9 +65,6 @@ def all_products(request):
         average_rating_rounded = get_average_rating(reviews)
         product.rating = average_rating_rounded
 
-    for product in products:
-        reviews = Review.objects.filter(product=product)
-
     context = {
         'products': products,
         'search_term': query,
@@ -91,7 +88,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     review_form = ProductReviewForm(data=request.POST or None)
 
-    reviews = Review.objects.filter(product=product)
+    reviews = Review.objects.filter(product=product).order_by('-create_date')
     number_of_reviews = reviews.count()
     reviews = setup_pagination(reviews, request, 3)
     average_rating_rounded = get_average_rating(reviews)
