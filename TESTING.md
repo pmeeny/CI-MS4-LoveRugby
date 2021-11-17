@@ -193,8 +193,8 @@ Step 3 | The product is removed from the users favourites list | [Desktop](readm
 ### Feature 8 News Page
 - User Story 8.1: As a regular user I can view 4 news items on a page with a news image, and 150 characters of the news item text and a read more button
 - User Story 8.2: As a regular user I can click on the read more button on the News page, I will be navigated to the news item with a news item image, news item text and any comments will be displayed
-- User Story 8.3: As a regular user I can add a comment to a news item
-- User Story 8.4: As a regular user I can delete a comment that I had originally added on a news item
+- User Story 8.3: As a regular user I can add a comment to a "news" item
+- User Story 8.4: As a regular user I can delete a comment that I had originally added on a "news item"
 - User Story 8.5: As an admin user I can delete a comment on a news item, even if I did not add the comment
 
 ##### User Stories Steps 8
@@ -271,9 +271,9 @@ Step 2 | The product is deleted and the count is reduced| [Desktop](readme/testi
 ##### User Stories Steps 11
 1. As an admin user click on the News Item Management under My account
 2. Click on the Add news item button to add a news item with text and image
-3. Click on the Edit news item button to update a news item
+3. Click on the Edit news item button to update a "news item"
 4. Click on the News page to see Published items and click on the edited news item, Draft items are not displayed
-5. Delete a news item
+5. Delete a "news item"
 
 ##### User Story Testing Results 11
 Step 1 | The manage news items page is displayed | [Desktop](readme/testing/manage_news_items_desktop.PNG)  | [Tablet](readme/testing/manage_news_items_tablet.PNG)  | [Mobile](readme/testing/manage_news_items_mobile.PNG)  | Passed |
@@ -311,81 +311,81 @@ Step 1 | The favourites are displayed | [Result](readme/testing/13_3_favourites.
 ### User Story Testing Results 13-4
 Step 1 | The favourites are displayed for the user | [Result](readme/testing/13_4_favourites.PNG)   | Passed |
 
-### User Story Expected Result 13-5
+#### User Story Expected Result 13-5
 - User Story 13.5: As an admin user I can view news items in the django admin page and can view a news item title, user, news item text and image
-### User Story Steps 13-5
+#### User Story Steps 13-5
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/news/news/ 
-### User Story Testing Results 13-5
+#### User Story Testing Results 13-5
 Step 1 | The news items are displayed | [Result](readme/testing/13_5_news.PNG)   | Passed |
 
-### User Story Expected Result 13-6
+#### User Story Expected Result 13-6
 - User Story 13.6: As an admin user I can view news items in the django admin page and can search and search by title, user, news item text and image, create date, update date status and filter by title, user, create date
-### User Story Steps 13-6
-- Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/news/news/ and filter/search on a news item
-### User Story Testing Results 13-6
+#### User Story Steps 13-6
+- Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/news/news/ and filter/search on a "news item"
+#### User Story Testing Results 13-6
 Step 1 | The news item is filtered  | [Result](readme/testing/13_6_news.PNG)   | Passed |
 
-### User Story Expected Result 13-7
+#### User Story Expected Result 13-7
 - User Story 13.7: As an admin user I can view products in the django admin page and can view a products code, name, category, has sizes, price, presale price, rating, image, image url
-### User Story Steps 13-7
+#### User Story Steps 13-7
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/products/product/
-### User Story Testing Results 13-7
+#### User Story Testing Results 13-7
 Step 1 | The products are displayed | [Result](readme/testing/13_7_products.PNG)   | Passed |
 
-### User Story Expected Result 13-8
+#### User Story Expected Result 13-8
 - User Story 13.8: As an admin user I can view products in the django admin page and can view search and filter by code, category, name and price
-### User Story Steps 13-8
+#### User Story Steps 13-8
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/products/product/ and filter on a category
-### User Story Testing Results 13-8
+#### User Story Testing Results 13-8
 Step 1 | The filtered products are displayed for the category | [Result](readme/testing/13_8_products.PNG)   | Passed |
 
-### User Story Expected Result 13-9
+#### User Story Expected Result 13-9
 - User Story 13.9: As an admin user I can view users in the django admin page and can view their username, email address, first name, last name, staff status
-### User Story Steps 13-9
+#### User Story Steps 13-9
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/auth/user/
-### User Story Testing Results 13-9
+#### User Story Testing Results 13-9
 Step 1 | The users are displayed | [Result](readme/testing/13_9_users.PNG)   | Passed |
 
-### User Story Expected Result 13-10
+#### User Story Expected Result 13-10
 - User Story 13.10: As an admin user I can view users in the django admin page and can search by username and email address and  filter by staff status, superuser status and active status
-### User Story Steps 13-10
+#### User Story Steps 13-10
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/auth/user/ and filter on non superuser status
-### User Story Testing Results 13-10
+#### User Story Testing Results 13-10
 Step 1 | The non superuser users are displayed | [Result](readme/testing/13_10_users.PNG)   | Passed |
 
-### User Story Expected Result 13-11
+#### User Story Expected Result 13-11
 - User Story 13.11: As an admin user I can view news items comments in the django admin page and can view a comment user, title, text and create date
-### User Story Steps 13-11
+#### User Story Steps 13-11
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/news/comment/
-### User Story Testing Results 13-11
+#### User Story Testing Results 13-11
 Step 1 | The comments are displayed | [Result](readme/testing/13_11_comments.PNG)   | Passed |
 
-### User Story Expected Result 13.12
+#### User Story Expected Result 13.12
 - User Story 13.12: As an admin user I can view news items comments in the django admin page and can filter by user, title, create date and search by user, title, text and create date
-### User Story Steps 13.12
+#### User Story Steps 13.12
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/news/comment/ and filter on a comment
-### User Story Testing Results 13.12
+#### User Story Testing Results 13.12
 Step 1 | The comment is displayed | [Result](readme/testing/13_12_comments.PNG)   | Passed |
 
-### User Story Expected Result 13.13
+#### User Story Expected Result 13.13
 - User Story 13.13: As an admin user I can view reviews in the django admin page and can view a review user, product, rating, text and create date
-### User Story Steps 13.13
+#### User Story Steps 13.13
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/products/review/
-### User Story Testing Results 13.13
+#### User Story Testing Results 13.13
 Step 1 | The reviews are displayed | [Result](readme/testing/13_13_reviews.PNG)   | Passed |
 
-### User Story Expected Result 13.14
+#### User Story Expected Result 13.14
 - User Story 13.14: As an admin user I can view reviews in the django admin page and can filter by user, product rating, create date and search by user, product, rating, text
-### User Story Steps 13.14
+#### User Story Steps 13.14
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/products/review/ and filter on a review user
-### User Story Testing Results 13.14
+#### User Story Testing Results 13.14
 Step 1 | The users reviews are displayed | [Result](readme/testing/13_14_reviews.PNG)   | Passed |
 
-### User Story Expected Result 13.15
+#### User Story Expected Result 13.15
 - User Story 13.15: As an admin user I can view categories in the django admin page and can view a category name and friendly name
-### User Story Steps 13.15
+#### User Story Steps 13.15
 - Step 1: As an admin user navigate to https://ci-ms4-loverugby.herokuapp.com/admin/products/category/
-### User Story Testing Results 13.15
+#### User Story Testing Results 13.15
 Step 1 | The categories are displayed | [Result](readme/testing/13_15_categories.PNG)   | Passed |
 
 
@@ -401,7 +401,8 @@ Bug no. | Bug description |  Bug fix |
 6 | Combining filtering and pagination does not include the filter text in the pagination page link | Fix was to implement a product_tools template tags from https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/
 7 | The news item count on the news page was incorrect as it included draft and published in its count | The fix was to update the filter to only include published items <code>News.objects.filter(status=1).count()</code>
 8 | On a mobile device the pagination on the products page was overlapping over the div | The fix was to set the flex wrap class <code>flex-wrap: wrap</code>
-9/ If items are greater than four, the product, sale, favourites page with pagination doesnt scale right | Update the bootstrap class html to <code>col-sm-6 col-md-6 col-lg-6 col-xl-3</code>
+9 | If items are greater than four, the product, sale, favourites page with pagination doesnt scale right | Update the bootstrap class html to <code>col-sm-6 col-md-6 col-lg-6 col-xl-3</code>
+10 | Reviews were not displaying the latest first | The fix was to filter the reviews in the query by <code>order_by('-create_date')</code>
 
 # Code Validators and Website Analysis
 The website's pages was tested against the following validators:
