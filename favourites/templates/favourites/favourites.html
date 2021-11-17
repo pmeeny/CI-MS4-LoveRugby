@@ -22,7 +22,7 @@
                 <div class="row">
                     {% for favourite in favourites_items %}
                             <!-- List of favourites -->
-                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
                                     <div class="card" style="width: 18rem;">
                                         {% if favourite.image %}
                                             <a href="{% url 'product_detail' favourite.id %}">
