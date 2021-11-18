@@ -91,8 +91,10 @@ def product_detail(request, product_id):
 
     reviews = Review.objects.filter(product=product).order_by('-create_date')
     number_of_reviews = reviews.count()
-    reviews = setup_pagination(reviews, request, 2)
     average_rating_rounded = get_average_rating(reviews)
+    Product.objects.filter(id=product.id).update(
+        rating=average_rating_rounded)
+    reviews = setup_pagination(reviews, request, 2)
 
     try:
         favourites = get_object_or_404(Favourites, username=request.user.id)
@@ -249,6 +251,10 @@ def add_review(request, product_id):
                         product_rating=request.POST['product_rating'],
                         review_text=request.POST['review_text'],
                 )
+                reviews = Review.objects.filter(product=product)
+                average_rating_rounded = get_average_rating(reviews)
+                Product.objects.filter(id=product.id).update(
+                    rating=average_rating_rounded)
                 messages.info(request, 'Successfully added a review!')
             else:
                 messages.error(request, 'You have already reviewed '
@@ -280,6 +286,10 @@ def delete_review(request, product_id, review_user):
         return redirect(reverse('home'))
     if request.method == 'POST':
         review.delete()
+        reviews = Review.objects.filter(product=product)
+        average_rating_rounded = get_average_rating(reviews)
+        Product.objects.filter(id=product.id).update(
+            rating=average_rating_rounded)
         messages.info(request, 'Your review was deleted')
     else:
         messages.error(request, 'Invalid request')
