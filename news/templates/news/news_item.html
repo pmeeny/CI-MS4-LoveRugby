@@ -106,31 +106,31 @@
                                 </div>
                                 {% endfor %}
                             </div>
-                            {% if comments.has_other_pages %}
+                            {% if reviews.has_other_pages %}
                             <!-- Pagination -->
                             <div class="pagination-holder p-4">
-                                            <nav aria-label="Products sorted">
-                                              <ul class="pagination">
-                                                {% if comments.has_previous %}
-                                                  <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a></li>
-                                                {% else %}
-                                                  <li class="disabled page-item"><span class="page-link">Previous</span></li>
-                                                {% endif %}
-                                                {% for i in comments.paginator.page_range %}
-                                                  {% if comments.number == i %}
-                                                    <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
-                                                  {% else %}
-                                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                                  {% endif %}
-                                                {% endfor %}
-                                                {% if comments.has_next %}
-                                                  <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">Next</a></li>
-                                                {% else %}
-                                                  <li class="disabled page-item"><span class="page-link">Next</span></li>
-                                                {% endif %}
-                                              </ul>
-                                            </nav>
-                                        </div>
+                                <nav aria-label="news items paginated">
+                                      <ul class="pagination">
+                                        {% if comments.has_previous %}
+                                          <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a></li>
+                                        {% else %}
+                                          <li class="disabled page-item"><span class="page-link">Previous</span></li>
+                                        {% endif %}
+                                        {% for i in comments.paginator.page_range %}
+                                          {% if comments.number == i %}
+                                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                                          {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                          {% endif %}
+                                        {% endfor %}
+                                        {% if comments.has_next %}
+                                          <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">Next</a></li>
+                                        {% else %}
+                                          <li class="disabled page-item"><span class="page-link">Next</span></li>
+                                        {% endif %}
+                                      </ul>
+                                    </nav>
+                            </div>
                             {% endif %}
                         </div>
                         <!-- Add a comment form -->
