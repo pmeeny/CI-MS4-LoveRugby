@@ -2,8 +2,8 @@
 Love Rugby is an ecommerce rugby website allowing users to purchase rugby boots, jerseys and accessories developed for Milestone 4 as milestone project 4 as part of the Code Institute - Diploma in Software Development (Full stack) course.
 
 - There are two types of users, and I have set up accounts for both
-    - An admin(administrator) user account has been set up with username/password of administrator/Password123
-    - A regular(shopper) user account has been set up with username/password of johnnysexton/66Nov2009
+    - An admin(administrator) user account has been set up with username/password of administrator/66Nov2009
+    - A regular(shopper) user account has been set up with username/password of johnnysexton/Password456!
     - When making a payment as a regular user, a test credit card of 4242424242424242 has been set up for the card number
     - For the expiry date and postal code any number(s) can be used
 <br>
@@ -13,6 +13,95 @@ Love Rugby is an ecommerce rugby website allowing users to purchase rugby boots,
 ![Responsive site example](readme/responsive/responsive.PNG)
 
 # Table of Contents
+- [Love Rugby shop](#love-rugby-shop)
+- [Project Overview](#project-overview)
+- [UX](#ux)
+  * [Strategy](#strategy)
+    + [Primary Goal](#primary-goal)
+  * [Structure](#structure)
+    + [Website pages](#website-pages)
+    + [Code Structure](#code-structure)
+    + [Database](#database)
+      - [Physical database model](#physical-database-model)
+      - [Models](#models)
+        * [User Model](#user-model)
+        * [UserProfile Model](#userprofile-model)
+        * [Order Model](#order-model)
+        * [OrderLineItem Model](#orderlineitem-model)
+        * [Favourites Model](#favourites-model)
+        * [Product Model](#product-model)
+        * [Category Model](#category-model)
+        * [News Model](#news-model)
+        * [Comment Model](#comment-model)
+        * [Review Model](#review-model)
+  * [Scope](#scope)
+    + [User Stories Potential or Existing Customer](#user-stories-potential-or-existing-customer)
+    + [User Stories Website Owner](#user-stories-website-owner)
+  * [Skeleton](#skeleton)
+    + [Wireframes](#wireframes)
+  * [Surface](#surface)
+    + [Color Palette](#color-palette)
+    + [Typography](#typography)
+- [Features](#features)
+  * [Existing Features](#existing-features)
+    + [Feature 1 Navigation Bar and Homepage](#feature-1-navigation-bar-and-homepage)
+      - [Description feature 1](#description-feature-1)
+      - [User Stories feature 1](#user-stories-feature-1)
+    + [Feature 2 Footer](#feature-2-footer)
+      - [Description feature 2](#description-feature-2)
+      - [User Stories feature 2](#user-stories-feature-2)
+    + [Feature 3 Register](#feature-3-register)
+      - [Description feature 3](#description-feature-3)
+      - [User Stories feature 3](#user-stories-feature-3)
+    + [Feature 4 Login](#feature-4-login)
+      - [Description feature 4](#description-feature-4)
+      - [User Stories feature 4](#user-stories-feature-4)
+    + [Feature 5 Products and Product Detail Pages](#feature-5-products-and-product-detail-pages)
+      - [Description feature 5](#description-feature-5)
+      - [User Stories feature 5](#user-stories-feature-5)
+    + [Feature 6 Sale items page](#feature-6-sale-items-page)
+      - [Description feature 6](#description-feature-6)
+      - [User Stories feature 6](#user-stories-feature-6)
+    + [Feature 7 Favourites page](#feature-7-favourites-page)
+      - [Description feature 7](#description-feature-7)
+      - [User Stories feature 7](#user-stories-feature-7)
+    + [Feature 8 News Page](#feature-8-news-page)
+      - [Description feature 8](#description-feature-8)
+      - [User Stories feature 8](#user-stories-feature-8)
+    + [Feature 9 Profile Page](#feature-9-profile-page)
+      - [Description feature 9](#description-feature-9)
+      - [User Stories feature 9](#user-stories-feature-9)
+    + [Feature 10 Product Management](#feature-10-product-management)
+      - [Description feature 10](#description-feature-10)
+      - [User Stories feature 10](#user-stories-feature-10)
+    + [Feature 11 News item Management](#feature-11-news-item-management)
+      - [Description feature 11](#description-feature-11)
+      - [User Stories feature 11](#user-stories-feature-11)
+    + [Feature 12 Bag and Checkout](#feature-12-bag-and-checkout)
+      - [Description feature 12](#description-feature-12)
+      - [User Stories feature 12](#user-stories-feature-12)
+    + [Feature 13 Admin](#feature-13-admin)
+      - [Description feature 13](#description-feature-13)
+      - [User Stories feature 13](#user-stories-feature-13)
+  * [Features Left to Implement](#features-left-to-implement)
+- [Technologies Used](#technologies-used)
+  * [Languages](#languages)
+  * [Libraries and other resources](#libraries-and-other-resources)
+- [Testing](#testing)
+- [APIs and configuration](#apis-and-configuration)
+  * [Email JS](#email-js)
+  * [Google emails](#google-emails)
+  * [Stripe](#stripe)
+- [Deployment](#deployment)
+  * [Amazon WebServices](#amazon-webservices)
+  * [Local Deployment](#local-deployment)
+  * [Heroku and Postgres Database](#heroku-and-postgres-database)
+- [Credits](#credits)
+- [Content](#content)
+- [Media](#media)
+- [Acknowledgements](#acknowledgements)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 # Project Overview
 - This project is a website is for submission as milestone project 4 as part of the Code Institute - Diploma in Software Development (Full stack) course.
@@ -43,12 +132,13 @@ The primary goal of the website from a site users perspective is as follows:
 - To sort the list of available products by rating, price and category
 - Search for a product by name or description and view the search results
 - To view website news, and comment on a news item
-
+- To have a list of product favourites and to add/delete items from the list
+- 
 ## Structure
 ### Website pages
 I have structured the website into 19 pages, each with clear, concise structure, information and purpose. I use the Bootstrap grid system throughout, which gave a consistent structure and responsive design "out of the box"
 
-### Code Structure.
+### Code Structure
 The project is divided into a number of apps, as is built using the Django Framework
 The project was built on the Boutique Ado project, that was part of the project content
 The apps are described as follows
@@ -59,6 +149,18 @@ The apps are described as follows
 - news: A newly written app, that allows admin users to publish news items, and allows regular users to view and comment on the news items
 - products (part of the original Boutique Ado project): This app contains functionality regarding a product. I added functionality for adding/removing a rating/comment to a product
 - profiles (part of the original Boutique Ado project): This app contains functionality regarding a users profile and order history
+
+To complement the apps there are
+- rugby_shop: Containing settings.py(Settings) and urls.py(Website urls) for example
+- templates: Containing the base.html, allauth(django authentication) and includes html files
+- util: Utility for generic pagination reusable code
+- static: Base css and Javascript files(toast and send_email) There is some javascript in some html files, but I have tried to minimise that
+- manage.py: Main python file for starting the website
+- README.md: Readme documentation
+- TESTING.md: Testing documentation
+- custom_storage.py: AWS Boto3 configuration
+- Procfile: To run the application
+- Requirements.txt: Containing the python libraries installed
 
 ### Database
 - The website is a data-centric one with html, javascript, css used with the bootstrap(version 5) framework as a frontend
@@ -163,8 +265,9 @@ The user stories for the regular user eg: "shopper user" (a potential or existin
 - User Story 5.7: As a regular user I can add a review, by selecting a rating and entering a comment(both fields are mandatory), the review is displayed and a message is displayed
 - User Story 5.8: As a regular user I can delete a review I have added(the comment and rating is removed from the product detail), but I cannot delete other users review
 - User Story 5.9: As a regular user if there are more than four reviews for a product, the reviews are paginated
-- User Story 5.9: As a regular user I can click on the Keep Shopping button on the product detail page, and it will navigate the user to the products page
-- User Story 5.9: As a regular user I can set the product size(if applicable for the product) and quantity for a product (one plus)
+- User Story 5.10: As a regular user I can click on the Keep Shopping button on the product detail page, and it will navigate the user to the products page
+- User Story 5.11: As a regular user I can set the product size(if applicable for the product) and quantity for a product (one plus)
+- User Story 5.14: As a regular user who has not registered or logged into the website, I cannot add a review to a product
 - User Story 6.1: As a regular user I can view the products with sale prices, the product image, category, presale price and price is displayed
 - User Story 6.2: As a regular user if I click on a product in the sale items, I am navigated to the product detail page for that product
 - User Story 6.3: As a regular user if there are more than four products on the sale items page, the page is paginated with four products per page
@@ -173,10 +276,12 @@ The user stories for the regular user eg: "shopper user" (a potential or existin
 - User Story 7.3: As a regular user I can view my favourites list, the product image, category, presale price and price is displayed
 - User Story 7.4: As a regular user I remove a product from my favorites list by clicking on the Delete button on the product. A confirmation modal and message is displayed
 - User Story 7.5: As a regular user if there are more than four products in my favourites page, the page is paginated with four products per page
+- User Story 7.6: As a regular user who has not registered or logged into the website, I cannot add an item to the favourites and will be brought to the login page
 - User Story 8.1: As a regular user I can view 4 news items on a page with a news image, and 150 characters of the news item text and a read more button
 - User Story 8.2: As a regular user I can click on the read more button on the News page, I will be navigated to the news item with a news item image, news item text and any comments will be displayed
 - User Story 8.3: As a regular user I can add a comment to a news item
 - User Story 8.4: As a regular user I can add a delete a comment that I had originally added on a news item
+- User Story 8.6: As a regular user who has not registered or logged into the website, I cannot add a comment to a news item
 - User Story 9.1: As a regular user I can view my Default delivery information: Phone Number, Street Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country
 - User Story 9.2: As a regular user I can update my Default delivery information: Phone Number, Street Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country
 - User Story 9.3: As a regular user I can view my order history(Order Number, Date, Items and Order Total)
@@ -197,6 +302,7 @@ The user stories for the regular user eg: "shopper user" (a potential or existin
 - User Story 12.14: As a regular user on the checkout page if I click the Complete Order button, and the transaction is successful, the user will be navigated to a checkout success page, and an email is sent to the user
 - User Story 12.15: As a regular user on the checkout page if I click the Complete Order button, and the transaction is successful, the order is saved to my order history in My profile page
 - User Story 12.16: As a regular user on the checkout success page, the Order details will be displayed (Order number, Order date/time, Full NameStreet Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country, Phone Number, Order Total, Deliver, Grand Total) and a link to the sales item page is displayed
+- User Story 12.17: As a regular user not logged in, I can add items to my bag and make a purchase
 
 ### User Stories Website Owner
 The user stories for the website owner(admin/administrator user) are described as follows: 
@@ -395,19 +501,37 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - An admin/regular user can log in to the website using their username or email address and password
 - Both fields are mandatory
 - Once logged in the user will be navigated to the homepage
-- <br>![Email confirmed](readme/testing/login_fails_desktop.PNG)
+<br>![Email confirmed](readme/testing/login_fails_desktop.PNG)
 - The user must have an account in the system, and they must enter the correct  username or email address and password
 - If the user needs to request a password, they can click on the Forgot Password link
-![Forgot Password](readme/testing/password_reset_email.PNG)
+<br>![Forgot Password](readme/testing/password_reset_email.PNG)
 - They enter their email address, and they are emailed reset their password. Once they do this they can log in
-![Password updated](readme/testing/password_updated_desktop.PNG)
+<br>![Password updated](readme/testing/password_updated_desktop.PNG)
 #### User Stories feature 4
 - User Story 4.1: As an admin/regular user I can log in to the website using my username or email address and password. Both fields are mandatory. Once correct, I will be navigated to the homepage and a message displayed
 - User Story 4.2: As an admin/regular user I can request a new password if I forget my current password. I will receive an email to reset my password. Once I reset I can log in
 
 ### Feature 5 Products and Product Detail Pages
 #### Description feature 5
+- A user view the products page with product count and with each product image, title, category, price and presale price
+<br>![Products Desktop](readme/testing/products_desktop.PNG)
+<br>![Products Tablet](readme/testing/products_tablet.PNG)
+- The user can sort the products by Price(high to low, low to high), Rating(high to low, low to high), Name(A-Z, Z-A), Category(A-Z, Z-A)
+- If there are more than four products on a page, the page is paginated
+- A product detail page displays all the product information (image, description, colour, code, rating, category, description, features and reviews(the latest first))
+<br>![Products Detail 1](readme/testing/product_detail_desktop.PNG)
+- If the product has a size(boots have size 8-13, jerseys have a size XS-XXL) this information is displayed
+<br>![Products Detail 2](readme/testing/product_detail2_desktop.PNG)
+- A review can be added to a product, only one review per user. 
+<br>![Products Add Review repeat](readme/testing/add_review_repeat_desktop.PNG)
+- A review consists of a rating(1-5) and a comment
+<br>![Products Add Review Tablet](readme/testing/add_review2_tablet.PNG)
+<br>![Products Add Review Mobile](readme/testing/add_review2_mobile.PNG)
+- A user can delete a review they wrote
+- If a product does not have a review, a message is displayed on the products page and product detail page
+<br>![Products No Review](readme/testing/products_price_desktop.PNG)
 - A user must have an account and be logged in to review a product, otherwise they will see a link to login or create an account
+<br>![Review Not logged in](readme/testing/add_review_notloggedin_desktop.PNG)
 
 #### User Stories feature 5
 - User Story 5.1: As a regular user I can view the products page with product count and with each product image, title, category, price and presale price(if applicable)
@@ -425,6 +549,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - User Story 5.11: As an admin user I can view the Edit product page by clicking on the Edit button on the product. 
 - User Story 5.12: As an admin user I can click on a product, and I am navigated to the product detail page. I can edit or delete the product by clicking on the Edit or Delete links on the page
 - User Story 5.13: As an admin user I can delete a review a regular user has added
+- User Story 5.14: As a regular user who has not registered or logged into the website, I cannot add a review to a product
 
 ### Feature 6 Sale items page
 #### Description feature 6
@@ -460,6 +585,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - User Story 7.3: As a regular user I can view my favourites list, the product image, category, presale price and price is displayed
 - User Story 7.4: As a regular user I remove a product from my favorites list by clicking on the Delete button on the product. A confirmation modal and message is displayed
 - User Story 7.5: As a regular user if there are more than four products in my favourites page, the page is paginated with four products per page
+- User Story 7.6: As a regular user who has not registered or logged into the website, I cannot add an item to the favourites and will be brought to the login page
 
 ### Feature 8 News Page
 - The app "news" contains the admin, forms, views, models and templates for this functionality
@@ -483,6 +609,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - User Story 8.3: As a regular user I can add a comment to a news item
 - User Story 8.4: As a regular user I can delete a comment that I had originally added on a news item
 - User Story 8.5: As an admin user I can delete a comment on a news item, even if I did not add the comment
+- User Story 8.6: As a regular user who has not registered or logged into the website, I cannot add a comment to a news item
 
 ### Feature 9 Profile Page
 #### Description feature 9
@@ -549,6 +676,27 @@ Edit Product button. Clicking cancel navigates the user to the product page
 
 ### Feature 12 Bag and Checkout
 #### Description feature 12
+Note: Some screenshots show dollars, I have since changed all instances in the project to euros
+- A user can add items to a bag, if the bag is empty a message is displayed
+- A user can update the quantity or remove an item from their shopping bag
+<br>![Bag Empty](readme/testing/12_2_desktop.PNG)
+- An order over 99 euros means free delivery. An order less than 99 incurs a 10% delivery charge
+<br>![Bag 1](readme/testing/12_1_desktop.PNG)
+<br>![Bag 1](readme/testing/12_1_tablet.PNG)
+<br>![Bag 2](readme/testing/12_4_desktop.PNG)
+- The user can "checkout" and their details will be displayed.
+- The fields are: (Full Name, email address, both mandatory) and Delivery Information: Phone Number(mandatory), Street Address 1(mandatory), Street Address 2, Town or City(mandatory, County, State or Locality, Postal Code and Country(mandatory)), which is populated from my profile if filled in
+<br>![Order](readme/testing/12_5_desktop.PNG)
+<br>![Order mobile](readme/testing/12_5_mobile.PNG)
+- The user receives a confirmation email to their email address supplied
+<br>![Email](readme/testing/email_confirmation_over99.PNG) 
+- The order is available on the user profile page,a nd they can click on the order itself
+<br>![User profile](readme/testing/12_6_desktop.PNG)
+- A regular user not logged in, I can add items to my bag and make a purchase
+<br>![Not logged in 1](readme/testing/not_logged_in_checkout_desktop.PNG) 
+<br>![Not logged in 2](readme/testing/not_logged_in_checkout_success_desktop.PNG) 
+<br>![Not logged in 2](readme/testing/not_logged_in_checkout_success_desktop.PNG) 
+
 #### User Stories feature 12
 - User Story 12.1: As a regular user I can click on a product, set the size(if applicable) and quantity, click Add to Bag and the product will be added to my bag, a message displayed, and a toast will be displayed with the bag contents
 - User Story 12.2: As a regular user I can click on the bag icon, I will be brought to my bag. If there are no items in the bag, a message will be displayed
@@ -560,12 +708,13 @@ Edit Product button. Clicking cancel navigates the user to the product page
 - User Story 12.8: As a regular user on the checkout page if the order total is greater than 99 euros, there is no delivery charge
 - User Story 12.9: As a regular user on the checkout page if the order total is less than 99 euros, there is delivery charge(10% of the order total) A message is displayed to the user on the toast message of what they need to add to the bag to avail of no delivery charge
 - User Story 12.10: As a regular user on the checkout page if I click "Save this delivery information to my profile", the details entered will be saved on the users profile
-- User Story 12.11: As a regular user on the checkout page I can enter a credit card number(16 digits), expiry date(2 digits/2digits) and a postal code(up to 5 digits), these fields are mandatory
+- User Story 12.11: As a regular user on the checkout page I can enter a credit card number(16 digits), expiry date(2 digits/2digits), cvc(3 digits) and a postal code(up to 5 digits), these fields are mandatory
 - User Story 12.12: As a regular user on the checkout page if I click the Keep Shopping button I will be navigated to the products page
 - User Story 12.13: As a regular user on the checkout page if I click the Complete Order button, and the transaction is not successful, a message will be displayed
 - User Story 12.14: As a regular user on the checkout page if I click the Complete Order button, and the transaction is successful, the user will be navigated to a checkout success page, and an email is sent to the user
 - User Story 12.15: As a regular user on the checkout page if I click the Complete Order button, and the transaction is successful, the order is saved to my order history in My profile page
 - User Story 12.16: As a regular user on the checkout success page, the Order details will be displayed (Order number, Order date/time, Full NameStreet Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country, Phone Number, Order Total, Deliver, Grand Total) and a link to the sales item page is displayed
+- User Story 12.17: As a regular user not logged in, I can add items to my bag and make a purchase
 
 ### Feature 13 Admin
 #### Description feature 13
@@ -615,9 +764,10 @@ Number | Update
 1 | Increased code coverage and unit tests in the checkout view.py for stripe payments |
 2 | A new release section displaying new release products |
 3 | Improved searching and filtering on the products page, a side panel filter |
-4 / Integration with a Continuous Integration application, for example: Travis CI or Semaphore CI |
-5/ Improved pagination look/feel on products page |
-6/ I could have made some part of the code more generic and moved it to the util.py package(that currently contains pagination code only) |
+4 | Integration with a Continuous Integration application, for example: Travis CI or Semaphore CI |
+5 | Improved pagination look/feel on products page |
+6 | I could have made some part of the code more generic and moved it to the util.py package(that currently contains pagination code only) |
+7 | The functionality to add and display multiple images per product |
 
 # Technologies Used
 ## Languages 
@@ -803,10 +953,6 @@ There are a number of applications that need to be configured to run this applic
 24. These settings set up a cache policy, set the bucket name, and the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY that you set in your aws account
 25. The configuration also requires the media/static folders that must be setup in the AWS S3 bucket to store the media and static files 
 
-## Postgres Database
-Postgres is the database used in the application for production. The database is created as part of setting up
-a deployment on Heroku, which is described below
-
 ## Local Deployment
 To run this project locally, you will need to clone the repository
 1. Login to GitHub (https://wwww.github.com)
@@ -843,7 +989,7 @@ To run this project locally, you will need to clone the repository
 18. Start the application by running <code>python3 manage.py runserver</code>
 19. Open the application in a web browser, for example: http://127.0.0.1:8000/
 
-## Heroku
+## Heroku and Postgres Database
 To deploy this application to Heroku, run the following steps.
 1. Create an account at heroku.com
 2. Create an app, give it a name for example ci-ms4-loverugby, and select a region
@@ -868,12 +1014,9 @@ To deploy this application to Heroku, run the following steps.
 18. Disable collectstatic in Heroku before any code is pushed using the command heroku config:set DISABLE_COLLECTSTATIC=1 -a ci-ms4-loverugby
 19. Push the code to Heroku using the command git push heroku master
 20. Ensure the following environment variables are set in Heroku
-
-![Heroku Env variables](readme/misc/heroku_env_variables.png)
-    
+<br>![Heroku Env variables](readme/misc/heroku_env_variables.png)
 21. Connect the app to GitHub, and enable automatic deploys from main
-
-![Heroku Postgres](readme/misc/heroku_deployment.png)
+<br>![Heroku Postgres](readme/misc/heroku_deployment.png)
     
 22. Click deploy to deploy your application to Heroku for the first time
 23. Click on the link provided to access the application
@@ -881,51 +1024,37 @@ To deploy this application to Heroku, run the following steps.
 
 # Credits
 - The project is based on the Boutique Ado project by the Code Institute and was used as a basic for my project (https://github.com/Code-Institute-Solutions/boutique_ado_v1/)
-
 - For the product, favourites and sale items pages, I used some html and css code from https://bootstrapious.com/p/bootstrap-photo-gallery as a basis
 for the memories gallery
-
 - I used html/css code, then tweaked it accordingly for the site footer: https://jsfiddle.net/bootstrapious/c7ash30w/
-
 - For the send-email functionality I used some code from the code institute module from the course
-
 - For pagination, I found this tutorial invaluable https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
-
 - For Div alignment I used code from here: https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ 
 and https://blog.hubspot.com/website/center-div-css
-
 - For Django Comments, I found this link useful: https://djangocentral.com/creating-comments-system-with-django/
-
 - For unit testing, I found the unit test code in the Code Institute chapter Hello Django very useful and this link also: 
 https://www.section.io/engineering-education/django-unit-testing/#testing-views where it gave me a good idea on the type of unit tests
 to write
-
 - Bootstrap 5.0, I used some sample code from https://getbootstrap.com/docs/5.0/customize/components/ for a number of 
   component's(Buttons, Card, Carousel, Modal, Pagination, Navbar)
-
 - For combining filtering and pagination, I used code from https://www.caktusgroup.com/blog/2018/10/18/filtering-and-pagination-django/
-
-- For mobile flexbox updates, I used code examples from https://www.digitalocean.com/community/tutorials/css-improve-responsiveness-flex-wrap 
-
+- For mobile flexbox updates, I used code examples from https://www.digitalocean.com/community/tutorials/css-improve-responsiveness-flex-wrap
 - I used some code and found the examples useful in https://www.youtube.com/watch?v=OvTs8BMLb7o and https://www.youtube.com/watch?v=H4QPHLmsZMU for the favourites and reviews functionality
 in the relevant applications
+- I used stackoverflow.com a lot for programming issues, for example: https://stackoverflow.com/questions/56332524/how-to-update-queryset-value-in-django
 
 # Content
 - Font Awesome (http://fontawesome.com)    
     - The icons used on the site from font awesome
-
 - Fonts (https://fonts.google.com/)    
     - The text font(Poppins) is from Google fonts
-    
 - Product information, news (text) was taken from https://www.lifestylesports.com/ie/rugby/
 
 <br>
 
 # Media
 - Product information, news (images) was taken from https://www.lifestylesports.com/ie/rugby/
-
 - News stories and images was taken from https://www.theguardian.com/ and https://www.lifestylesports.com/ie/rugby/
-
  <br>
 
 # Acknowledgements
