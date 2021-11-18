@@ -136,7 +136,33 @@ The primary goal of the website from a site users perspective is as follows:
 - 
 ## Structure
 ### Website pages
-I have structured the website into 19 pages, each with clear, concise structure, information and purpose. I use the Bootstrap grid system throughout, which gave a consistent structure and responsive design "out of the box"
+- I have structured the website into over 20 pages, each with clear, concise structure, information and purpose. I use the Bootstrap grid system throughout, which gave a consistent structure and responsive design "out of the box"
+- Below are the main pages functionality wise, there are some others for password reset/verification etc. that are described in the user story section 
+- All pages have a common look and feel and a common header/footer. On a tablet/mobile the look and feel is slightly different with a burger menu
+- These pages are described in more detail in the user stories section
+
+Page            |Description
+:-------------         |:------------- 
+Home     |The homepage consists of a carousel of three images     
+Products           | The products page displays 4 products(image, price, rating) in a paginated way      
+Product Detail           | The product detail page displays the product image, description, price, reviews, add to bag buttons    
+Products Detail (Review)          | A review(rating(1-5) and comment) can be added to a product. A review can be deleted  
+Product Management(Add Product)     | A product can be added to the website    
+Product Management(Edit Product)     | A product can be edited to the website     
+Product Management(Delete Product)     | A product can be deleted from the website. This is a modal triggered by a delete button
+Favourites     | A user can have their own favourites list   
+Add to Favourites     |Products can be added or removed to/from a users favourite list       
+My Profile             |The users profile(delivery information) and previous orders is displayed       
+Order History         | A order history page per order details the order information and price
+Log out               | A logout button is provided under the My Account link to logout
+Register               | A user can register an account on the site with a valid email address
+Log in               | A user can login with a valid username and password     
+News                | News items can be viewed by all users
+News Item             | A new item contains an image and text and can be added by an admin user      
+News Item (comment) | A user can comment on a news item. They can delete comments(an admin can also delete a users comment)    
+Bag | A user can add products to a shopping bag which contains each item in the order and an overall price/delivery if applicable   
+Checkout | A user can enter their delivery details and credit card information to checkout an order   
+Checkout success | Once an order is successful, the user can view the checkout success
 
 ### Code Structure
 The project is divided into a number of apps, as is built using the Django Framework
