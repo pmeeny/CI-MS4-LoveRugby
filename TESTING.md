@@ -10,41 +10,41 @@
     + [Unit testing information for the Profile app](#unit-testing-information-for-the-profile-app)
   * [Manual testing information](#manual-testing-information)
     + [Feature 1 Navigation Bar and Homepage](#feature-1-navigation-bar-and-homepage)
-        * [User Stories feature 1](#user-stories-feature-1)
-        * [User Stories Steps 1](#user-stories-steps-1)
-        * [User Story Testing Results 1](#user-story-testing-results-1)
-  * [Feature 2 Footer](#feature-2-footer)
-        * [User Stories feature 2](#user-stories-feature-2)
-        * [User Stories Steps 2](#user-stories-steps-2)
-        * [User Story Testing Results 2](#user-story-testing-results-2)
-  * [Feature 3 Register](#feature-3-register)
-        * [User Stories feature 3](#user-stories-feature-3)
-        * [User Stories Steps 3](#user-stories-steps-3)
-        * [User Story Testing Results 3](#user-story-testing-results-3)
+      - [User Stories feature 1](#user-stories-feature-1)
+      - [User Stories Steps 1](#user-stories-steps-1)
+      - [User Story Testing Results 1](#user-story-testing-results-1)
+    + [Feature 2 Footer](#feature-2-footer)
+      - [User Stories feature 2](#user-stories-feature-2)
+      - [User Stories Steps 2](#user-stories-steps-2)
+      - [User Story Testing Results 2](#user-story-testing-results-2)
+    + [Feature 3 Register](#feature-3-register)
+      - [User Stories feature 3](#user-stories-feature-3)
+      - [User Stories Steps 3](#user-stories-steps-3)
+      - [User Story Testing Results 3](#user-story-testing-results-3)
     + [Feature 4 Login](#feature-4-login)
-        * [User Stories feature 4](#user-stories-feature-4)
-        * [User Stories Steps 4](#user-stories-steps-4)
-        * [User Story Testing Results 4](#user-story-testing-results-4)
+      - [User Stories feature 4](#user-stories-feature-4)
+      - [User Stories Steps 4](#user-stories-steps-4)
+      - [User Story Testing Results 4](#user-story-testing-results-4)
     + [Feature 5 Products and Product Detail Pages](#feature-5-products-and-product-detail-pages)
-        * [User Stories feature 5](#user-stories-feature-5)
-        * [User Stories Steps 5](#user-stories-steps-5)
-        * [User Story Testing Results 5](#user-story-testing-results-5)
-      - [Feature 6 Sale items page](#feature-6-sale-items-page)
-        * [User Stories feature 6](#user-stories-feature-6)
-        * [User Stories Steps 6](#user-stories-steps-6)
-        * [User Story Testing Results 6](#user-story-testing-results-6)
+      - [User Stories feature 5](#user-stories-feature-5)
+      - [User Stories Steps 5](#user-stories-steps-5)
+      - [User Story Testing Results 5](#user-story-testing-results-5)
+    + [Feature 6 Sale items page](#feature-6-sale-items-page)
+      - [User Stories feature 6](#user-stories-feature-6)
+      - [User Stories Steps 6](#user-stories-steps-6)
+      - [User Story Testing Results 6](#user-story-testing-results-6)
     + [Feature 7 Favourites page](#feature-7-favourites-page)
-        * [User Stories feature 7](#user-stories-feature-7)
-        * [User Stories Steps 7](#user-stories-steps-7)
-        * [User Story Testing Results 7](#user-story-testing-results-7)
+      - [User Stories feature 7](#user-stories-feature-7)
+      - [User Stories Steps 7](#user-stories-steps-7)
+      - [User Story Testing Results 7](#user-story-testing-results-7)
     + [Feature 8 News Page](#feature-8-news-page)
-        * [User Stories feature 8](#user-stories-feature-8)
-        * [User Stories Steps 8](#user-stories-steps-8)
-        * [User Story Testing Results 8](#user-story-testing-results-8)
+      - [User Stories feature 8](#user-stories-feature-8)
+      - [User Stories Steps 8](#user-stories-steps-8)
+      - [User Story Testing Results 8](#user-story-testing-results-8)
     + [Feature 9 Profile Page](#feature-9-profile-page)
-        * [User Stories feature 9](#user-stories-feature-9)
-        * [User Stories Steps 9](#user-stories-steps-9)
-        * [User Story Testing Results 9](#user-story-testing-results-9)
+      - [User Stories feature 9](#user-stories-feature-9)
+      - [User Stories Steps 9](#user-stories-steps-9)
+      - [User Story Testing Results 9](#user-story-testing-results-9)
     + [Feature 10 Product Management](#feature-10-product-management)
       - [User Story 10-1](#user-story-10-1)
       - [User Story Steps 10-1](#user-story-steps-10-1)
@@ -56,13 +56,13 @@
       - [User Story Steps 10-3](#user-story-steps-10-3)
       - [User Story Testing Results 10-3](#user-story-testing-results-10-3)
     + [Feature 11 News item Management](#feature-11-news-item-management)
-        * [User Stories feature 11](#user-stories-feature-11)
-        * [User Stories Steps 11](#user-stories-steps-11)
-        * [User Story Testing Results 11](#user-story-testing-results-11)
+      - [User Stories feature 11](#user-stories-feature-11)
+      - [User Stories Steps 11](#user-stories-steps-11)
+      - [User Story Testing Results 11](#user-story-testing-results-11)
     + [Feature 12 Bag and Checkout](#feature-12-bag-and-checkout)
-        * [User Stories feature 12](#user-stories-feature-12)
-        * [User Stories Steps 12](#user-stories-steps-12)
-        * [User Story Testing Results 12](#user-story-testing-results-12)
+      - [User Stories feature 12](#user-stories-feature-12)
+      - [User Stories Steps 12](#user-stories-steps-12)
+      - [User Story Testing Results 12](#user-story-testing-results-12)
     + [Feature 13 Admin](#feature-13-admin)
       - [User Story 13-1](#user-story-13-1)
       - [User Story Steps 13-1](#user-story-steps-13-1)
@@ -75,7 +75,7 @@
       - [User Story Testing Results 13-3](#user-story-testing-results-13-3)
       - [User Story 13-4](#user-story-13-4)
       - [User Story Steps 13-4](#user-story-steps-13-4)
-    + [User Story Testing Results 13-4](#user-story-testing-results-13-4)
+      - [User Story Testing Results 13-4](#user-story-testing-results-13-4)
       - [User Story 13-5](#user-story-13-5)
       - [User Story Steps 13-5](#user-story-steps-13-5)
       - [User Story Testing Results 13-5](#user-story-testing-results-13-5)
@@ -121,7 +121,6 @@
   * [PEP8online](#pep8online)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 
 # Testing
@@ -218,7 +217,7 @@ Device Number | Physical/Emulator | Device Name | Device Type | Browser | Versio
 - For the purpose of the screenshots I used a Chrome emulator for desktop, tablet and mobile (Device numbers 6(Desktop), 8(Tablet), 9(Mobile))
 
 ### Feature 1 Navigation Bar and Homepage
-##### User Stories feature 1
+#### User Stories feature 1
 - User Story 1.1: As an admin/regular user the navigation bar is displayed with a logo on all pages with a search box, My account, Favourites and shopping bag icons on a desktop device
 - User Story 1.2: As an admin/regular user the navigation bar is displayed on all pages with a search box, My account, Favourites and shopping bag icons on a mobile/tablet device
 - User Story 1.3: As a regular user not logged in, I see a Register/Login link under the My Account dropdown
@@ -239,7 +238,7 @@ Device Number | Physical/Emulator | Device Name | Device Type | Browser | Versio
 - User Story 1.19: As a regular/admin user I can click on the "Jerseys" filter, and filter by Leinster, Munster, Ulster or All Jerseys
 - User Story 1.20: As a regular/admin user I can click on the "Accessories" filter, and filter by Balls, Gum shields, Protection or All Accessories
 - User Story 1.21: As a regular/admin user if I encounter an error on the site, I will be navigated to the applicable 400, 403, 404 or 500 error page
-##### User Stories Steps 1
+#### User Stories Steps 1
 1. Navigate to https://ci-ms4-loverugby.herokuapp.com/, and click on the My Account link as a regular user
 2. Login to the website with a valid username and password, and click on the My Account link
 3. Navigate to the "All Products" filter, and then click By Price
@@ -252,7 +251,7 @@ Device Number | Physical/Emulator | Device Name | Device Type | Browser | Versio
 10. Click the Logout link under My profile and logout
 11. Login as an admin user
 
-##### User Story Testing Results 1
+#### User Story Testing Results 1
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The homepage is displayed, Login and Register links are displayed under My Account and the footer items are displayed with website links(Register/Login) | [Desktop](readme/testing/homepage_notloggedin_desktop.PNG)  | [Tablet](readme/testing/homepage_notloggedin_tablet.PNG)  | [Mobile](readme/testing/homepage_notloggedin_mobile.PNG)  | Passed |
@@ -267,32 +266,32 @@ Step 9 | A 404 page is displayed with a link to the homepage | [Desktop](readme/
 Step 10 | The user is logged out | [Desktop](readme/testing/logout_desktop.PNG)  | [Tablet](readme/testing/logout_tablet.PNG)  | [Mobile](readme/testing/logout_mobile.PNG)  | Passed |
 Step 11 | The homepage is displayed with a header logo(desktop), search box(expands on tablet/mobile), My Account, Favourites and shopping bag icons. Product Management/News Item Management/My Profile/Logout is visible under My Account and the footer contains links for Product Management and News Item Management  | [Desktop](readme/testing/homepage_admin_desktop.PNG)  | [Tablet](readme/testing/homepage_admin_tablet.PNG)  | [Mobile](readme/testing/homepage_admin_mobile.PNG)  | Passed |
 
-## Feature 2 Footer
-##### User Stories feature 2
+### Feature 2 Footer
+#### User Stories feature 2
 - User Story 2.1: As an admin/regular user logged in four text messages are displayed with icons regarding delivery, packaging, dispatch and knowledge
 - User Story 2.2: As a regular user the footer is displayed with a logo, product links(Rugby Boots, Jerseys, Accessories), website links(Profile/News/Sale)
 - User Story 2.3: As an admin user logged in the footer is displayed with a logo, product links(Rugby Boots, Jerseys, Accessories), website links(Product Management/News Item Management)
 - User Story 2.4: As a regular user I can sign up for a newsletter by entering my email address and clicking Signup. I will receive an email after signing up
 
-##### User Stories Steps 2
+#### User Stories Steps 2
 1. As a regular user scroll down to the footer on the homepage 
 2. As an admin user scroll down to the footer on the homepage
 3. As a regular user sign up to the newsletter
 
-##### User Story Testing Results 2
+#### User Story Testing Results 2
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The footer items are displayed with website links(Profile/News/Sale) | [Desktop](readme/testing/footer_desktop_regular.PNG)  | [Tablet](readme/testing/footer_tablet_regular.PNG)  | [Mobile](readme/testing/footer_mobile_regular.PNG)  | Passed |
 Step 2 | The footer items are displayed with website links(Product Management/News Item Management) | [Desktop](readme/testing/footer_desktop_admin.PNG)  | [Tablet](readme/testing/footer_tablet_admin.PNG)  | [Mobile](readme/testing/footer_mobile_admin.PNG)  | Passed |
 Step 3 | The user receives an email | [Desktop](readme/testing/mailing_list_email.PNG)  | [Tablet](readme/testing/mailing_list_email.PNG)  | [Mobile](readme/testing/mailing_list_email.PNG)  | Passed |
 
-## Feature 3 Register
-##### User Stories feature 3
+### Feature 3 Register
+#### User Stories feature 3
 - User Story 3.1: As a regular user I can register on the website by providing an email address, email address(confirmation), username, password, password confirmation
 - User Story 3.1: As a regular user I will receive an email to verify my account after registering
 - User Story 3.1: As a regular user I can log in to my account once I click on the verification link in the email I receive regarding my registration
 
-##### User Stories Steps 3
+#### User Stories Steps 3
 1. As a regular user, navigate to the registration page, fill in email address, email address(confirmation), username, password, password confirmation and click Sign Up
 2. Open the email received
 3. Click on the verification link in the email received
@@ -300,7 +299,7 @@ Step 3 | The user receives an email | [Desktop](readme/testing/mailing_list_emai
 5. Sign in to the account
 6. Attempt to register with the same account and do not fill in all the mandatory fields: email address, email address(confirmation), username, password, password confirmation
 
-##### User Story Testing Results 3
+#### User Story Testing Results 3
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The user registers for an account | [Desktop](readme/testing/register_desktop.PNG)  | [Tablet](readme/testing/register_tablet.PNG)  | [Mobile](readme/testing/register_mobile.PNG)  | Passed |
@@ -311,14 +310,14 @@ Step 5 | The user logs in to the site | [Desktop](readme/testing/email_confirmed
 Step 6 | A message is displayed to the user | [Desktop](readme/testing/registration_fields.PNG)  | [Tablet](readme/testing/registration_fields.PNG)  | [Mobile](readme/testing/registration_fields.PNG)  | Passed | 
 
 ### Feature 4 Login
-##### User Stories feature 4
+#### User Stories feature 4
 - User Story 4.1: As an admin/regular user I can log in to the website using my username or email address and password. Both fields are mandatory. Once correct, I will be navigated to the homepage and a message displayed
 - User Story 4.2: As an admin/regular user I can request a new password if I forget my current password. I will receive an email to reset my password. Once I reset I can log in
-##### User Stories Steps 4
+#### User Stories Steps 4
 1. Attempt to log in to the website with an account that does not exist or an incorrect password
 2. Request a new password
 3. Login to the site with the correct account details
-##### User Story Testing Results 4
+#### User Story Testing Results 4
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | A message is displayed to the user | [Desktop](readme/testing/login_fails_desktop.PNG)  | [Tablet](readme/testing/login_fails_tablet.PNG)  | [Mobile](readme/testing/login_fails_mobile.PNG)  | Passed |
@@ -326,7 +325,7 @@ Step 2 | The user receives an email where they can reset their password | [Deskt
 Step 3 | The user can successfully log in | [Desktop](readme/testing/password_updated_desktop.PNG)  | [Tablet](readme/testing/password_updated_tablet.PNG)  | [Mobile](readme/testing/password_updated_mobile.PNG)  | Passed |
 
 ### Feature 5 Products and Product Detail Pages
-##### User Stories feature 5
+#### User Stories feature 5
 - User Story 5.1: As a regular user I can view the products page with product count and with each product image, title, category, price and presale price(if applicable)
 - User Story 5.2: As a regular user I can sort the products by Price(high to low, low to high), Rating(high to low, low to high), Name(A-Z, Z-A), Category(A-Z, Z-A)
 - User Story 5.3: As a regular user if there are more than four products on the page, the page is paginated with four products per page
@@ -344,7 +343,7 @@ Step 3 | The user can successfully log in | [Desktop](readme/testing/password_up
 - User Story 5.13: As an admin user I can delete a review a regular user has added
 - User Story 5.14: As a regular user who has not registered or logged into the website, I cannot add a review to a product
 
-##### User Stories Steps 5
+#### User Stories Steps 5
 1. As a regular user login to the website and navigate to the products page
 2. Sort the products from Price(High to Low)
 3. Click on a product
@@ -357,7 +356,7 @@ Step 3 | The user can successfully log in | [Desktop](readme/testing/password_up
 10. As an admin user delete a review
 11. As a regular user log out, and select a product and try and add a review
 
-##### User Story Testing Results 5
+#### User Story Testing Results 5
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The products page is displayed | [Desktop](readme/testing/products_desktop.PNG)  | [Tablet](readme/testing/products_tablet.PNG)  | [Mobile](readme/testing/products_mobile.PNG)  | Passed |
@@ -372,18 +371,18 @@ Step 9 | A modal is displayed and the user can delete the product | [Desktop](re
 Step 10 | The review is deleted | [Desktop](readme/testing/delete_review_desktop.PNG)  | [Tablet](readme/testing/delete_review_tablet.PNG)  | [Mobile](readme/testing/delete_review_mobile.PNG)  | Passed |
 Step 11 | The review cannot be added | [Desktop](readme/testing/add_review_notloggedin_desktop.PNG)  | [Tablet](readme/testing/delete_review_tablet.PNG)  | [Mobile](readme/testing/delete_review_mobile.PNG)  | Passed |
 
-#### Feature 6 Sale items page
-##### User Stories feature 6
+### Feature 6 Sale items page
+#### User Stories feature 6
 - User Story 6.1: As a regular user I can view the products with sale prices, the product image, category, presale price and price is displayed
 - User Story 6.2: As a regular user if I click on a product in the sale items, I am navigated to the product detail page for that product
 - User Story 6.3: As a regular user if there are more than four products on the sale items page, the page is paginated with four products per page
 
-##### User Stories Steps 6
+#### User Stories Steps 6
 1. Click on the sale items in the header
 2. Click on a product in the sale items 
 3. Scroll down to view the pagination
 
-##### User Story Testing Results 6
+#### User Story Testing Results 6
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The sale items and count are displayed | [Desktop](readme/testing/sale_items_desktop.PNG)  | [Tablet](readme/testing/sale_items_desktop.PNG)  | [Mobile](readme/testing/sale_items_desktop.PNG)  | Passed |
@@ -391,19 +390,19 @@ Step 2 | The product detail is displayed | [Desktop](readme/testing/product_deta
 Step 3 | The pagination is displayed | [Desktop](readme/testing/sale_items_desktop.PNG)  | [Tablet](readme/testing/sale_items_tablet_pagination.PNG)  | [Mobile](readme/testing/sale_items_mobile_pagination.PNG)  | Passed |
 
 ### Feature 7 Favourites page
-##### User Stories feature 7
+#### User Stories feature 7
 - User Story 7.1: As a regular user I can click on the heart icon on a product in the product details page, a message is displayed, and the product is added to my favourites list
 - User Story 7.2: As a regular user I can click on the heart icon on a product that is already in my favourites list, a message is displayed, and the product is removed to my favourites list
 - User Story 7.3: As a regular user I can view my favourites list, the product image, category, presale price and price is displayed
 - User Story 7.4: As a regular user I remove a product from my favorites list by clicking on the Delete button on the product. A confirmation modal and message is displayed
 - User Story 7.5: As a regular user if there are more than four products in my favourites page, the page is paginated with four products per page
 
-##### User Stories Steps 7
+#### User Stories Steps 7
 1. Click on a product and click the heart icon
 2. Go to the favourites page to view the product
 3. Click on the heart icon on the product to click on the delete button to remove the item from the favourites
 
-##### User Story Testing Results 7
+#### User Story Testing Results 7
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The product is added to the users favourites list | [Desktop](readme/testing/favourites_add_desktop.PNG)  | [Tablet](readme/testing/favourites_add_tablet.PNG)  | [Mobile](readme/testing/favourites_add_mobile.PNG)  | Passed |
@@ -411,23 +410,23 @@ Step 2 | The product is displayed in the favourites list | [Desktop](readme/test
 Step 3 | The product is removed from the users favourites list | [Desktop](readme/testing/favourites_delete_desktop.PNG)  | [Tablet](readme/testing/favourites_delete_tablet.PNG)  | [Mobile](readme/testing/favourites_delete_mobile.PNG)  | Passed |
 
 ### Feature 8 News Page
-##### User Stories feature 8
+#### User Stories feature 8
 - User Story 8.1: As a regular user I can view 4 news items on a page with a news image, and 150 characters of the news item text and a read more button
 - User Story 8.2: As a regular user I can click on the read more button on the News page, I will be navigated to the news item with a news item image, news item text and any comments will be displayed
 - User Story 8.3: As a regular user I can add a comment to a "news" item
 - User Story 8.4: As a regular user I can delete a comment that I had originally added on a "news item"
 - User Story 8.5: As an admin user I can delete a comment on a news item, even if I did not add the comment
-- User Story 8.6: As a regular user who has not registered or logged into the website, I cannot add a comment to a news item
+- User Story 8.6: As a regular user who has not registered or logged into the website, I cannot add a comment to a "news item"
 
-##### User Stories Steps 8
+#### User Stories Steps 8
 1. As a regular user click on the News page 
-2. Click on the read more button on a news item   
-3. Add a comment to a news item 
-4. Delete a comment from a news item
+2. Click on the read more button on a "news item"   
+3. Add a comment to a "news item" 
+4. Delete a comment from a "news item"
 5. As an admin user delete a comment created by a regular user
 6. As a regular user not logged in, select a news item and try to add a comment
 
-##### User Story Testing Results 8
+#### User Story Testing Results 8
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The news page is displayed | [Desktop](readme/testing/news_desktop.PNG)  | [Tablet](readme/testing/news_tablet.PNG)  | [Mobile](readme/testing/news_mobile.PNG)  | Passed |
@@ -438,18 +437,18 @@ Step 5 | The comment is deleted by the admin user | [Desktop](readme/testing/new
 Step 6 | A comment cannot be added | [Desktop](readme/testing/add_comment_notloggedin_desktop.PNG)  | [Tablet](readme/testing/add_comment_notloggedin_tablet.PNG)  | [Mobile](readme/testing/add_comment_notloggedin_mobile.PNG)  | Passed |
 
 ### Feature 9 Profile Page
-##### User Stories feature 9
+#### User Stories feature 9
 - User Story 9.1: As a regular user I can view my Default delivery information: Phone Number, Street Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country
 - User Story 9.2: As a regular user I can update my Default delivery information: Phone Number, Street Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country
 - User Story 9.3: As a regular user I can view my order history(Order Number, Date, Items and Order Total)
 - User Story 9.4: As a regular user I can click on an order number to view the order information (Order number, Order date/time, Full Name, Street Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country, Phone Number, Order Total, Deliver, Grand Total)
 
-##### User Stories Steps 9
+#### User Stories Steps 9
 1. Click on the My Profile link under My Account
 2. Update one field in the default delivery information (Street Address 2)
 3. Click on an order number
 
-##### User Story Testing Results 9
+#### User Story Testing Results 9
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 1. The users default delivery information and order history is displayed  | [Desktop](readme/testing/myprofile_desktop.PNG)  | [Tablet](readme/testing/myprofile_tablet.PNG)  | [Mobile](readme/testing/myprofile_mobile.PNG)  | Passed |
@@ -495,7 +494,7 @@ Step 1 | The delete-product modal is displayed | [Desktop](readme/testing/10_3_1
 Step 2 | The product is deleted and the count is reduced| [Desktop](readme/testing/10_3_2_desktop.PNG)  | [Tablet](readme/testing/10_3_2_tablet.PNG)  | [Mobile](readme/testing/10_3_2_mobile.PNG)  | Passed |
 
 ### Feature 11 News item Management
-##### User Stories feature 11
+#### User Stories feature 11
 - User Story 11.1: As an admin user I can view News items by clicking on the News Item Management link under My account. The news item count and title, create date, status(Published or Draft), and Edit and Delete buttons is displayed
 - User Story 11.2: As an admin user if there are more than four news items added, the page is paginated
 - User Story 11.3: As an admin user I can add a news item, by clicking on the Add button. I can enter a Title and news item text, add an image and set the item to Published or Draft
@@ -504,14 +503,14 @@ Step 2 | The product is deleted and the count is reduced| [Desktop](readme/testi
 - User Story 11.6: As an admin user if a news item is set to Published, admin regular users will see this item on the News Page.
 - User Story 11.7: As an admin user I can delete a news item, and I will be asked to confirm the deletion
 
-##### User Stories Steps 11
+#### User Stories Steps 11
 1. As an admin user click on the News Item Management under My account
 2. Click on the Add news item button to add a news item with text and image
 3. Click on the Edit news item button to update a "news item"
 4. Click on the News page to see Published items and click on the edited news item, Draft items are not displayed
 5. Delete a "news item"
 
-##### User Story Testing Results 11
+#### User Story Testing Results 11
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The manage news items page is displayed | [Desktop](readme/testing/manage_news_items_desktop.PNG)  | [Tablet](readme/testing/manage_news_items_tablet.PNG)  | [Mobile](readme/testing/manage_news_items_mobile.PNG)  | Passed |
@@ -522,7 +521,7 @@ Step 5 | The news item is deleted | [Desktop](readme/testing/delete_news_item_de
 
 
 ### Feature 12 Bag and Checkout
-##### User Stories feature 12
+#### User Stories feature 12
 - User Story 12.1: As a regular user I can click on a product, set the size(if applicable) and quantity, click Add to Bag and the product will be added to my bag, a message displayed, and a toast will be displayed with the bag contents
 - User Story 12.2: As a regular user I can click on the bag icon, I will be brought to my bag. If there are no items in the bag, a message will be displayed
 - User Story 12.3: As a regular user I can click on the bag icon, I will be brought to my bag. If there are items, the product image, detail, price, quantity, subtotal will be displayed for the item. The bag total, delivery(if applicable), grand total would be displayed
@@ -541,7 +540,7 @@ Step 5 | The news item is deleted | [Desktop](readme/testing/delete_news_item_de
 - User Story 12.16: As a regular user on the checkout success page, the Order details will be displayed (Order number, Order date/time, Full NameStreet Address 1, Street Address 2, Town or City, County, State or Locality, Postal Code and Country, Phone Number, Order Total, Deliver, Grand Total) and a link to the sales item page is displayed
 - User Story 12.17: As a regular user not logged in, I can add items to my bag and make a purchase
 
-##### User Stories Steps 12
+#### User Stories Steps 12
 Note: Some screenshots show dollars, I have since changed all instances to euros
 1. As a regular user add some items to your bag, so the order is less than 99 euros
 2. Empty the bag
@@ -552,7 +551,7 @@ Note: Some screenshots show dollars, I have since changed all instances to euros
 7. Check the users email address
 8. Logout, and as a user not logged in add items to a bag 
 9. Checkout and complete the purchase
-##### User Story Testing Results 12
+#### User Story Testing Results 12
 Step| Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
 Step 1 | The items are added to the bag, and there is a delivery charge(10%) and message displayed | [Desktop](readme/testing/12_1_desktop.PNG)  | [Tablet](readme/testing/12_1_tablet.PNG)  | [Mobile](readme/testing/12_1_mobile.PNG)  | Passed |
@@ -597,7 +596,7 @@ Step 1 | The favourites are displayed | [Result](readme/testing/13_3_favourites.
 - User Story 13.4: As an admin user I can view users favourites in the django admin page and can search and filter by username
 #### User Story Steps 13-4
 - Step 1: As an admin user login navigate to https://ci-ms4-loverugby.herokuapp.com/admin/favourites/favourites/ and select a user
-### User Story Testing Results 13-4
+#### User Story Testing Results 13-4
 Step| Result | Result  | Status
 ------------ | ------------ | ------------- | ------------- 
 Step 1 | The favourites are displayed for the user | [Result](readme/testing/13_4_favourites.PNG)   | Passed |
@@ -717,6 +716,7 @@ Bug no. | Bug description |  Bug fix |
 9 | If items are greater than four, the product, sale, favourites page with pagination doesnt scale right | Update the bootstrap class html to <code>col-sm-6 col-md-6 col-lg-6 col-xl-3</code>
 10 | Reviews were not displaying the latest first | The fix was to filter the reviews in the query by <code>order_by('-create_date')</code>
 11 | Products were not sorting by rating | The fix was to change the update statement to filter on the id, then update <code>Product.objects.filter(id=product.id).update(rating=average_rating_rounded)</code>
+12 | The product rating was different on paginated product review pages | The fix was to display product.rating, not the average_rating as it was being calculated per paginated page and not per product
 
 # Code Validators and Website Analysis
 The website's pages was tested against the following validators:
