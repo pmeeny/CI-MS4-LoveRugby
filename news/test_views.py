@@ -219,7 +219,7 @@ class TestNewsItemViews(TestCase):
 
     def test_view_news_item_add_comment(self):
         """
-        This test tests a news item page with a succesful add of a comment
+        This test tests a news item page with a successful add of a comment
         and verifies
         """
         self.client.login(username='test_user', password='test_password')
@@ -244,7 +244,7 @@ class TestNewsItemViews(TestCase):
 
     def test_view_news_item_delete_comment(self):
         """
-        This test tests a news item page with a succesful add then
+        This test tests a news item page with a successful add then
          delete of a comment and verifies
         """
         self.client.login(username='test_user', password='test_password')
