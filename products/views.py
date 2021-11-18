@@ -30,6 +30,12 @@ def all_products(request):
     sort = None
     direction = None
 
+    for product in products:
+        reviews = Review.objects.filter(product=product)
+        average_rating_rounded = get_average_rating(reviews)
+        Product.objects.filter(id=product.id).update(
+            rating=average_rating_rounded)
+
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -59,11 +65,6 @@ def all_products(request):
     current_sorting = f'{sort}_{direction}'
     product_count = products.count()
     products = setup_pagination(products, request, 4)
-
-    for product in products:
-        reviews = Review.objects.filter(product=product)
-        average_rating_rounded = get_average_rating(reviews)
-        product.rating = average_rating_rounded
 
     context = {
         'products': products,
