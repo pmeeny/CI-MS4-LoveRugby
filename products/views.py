@@ -91,7 +91,7 @@ def product_detail(request, product_id):
 
     reviews = Review.objects.filter(product=product).order_by('-create_date')
     number_of_reviews = reviews.count()
-    reviews = setup_pagination(reviews, request, 3)
+    reviews = setup_pagination(reviews, request, 2)
     average_rating_rounded = get_average_rating(reviews)
 
     try:
