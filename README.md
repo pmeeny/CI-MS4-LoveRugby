@@ -5,7 +5,7 @@ Love Rugby is an ecommerce rugby website allowing users to purchase rugby boots,
     - An admin(administrator) user account has been set up with username/password of administrator/66Nov2009
     - A regular(shopper) user account has been set up with username/password of johnnysexton/Password456!
     - When making a payment as a regular user, a test credit card of 4242424242424242 has been set up for the card number
-    - For the expiry date and postal code any number(s) can be used
+    - For the expiry date, cvc and postal code any series number(s) can be used(once they meet the mimimum values)
 <br>
 
 **View the live site [here](https://ci-ms4-loverugby.herokuapp.com/)**
