@@ -133,11 +133,11 @@ The primary goal of the website from a site users perspective is as follows:
 - Search for a product by name or description and view the search results
 - To view website news, and comment on a news item
 - To have a list of product favourites and to add/delete items from the list
-- 
+
 ## Structure
 ### Website pages
 - I have structured the website into over 20 pages, each with clear, concise structure, information and purpose. I use the Bootstrap grid system throughout, which gave a consistent structure and responsive design "out of the box"
-- Below are the main pages functionality wise, there are some others for password reset/verification etc. that are described in the user story section 
+- Below are the main page's/features functionality wise, there are some others for password reset/verification etc. that are described in the user story section 
 - All pages have a common look and feel and a common header/footer. On a tablet/mobile the look and feel is slightly different with a burger menu
 - These pages are described in more detail in the user stories section
 
@@ -151,7 +151,7 @@ Product Management(Add Product)     | A product can be added to the website
 Product Management(Edit Product)     | A product can be edited to the website     
 Product Management(Delete Product)     | A product can be deleted from the website. This is a modal triggered by a delete button
 Favourites     | A user can have their own favourites list   
-Add to Favourites     |Products can be added or removed to/from a users favourite list       
+Add to Favourites     |Products can be added or removed to/from a users favourite list by clicking on the heart icon on the product detail page      
 My Profile             |The users profile(delivery information) and previous orders is displayed       
 Order History         | A order history page per order details the order information and price
 Log out               | A logout button is provided under the My Account link to logout
@@ -187,6 +187,7 @@ To complement the apps there are
 - custom_storage.py: AWS Boto3 configuration
 - Procfile: To run the application
 - Requirements.txt: Containing the python libraries installed
+Note: Environment variable values are not exposed in the source code, they are stored locally in env.py that is not checked in(and listed in .gitignore, and on Heroku in app settings
 
 ### Database
 - The website is a data-centric one with html, javascript, css used with the bootstrap(version 5) framework as a frontend
@@ -466,6 +467,23 @@ Checkout success |&#9989;        |&#9989;          |&#9989; |
 The screenshots below show mainly desktop images, the tablet and mobile images are displayed in the TESTING.MD file for each feature/user story
 ### Feature 1 Navigation Bar and Homepage
 #### Description feature 1
+- The homepage consists of a carousel of three images, a header/nav bar and footer
+- The header and footer is consistent across all pages
+- The navigation bar is displayed with a logo on all pages with a search box, My account, Favourites and shopping bag icons on a desktop device
+<br>![Homepage desktop](readme/testing/homepage_loggedin_regular_desktop.PNG)
+The website links in the footer differ between a regular user and an admin user
+<br>![Homepage footer admin](readme/testing/footer_desktop_admin.PNG)
+<br>![Homepage footer regular](readme/testing/footer_desktop_regular.PNG)
+- The navigation bar is displayed on all pages with a search box, My account, Favourites and shopping bag icons on a mobile/tablet device
+<br>![Homepage tablet](readme/testing/homepage_loggedin_regular_tablet.PNG)
+<br>![Homepage mobile](readme/testing/homepage_loggedin_regular_mobile.PNG)
+- A regular user logged in, I see a "My Profile"/Logout under the My Account dropdown
+- An admin user logged in, I see a Product Management/News Item Management/My Profile/Logout under the My Account dropdown
+<br>![Homepage admin desktop](readme/testing/homepage_admin_desktop.PNG)
+- On a desktop device there is a number of filters described below: All Products, Rugby Boots, Jerseys and Accessories
+<br>![Homepage desktop filter price](readme/testing/filter_price_desktop.PNG)
+- If a user encounters an error, the relevant error page is displayed (400, 403, 404 or 500)
+<br>![404](readme/testing/404_desktop.PNG)
 
 #### User Stories feature 1
 - User Story 1.1: As an admin/regular user the navigation bar is displayed with a logo on all pages with a search box, My account, Favourites and shopping bag icons on a desktop device
@@ -553,7 +571,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - A review consists of a rating(1-5) and a comment
 <br>![Products Add Review Tablet](readme/testing/add_review2_tablet.PNG)
 <br>![Products Add Review Mobile](readme/testing/add_review2_mobile.PNG)
-- A user can delete a review they wrote
+- A user can delete a review they wrote, but not another users review
 - If a product does not have a review, a message is displayed on the products page and product detail page
 <br>![Products No Review](readme/testing/products_price_desktop.PNG)
 - A user must have an account and be logged in to review a product, otherwise they will see a link to login or create an account
@@ -614,6 +632,7 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - User Story 7.6: As a regular user who has not registered or logged into the website, I cannot add an item to the favourites and will be brought to the login page
 
 ### Feature 8 News Page
+#### Description feature 8
 - The app "news" contains the admin, forms, views, models and templates for this functionality
 - A regular user can view news items, and add a comment to a news item.
 - A user must have an account and be logged in to comment on a news item, otherwise they will see a link to login or create an account
@@ -628,7 +647,6 @@ The screenshots below show mainly desktop images, the tablet and mobile images a
 - They can also delete a comment on a news item, they can do so by clicking on the delete button and confirming.
 <br>![News Delete Comment Admin](readme/testing/news_delete_comment_admin_desktop.PNG)
 - An admin user can delete a comment added by a regular user, they can do so by clicking on the delete button and confirming.
-#### Description feature 8
 #### User Stories feature 8
 - User Story 8.1: As a regular user I can view 4 news items on a page with a news image, and 150 characters of the news item text and a read more button
 - User Story 8.2: As a regular user I can click on the read more button on the News page, I will be navigated to the news item with a news item image, news item text and any comments will be displayed

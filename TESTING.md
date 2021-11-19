@@ -205,8 +205,8 @@ Device Number | Physical/Emulator | Device Name | Device Type | Browser | Versio
 1 | Physical | iPad | Tablet |  Safari | 15.1 |
 2 | Physical | iPhone | Mobile |Safari | 15.1 |
 3 | Physical | One Plus 5 | Mobile | Chrome | 94.0 |
-4 | Physical | Windows Desktop| Desktop | IE Edge | 42.0 |
-5 | Physical | Windows Desktop| Desktop | Mozilla Firefox | 85.0 |
+4 | Physical | Windows Desktop| Desktop | IE Edge | 95.0 |
+5 | Physical | Windows Desktop| Desktop | Mozilla Firefox | 94.0 |
 6 | Physical | Windows Desktop| Desktop | Chrome | 94.0 |
 7 | Emulator | Galaxy S5 | Mobile | Chrome Emulator | 94.0 |
 8 | Emulator | iPad | Tablet | Chrome Emulator | 94.0 |
@@ -449,11 +449,11 @@ Step 6 | A comment cannot be added | [Desktop](readme/testing/add_comment_notlog
 3. Click on an order number
 
 #### User Story Testing Results 9
-Step| Result | Desktop | Tablet | Mobile | Status
+Step | Result | Desktop | Tablet | Mobile | Status
 ------------ | ------------ | ------------- | ------------- | ------------- | -------------
-1. The users default delivery information and order history is displayed  | [Desktop](readme/testing/myprofile_desktop.PNG)  | [Tablet](readme/testing/myprofile_tablet.PNG)  | [Mobile](readme/testing/myprofile_mobile.PNG)  | Passed |
-2. The users default delivery information is updated and displayed (Street Address 2)  | [Desktop](readme/testing/myprofile_desktop_update.PNG)  | [Tablet](readme/testing/myprofile_tablet_update.PNG)  | [Mobile](readme/testing/myprofile_mobile_update.PNG)  | Passed |
-3. The users order details is displayed | [Desktop](readme/testing/order_history_desktop.PNG)  | [Tablet](readme/testing/order_history_tablet.PNG)  | [Mobile](readme/testing/order_history_mobile.PNG)  | Passed |
+Step 1 | The users default delivery information and order history is displayed  | [Desktop](readme/testing/myprofile_desktop.PNG)  | [Tablet](readme/testing/myprofile_tablet.PNG)  | [Mobile](readme/testing/myprofile_mobile.PNG)  | Passed |
+Step 2 | The users default delivery information is updated and displayed (Street Address 2)  | [Desktop](readme/testing/myprofile_desktop_update.PNG)  | [Tablet](readme/testing/myprofile_tablet_update.PNG)  | [Mobile](readme/testing/myprofile_mobile_update.PNG)  | Passed |
+Step 3 | The users order details is displayed | [Desktop](readme/testing/order_history_desktop.PNG)  | [Tablet](readme/testing/order_history_tablet.PNG)  | [Mobile](readme/testing/order_history_mobile.PNG)  | Passed |
 
 ### Feature 10 Product Management
 #### User Story 10-1
