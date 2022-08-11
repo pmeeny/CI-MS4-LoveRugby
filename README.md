@@ -8,7 +8,6 @@ Love Rugby is an ecommerce rugby website allowing users to purchase rugby boots,
     - For the expiry date, cvc and postal code any series number(s) can be used(once they meet the mimimum values)
 <br>
 
-**View the live site [here](https://ci-ms4-loverugby.herokuapp.com/)**
 <br><br>
 ![Responsive site example](readme/responsive/responsive.PNG)
 
