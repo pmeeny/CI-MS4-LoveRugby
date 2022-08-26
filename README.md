@@ -1,9 +1,9 @@
 # Love Rugby shop
 Love Rugby is an ecommerce rugby website allowing users to purchase rugby boots, jerseys and accessories developed for Milestone 4 as milestone project 4 as part of the Code Institute - Diploma in Software Development (Full stack) course.
 
-- There are two types of users, and I have set up accounts for both
-    - An admin(administrator) user account has been set up with username/password of administrator/66Nov2009
-    - A regular(shopper) user account has been set up with username/password of johnnysexton/Password456!
+- There are two types of users
+    - An admin(administrator) user account
+    - A regular(shopper) user account
     - When making a payment as a regular user, a test credit card of 4242424242424242 has been set up for the card number
     - For the expiry date, cvc and postal code any series number(s) can be used(once they meet the mimimum values)
 <br>
@@ -104,7 +104,6 @@ Love Rugby is an ecommerce rugby website allowing users to purchase rugby boots,
 
 # Project Overview
 - This project is a website is for submission as milestone project 4 as part of the Code Institute - Diploma in Software Development (Full stack) course.
-- The website is deployed using Heroku pages at the following url: [Love Rugby](https://ci-ms4-loverugby.herokuapp.com/)
 - The repository on GitHub that contains the website source code and assets is available at the following url: [Code Repository](https://github.com/pmeeny/CI-MS4-LoveRugby)
 - The website was built with a responsive look and feel for desktop, tablet and mobile devices
 
